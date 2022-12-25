@@ -1,7 +1,8 @@
 
 .header-left {
     float: left;
-    margin-left: -5px;
+    /* HACK */
+    /* margin-left: -5px; */
   }
   
 .header-logo {
@@ -10,7 +11,8 @@
 }
 
 .header-name {
-    line-height: 65px;
+/* HACK */
+    line-height: 100px;
     padding: 0 5px;
     color: white;
     display: block;
@@ -38,7 +40,8 @@ color:aquamarine
 }
 
 .logo {
-width:60px;
+/* HACK */
+width:200px;
 height: 54px;
 margin-top: 6px;
 }
