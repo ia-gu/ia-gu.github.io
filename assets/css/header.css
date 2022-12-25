@@ -49,8 +49,8 @@ color:aquamarine
 
 .logo {
 /* HACK */
-/* width:1000px; */
-width:65px;
+/* 変えるとバグる */
+width:100px;
 height: 54px;
 margin-top: 6px;
 }
