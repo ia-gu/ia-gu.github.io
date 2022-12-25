@@ -3,8 +3,8 @@
     float: left;
     /* HACK */
     /* 何も変わらん?? */
-    /* margin-left: 1000px; */
-    margin-left: -5px;
+    margin-left: 100px;
+    /* margin-left: -5px; */
   }
   
 .header-logo {
@@ -33,9 +33,8 @@ margin-right: -25px;
 }
 
 .header-right a {
-/* テキスト位置? */
-line-height: 1000px;
-/* line-height: 65px; */
+/* バナーテキストの高さ */
+line-height: 65px;
 padding: 0 25px;
 color: white;
 display: block;
@@ -49,7 +48,7 @@ color:aquamarine
 
 .logo {
 /* HACK */
-/* 不明 */
+/* どこのロゴですか */
 width:60px;
 height: 54px;
 margin-top: 6px;
