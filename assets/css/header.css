@@ -14,6 +14,7 @@
 
 .header-name {
 /* HACK */
+/* 変わらない?? */
     /* line-height: 1000px; */
     line-height: 65px;
     padding: 0 5px;
@@ -26,8 +27,8 @@
 
 .header-right {
 float: right;
-margin-right: 1000px;
-/* margin-right: -25px; */
+/* margin-right: 1000px; */
+margin-right: -25px;
 }
 
 .header-right a {
