@@ -2,7 +2,7 @@
 .header-left {
     float: left;
     /* HACK */
-    margin-left: 100px;
+    margin-left: 1000px;
     /* margin-left: -5px; */
   }
   
@@ -13,7 +13,7 @@
 
 .header-name {
 /* HACK */
-    line-height: 100px;
+    line-height: 1000px;
     /* line-height: 65px; */
     padding: 0 5px;
     color: white;
@@ -25,11 +25,13 @@
 
 .header-right {
 float: right;
-margin-right: -25px;
+margin-right: 1000px;
+/* margin-right: -25px; */
 }
 
 .header-right a {
-line-height: 65px;
+line-height: 1000px;
+/* line-height: 65px; */
 padding: 0 25px;
 color: white;
 display: block;
@@ -43,7 +45,7 @@ color:aquamarine
 
 .logo {
 /* HACK */
-width:300px;
+width:1000px;
 /* width:65px; */
 height: 54px;
 margin-top: 6px;
