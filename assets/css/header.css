@@ -2,6 +2,7 @@
 .header-left {
     float: left;
     /* HACK */
+    /* 何も変わらん?? */
     /* margin-left: 1000px; */
     margin-left: -5px;
   }
@@ -13,8 +14,8 @@
 
 .header-name {
 /* HACK */
-    line-height: 1000px;
-    /* line-height: 65px; */
+    /* line-height: 1000px; */
+    line-height: 65px;
     padding: 0 5px;
     color: white;
     display: block;
