@@ -35,7 +35,7 @@ margin-right: -25px;
 .header-right a {
 /* テキスト位置? */
 /* line-height: 1000px; */
-line-height: 65px;
+line-height: 100px;
 padding: 0 25px;
 color: white;
 display: block;
@@ -49,8 +49,8 @@ color:aquamarine
 
 .logo {
 /* HACK */
-/* 変えるとバグる */
-width:100px;
+/* 不明 */
+width:60px;
 height: 54px;
 margin-top: 6px;
 }
