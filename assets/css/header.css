@@ -34,8 +34,8 @@ margin-right: -25px;
 
 .header-right a {
 /* テキスト位置? */
-/* line-height: 1000px; */
-line-height: 100px;
+line-height: 1000px;
+/* line-height: 65px; */
 padding: 0 25px;
 color: white;
 display: block;
