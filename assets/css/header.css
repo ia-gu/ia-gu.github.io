@@ -2,8 +2,8 @@
 .header-left {
     float: left;
     /* HACK */
-    margin-left: 1000px;
-    /* margin-left: -5px; */
+    /* margin-left: 1000px; */
+    margin-left: -5px;
   }
   
 .header-logo {
