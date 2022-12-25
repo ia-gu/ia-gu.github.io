@@ -1,0 +1,166 @@
+* {
+  box-sizing: border-box;
+}
+
+.light-theme {
+  --theme: #fff;
+  --primary: #333;
+  --entry: whitesmoke;
+  --header: rgba(34, 49, 52, 0.9);
+}
+
+.dark-theme {
+  --theme: rgb(29, 30, 32);
+  --primary: rgb(218, 218, 219);
+  --entry: rgb(46, 46, 51);
+  --header: rgba(29, 36, 37, 0.9);
+}
+
+body {
+  margin: 0;
+  font-family: "Hiragino Kaku Gothic ProN";
+}
+
+body {
+  background: var(--theme);
+  color: var(--primary);
+}
+
+a {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+footer p {
+  color: #b3aeb5;
+  font-size: 12px;
+}
+
+footer {
+  border-top: 1px solid #eee;
+  padding-top: 30px;
+  padding-bottom: 20px;
+  text-align: center;
+}
+
+header {
+  height: 65px;
+  width: 100%;
+  background-color: var(--header);
+  position :fixed;
+  top: 0;
+  z-index: 10;
+}
+
+.btn {
+  padding: 8px 24px;
+  color: white;
+  display: inline-block;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.back_btn {
+  margin: 10px;
+  color: var(--primary);
+  background-color: var(--entry);
+}
+
+.back_btn:hover {
+  color: #42b983;
+  font-size: medium;
+}
+
+.btn-wrapper {
+  text-align: center;
+}
+
+.clear {
+  clear: both;
+}
+.container {
+  padding: 0 15px;
+  margin: 0 auto;
+}
+
+.hero {
+  margin-top: 75px;
+  max-height: 400px;
+}
+
+.icon {
+  width: 256px;
+}
+
+.menu-icon {
+  color: white;
+  float: right;
+  font-size: 25px;
+  padding: 21px 0;
+  display: none;
+}
+
+.left {
+  float: left;
+}
+
+.top-wrapper {
+  padding: 140px 0 100px 0;
+  background-image: url(../../assets/images/top.png);
+  background-size: cover;
+  color: white;
+  text-align: center;
+}
+
+.fa {
+  margin-right: 5px;
+}
+
+.bottom-btn {
+  /* color: rgba(34,49,52,0.9); */
+  display: inline-block;
+  margin: 0 10px;
+}
+
+.email:hover {
+  color: lightsalmon;
+}
+
+.twitter:hover {
+  color: rgb(29, 155, 240);
+}
+
+.github:hover {
+  color: gray;
+}
+
+.share-btn-wrapper {
+  margin-left: 6%;
+  margin-right: 6%;
+}
+
+.share-btn {
+  background-color: gray;
+  color: white;
+  display: inline-block;
+  padding-left: 6px;
+  padding-top: 8px;
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  text-align: center;
+}
+
+.share-btn:hover {
+  background-color: rgba(34,49,52,0.9);
+}
+
+.master:hover {
+  color: #325E35;
+}
+
+@media all and (max-width: 720px) {
+  .icon {
+    width: 200px;
+  }
+}

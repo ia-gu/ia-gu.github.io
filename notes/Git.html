@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/markdown.css">
+    <link rel="stylesheet" href="/assets/css/header.css">
+    <link rel="icon" href="/assets/images/favicon.ico">
+    
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <div class="header-left">
+          <a href="/index" class="header-logo"><img class="logo" src="/assets/images/kei.png"></a>
+          <a href="/index" class="header-name">軸屋敬介 | Keisuke Jikuya</a>
+        </div>
+        <div class="header-right">
+          <script src="/assets/js/darkmode.js"></script>
+          <a class="fa fa-moon-o" onclick="dark_btn()"></a>
+          <a href="/index">Home</a>
+          <a href="/blogs">Blog</a>
+          <a href="/notes">Note</a>
+          <a href="/posts">Post</a>
+        </div>
+      </div>
+    </header>
+    <!DOCTYPE html>
+<html>
+  <title>Git 個人的メモ</title>
+  <head>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/css/style.css">
+  </head>
+  <body>
+    <img src="https://tech-diary.net/wp-content/uploads/2021/10/how-to-use-git-and-github.png" class="hero">
+    <h1>Git 個人的メモ</h1>
+    <p><span class="fa fa-calendar"></span> Jun 20, 2022<span style="color: blue; "> (Updated: Jul 18, 2022)</span></p>
+    <p><span class="fa fa-flag"></span> Memo, Git, </p>
+    <div class="share-btn-wrapper">
+      <a href="https://twitter.com/share?text=Git 個人的メモ&url=https://absolute-value.github.io/notes/Git.html" class="share-btn share-twitter"><span class="fa fa-twitter fa-2x"></span></a>
+      <a href="https://www.facebook.com/sharer.php?u=https://absolute-value.github.io/notes/Git.html" class="share-btn share-facebook"><span class="fa fa-facebook fa-2x"></span></a>
+      <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://absolute-value.github.io/notes/Git.html&title=Git 個人的メモ" class="share-btn"><span class="fa fa-linkedin fa-2x"></span></a>
+      <a href="mailto:?subject=Git 個人的メモ&body=Git 個人的メモ https://absolute-value.github.io/notes/Git.html" class="share-btn share-email"><span class="fa fa-envelope fa-2x"></span></a>
+    </div>
+    
+    <div id="table-of-contents">
+      <h1 class="table-of-contents-h1">目次</h1>
+      <ul id="toc" class="section-nav">
+<li class="toc-entry toc-h1"><a href="#はじめに">はじめに</a></li>
+<li class="toc-entry toc-h1"><a href="#gitの一連の流れを自動化するbashファイル">gitの一連の流れを自動化するbashファイル</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#gitsh">git.sh</a></li>
+<li class="toc-entry toc-h2"><a href="#実行方法">実行方法</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#vscode上でgitを実行">VSCode上でGitを実行</a></li>
+</ul>
+    </div>
+    
+    <div id="markdown-content">
+      <h1 id="はじめに">はじめに</h1>
+
+<p>Git操作で役に立ちそうな個人的メモです。</p>
+
+<!--more-->
+
+<h1 id="gitの一連の流れを自動化するbashファイル">gitの一連の流れを自動化するbashファイル</h1>
+
+<p>以下のgit.shを.gitと同階層に置いた上で実行</p>
+
+<h2 id="gitsh">git.sh</h2>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="code"><pre><span class="c">#!/bin/sh</span>
+
+git add <span class="nb">.</span>
+<span class="k">if</span> <span class="o">[</span> <span class="nv">$# </span><span class="nt">-eq</span> 0 <span class="o">]</span><span class="p">;</span> <span class="k">then
+    </span>git commit <span class="nt">-m</span> <span class="s2">"Update"</span>
+<span class="k">else
+    </span>git commit <span class="nt">-m</span> <span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span>
+<span class="k">fi
+</span>git push
+</pre></td></tr></tbody></table></code></pre></figure>
+
+<h2 id="実行方法">実行方法</h2>
+<p>コミットメッセージがUpdateで良い場合</p>
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>bash git.sh
+</code></pre></div></div>
+<p>コミットメッセージを指定する場合</p>
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>bash git.sh &lt;commit message&gt;
+</code></pre></div></div>
+
+<h3 id="bashの省略mac">bashの省略(Mac)</h3>
+<p>ファイルに実行権限を与える</p>
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span><span class="nb">chmod</span> +x git.sh
+</code></pre></div></div>
+
+<p>以後は以下のコメントのみで実行できる</p>
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>./git.sh
+</code></pre></div></div>
+
+<p>コミットメッセージを指定する場合は</p>
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>./git.sh &lt;commit message&gt;
+</code></pre></div></div>
+
+<h1 id="vscode上でgitを実行">VSCode上でGitを実行</h1>
+<ol>
+  <li>フォルダを保存したいディレクトリに移動</li>
+  <li>Gitのリポジトリをクローン
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone &lt;GitリポジトリのURL&gt;
+</code></pre></div>    </div>
+  </li>
+  <li>ファイル-&gt;フォルダを開く で、クローンしたディレクトリを開く</li>
+</ol>
+
+<ul>
+  <li>編集する
+    <ul>
+      <li>変更点は緑色で表示され、変更したファイルは黄色で表示される</li>
+    </ul>
+  </li>
+</ul>
+
+<ol>
+  <li>変更のファイルの右にある+を押すことで、git addができる
+    <ul>
+      <li>面倒ならば省略が可能</li>
+    </ul>
+  </li>
+  <li>Ctrl+Shift+G を押してソースの管理を表示</li>
+  <li>メッセージにコミットメッセージを記入</li>
+  <li>コミットを押すことでコミットができる
+    <ul>
+      <li>コミット右のvから、コミットとともにプッシュもできる</li>
+    </ul>
+  </li>
+</ol>
+
+    </div>
+    <div class="btn-wrapper">
+      <a href="/notes" class="btn back_btn">一覧へ戻る</a>
+    </div>
+  </body>
+</html>
+    <footer>
+      <div class="btn-wrapper">
+        <a href="mailto:jikuya[at]cv.info.gifu-u.ac.jp" class="bottom-btn email"><i class="fa fa-envelope fa-2x"></i></a>
+        <a href="https://twitter.com/jky_kei" class="bottom-btn twitter"><i class="fa fa-twitter fa-2x"></i></a>
+        <a href="https://github.com/Absolute-Value" class="bottom-btn github"><i class="fa fa-github fa-2x"></i></a>
+      </div>
+      <div class="container">
+        <p>2022 Copyright</p>
+      </div>
+    </footer>
+  </body>
+</html>

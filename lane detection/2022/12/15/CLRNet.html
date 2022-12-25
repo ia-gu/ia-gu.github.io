@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/markdown.css">
+    <link rel="stylesheet" href="/assets/css/header.css">
+    <link rel="icon" href="/assets/images/favicon.ico">
+    
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <div class="header-left">
+          <a href="/index" class="header-logo"><img class="logo" src="/assets/images/kei.png"></a>
+          <a href="/index" class="header-name">軸屋敬介 | Keisuke Jikuya</a>
+        </div>
+        <div class="header-right">
+          <script src="/assets/js/darkmode.js"></script>
+          <a class="fa fa-moon-o" onclick="dark_btn()"></a>
+          <a href="/index">Home</a>
+          <a href="/blogs">Blog</a>
+          <a href="/notes">Note</a>
+          <a href="/posts">Post</a>
+        </div>
+      </div>
+    </header>
+    <!DOCTYPE html>
+<html>
+  <title>CLRNet: Cross Layer Refinement Network for Lane Detection</title>
+  <head>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      processEscapes: true,
+      tags: "ams",
+      autoload: {
+        color: [],
+        colorV2: ['color']
+      },
+      packages: {'[+]': ['noerrors']}
+    },
+    chtml: {
+      matchFontHeight: false,
+      displayAlign: "left",
+      displayIndent: "2em"
+    },
+    options: {
+      renderActions: {
+        /* add a new named action to render <script type="math/tex"> */
+        find_script_mathtex: [10, function (doc) {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/);
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+            const text = document.createTextNode('');
+            node.parentNode.replaceChild(text, node);
+            math.start = {node: text, delim: '', n: 0};
+            math.end = {node: text, delim: '', n: 0};
+            doc.math.push(math);
+          }
+        }, '']
+      }
+    },
+    loader: {
+      load: ['[tex]/noerrors']
+    }
+  };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
+  </head>
+  <body>
+    <img src="/assets/images/posts/CLRNet/img1.png" class="hero">
+    <h1>CLRNet: Cross Layer Refinement Network for Lane Detection</h1>
+    <p><span class="fa fa-link"></span><a href="https://github.com/Turoad/CLRNet"> https://github.com/Turoad/CLRNet</a></p>
+    <p><span class="fa fa-calendar"></span> Dec 15, 2022</p>
+    <p><span class="fa fa-flag"></span> Lane Detection, </p>
+    <p><span class="fa fa-graduation-cap"></span> CVPR (2022) </p>
+    <div class="share-btn-wrapper">
+      <a href="https://twitter.com/share?text=CLRNet: Cross Layer Refinement Network for Lane Detection&url=https://absolute-value.github.io/lane%20detection/2022/12/15/CLRNet.html" class="share-btn share-twitter"><span class="fa fa-twitter fa-2x"></span></a>
+      <a href="https://www.facebook.com/sharer.php?u=https://absolute-value.github.io/lane%20detection/2022/12/15/CLRNet.html" class="share-btn share-facebook"><span class="fa fa-facebook fa-2x"></span></a>
+      <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://absolute-value.github.io/lane%20detection/2022/12/15/CLRNet.html&title=CLRNet: Cross Layer Refinement Network for Lane Detection" class="share-btn"><span class="fa fa-linkedin fa-2x"></span></a>
+      <a href="mailto:?subject=CLRNet: Cross Layer Refinement Network for Lane Detection&body=CLRNet: Cross Layer Refinement Network for Lane Detection https://absolute-value.github.io/lane%20detection/2022/12/15/CLRNet.html" class="share-btn share-email"><span class="fa fa-envelope fa-2x"></span></a>
+    </div>
+    <h1 id="概要">概要</h1>
+
+<ul>
+  <li>特徴抽出したFPN構造の特徴マップを、上位から下位まで複合的に活用する車線検出手法であるCross Layer Refinement Network (CLRNet)を提案</li>
+  <li>CULaneとTuSimpleとLLAMASのデータセットで従来手法を上回る
+<!--more--></li>
+</ul>
+
+<h1 id="新規性差分">新規性・差分</h1>
+
+<ul>
+  <li>車線の部分領域と全体を組み合わせて大域的な特徴表現を獲得するROIGatherを使用</li>
+  <li>車線の検出結果に対するIoUとしてLIoU(Line IoU)を定義し、LIoUの最大化を損失関数に含んだ</li>
+</ul>
+
+<h1 id="アイデア">アイデア</h1>
+
+<ul>
+  <li><img src="/assets/images/posts/CLRNet/img1.png" alt="" /></li>
+  <li>二次元の点列$𝑃$（レーン事前分布）をネットワークで出力
+    <ul>
+      <li>前景と背景の確率、線の長さ、角度、予測と正解の水平距離</li>
+    </ul>
+  </li>
+  <li>ResNetをBackboneとし、FPN構造から特徴マップ$𝐿_0, 𝐿_1, 𝐿_2$を生成</li>
+  <li>点列$P$と特徴マップ$L$を組み合わせる
+    <ul>
+      <li>
+\[P_t = P_{t-1} \circ R_t (L_{t-1},P_{t-1})\]
+      </li>
+      <li>上位から下位の特徴を活用するため</li>
+    </ul>
+  </li>
+  <li>点列Pをもとに特徴マップ$L$をROIAlignで抽出</li>
+  <li>Attentionをとる
+    <ul>
+      <li>
+\[\mathcal{G} = \mathcal{W}\mathcal{X}^T_f\]
+      </li>
+      <li>
+\[\mathcal{W} = f(\frac{\mathcal{X}^T_p \mathcal{X}_f}{\sqrt{C}})\]
+      </li>
+    </ul>
+  </li>
+  <li>Line IoU Loss
+    <ul>
+      <li>点を別々の変数として扱うため、既存の距離損失を用いると精度が低くなってしまう</li>
+      <li>そこで、車線専用のLossを提案
+        <ul>
+          <li>
+\[IoU = \frac{d^\omicron_i}{d^u_i} = \frac{\min(x^p_i+e, x^q_i+e) - \max(x^p_i+e, x^q_i+e)}{\max(x^p_i-e, x^q_i-e) - \min(x^p_i-e, x^q_i-e)}\]
+          </li>
+          <li>
+\[LIoU = \frac{\sum^N_{i=1} d^\omicron_i}{\sum^N_{i=1} d^u_i}\]
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="結果">結果</h1>
+
+<ul>
+  <li>CULane
+    <ul>
+      <li><img src="/assets/images/posts/CLRNet/img7.png" alt="" /></li>
+    </ul>
+  </li>
+  <li>LLAMAS
+    <ul>
+      <li><img src="/assets/images/posts/CLRNet/img8.png" alt="" /></li>
+    </ul>
+  </li>
+  <li>TuSimple
+    <ul>
+      <li><img src="/assets/images/posts/CLRNet/img9.png" alt="" /></li>
+      <li><img src="/assets/images/posts/CLRNet/img10.png" alt="" /></li>
+    </ul>
+  </li>
+</ul>
+
+    <div class="btn-wrapper">
+      <a href="/posts" class="btn back_btn">一覧へ戻る</a>
+    </div>
+  </body>
+</html>
+    <footer>
+      <div class="btn-wrapper">
+        <a href="mailto:jikuya[at]cv.info.gifu-u.ac.jp" class="bottom-btn email"><i class="fa fa-envelope fa-2x"></i></a>
+        <a href="https://twitter.com/jky_kei" class="bottom-btn twitter"><i class="fa fa-twitter fa-2x"></i></a>
+        <a href="https://github.com/Absolute-Value" class="bottom-btn github"><i class="fa fa-github fa-2x"></i></a>
+      </div>
+      <div class="container">
+        <p>2022 Copyright</p>
+      </div>
+    </footer>
+  </body>
+</html>
