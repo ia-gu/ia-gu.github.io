@@ -3,8 +3,8 @@
     float: left;
     /* HACK */
     /* 何も変わらん?? */
-    margin-left: 100px;
-    /* margin-left: -5px; */
+    /* margin-left: 100px; */
+    margin-left: -5px;
   }
   
 .header-logo {
