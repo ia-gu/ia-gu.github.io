@@ -1,10 +1,8 @@
 
 .header-left {
     float: left;
-    /* HACK */
-    /* 何も変わらん?? */
-    margin-left: 1000px;
-    /* margin-left: -5px; */
+    /* ヘッダ全体のx座標 */
+    margin-left: -5px;
   }
   
 .header-logo {
@@ -14,7 +12,7 @@
 
 .header-name {
 /* HACK */
-/* ヘッダー名前の高さ */
+/* ヘッダー名前 */
     line-height: 65px;
     padding: 0 5px;
     color: white;
