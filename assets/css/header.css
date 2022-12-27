@@ -15,8 +15,8 @@
 .header-name {
 /* HACK */
 /* 変わらない?? */
-    /* line-height: 1000px; */
-    line-height: 65px;
+    line-height: 1000px;
+    /* line-height: 65px; */
     padding: 0 5px;
     color: white;
     display: block;
@@ -47,9 +47,8 @@ color:aquamarine
 
 .logo {
 /* HACK */
-/* どこのロゴですか */
-/* width:60px; */
-width:1000px;
+/* ヘッダー画像 */
+width:60px;
 height: 54px;
 margin-top: 6px;
 }
