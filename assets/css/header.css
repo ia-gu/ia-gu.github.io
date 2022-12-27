@@ -3,8 +3,8 @@
     float: left;
     /* HACK */
     /* 何も変わらん?? */
-    /* margin-left: 100px; */
-    margin-left: -5px;
+    margin-left: 1000px;
+    /* margin-left: -5px; */
   }
   
 .header-logo {
@@ -14,9 +14,8 @@
 
 .header-name {
 /* HACK */
-/* 変わらない?? */
-    line-height: 1000px;
-    /* line-height: 65px; */
+/* ヘッダー名前の高さ */
+    line-height: 65px;
     padding: 0 5px;
     color: white;
     display: block;
