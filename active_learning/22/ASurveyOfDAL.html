@@ -28,23 +28,10 @@
     </header>
     <!DOCTYPE html>
 <html>
+  <title>A Survey of Deep Active Learning</title>
   <head>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link rel="stylesheet" href="/assets/css/style.css">
-  </head>
-  <body>
-    <div class="top-wrapper">
-      <div class="container">
-        <h1>Posts</h1>
-        <p>読んだ論文をまとめておく場所です</p>
-      </div>
-    </div>
-    <!DOCTYPE html>
-<html>
-  <title>Posts</title>
-  <head>
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-    <link rel="stylesheet" href="/assets/css/posts.css">
     <script>
   MathJax = {
     tex: {
@@ -86,70 +73,47 @@
 <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
   </head>
   <body>
-    
-    <div class="myposts">
+    <img src="https://media.arxiv-vanity.com/render-output/5811705/SSIM_L2_COMPARISON.png" class="hero">
+    <h1>A Survey of Deep Active Learning</h1>
+    <p><span class="fa fa-link"></span><a href="https://arxiv.org/abs/2009.00236"> https://arxiv.org/abs/2009.00236</a></p>
+    <p><span class="fa fa-calendar"></span> Dec 31, 2022</p>
+    <p><span class="fa fa-flag"></span> Deep Active Learning, Semi-Supervised Learning, Self-Supervised Learning, Reinforcement Learning, Neural Architecture Search </p>
+    <p><span class="fa fa-graduation-cap"></span> ACM journal </p>
 
+    <h2 id="1-どんなもの">1. どんなもの??何ができる??</h2>
+<!-- 概要・貢献等 100-200字程度 -->
+<p>深層能動学習(DALのサーベイ論文)．DL登場以前の手法から，DL登場以降の手法を網羅的にサーベイ．<br />
+主流であるプールベースサンプリングのほかに，強化学習やNASと組み合わせたフレームワークが紹介されている．
+<!--more--></p>
 
-        <div class="post">
-          <a href="/lane%20detection/2022/12/15/CLRNet.html">
-            <img class="post_img" src="/assets/images/posts/CLRNet/img1.png">
-            <div class="post_detail"> 
-              <p><b>CLRNet: Cross Layer Refinement Network for Lane Detection</b></p>
-              <p class="post_p"><h1 id=""></h1>
+<h2 id="2-どうやって">2. どうやって??</h2>
+<!-- 手法説明 -->
 <ul>
-  <li>特徴抽出したFPN構造の特徴マップを、上位から下位まで複合的に活用する車線検出手法であるCross Layer Refinement Network (CLRNet)を提案</li>
-  <li>CULaneとTuSimpleとLLAMASのデータセットで従来手法を上回る</li>
+  <li>DL登場以前の，能動学習全体の問題設定を明記し，時系列的に手法を紹介/li>
+  <li>プールベースサンプリングの説明では，バッチ単位でクエリするBMDAL，不確実性・ハイブリットクエリ戦略，ベイズ手法，代表性・多様性クエリ戦略，その他のアプローチを紹介</li>
 </ul>
-</p>
-              <p>
-                <span class="fa fa-calendar"></span> Dec 15, 2022
-                <span class="fa fa-folder"></span> Lane Detection
-                <span class="fa fa-graduation-cap"></span> CVPR (2022)
-              </p>
-            </div>
-          </a>
-        </div>
 
-        
-        <div class="post">
-          <a href="active_learning/22/12/31/ASurveyOfDAL.html">
-            <img class="post_img" src="/assets/images/posts/ASurveyOfDAL/dal_framework.png">
-            <div class="post_detail"> 
-              <p><b>A Survey of Deep Active Learning</b></p>
-              <p class="post_p"><h1 id=""></h1>
+<h2 id="3-結果は">3. 結果は??</h2>
+<!-- 結果 -->
 <ul>
-  <li>2020年に発表された深層能動学習(DAL: Deep Active Learning) のサーベイ論文</li>
-  <li>DALとは何か??という話から最新のプールベースサンプリング手法，ベイズや強化学習を組み込んだ手法等を幅広くサーベイ</li>
+  <li>本論文は問題定義と手法の紹介に限定しており，特に実験は行っていない</li>
 </ul>
-</p>
-              <p>
-                <span class="fa fa-calendar"></span> Dec 31, 2022
-                <span class="fa fa-folder"></span> active_learning
-                <span class="fa fa-graduation-cap"></span> ACM journal
-              </p>
-            </div>
-          </a>
-        </div>
-      
-        
-      
-    </div>
-    
+
+<blockquote>
+  <h2 id="4-課題は">4. 課題は??</h2>
+  <ol>
+    <li></li>
+  </ol>
+</blockquote>
+
     <div class="btn-wrapper">
-      
-      
-      <a href="/posts/2/" class="btn back_btn next">></a>
-      <a href="/posts/6/" class="btn back_btn previous">>>></a>
-      
-    
+      <a href="/posts" class="btn back_btn">一覧へ戻る</a>
     </div>
-  </body>
-</html>
   </body>
 </html>
     <footer>
       <div class="btn-wrapper">
-        <a href="ueno:jikuya[at]cv.info.gifu-u.ac.jp" class="bottom-btn email"><i class="fa fa-envelope fa-2x"></i></a>
+        <a href="mailto:ueno[at]cv.info.gifu-u.ac.jp" class="bottom-btn email"><i class="fa fa-envelope fa-2x"></i></a>
         <a href="https://twitter.com/ianidaime" class="bottom-btn twitter"><i class="fa fa-twitter fa-2x"></i></a>
         <a href="https://github.com/ia-gu" class="bottom-btn github"><i class="fa fa-github fa-2x"></i></a>
       </div>
