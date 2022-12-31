@@ -28,7 +28,7 @@
     </header>
     <!DOCTYPE html>
 <html>
-  <title>Deep Reinforcement Active Learning for Human-In-The-Loop Person Re-Identification</title>
+  <title>Diverse mini-batch Active Learning</title>
   <head>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link rel="stylesheet" href="/assets/css/style.css">
@@ -73,38 +73,38 @@
 <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
   </head>
   <body>
-    <img class="hero" src="/assets/images/posts/DRAL4PRI/framework.png">
-    <h1>Deep Reinforcement Active Learning for Human-In-The-Loop Person Re-Identification</h1>
-    <p><span class="fa fa-link"></span><a href="https://arxiv.org/abs/2009.00236"> https://arxiv.org/abs/2009.00236</a></p>
+    <img class="hero" src="/assets/images/posts/DMBAL/head.png">
+    <h1>Diverse mini-batch Active Learning</h1>
+    <p><span class="fa fa-link"></span><a href="https://arxiv.org/abs/1901.05954"> https://arxiv.org/abs/1901.05954</a></p>
     <p><span class="fa fa-calendar"></span> Dec 31, 2022</p>
-    <p><span class="fa fa-flag"></span> Deep Active Learning, Reinforcement Learning </p>
-    <p><span class="fa fa-graduation-cap"></span> ICCV(2019) </p>
+    <p><span class="fa fa-flag"></span> Deep Active Learning</p>
+    <p><span class="fa fa-graduation-cap"></span> arXiv </p>
 
-<h2 id="1-どんなもの">1. どんなもの??何ができる??</h2>
+    <h2 id="1-どんなもの">1. どんなもの??何ができる??</h2>
 <ul>
-  <li>ヒトのRe-IDタスクにDALとRLを適用することで，新しいヒトを登録する際の負担・エラーを解消</li><br />
-  <li>複数のカメラに対する応用も可能</li><br />
+    <li>既存の逐次的にサンプルを選択し追加するフレームワークはDLに対しては非実用的</li>
+    <li>不確実性と代表性・多様性を同時に考慮するために，Marginとk-meansを使用するハイブリット戦略を提案</li>
 </ul>
 
 <h2 id="2-どうやって">2. どうやって??</h2>
 <ul>
-  <li>エージェントの行動を，プールからサンプルを選択することと定義し，クエリ戦略部分を強化学習に置き換えたフレームワークを提案</li><br />
-  <img src="/assets/images/posts/DRAL4PRI/framework.png" /><br />
-  <li>サンプル間の類似度からエージェントに与える報酬を決定(dはマハラノビス距離)</li><br />
-  <img src="/assets/images/posts/DRAL4PRI/formula1.png" /><br />
-  <img src="/assets/images/posts/DRAL4PRI/formula2.png" /><br />
+  <li>データプールからMargin Samplingによって不確実性の高いサンプルをフィルタリング</li>
+  <li>フィルタリングされたデータに対してk-means Samplingを実行</li>
 </ul>
 
 <h2 id="3-結果は">3. 結果は??</h2>
 <ul>
-  Market1501，Duke，CUHK01で他を圧倒<br />
-  <img src="/assets/images/posts/DRAL4PRI/market1501.png" /><br />
-  <img src="/assets/images/posts/DRAL4PRI/Duke.png" /><br />
-  <img src="/assets/images/posts/DRAL4PRI/CUHK01.png" /><br />
+  <li>MNIST，CIFARで実験</li>
+  <li>どちらもUncertaintyと比べて差がなく，誤差レベル</li>
+  <img src="/assets/images/posts/DMBAL/mnist.png" /><br />
+  <img src="/assets/images/posts/DMBAL/cifar.png" /><br />
+  <li>Margin以外のフィルタリングについても実験済</li>
 </ul>
 
 <h2 id="4-課題は">4. 課題は??</h2>
-
+<ul>
+  <li>ResNet18でも機能する??</li>
+</ul>
     <div class="btn-wrapper">
       <a href="/posts" class="btn back_btn">一覧へ戻る</a>
     </div>
