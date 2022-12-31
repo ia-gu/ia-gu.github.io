@@ -28,7 +28,7 @@
     </header>
     <!DOCTYPE html>
 <html>
-  <title>A Survey of Deep Active Learning</title>
+  <title>Deep Bayesian Active Learning, A Brief Survey on Recent Advances</title>
   <head>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link rel="stylesheet" href="/assets/css/style.css">
@@ -73,27 +73,26 @@
 <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
   </head>
   <body>
-    <img class="hero" src="/assets/images/posts/ASurveyOfDAL/dal_framework.png">
-    <h1>A Survey of Deep Active Learning</h1>
-    <p><span class="fa fa-link"></span><a href="https://arxiv.org/abs/2009.00236"> https://arxiv.org/abs/2009.00236</a></p>
+    <img class="hero" src="/assets/images/posts/DBALSurvey/framework.png">
+    <h1>Deep Bayesian Active Learning, A Brief Survey on Recent Advances</h1>
+    <p><span class="fa fa-link"></span><a href="https://arxiv.org/abs/2012.08044"> https://arxiv.org/abs/2012.08044</a></p>
     <p><span class="fa fa-calendar"></span> Dec 31, 2022</p>
-    <p><span class="fa fa-flag"></span> Deep Active Learning, Semi-Supervised Learning, Self-Supervised Learning, Reinforcement Learning, Neural Architecture Search </p>
-    <p><span class="fa fa-graduation-cap"></span> ACM journal </p>
+    <p><span class="fa fa-flag"></span> Deep Active Learning, Bayesian Active Learning</p>
+    <p><span class="fa fa-graduation-cap"></span> arXiv </p>
 
     <h2 id="1-どんなもの">1. どんなもの??何ができる??</h2>
 <!-- 概要・貢献等 100-200字程度 -->
-
 <ul>
-  <li>深層能動学習(DAL)のサーベイ論文．DL登場以前の手法から，DL登場以降の手法を網羅的にサーベイ</li>
-  <li>主流であるプールベースサンプリングのほかに，強化学習やNASと組み合わせたフレームワークを紹介</li>
+    <li>深層能動学習(DAL)の中でも，Bayes手法に絞ったサーベイ論文．</li>
+    <li>DL登場以前と以降で，Bayes手法がどのように変化していったかを紹介</li>
 </ul>
-
 
 <h2 id="2-どうやって">2. どうやって??</h2>
 <!-- 手法説明 -->
 <ul>
-  <li>DL登場以前の，能動学習全体の問題設定を明記し，時系列的に手法を紹介</li>
-  <li>プールベースサンプリングの説明では，バッチ単位でクエリするBMDAL，不確実性・ハイブリットクエリ戦略，ベイズ手法，代表性・多様性クエリ戦略，その他のアプローチを紹介</li>
+  <li>DALはモデルの学習具合に依存するため，確率分布を用いてモデルのあいまいさを表現するBayes手法は重宝</li>
+  <li>BNN(実際はMCドロップアウト)を用いて実装される事が多いが，データセット依存が大きい</li>
+  <li>BNNの代わりに，中間層にBayesian priorを適用する手法も登場</li>
 </ul>
 
 <h2 id="3-結果は">3. 結果は??</h2>
