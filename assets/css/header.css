@@ -1,9 +1,8 @@
 
-.header-left {
+/* .header-left {
     float: left;
-    /* ヘッダ全体のx座標 */
     margin-left: -5px;
-  }
+  } */
   
 .header-logo {
     max-width: max-content;
@@ -20,6 +19,43 @@
     transition: all 0.5s;
     font-size: x-large;
 }
+
+.header-left {
+  float: right;
+  /* テキスト横位置 */
+  margin-right: -25px;
+  }
+  
+  .header-left a {
+  /* バナーテキストの高さ */
+  line-height: 65px;
+  padding: 0 25px;
+  color: white;
+  display: block;
+  float: left;
+  transition: all .1s;
+  position: relative;
+  }
+  
+  .header-left a::after {
+      position: absolute;
+      /* bottom: -4px; */
+      left: 0;
+      content: '';
+      width: 100%;
+      height: 2px;
+      background: aquamarine;
+      transform: scale(0, 1);
+      transform-origin: center top;
+      transition: transform .3s;
+    }
+    .header-left a:hover::after {
+      transform: scale(1, 1);
+    }
+  
+  .header-left a:hover{
+  color:aquamarine
+  }
 
 .header-right {
 float: right;
