@@ -16,13 +16,13 @@
     padding: 0 5px;
     color: white;
     display: block;
-    float: left;
+    float: right;
     transition: all 0.5s;
     font-size: x-large;
 }
 
 .header-right {
-float: left;
+float: right;
 /* テキスト横位置 */
 margin-right: -25px;
 }
@@ -58,12 +58,11 @@ position: relative;
 color:aquamarine
 }
 
-.logo {
-/* ヘッダー画像 */
+/* .logo {
 width:60px;
 height: 54px;
 margin-top: 6px;
-}
+} */
 
 @media all and (max-width: 720px) {
 .header-name {
