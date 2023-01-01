@@ -23,7 +23,7 @@
 .header-left {
   float: left;
   /* テキスト横位置 */
-  margin-left: -80px;
+  margin-left: -10px;
 }
   
   .header-left a {
