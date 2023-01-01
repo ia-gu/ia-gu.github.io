@@ -5,10 +5,10 @@
     margin-left: -5px;
   }
   
-.header-logo {
+/* .header-logo {
     max-width: max-content;
     float: left;
-}
+} */
 
 .header-name {
 /* ヘッダー名前 */
@@ -16,13 +16,13 @@
     padding: 0 5px;
     color: white;
     display: block;
-    float: right;
+    float: left;
     transition: all 0.5s;
     font-size: x-large;
 }
 
 .header-right {
-float: right;
+float: left;
 /* テキスト横位置 */
 margin-right: -25px;
 }
