@@ -21,9 +21,8 @@
 }
 
 .header-left {
-  float: right;
+  float: left;
   /* テキスト横位置 */
-  margin-right: -5px;
   }
   
   .header-left a {
