@@ -15,7 +15,7 @@
     padding: 0 5px;
     color: white;
     display: block;
-    float: right;
+    float: left;
     transition: all 0.5s;
     font-size: x-large;
 }
@@ -23,7 +23,7 @@
 .header-left {
   float: right;
   /* テキスト横位置 */
-  margin-right: -25px;
+  margin-right: -5px;
   }
   
   .header-left a {
