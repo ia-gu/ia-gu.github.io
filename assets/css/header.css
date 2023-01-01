@@ -5,10 +5,10 @@
     margin-left: -5px;
   }
   
-/* .header-logo {
+.header-logo {
     max-width: max-content;
     float: left;
-} */
+}
 
 .header-name {
 /* ヘッダー名前 */
@@ -58,11 +58,12 @@ position: relative;
 color:aquamarine
 }
 
-/* .logo {
+.logo {
+/* ヘッダー画像 */
 width:60px;
 height: 54px;
 margin-top: 6px;
-} */
+}
 
 @media all and (max-width: 720px) {
 .header-name {
