@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/markdown.css">
+    <link rel="stylesheet" href="/assets/css/header.css">
+    <link rel="icon" href="/assets/images/git_icon.ico">
+    
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+          <a href="/index" class="header-name">上野詩翔 | Shiryu Ueno</a>
+          <div class="header-left">
+            <a href="/index">home</a>
+            <a href="/posts">posts</a>
+            <a href="/portfolios">portfolios</a>
+            <a href="/notes">notes</a>
+        </div>
+        <div class="header-right">
+          <script src="/assets/js/darkmode.js"></script>
+          <a class="fa fa-moon-o" onclick="dark_btn()"></a>
+        </div>
+      </div>
+    </header>
+    <!DOCTYPE html>
+<html>
+  <title>GLISTER: Generalization based Data Subset Selection for Efficient and Robust Learning</title>
+  <head>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      processEscapes: true,
+      tags: "ams",
+      autoload: {
+        color: [],
+        colorV2: ['color']
+      },
+      packages: {'[+]': ['noerrors']}
+    },
+    chtml: {
+      matchFontHeight: false,
+      displayAlign: "left",
+      displayIndent: "2em"
+    },
+    options: {
+      renderActions: {
+        /* add a new named action to render <script type="math/tex"> */
+        find_script_mathtex: [10, function (doc) {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/);
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+            const text = document.createTextNode('');
+            node.parentNode.replaceChild(text, node);
+            math.start = {node: text, delim: '', n: 0};
+            math.end = {node: text, delim: '', n: 0};
+            doc.math.push(math);
+          }
+        }, '']
+      }
+    },
+    loader: {
+      load: ['[tex]/noerrors']
+    }
+  };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
+  </head>
+  <body>
+    <img class="hero" src="/assets/images/posts/GLISTER/framework.png">
+    <h1>GLISTER: Generalization based Data Subset Selection for Efficient and Robust Learning</h1>
+    <p><span class="fa fa-link"></span><a href="https://arxiv.org/abs/2012.10630"> https://arxiv.org/abs/2012.10630</a></p>
+    <p><span class="fa fa-calendar"></span> Dec 31, 2022</p>
+    <p><span class="fa fa-flag"></span> Deep Active Learning, Semi-Supervised Learning, Self-Supervised Learning, Reinforcement Learning, Neural Architecture Search </p>
+    <p><span class="fa fa-graduation-cap"></span> AAAI(2021) </p>
+
+    <h2 id="1-どんなもの">1. どんなもの??何ができる??</h2>
+
+<ul>
+  <li>DALにおける有益なサブセットの選択を劣モジュラ最適化で定式化することで，効率性，ロバスト性の両方を重視した手法としてGLISTERを提案</li>
+  <li>CIFAR10やMNISTで，不均衡・ミスラベルの場合でも高精度</li>
+</ul>
+
+
+<h2 id="2-どうやって">2. どうやって??</h2>
+<ul>
+  <li>outer-layer｜検証セットに対する対数尤度LLVを最大化するような部分集合を選択</li>
+  <li>inner-layer｜訓練セットに対する対数尤度LLTを最大化するようにパラメータを最適化</li>
+  <img src="/assets/images/posts/GLISTER/log_likelihood.png" /><br />
+  (inner-layerの最適化は計算量が大きいため，テイラー展開で近似)
+</ul>
+
+<h2 id="3-結果は">3. 結果は??</h2>
+<ul>
+<li>CIFAR10，MNISTにおいて，不均衡やノイズラベルを含む場合も既存手法と比べ精度が高いことを確認</li>
+<img src="/assets/images/posts/GLISTER/result.png" /><br />
+<li>DALのフレームワークに合わせたGLISTER ACTIVEが各設定において既存手法より精度が高いことを確認</li>
+<img src="/assets/images/posts/GLISTER/al_result.png" /><br />
+</ul>
+
+<h2 id="4-課題は">4. 課題は??</h2>
+<ul>
+    <li>DALでは検証セットの準備は難しいはず(その分を教師データにする方が良いのでは??という話になる)</li>
+    <ul>
+        <li>公式実装もフルデータの10%を検証セットに割り当てており，結果の信憑性は低い</li>
+    </ul>
+</ul>
+
+    <div class="btn-wrapper">
+      <a href="/posts" class="btn back_btn">一覧へ戻る</a>
+    </div>
+  </body>
+</html>
+    <footer>
+      <div class="btn-wrapper">
+        <a href="mailto:ueno[at]cv.info.gifu-u.ac.jp" class="bottom-btn email"><i class="fa fa-envelope fa-2x"></i></a>
+        <a href="https://twitter.com/ianidaime" class="bottom-btn twitter"><i class="fa fa-twitter fa-2x"></i></a>
+        <a href="https://github.com/ia-gu" class="bottom-btn github"><i class="fa fa-github fa-2x"></i></a>
+      </div>
+      <div class="container">
+        <p>2022 Copyright</p>
+      </div>
+    </footer>
+  </body>
+</html>
