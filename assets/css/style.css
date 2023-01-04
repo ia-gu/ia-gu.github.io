@@ -54,7 +54,8 @@ header {
 
 .btn {
   padding: 8px 24px;
-  color: white;
+  background: var(--theme);
+  /* color: white; */
   display: inline-block;
   border-radius: 4px;
   text-align: center;
@@ -67,7 +68,7 @@ header {
 }
 
 .back_btn:hover {
-  color: #42b983;
+  color: aquamarine;
   font-size: medium;
 }
 
