@@ -1,28 +1,27 @@
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
   <head>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link rel="stylesheet" href="/assets/css/style.css">
     <link rel="stylesheet" href="/assets/css/markdown.css">
     <link rel="stylesheet" href="/assets/css/header.css">
-    <link rel="icon" href="/assets/images/favicon.ico">
+    <link rel="icon" href="/assets/images/git_icon.ico">
     
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
   </head>
   <body>
     <header>
       <div class="container">
-        <div class="header-left">
-          <a href="/index" class="header-logo"><img class="logo" src="/assets/images/kei.png"></a>
-          <a href="/index" class="header-name">軸屋敬介 | Keisuke Jikuya</a>
+          <a href="/index" class="header-name">上野詩翔 | Shiryu Ueno</a>
+          <div class="header-left">
+            <a href="/index">home</a>
+            <a href="/posts">posts</a>
+            <a href="/portfolios">portfolios</a>
+            <a href="/notes">notes</a>
         </div>
         <div class="header-right">
           <script src="/assets/js/darkmode.js"></script>
           <a class="fa fa-moon-o" onclick="dark_btn()"></a>
-          <a href="/index">Home</a>
-          <a href="/blogs">Blog</a>
-          <a href="/notes">Note</a>
-          <a href="/posts">Post</a>
         </div>
       </div>
     </header>
@@ -35,13 +34,12 @@
   <body>
     <div class="top-wrapper">
       <div class="container">
-        <h1> Posts | 2</h1>
-        <p>読んだ論文をまとめておく場所です</p>
+        <h1>Posts</h1>
       </div>
     </div>
     <!DOCTYPE html>
 <html>
-  <title> Posts | 2</title>
+  <title>Posts</title>
   <head>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link rel="stylesheet" href="/assets/css/posts.css">
@@ -88,204 +86,180 @@
   <body>
     
     <div class="myposts">
-      
-        
-        <div class="post">
-          <a href="/hoi/2022/09/05/EgocentricHOI.html">
-            <img class="post_img" src="/assets/images/posts/EgocentricHOI/5.png">
-            <div class="post_detail"> 
-              <p><b>Egocentric Human-Object Interaction Detection Exploiting Synthetic Data</b></p>
-              <p class="post_p"><h1 id=""></h1>
 
-<p>産業環境（電気基板のテストおよび修理作業）においてHOI検出を行う際に、大量のデータの収集・ラベリングは困難である。そこで、自動的にラベリングされた合成一人称画像を生成するパイプラインとツールを提案する。生成した合成データで事前学習をし、実データでファインチューニングをすることで、実データでのHOI検出の性能を向上させた。</p>
-</p>
-              <p>
-                <span class="fa fa-calendar"></span> Sep 5, 2022
-                <span class="fa fa-folder"></span> HOI
-                <span class="fa fa-graduation-cap"></span> arXiv (2022)
-              </p>
-            </div>
-          </a>
-        </div>
-        
-      
-        
-        <div class="post">
-          <a href="/nerf/2022/08/24/Ref-NeRF.html">
-            <img class="post_img" src="/assets/images/posts/Ref-NeRF/2.png">
-            <div class="post_detail"> 
-              <p><b>Ref-NeRF: Structured View-Dependent Appearance for Neural Radiance Fields</b></p>
-              <p class="post_p"><h1 id=""></h1>
-
+      <div class="post">
+        <a href="/active_learning/23/01/04/ASSSL.html">
+          <img class="post_img" src="/assets/images/posts/ASSSL/framework.png">
+          <div class="post_detail"> 
+            <p><b>Active Self-Semi-Supervised Learning for Few Labeled Samples Fast Training</b></p>
+            <p class="post_p"><h1 id=""></h1>
 <ul>
-  <li>既存のNeRFは光沢のある表面の外観を正確に再現できない場合が多い</li>
-  <li>そこで、NeRFの視点から色を出力する箇所に手を加えたRef-NeRFを提案</li>
-  <li>鏡面反射の精度を大幅に改善した</li>
+  <li>自己教師あり学習の事前学習から得られる疑似ラベルを用いて半教師あり学習に有益な少数サンプルを選択するフレームワークとしてActive Self-Semi-Supervised Learningを提案</li>
+  <li>既存手法と比べはるかに少ない枚数で高精度を出すことが可能であり，CIFAR10では10枚のアノテーションで83%を達成</li>
+</ul>
+</p>
+            <p>
+              <span class="fa fa-calendar"></span> Jan 4, 2023
+              <span class="fa fa-folder"></span> active learning
+              <span class="fa fa-graduation-cap"></span> arXiv
+            </p>
+          </div>
+        </a>
+      </div>
+
+      <div class="post">
+        <a href="/active_learning/23/01/04/SIMILAR.html">
+          <img class="post_img" src="/assets/images/posts/SIMILAR/head.png">
+          <div class="post_detail"> 
+            <p><b>SIMILAR: Submodular Information Measures Based Active Learning In Realistic Scenarios</b></p>
+            <p class="post_p"><h1 id=""></h1>
+<ul>
+  <li>獲得関数に劣モジュラ情報量(SIM)を用いることで，不均衡・冗長性・OODに対し有効なDAL手法を提案</li>
+  <li>SMI，SCG,SCMIを使い分けることで，CIFAR10において各状況下で高精度を達成</li>
+</ul>
+</p>
+            <p>
+              <span class="fa fa-calendar"></span> Jan 4, 2023
+              <span class="fa fa-folder"></span> active learning
+              <span class="fa fa-graduation-cap"></span> arXiv
+            </p>
+          </div>
+        </a>
+      </div>
+
+      <div class="post">
+        <a href="/active_learning/23/01/03/GLISTER.html">
+          <img class="post_img" src="/assets/images/posts/GLISTER/framework.png">
+          <div class="post_detail"> 
+            <p><b>GLISTER: Generalization based Data Subset Selection for Efficient and Robust Learning</b></p>
+            <p class="post_p"><h1 id=""></h1>
+<ul>
+  <li>DALにおける有益なサブセットの選択を劣モジュラ最適化で定式化することで，効率性，ロバスト性の両方を重視した手法としてGLISTERを提案</li>
+  <li>CIFAR10やMNISTで，不均衡・ミスラベルの場合でも高精度</li>
+</ul>
+</p>
+            <p>
+              <span class="fa fa-calendar"></span> Jan 3, 2023
+              <span class="fa fa-folder"></span> active learning
+              <span class="fa fa-graduation-cap"></span> arXiv
+            </p>
+          </div>
+        </a>
+      </div>
+
+      <div class="post">
+        <a href="/active_learning/22/12/31/DMBAL.html">
+          <img class="post_img" src="/assets/images/posts/DMBAL/head.png">
+          <div class="post_detail"> 
+            <p><b>Diverse mini-batch Active Learning</b></p>
+            <p class="post_p"><h1 id=""></h1>
+<ul>
+<li>既存の逐次的にサンプルを選択し追加するフレームワークはDLに対しては非実用的</li>
+<li>不確実性と代表性・多様性を同時に考慮するために，Marginとk-meansを使用するハイブリット戦略を提案</li>
+</ul>
+</p>
+            <p>
+              <span class="fa fa-calendar"></span> Dec 31, 2022
+              <span class="fa fa-folder"></span> active learning
+              <span class="fa fa-graduation-cap"></span> ACM journal
+            </p>
+          </div>
+        </a>
+      </div>
+
+
+      <div class="post">
+        <a href="/active_learning/22/12/31/DRAL4PRI.html">
+          <img class="post_img" src="/assets/images/posts/DRAL4PRI/framework.png">
+          <div class="post_detail"> 
+            <p><b>Deep Reinforcement Active Learning for Human-In-The-Loop Person Re-Identification</b></p>
+            <p class="post_p"><h1 id=""></h1>
+<ul>
+<li>ヒトのRe-IDタスクに対しDALを適用することで，アノテーションの際の負担やエラーを低減，複数のカメラへの応用を可能に</li>
+<li>クエリ戦略に強化学習を導入し，学習段階に依存するクエリが可能</li>
+</ul>
+</p>
+            <p>
+              <span class="fa fa-calendar"></span> Dec 31, 2022
+              <span class="fa fa-folder"></span> active learning
+              <span class="fa fa-graduation-cap"></span> ACM journal
+            </p>
+          </div>
+        </a>
+      </div>
+      
+
+      <div class="post">
+        <a href="/active_learning/22/12/31/AComparativeSurveyOfDAL.html">
+          <img class="post_img" src="/assets/images/posts/AComparativeSurveyOfDAL/head.png">
+          <div class="post_detail"> 
+            <p><b>A Comparative Survey of Deep Active Learning</b></p>
+            <p class="post_p"><h1 id=""></h1>
+<ul>
+<li>2022年に発表された深層能動学習(DAL)のサーベイ論文．本論文ではプールベースサンプリング手法について細かくサーベイ</li>
+<li>大きく15種類のクエリ戦略と10種類のしぜ前画像データセットを用いて性能評価</li>
+</ul>
+</p>
+            <p>
+              <span class="fa fa-calendar"></span> Dec 31, 2022
+              <span class="fa fa-folder"></span> active learning
+              <span class="fa fa-graduation-cap"></span> arXiv
+            </p>
+          </div>
+        </a>
+      </div>
+
+
+      <div class="post">
+        <a href="/active_learning/22/12/31/DBALSurvey.html">
+          <img class="post_img" src="/assets/images/posts/DBALSurvey/framework.png">
+          <div class="post_detail"> 
+            <p><b>Deep Bayesian Active Learning, A Brief Survey on Recent Advances</b></p>
+            <p class="post_p"><h1 id=""></h1>
+<ul>
+<li>深層能動学習(DAL)の中でも，Bayes手法に絞ったサーベイ論文．</li>
+<li>DL登場以前と以降で，Bayes手法がどのように変化していったかを紹介</li>
+</ul>
+</p>
+            <p>
+              <span class="fa fa-calendar"></span> Dec 31, 2022
+              <span class="fa fa-folder"></span> active learning
+              <span class="fa fa-graduation-cap"></span> ACM journal
+            </p>
+          </div>
+        </a>
+      </div>
+    
+  </div>
+
+
+        <div class="post">
+          <a href="/active_learning/22/12/31/ASurveyOfDAL.html">
+            <img class="post_img" src="/assets/images/posts/ASurveyOfDAL/dal_framework.png">
+            <div class="post_detail"> 
+              <p><b>A Survey of Deep Active Learning</b></p>
+              <p class="post_p"><h1 id=""></h1>
+<ul>
+  <li>2020年に発表された深層能動学習(DAL)のサーベイ論文</li>
+  <li>DALとは何か??という話から最新のプールベースサンプリング手法，ベイズや強化学習を組み込んだ手法等を幅広くサーベイ</li>
 </ul>
 </p>
               <p>
-                <span class="fa fa-calendar"></span> Aug 24, 2022
-                <span class="fa fa-folder"></span> NeRF
-                <span class="fa fa-graduation-cap"></span> CVPR (2022)
+                <span class="fa fa-calendar"></span> Dec 31, 2022
+                <span class="fa fa-folder"></span> active learning
+                <span class="fa fa-graduation-cap"></span> ACM journal
               </p>
             </div>
           </a>
         </div>
-        
-      
-        
-        <div class="post">
-          <a href="/hoi/2022/08/09/Unary-Pairwise-Transformer.html">
-            <img class="post_img" src="/assets/images/posts/Unary%E2%80%93Pairwise-Transformer/1.png">
-            <div class="post_detail"> 
-              <p><b>Efficient Two-Stage Detection of Human–Object Interactionswith a Novel Unary–Pairwise Transformer</b></p>
-              <p class="post_p"><h1 id=""></h1>
-
-<ul>
-  <li>DETRの出力特徴量にHOI分類用のtransformer層を追加した2段階モデルを提案</li>
-  <li>最新の手法を凌駕し、学習時間とメモリ消費量を大幅に削減</li>
-</ul>
-</p>
-              <p>
-                <span class="fa fa-calendar"></span> Aug 9, 2022
-                <span class="fa fa-folder"></span> HOI
-                <span class="fa fa-graduation-cap"></span> CVPR (2022)
-              </p>
-            </div>
-          </a>
-        </div>
-        
-      
-        
-        <div class="post">
-          <a href="/hoi/2022/08/08/HOTR.html">
-            <img class="post_img" src="/assets/images/posts/HOTR/1.png">
-            <div class="post_detail"> 
-              <p><b>HOTR: End-to-End Human-Object Interaction Detection with Transformers</b></p>
-              <p class="post_p"><h1 id=""></h1>
-
-<ul>
-  <li>transformerを初めてHuman-Object Interactionに利用した手法HOTRを提案</li>
-  <li>オブジェクト検出とHOI検出の二段階の処理や、重複の削除などの後処理などが必要ない</li>
-  <li>Self-Attentionにより文脈的関係を理解している</li>
-  <li>V-COCOとHICO-DETデータセットにおいて最先端の性能かつ大幅に高速化</li>
-</ul>
-</p>
-              <p>
-                <span class="fa fa-calendar"></span> Aug 8, 2022
-                <span class="fa fa-folder"></span> HOI
-                <span class="fa fa-graduation-cap"></span> CVPR (2021)
-              </p>
-            </div>
-          </a>
-        </div>
-        
-      
-        
-        <div class="post">
-          <a href="/object%20detection/2022/08/01/DETR.html">
-            <img class="post_img" src="/assets/images/posts/DETR/1.png">
-            <div class="post_detail"> 
-              <p><b>End-to-End Object Detection with Transformers</b></p>
-              <p class="post_p"><h1 id=""></h1>
-
-<ul>
-  <li>Transformerと二部マッチングロスに基づく物体検出モデルDETRを提案</li>
-  <li>すべての物体を一度に予測し、End-to-endで学習される</li>
-  <li>COCOでチューニングされたFaster R-CNNと同等の性能で、大きい物体に強い</li>
-</ul>
-</p>
-              <p>
-                <span class="fa fa-calendar"></span> Aug 1, 2022
-                <span class="fa fa-folder"></span> Object Detection
-                <span class="fa fa-graduation-cap"></span> ECCV (2020)
-              </p>
-            </div>
-          </a>
-        </div>
-        
-      
-        
-        <div class="post">
-          <a href="/hoi/2022/07/24/iCAN.html">
-            <img class="post_img" src="/assets/images/posts/iCAN/iCAN.png">
-            <div class="post_detail"> 
-              <p><b>iCAN: Instance-Centric Attention Network for Human-Object Interaction Detection</b></p>
-              <p class="post_p"><h1 id=""></h1>
-
-<ul>
-  <li>検出された人や物体のインスタンスごとに、タスクに関連する領域を強調するattentionマップを動的に生成する、HOI検出用ネットワークiCANを提案</li>
-  <li>V-COCOで10%、HICO-DETで49%の性能向上</li>
-</ul>
-</p>
-              <p>
-                <span class="fa fa-calendar"></span> Jul 24, 2022
-                <span class="fa fa-folder"></span> HOI
-                <span class="fa fa-graduation-cap"></span> BMVC (2018)
-              </p>
-            </div>
-          </a>
-        </div>
-        
-      
-        
-        <div class="post">
-          <a href="/hoi/2022/07/22/InteractNet.html">
-            <img class="post_img" src="/assets/images/posts/InteractNet/1.png">
-            <div class="post_detail"> 
-              <p><b>Detecting and Recognizing Human-Object Interactions</b></p>
-              <p class="post_p"><h1 id=""></h1>
-
-<ul>
-  <li>人物を中心としたHuman-Object InteractionモデルInteractNetを提案</li>
-  <li>人物の領域から対象物体の位置推定を行うことで物体の探索空間を狭めた</li>
-  <li>V-COCOとHICO-DETデータセットにおいて性能向上、1画像あたり135msで実行可能</li>
-</ul>
-</p>
-              <p>
-                <span class="fa fa-calendar"></span> Jul 22, 2022
-                <span class="fa fa-folder"></span> HOI
-                <span class="fa fa-graduation-cap"></span> CVPR (2018)
-              </p>
-            </div>
-          </a>
-        </div>
-        
-      
-        
-        <div class="post">
-          <a href="/hoi/2022/07/15/HICO-DET.html">
-            <img class="post_img" src="/assets/images/posts/HICO-DET/1.png">
-            <div class="post_detail"> 
-              <p><b>Learning to Detect Human-Object Interactions</b></p>
-              <p class="post_p"><h1 id=""></h1>
-
-<ul>
-  <li>HOI検出 (Human-Object Interaction detection) 用の大規模データセットHICO-DETを提供</li>
-  <li>HICO-DET用のモデルHuman-Object Region-based Convolutional Neural Networks (HO-RCNN)を提案</li>
-  <li>HO-RCNNでは人間と物の空間的関係を利用することで、ベースラインよりも性能を大幅に向上</li>
-</ul>
-</p>
-              <p>
-                <span class="fa fa-calendar"></span> Jul 15, 2022
-                <span class="fa fa-folder"></span> HOI
-                <span class="fa fa-graduation-cap"></span> WACV (2018)
-              </p>
-            </div>
-          </a>
-        </div>
-        
-      
-    </div>
     
     <div class="btn-wrapper">
-      
       <a href="/posts" class="btn back_btn previous"><<<</a>
       <a href="/posts/" class="btn back_btn previous"><</a>
       
       
-      <a href="/posts/3/" class="btn back_btn next">></a>
-      <a href="/posts/6/" class="btn back_btn previous">>>></a>
+      <!-- <a href="/posts/2/" class="btn back_btn next">></a>
+      <a href="/posts/6/" class="btn back_btn previous">>>></a> -->
       
     
     </div>
@@ -295,13 +269,13 @@
 </html>
     <footer>
       <div class="btn-wrapper">
-        <a href="mailto:jikuya[at]cv.info.gifu-u.ac.jp" class="bottom-btn email"><i class="fa fa-envelope fa-2x"></i></a>
-        <a href="https://twitter.com/jky_kei" class="bottom-btn twitter"><i class="fa fa-twitter fa-2x"></i></a>
-        <a href="https://github.com/Absolute-Value" class="bottom-btn github"><i class="fa fa-github fa-2x"></i></a>
+        <a href="ueno:ueno[at]cv.info.gifu-u.ac.jp" class="bottom-btn email"><i class="fa fa-envelope fa-2x"></i></a>
+        <a href="https://twitter.com/ianidaime" class="bottom-btn twitter"><i class="fa fa-twitter fa-2x"></i></a>
+        <a href="https://github.com/ia-gu" class="bottom-btn github"><i class="fa fa-github fa-2x"></i></a>
       </div>
       <div class="container">
         <p>2022 Copyright</p>
       </div>
     </footer>
   </body>
-</html> -->
+</html>
