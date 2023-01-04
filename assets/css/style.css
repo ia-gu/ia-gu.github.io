@@ -120,20 +120,21 @@ header {
 
 .bottom-btn {
   /* color: rgba(34,49,52,0.9); */
+  background: var(--theme);
   display: inline-block;
   margin: 0 10px;
 }
 
 .email:hover {
-  color: lightsalmon;
+  color: aquamarine;
 }
 
 .twitter:hover {
-  color: rgb(29, 155, 240);
+  color: aquamarine;
 }
 
 .github:hover {
-  color: gray;
+  color: aquamarine;
 }
 
 .share-btn-wrapper {
