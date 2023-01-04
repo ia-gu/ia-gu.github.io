@@ -27,7 +27,7 @@
     </header>
     <!DOCTYPE html>
 <html>
-  <title>Deep Bayesian Active Learning, A Brief Survey on Recent Advances</title>
+  <title>Active Self-Semi-Supervised Learning for Few Labeled Samples Fast Training</title>
   <head>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link rel="stylesheet" href="/assets/css/style.css">
@@ -72,28 +72,48 @@
 <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
   </head>
   <body>
-    <img class="hero" src="/assets/images/posts/DBALSurvey/framework.png">
-    <h1>Deep Bayesian Active Learning, A Brief Survey on Recent Advances</h1>
-    <p><span class="fa fa-link"></span><a href="https://arxiv.org/abs/2012.08044"> https://arxiv.org/abs/2012.08044</a></p>
-    <p><span class="fa fa-calendar"></span> Dec 31, 2022</p>
-    <p><span class="fa fa-flag"></span> Deep Active Learning, Bayesian Active Learning</p>
+    <img class="hero" src="/assets/images/posts/ASSSL/framework.png">
+    <h1>Active Self-Semi-Supervised Learning for Few Labeled Samples Fast Training</h1>
+    <p><span class="fa fa-link"></span><a href="https://arxiv.org/abs/2203.04560"> https://arxiv.org/abs/2203.04560</a></p>
+    <p><span class="fa fa-calendar"></span> Jan 4, 2023 </p>
+    <p><span class="fa fa-flag"></span> Deep Active Learning, Semi-Supervised Learning, Self-Supervised Learning</p>
     <p><span class="fa fa-graduation-cap"></span> arXiv </p>
 
     <h2 id="1-どんなもの">1. どんなもの??何ができる??</h2>
+
 <ul>
-    <li>深層能動学習(DAL)の中でも，Bayes手法に絞ったサーベイ論文．</li>
-    <li>DL登場以前と以降で，Bayes手法がどのように変化していったかを紹介</li>
+  <li>自己教師あり学習の事前学習から得られる疑似ラベルを用いて半教師あり学習に有益な少数サンプルを選択するフレームワークとしてActive Self-Semi-Supervised Learningを提案</li>
+  <li>既存手法と比べはるかに少ない枚数で高精度を出すことが可能であり，CIFAR10では10枚のアノテーションで83%を達成</li>
 </ul>
+
 
 <h2 id="2-どうやって">2. どうやって??</h2>
 <ul>
-  <li>DALはモデルの学習具合に依存するため，確率分布を用いてモデルのあいまいさを表現するBayes手法は重宝</li>
-  <li>BNN(実際はMCドロップアウト)を用いて実装される事が多いが，データセット依存が大きい</li>
-  <li>BNNの代わりに，中間層にBayesian priorを適用する手法も登場</li>
+  <img src="/assets/images/posts/ASSSL/framework.png" /><br />
+  <li>手順</li>
+<ol>
+  <li>事前学習で訓練したモデルがALによってサンプルを選択</li>
+  <li>grand truthと疑似ラベルによるLossを伝播し，他のラベル付きデータの事前疑似ラベルを獲得</li>
+  <li>事前分布とモデルの予測から以下のLossを基に半教師モデルを学習</li>
+  <img src="/assets/images/posts/ASSSL/semi-supervised.png" /><br />
+</ol>
+  <ul><li>ALでは，クラスタリングの際のクラスタ中心に近いサンプルを選択</li></ul>
 </ul>
 
 <h2 id="3-結果は">3. 結果は??</h2>
-<li>実験なし</li>
+<ul>
+    <li>クラスタリング結果</li>
+    <img src="/assets/images/posts/ASSSL/clustering_result.png" /><br />
+<ul>    
+    <li>自己教師あり学習だけではうまく特徴が取れていない(左)</li>
+    <li>提案するフレームワークでは，40枚のラベル付きデータで特徴が取れている(右)</li>
+</ul>
+    <li>実験結果</li>
+    <img src="/assets/images/posts/ASSSL/result.png" /><br />
+<ul>
+    <li>CIFAR10において，10枚で学習した場合(左)，40枚で学習した場合(右)のどちらも高精度であり既存手法よりも少ない枚数で学習が可能</li>
+</ul>
+</ul>
 
 <h2 id="4-課題は">4. 課題は??</h2>
 
