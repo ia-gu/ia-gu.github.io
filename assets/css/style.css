@@ -106,9 +106,11 @@ header {
 
 .top-wrapper {
   padding: 140px 0 100px 0;
+  background: var(--theme);
+  color: var(--primary);
   /* background-image: url(../../assets/images/top.png); */
   /* background-size: cover; */
-  color: rgb(29, 30, 32);
+  /* color: rgb(29, 30, 32); */
   text-align: center;
 }
 
