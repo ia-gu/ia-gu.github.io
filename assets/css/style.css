@@ -31,9 +31,8 @@ a {
   text-decoration: none;
 }
 
-.a:hover{
+a:hover {
   color: aquamarine;
-  background: aquamarine;
 }
 
 footer p {
@@ -64,6 +63,11 @@ header {
   display: inline-block;
   border-radius: 4px;
   text-align: center;
+}
+
+.btn:hover {
+  color: aquamarine;
+  font-size: medium;
 }
 
 .back_btn {
