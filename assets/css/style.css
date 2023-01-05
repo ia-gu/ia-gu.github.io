@@ -118,6 +118,9 @@ header {
 .fa {
   margin-right: 5px;
 }
+.fa:hover {
+  color: aquamarine;
+}
 
 .bottom-btn {
   /* color: rgba(34,49,52,0.9); */
