@@ -32,7 +32,8 @@ a {
 }
 
 .a:hover{
-  color: aquamarine
+  color: aquamarine;
+  background: aquamarine;
 }
 
 footer p {
