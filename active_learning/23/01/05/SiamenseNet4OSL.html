@@ -27,23 +27,10 @@
     </header>
     <!DOCTYPE html>
 <html>
+  <title>Siamese Neural Networks for One-shot Image Recognition</title>
   <head>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link rel="stylesheet" href="/assets/css/style.css">
-  </head>
-  <body>
-    <div class="top-wrapper">
-      <div class="container">
-        <h1>Posts</h1>
-        <h3>(1/2)</h3>
-      </div>
-    </div>
-    <!DOCTYPE html>
-<html>
-  <title>Posts</title>
-  <head>
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-    <link rel="stylesheet" href="/assets/css/posts.css">
     <script>
   MathJax = {
     tex: {
@@ -85,64 +72,53 @@
 <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
   </head>
   <body>
-    <div class="btn-wrapper">
-      <a href="/posts/2/" class="btn back_btn next">></a>
-      <a href="/posts/2/" class="btn back_btn previous">>>></a>
-    </div>
+    <img class="hero" src="/assets/images/posts/SiameseNet4OSL/framework.png">
+    <h1>Siamese Neural Networks for One-shot Image Recognition</h1>
+    <p><span class="fa fa-link"></span><a href="https://www.cs.cmu.edu/~rsalakhu/papers/oneshot1.pdf"> https://www.cs.cmu.edu/~rsalakhu/papers/oneshot1.pdf</a></p>
+    <p><span class="fa fa-calendar"></span> Jan 5, 2023 </p>
+    <p><span class="fa fa-flag"></span> Few-Shot Learning One-Shot Learning, Siamese Network</p>
+    <p><span class="fa fa-graduation-cap"></span> ICML(2015) </p>
 
-    <div class="myposts">
+    <h2 id="1-どんなもの">1. どんなもの??何ができる??</h2>
 
-      <div class="post">
-        <a href="/active_learning/23/01/05/SiamenseNet4OSL.html">
-          <img class="post_img" src="/assets/images/posts/SiameseNet4OSL/framework.png">
-          <div class="post_detail"> 
-            <p><b>Siamese Neural Networks for One-Shot Image Recognition</b></p>
-            <p class="post_p"><h1 id=""></h1>
 <ul>
   <li>2つのサンプルを入力のペアとして同一のモデルに通し，ペアが同クラスか否かを判別するSiamese Networkを提案</li>
   <li>omniglotで93.42%を達成．Siamese Networkは後の距離学習や対象学習でも利用</li>
 </ul>
-</p>
-            <p>
-              <span class="fa fa-calendar"></span> Jan 5, 2023
-              <span class="fa fa-folder"></span> One-Shot Learning
-              <span class="fa fa-graduation-cap"></span> ICML(2015)
-            </p>
-          </div>
-        </a>
-      </div>
 
-        <div class="post">
-          <a href="/active_learning/23/01/04/DOCSiameseNetAL.html">
-            <img class="post_img" src="/assets/images/posts/DOCSiameseNetAL/framework.png">
-            <div class="post_detail"> 
-              <p><b>Data-efficient Online Classification with Siamese Networks and Active Learning</b></p>
-              <p class="post_p"><h1 id=""></h1>
+
+<h2 id="2-どうやって">2. どうやって??</h2>
 <ul>
-  <li>オンライン学習に対して，順に得られるデータが必要か否かをSiameseNetとサンプルを保存するキューを用いた手法を提案</li>
-  <li>不均衡，非定常データにおけるone-by-oneオンラインクラス分類に対し，新たな観点を提供すると同時に，sea4，circles10で既存手法を上回ることを確認</li>
+  <li>モデル構造</li>
+  <img src="/assets/images/posts/SiameseNet4OSL/framework.png" /><br />
+  <li>訓練データ内から2つのサンプルを選択し入力ペアを用いて学習</li>
+  <ul><li>ペアが同一クラスか否かの2値分類を学習</li></ul>
+  <li>損失関数にはCross Entropyを一般化した以下を使用</li>
+  <img src="/assets/images/posts/SiameseNet4OSL/loss.png" /><br />
 </ul>
-</p>
-              <p>
-                <span class="fa fa-calendar"></span> Jan 4, 2023
-                <span class="fa fa-folder"></span> active learning
-                <span class="fa fa-graduation-cap"></span> IJCNN(2020)
-              </p>
-            </div>
-          </a>
-        </div>
-    
-    <div class="btn-wrapper">
-      <a href="/posts/2/" class="btn back_btn next">></a>
-      <a href="/posts/2/" class="btn back_btn previous">>>></a>
+
+<h2 id="3-結果は">3. 結果は??</h2>
+<ul>
+    <li>データセット｜omniglot</li>
+    <img src="/assets/images/posts/SiameseNet4OSL/omniglot.png" /><br />
+    <li>実験結果</li>
+    <img src="/assets/images/posts/SiameseNet4OSL/result.png" /><br />
+    <li>MNISTのOSL結果</li>
+    <img src="/assets/images/posts/SiameseNet4OSL/result_osl.png" /><br />
+</ul>
+
+<h2 id="4-課題は">4. 課題は??</h2>
+    <li>実装しているので細かく知りたい方は↓参照</li>
+      <p><a href="https://github.com/ia-gu/Siamese_Omniglot"> リポジトリを確認</a></p>
+      <p><a href="/portfolios/omniglot.html"> 解説(portfolios)を確認</a></p>
+      <div class="btn-wrapper">
+      <a href="/posts" class="btn back_btn">Back</a>
     </div>
-  </body>
-</html>
   </body>
 </html>
     <footer>
       <div class="btn-wrapper">
-        <a href="ueno:ueno[at]cv.info.gifu-u.ac.jp" class="bottom-btn email"><i class="fa fa-envelope fa-2x"></i></a>
+        <a href="mailto:ueno[at]cv.info.gifu-u.ac.jp" class="bottom-btn email"><i class="fa fa-envelope fa-2x"></i></a>
         <a href="https://twitter.com/ianidaime" class="bottom-btn twitter"><i class="fa fa-twitter fa-2x"></i></a>
         <a href="https://github.com/ia-gu" class="bottom-btn github"><i class="fa fa-github fa-2x"></i></a>
       </div>
