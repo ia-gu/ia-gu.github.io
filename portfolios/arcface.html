@@ -27,7 +27,7 @@
     </header>
     <!DOCTYPE html>
     <html>
-      <title>omniglotをSiamese Networkで分類</title>
+      <title>LFWをArcfaceで分類</title>
       <head>
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
         <link rel="stylesheet" href="/assets/css/style.css">
@@ -73,28 +73,31 @@
       </head>
       <body>
         <img class="hero" src="/assets/images/portfolios/omniglot/omniglot.png">
-        <h1>omniglotをSiamese Networkで分類</h1>
-        <p><span class="fa fa-link"></span><a href="https://github.com/ia-gu/Siamese_Omniglot"> リポジトリ</a></p>
-        <p><span class="fa fa-calendar"></span> Jan 4, 2023 </p>
-        <p><span class="fa fa-flag"></span> Few-Shot Learning, omniglot dataset</p>
+        <h1>LFWをArcfaceで分類</h1>
+        <p><span class="fa fa-link"></span><a href="https://github.com/ia-gu/Arcface_Adacos"> リポジトリ</a></p>
+        <p><span class="fa fa-calendar"></span> Jan 8, 2023 </p>
+        <p><span class="fa fa-flag"></span> Few-Shot Learning, LFW dataset, Face recognition</p>
     
         <h2 id="1-どんなもの">1. どんなもの??</h2>
     
     <ul>
-      <li>Siamese Neural Networks for One-shot Image Recognition という論文を参考に，SiameseNet構造のモデルでomniglot datasetの分類を行う</li>
-      <ul><li>SiameseNet｜同じモデルに２つのデータをペアとして入力し，同クラスか否かを判定するモデル(詳しくは<a href="/fix_path4port_note/SiamenseNet4OSL.html"> ココで解説</a>)</li></ul>
-      <li>論文中のモデル構造(AlexNetベース)に加え，VGGNetベース，ResNetベースでの学習も行い，ResNetベースでは96.4%を確認</li>
+      <li><a href="https://arxiv.org/abs/1801.07698"> ArcFace: Additive Angular Margin Loss for Deep Face Recognition</a> という論文を参考に，Arcfaceという手法を用いてLFWデータセットを分類</li>
+      <ul><li>Arcfaceは超球上でマージン角を与えることでMetric Learningを行う手法</li></ul>
+      <li>追加で，<a href="https://arxiv.org/abs/1905.00292"> AdaCos: Adaptively Scaling Cosine Logits for Effectively Learning Deep Face Representations</a> という論文を参考に，AdaCosという手法を用いた場合の結果を比較</li>
+      <ul><li>AdaCosは，Arcfaceのハイパラチューニングが大変なので，値を自動調整する為に提案された手法</li></ul>
     </ul>
     
     
     <h2 id="2-使い方">2. 使い方</h2>
       <li>必要なソースコードはsrcフォルダ下にあるので，<code>bash main.sh</code>を叩けば実行可能</li>
-      <li>(データローダのPath等は適宜変更してください)</li>
-      <li>ハイパラチューニングは全てyamlを用いたため，複数用意すればマルチランも可能(この時はOmegaConfなんで知らない)</li>
+      <ul><li>データローダのPath等は適宜変更が必要</li></ul>
+      <ul><li>Arcface/AdaCosの切り替えはyaml内で可能</li></ul>
+      <li>その他のハイパラチューニングは全てyamlを用いたため，複数用意すればマルチランも可能(この時はOmegaConfなんで知らない)</li>
     
     <h2 id="3-余談">3. 余談</h2>
-      <li>このコードはB3の研究室での最終課題で，先輩に聞きながら2週間くらいで作ったコード</li>    
-      <li>データローダがおかしい，AUROCを出すための処理が無茶苦茶 といった問題があるので微修正推奨(時間ができたら直します)</li>    
+      <li>このコードはB3の研究室での最終課題(2個目)で，<a href="https://github.com/penguinone-cv/Arcface"> 当時の先輩のリポジトリ</a>を元に作成したコード</li>    
+      <ul><li>AdaCosは自分で作成</li></ul>
+      <li>AdaCosの論文中ではArcfaceより精度が高いと記述されていたが，自分の結果ではArcfaceの方が精度が高かった(チューニング不足??)</li>
       <li>実験で使用したomniglot datasetは↓からダウンロード</li>    
       <p><span class="fa fa-link"></span><a href="https://omniglot.com/"> omniglot dataset</a></p>
     
