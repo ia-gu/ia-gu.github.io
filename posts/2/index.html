@@ -35,7 +35,7 @@
     <div class="top-wrapper">
       <div class="container">
         <h1>Posts</h1>
-        <h3>(1/2)</h3>
+        <h3>(2/2)</h3>
       </div>
     </div>
     <!DOCTYPE html>
@@ -86,25 +86,27 @@
   </head>
   <body>
     <div class="btn-wrapper">
-      <a href="/posts/1" class="btn back_btn next">></a>
-      <a href="/posts/1" class="btn back_btn previous">>>></a>
+      <a href="/posts" class="btn back_btn previous"><<<</a>
+      <a href="/posts" class="btn back_btn previous"><</a>
+      <!-- <a href="/posts/2/" class="btn back_btn next">></a>
+      <a href="/posts/6/" class="btn back_btn previous">>>></a> -->
     </div>
 
     <div class="myposts">
 
       <div class="post">
-        <a href="/active_learning/23/01/08/ALonEdgeDevice.html">
-          <img class="post_img" src="/assets/images/posts/ALonEdgeDevice/head.png">
+        <a href="/active_learning/23/01/04/ASSSL.html">
+          <img class="post_img" src="/assets/images/posts/ASSSL/framework.png">
           <div class="post_detail"> 
-            <p><b>Active Learning for Deep Neural Networks on Edge Devices</b></p>
+            <p><b>Active Self-Semi-Supervised Learning for Few Labeled Samples Fast Training</b></p>
             <p class="post_p"><h1 id=""></h1>
 <ul>
-  <li>スマートフォンをはじめとするEdge Device上に高機能の計算機を載せることは困難で，全ての新規データについてモデルの更新を行うことは困難なため，軽量なストリームベースAL手法を提案</li>
-  <li>MNIST，SVHN，CIFAR10において，Edge Deviceを想定した計量モデル，少データで実験</li>
-</ul>              
+  <li>自己教師あり学習の事前学習から得られる疑似ラベルを用いて半教師あり学習に有益な少数サンプルを選択するフレームワークとしてActive Self-Semi-Supervised Learningを提案</li>
+  <li>既存手法と比べはるかに少ない枚数で高精度を出すことが可能であり，CIFAR10では10枚のアノテーションで83%を達成</li>
+</ul>
 </p>
             <p>
-              <span class="fa fa-calendar"></span> Jan 8, 2023
+              <span class="fa fa-calendar"></span> Jan 4, 2023
               <span class="fa fa-folder"></span> active learning
               <span class="fa fa-graduation-cap"></span> arXiv
             </p>
@@ -113,18 +115,18 @@
       </div>
 
       <div class="post">
-        <a href="/active_learning/23/01/08/ORAL.html">
-          <img class="post_img" src="/assets/images/posts/ORAL/head.png">
+        <a href="/active_learning/23/01/04/SIMILAR.html">
+          <img class="post_img" src="/assets/images/posts/SIMILAR/head.png">
           <div class="post_detail"> 
-            <p><b>One-Round Active Learning</b></p>
+            <p><b>SIMILAR: Submodular Information Measures Based Active Learning In Realistic Scenarios</b></p>
             <p class="post_p"><h1 id=""></h1>
 <ul>
-  <li>既存のDALでは，クエリ➡アノテーション➡学習のサイクルを複数回繰り返すが，これではアノテータが待機➡アノテーションを繰り返すことになるため，1度のクエリで解決するフレームワークを提案</li>
-  <li>既存のクエリ戦略では1度のクエリで精度を示すことが困難であることを示し，MNISTとCIFAR10で実験</li>
+  <li>獲得関数に劣モジュラ情報量(SIM)を用いることで，不均衡・冗長性・OODに対し有効なDAL手法を提案</li>
+  <li>SMI，SCG,SCMIを使い分けることで，CIFAR10において各状況下で高精度を達成</li>
 </ul>
 </p>
             <p>
-              <span class="fa fa-calendar"></span> Jan 8, 2023
+              <span class="fa fa-calendar"></span> Jan 4, 2023
               <span class="fa fa-folder"></span> active learning
               <span class="fa fa-graduation-cap"></span> arXiv
             </p>
@@ -133,18 +135,18 @@
       </div>
 
       <div class="post">
-        <a href="/active_learning/23/01/08/BALanCe.html">
-          <img class="post_img" src="/assets/images/posts/BALanCe/head.png">
+        <a href="/active_learning/23/01/03/GLISTER.html">
+          <img class="post_img" src="/assets/images/posts/GLISTER/framework.png">
           <div class="post_detail"> 
-            <p><b>BALanCe: Deep Bayesian Active Learning via Equivalence Class Annealing</b></p>
+            <p><b>GLISTER: Generalization based Data Subset Selection for Efficient and Robust Learning</b></p>
             <p class="post_p"><h1 id=""></h1>
 <ul>
-  <li>不確実性クエリ戦略(特にベイズ手法)の多くは，クエリしたデータ内の分布に偏りが発生するため，均等にクエリを行うBALanCeを提案</li>
-  <li>MNIST系列の複数のデータセットでSoTAを達成</li>
+  <li>DALにおける有益なサブセットの選択を劣モジュラ最適化で定式化することで，効率性，ロバスト性の両方を重視した手法としてGLISTERを提案</li>
+  <li>CIFAR10やMNISTで，不均衡・ミスラベルの場合でも高精度</li>
 </ul>
 </p>
             <p>
-              <span class="fa fa-calendar"></span> Jan 8, 2023
+              <span class="fa fa-calendar"></span> Jan 3, 2023
               <span class="fa fa-folder"></span> active learning
               <span class="fa fa-graduation-cap"></span> arXiv
             </p>
@@ -153,68 +155,116 @@
       </div>
 
       <div class="post">
-        <a href="/other_posts/23/01/07/MAML.html">
-          <img class="post_img" src="/assets/images/posts/MAML/image.png">
+        <a href="/active_learning/22/12/31/DMBAL.html">
+          <img class="post_img" src="/assets/images/posts/DMBAL/head.png">
           <div class="post_detail"> 
-            <p><b>Model-Agnostic Meta-Learning for Fast Adaptation of Deep Networks</b></p>
+            <p><b>Diverse mini-batch Active Learning</b></p>
             <p class="post_p"><h1 id=""></h1>
 <ul>
-  <li>モデル，タスク非依存なメタ学習フレームワークであるMAMLを提案</li>
-  <li>既存のメタ学習の問題点であった汎用性を改善し，回帰タスクでは偏ったデータの学習による精度も確認</li>
+<li>既存の逐次的にサンプルを選択し追加するフレームワークはDLに対しては非実用的</li>
+<li>不確実性と代表性・多様性を同時に考慮するために，Marginとk-meansを使用するハイブリット戦略を提案</li>
 </ul>
 </p>
             <p>
-              <span class="fa fa-calendar"></span> Jan 7, 2023
-              <span class="fa fa-folder"></span> Meta Learning, Domain Adaptation Few-shot Learning
-              <span class="fa fa-graduation-cap"></span> PMLR(2017)
+              <span class="fa fa-calendar"></span> Dec 31, 2022
+              <span class="fa fa-folder"></span> active learning
+              <span class="fa fa-graduation-cap"></span> ACM journal
             </p>
           </div>
         </a>
       </div>
 
+
       <div class="post">
-        <a href="/few_shot_learning/23/01/05/SiamenseNet4OSL.html">
-          <img class="post_img" src="/assets/images/posts/SiameseNet4OSL/framework.png">
+        <a href="/active_learning/22/12/31/DRAL4PRI.html">
+          <img class="post_img" src="/assets/images/posts/DRAL4PRI/framework.png">
           <div class="post_detail"> 
-            <p><b>Siamese Neural Networks for One-Shot Image Recognition</b></p>
+            <p><b>Deep Reinforcement Active Learning for Human-In-The-Loop Person Re-Identification</b></p>
             <p class="post_p"><h1 id=""></h1>
 <ul>
-  <li>2つのサンプルを入力のペアとして同一のモデルに通し，ペアが同クラスか否かを判別するSiamese Networkを提案</li>
-  <li>omniglotで93.42%を達成．Siamese Networkは後の距離学習や対象学習でも利用</li>
+<li>ヒトのRe-IDタスクに対しDALを適用することで，アノテーションの際の負担やエラーを低減，複数のカメラへの応用を可能に</li>
+<li>クエリ戦略に強化学習を導入し，学習段階に依存するクエリが可能</li>
 </ul>
 </p>
             <p>
-              <span class="fa fa-calendar"></span> Jan 5, 2023
-              <span class="fa fa-folder"></span> One-Shot Learning
-              <span class="fa fa-graduation-cap"></span> ICML(2015)
+              <span class="fa fa-calendar"></span> Dec 31, 2022
+              <span class="fa fa-folder"></span> active learning
+              <span class="fa fa-graduation-cap"></span> ACM journal
             </p>
           </div>
         </a>
       </div>
+      
+
+      <div class="post">
+        <a href="/active_learning/22/12/31/AComparativeSurveyOfDAL.html">
+          <img class="post_img" src="/assets/images/posts/AComparativeSurveyOfDAL/head.png">
+          <div class="post_detail"> 
+            <p><b>A Comparative Survey of Deep Active Learning</b></p>
+            <p class="post_p"><h1 id=""></h1>
+<ul>
+<li>2022年に発表された深層能動学習(DAL)のサーベイ論文．本論文ではプールベースサンプリング手法について細かくサーベイ</li>
+<li>大きく15種類のクエリ戦略と10種類のしぜ前画像データセットを用いて性能評価</li>
+</ul>
+</p>
+            <p>
+              <span class="fa fa-calendar"></span> Dec 31, 2022
+              <span class="fa fa-folder"></span> active learning
+              <span class="fa fa-graduation-cap"></span> arXiv
+            </p>
+          </div>
+        </a>
+      </div>
+
+
+      <div class="post">
+        <a href="/active_learning/22/12/31/DBALSurvey.html">
+          <img class="post_img" src="/assets/images/posts/DBALSurvey/framework.png">
+          <div class="post_detail"> 
+            <p><b>Deep Bayesian Active Learning, A Brief Survey on Recent Advances</b></p>
+            <p class="post_p"><h1 id=""></h1>
+<ul>
+<li>深層能動学習(DAL)の中でも，Bayes手法に絞ったサーベイ論文．</li>
+<li>DL登場以前と以降で，Bayes手法がどのように変化していったかを紹介</li>
+</ul>
+</p>
+            <p>
+              <span class="fa fa-calendar"></span> Dec 31, 2022
+              <span class="fa fa-folder"></span> active learning
+              <span class="fa fa-graduation-cap"></span> ACM journal
+            </p>
+          </div>
+        </a>
+      </div>
+    
+  </div>
+
 
         <div class="post">
-          <a href="/active_learning/23/01/04/DOCSiameseNetAL.html">
-            <img class="post_img" src="/assets/images/posts/DOCSiameseNetAL/framework.png">
+          <a href="/active_learning/22/12/31/ASurveyOfDAL.html">
+            <img class="post_img" src="/assets/images/posts/ASurveyOfDAL/dal_framework.png">
             <div class="post_detail"> 
-              <p><b>Data-efficient Online Classification with Siamese Networks and Active Learning</b></p>
+              <p><b>A Survey of Deep Active Learning</b></p>
               <p class="post_p"><h1 id=""></h1>
 <ul>
-  <li>オンライン学習に対して，順に得られるデータが必要か否かをSiameseNetとサンプルを保存するキューを用いた手法を提案</li>
-  <li>不均衡，非定常データにおけるone-by-oneオンラインクラス分類に対し，新たな観点を提供すると同時に，sea4，circles10で既存手法を上回ることを確認</li>
+  <li>2020年に発表された深層能動学習(DAL)のサーベイ論文</li>
+  <li>DALとは何か??という話から最新のプールベースサンプリング手法，ベイズや強化学習を組み込んだ手法等を幅広くサーベイ</li>
 </ul>
 </p>
               <p>
-                <span class="fa fa-calendar"></span> Jan 4, 2023
+                <span class="fa fa-calendar"></span> Dec 31, 2022
                 <span class="fa fa-folder"></span> active learning
-                <span class="fa fa-graduation-cap"></span> IJCNN(2020)
+                <span class="fa fa-graduation-cap"></span> ACM journal
               </p>
             </div>
           </a>
         </div>
     
     <div class="btn-wrapper">
-      <a href="/posts/1" class="btn back_btn next">></a>
-      <a href="/posts/1" class="btn back_btn previous">>>></a>
+      <a href="/posts" class="btn back_btn previous"><<<</a>
+      <a href="/posts" class="btn back_btn previous"><</a>
+      <!-- <a href="/posts/2/" class="btn back_btn next">></a>
+      <a href="/posts/6/" class="btn back_btn previous">>>></a> -->
     </div>
   </body>
 </html>
