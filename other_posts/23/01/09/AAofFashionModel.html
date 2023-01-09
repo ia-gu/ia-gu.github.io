@@ -27,7 +27,7 @@
     </header>
     <!DOCTYPE html>
 <html>
-  <title>Learning Loss for Active Learning</title>
+  <title>How Good Is Aesthetic Ability of a Fashion Model?</title>
   <head>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link rel="stylesheet" href="/assets/css/style.css">
@@ -72,42 +72,35 @@
 <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
   </head>
   <body>
-    <img class="hero" src="/assets/images/posts/LL4AL/framework.png">
-    <h1>Learning Loss for Active Learning</h1>
-    <p><span class="fa fa-link"></span><a href="https://arxiv.org/abs/1905.03677"> https://arxiv.org/abs/1905.03677</a></p>
-    <p><span class="fa fa-calendar"></span> Jan 8, 2023 </p>
-    <p><span class="fa fa-flag"></span> Deep Active Learning</p>
-    <p><span class="fa fa-graduation-cap"></span> CVPR(2019) </p>
+    <img class="hero" src="/assets/images/posts/AAofFashionModel/head.png">
+    <h1>How Good Is Aesthetic Ability of a Fashion Model?</h1>
+    <p><span class="fa fa-link"></span><a href="https://openaccess.thecvf.com/content/CVPR2022/html/Zou_How_Good_Is_Aesthetic_Ability_of_a_Fashion_Model_CVPR_2022_paper.html"> https://openaccess.thecvf.com/content/CVPR2022/html/Zou_How_Good_Is_Aesthetic_Ability_of_a_Fashion_Model_CVPR_2022_paper.html</a></p>
+    <p><span class="fa fa-calendar"></span> Jan 9, 2023 </p>
+    <p><span class="fa fa-flag"></span> Fashion Data</p>
+    <p><span class="fa fa-graduation-cap"></span> CVPR(2022) </p>
 
     <h2 id="1-どんなもの">1. どんなもの??何ができる??</h2>
 
 <ul>
-  <li>タスク非依存で特にDNNに効果的な，ラベルなしデータのLossを推測するLL4ALを提案</li>
-  <li>CIFAR10で当時のSoTA</li>
+  <li>ファッションの愛称学習に用いられる既存評価指標はモデルの美的能力を反映するという点に着目していないため，美的評価を行うA100を提案</li>
+  <li>既存データセットの問題点を指摘，それを解消するデータセットを作成</li>
 </ul>
 
 
 <h2 id="2-どうやって">2. どうやって??</h2>
 <ul>
-  <li>モデルを複数のブロックに分割し，ブロックの出力それぞれをGAP，FC，ReLUに通した結果をConcatしてFC層に通すLoss予測モジュールを導入</li>
-  <img src="/assets/images/posts/LL4AL/lp_module.png" /><br />
-  <li>学習時は，モデルの予測LossとLoss予測のLoss(LPL)を計算し，和を逆伝播</li>
-  <img src="/assets/images/posts/LL4AL/loss.png" /><br />
-  <ul><li>LPLは学習の途中でdetatchする(論文中では120/200epoch)</li></ul>
+  <li>設計段階で専門家と協力し，専門的知識に基づいた品質評価が可能</li>
+  <li>評価時にLATとAATを用いて，全体性能と部分性能を同時に評価</li>
+  <img src="/assets/images/posts/AAofFashionModel/head.png" /><br />
 </ul>
 
 <h2 id="3-結果は">3. 結果は??</h2>
 <ul>
-    <li>CIFAR10で当時のSoTAを達成</li>
-    <img src="/assets/images/posts/LL4AL/result.png" /><br />
-    <li>物体検出やポーズ推定でも高精度で，タスク非依存であることを確認</li>
-    <img src="/assets/images/posts/LL4AL/result_det.png" />
-    <img src="/assets/images/posts/LL4AL/result_pe.png" /><br />
+    <li>既存手法を設計したデータセットで比較</li>
+    <img src="/assets/images/posts/AAofFashionModel/result.png" /><br />
 </ul>
 
 <h2 id="4-課題は">4. 課題は??</h2>
-  <li>実装，実験したので，追加する</li>
-  <li>後継論文?も読んだので，追加する</li>
     <div class="btn-wrapper">
       <a href="/posts" class="btn back_btn">Back</a>
     </div>
