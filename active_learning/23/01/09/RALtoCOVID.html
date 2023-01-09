@@ -27,23 +27,10 @@
     </header>
     <!DOCTYPE html>
 <html>
+  <title>Highly Efficient Representation and Active Learning Framework for Imbalanced Data and Its Application to COVID-19 X-Ray Classification</title>
   <head>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link rel="stylesheet" href="/assets/css/style.css">
-  </head>
-  <body>
-    <div class="top-wrapper">
-      <div class="container">
-        <h1>Posts</h1>
-        <h3>(1/3)</h3>
-      </div>
-    </div>
-    <!DOCTYPE html>
-<html>
-  <title>Posts</title>
-  <head>
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-    <link rel="stylesheet" href="/assets/css/posts.css">
     <script>
   MathJax = {
     tex: {
@@ -85,68 +72,51 @@
 <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
   </head>
   <body>
-    <div class="btn-wrapper">
-      <!-- <a href="/posts" class="btn back_btn previous"><<<</a>
-      <a href="/posts" class="btn back_btn next"><</a> -->
-      <a href="/posts/2" class="btn back_btn next">></a>
-      <a href="/posts/3" class="btn back_btn previous">>>></a>
-    </div>
+    <img class="hero" src="/assets/images/posts/LD4AL/framework.png">
+    <h1>Highly Efficient Representation and Active Learning Framework for Imbalanced Data and Its Application to COVID-19 X-Ray Classification</h1>
+    <p><span class="fa fa-link"></span><a href="https://arxiv.org/abs/2103.05109"> https://arxiv.org/abs/2103.05109</a></p>
+    <p><span class="fa fa-calendar"></span> Jan 9, 2023 </p>
+    <p><span class="fa fa-flag"></span> Deep Active Learning，Imalance Data，Medical</p>
+    <p><span class="fa fa-graduation-cap"></span> NIPS workshop </p>
 
-    <div class="myposts">
+    <h2 id="1-どんなもの">1. どんなもの??何ができる??</h2>
 
-      <div class="post">
-        <a href="/active_learning/23/01/09/RALtoCOVID.html">
-          <img class="post_img" src="/assets/images/posts/RALtoCOVID/framework.png">
-          <div class="post_detail"> 
-            <p><b>Highly Efficient Representation and Active Learning Framework for Imbalanced Data and Its Application to COVID-19 X-Ray Classification</b></p>
-            <p class="post_p"><h1 id=""></h1>
 <ul>
   <li>教師なし表現学習とガウス過程を用いた，医用画像向けのALフレームワークを提案</li>
   <li>COVID-19 Datasetに対する有効性を確認</li>
 </ul>
-</p>
-            <p>
-              <span class="fa fa-calendar"></span> Jan 9, 2023
-              <span class="fa fa-folder"></span> active learning
-              <span class="fa fa-graduation-cap"></span> NIPS workshop
-            </p>
-          </div>
-        </a>
-      </div>
 
-      <div class="post">
-        <a href="/active_learning/23/01/09/LD4AL.html">
-          <img class="post_img" src="/assets/images/posts/LD4AL/framework.png">
-          <div class="post_detail"> 
-            <p><b>When Deep Learners Change Their Mind: Learning Dynamics for Active Learning</b></p>
-            <p class="post_p"><h1 id=""></h1>
+
+<h2 id="2-どうやって">2. どうやって??</h2>
 <ul>
-  <li>不確実性の指標に一貫性を用いることで，DLの予測が過信的という不確実性クエリ戦略の問題点を解消</li>
-  <li>CIFAR10，CIFAR100のそれぞれで有効性を確認</li>
+  <li>ステップ1｜下流タスクに向け汎用的な特徴を獲得することを目的とした教師なし表現学習</li>
+  <ul><li>ResNet50をSimCLRで学習</li></ul>
+  <li>ステップ2｜DNNのトップを用いて不確実性を獲得するノンパラメトリックなベイズ手法であるガウス過程を適用</li>
+  <ul><li>ガウス過程で精度を出すには良い特徴量が必要なため事前に表現学習を使用</li></ul>
+  <li>↓フレームワーク全体図</li>
+    <img src="/assets/images/posts/RALtoCOVID/framework.png" /><br />
 </ul>
-</p>
-            <p>
-              <span class="fa fa-calendar"></span> Jan 9, 2023
-              <span class="fa fa-folder"></span> active learning
-              <span class="fa fa-graduation-cap"></span> CAIP(2021)
-            </p>
-          </div>
-        </a>
-      </div>
+
+<h2 id="3-結果は">3. 結果は??</h2>
+<ul>
+    <li>COVID-19 Dataset 結果</li>
+    <img src="/assets/images/posts/RALtoCOVID/result_covid.png" /><br />
+    <li>Nerthus 結果</li>
+    <img src="/assets/images/posts/RALtoCOVID/result_nerthus.png" /><br />
+  <ul><li>Nerthus 詳細</li></ul>
+    <img src="/assets/images/posts/RALtoCOVID/nerthus.png" /><br />
+</ul>
+
+<h2 id="4-課題は">4. 課題は??</h2>
 
     <div class="btn-wrapper">
-      <!-- <a href="/posts" class="btn back_btn previous"><<<</a>
-      <a href="/posts" class="btn back_btn next"><</a> -->
-      <a href="/posts/2" class="btn back_btn next">></a>
-      <a href="/posts/3" class="btn back_btn previous">>>></a>
+      <a href="/posts" class="btn back_btn">Back</a>
     </div>
-  </body>
-</html>
   </body>
 </html>
     <footer>
       <div class="btn-wrapper">
-        <a href="ueno:ueno[at]cv.info.gifu-u.ac.jp" class="bottom-btn email"><i class="fa fa-envelope fa-2x"></i></a>
+        <a href="mailto:ueno[at]cv.info.gifu-u.ac.jp" class="bottom-btn email"><i class="fa fa-envelope fa-2x"></i></a>
         <a href="https://twitter.com/ianidaime" class="bottom-btn twitter"><i class="fa fa-twitter fa-2x"></i></a>
         <a href="https://github.com/ia-gu" class="bottom-btn github"><i class="fa fa-github fa-2x"></i></a>
       </div>
