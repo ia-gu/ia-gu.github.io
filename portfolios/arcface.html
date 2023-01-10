@@ -92,13 +92,14 @@
       <li>必要なソースコードはsrcフォルダ下にあるので，<code>bash main.sh</code>を叩けば実行可能</li>
       <ul><li>データローダのPath等は適宜変更が必要</li></ul>
       <ul><li>Arcface/AdaCosの切り替えはyaml内で可能</li></ul>
-      <li>その他のハイパラチューニングは全てyamlを用いたため，複数用意すればマルチランも可能(この時はOmegaConfなんで知らない)</li>
+      <li>その他のハイパラチューニングは全てyamlを用いたため，複数用意すればマルチランも可能(この時OmegaConf知らない)</li>
     
     <h2 id="3-余談">3. 余談</h2>
       <li>このコードはB3の研究室での最終課題(2個目)で，<a href="https://github.com/penguinone-cv/Arcface"> 当時の先輩のリポジトリ</a>を元に作成したコード</li>    
       <ul><li>AdaCosは自分で作成</li></ul>
       <li>実験で使用したLFW datasetは↓からダウンロード</li>    
       <p><span class="fa fa-link"></span><a href="http://vis-www.cs.umass.edu/lfw//"> LFW dataset</a></p>
+      <ul><li>すべてのデータを使うわけではないので，<code>mktrain_data.py</code>，<code>mktest_data.py</code>を使う</li></ul>
     
         <div class="btn-wrapper">
           <a href="/portfolios" class="btn back_btn">Back</a>
