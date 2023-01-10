@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/markdown.css">
+    <link rel="stylesheet" href="/assets/css/header.css">
+    <link rel="icon" href="/assets/images/git_icon.ico">
+    
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+          <a href="/index" class="header-name">上野詩翔 | Shiryu Ueno</a>
+          <div class="header-left">
+            <a href="/index">home</a>
+            <a href="/posts">posts</a>
+            <a href="/portfolios">portfolios</a>
+            <a href="/notes">notes</a>
+        </div>
+        <div class="header-right">
+          <script src="/assets/js/darkmode.js"></script>
+          <a class="fa fa-moon-o" onclick="dark_btn()"></a>
+        </div>
+      </div>
+    </header>
+    <!DOCTYPE html>
+<html>
+  <head>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/css/style.css">
+  </head>
+  <body>
+    <div class="top-wrapper">
+      <div class="container">
+        <h1>Active Learning</h1>
+        <h3>(2/2)</h3>
+      </div>
+    </div>
+    <!DOCTYPE html>
+<html>
+  <title>Active Learning</title>
+  <head>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/css/posts.css">
+    <script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      processEscapes: true,
+      tags: "ams",
+      autoload: {
+        color: [],
+        colorV2: ['color']
+      },
+      packages: {'[+]': ['noerrors']}
+    },
+    chtml: {
+      matchFontHeight: false,
+      displayAlign: "left",
+      displayIndent: "2em"
+    },
+    options: {
+      renderActions: {
+        /* add a new named action to render <script type="math/tex"> */
+        find_script_mathtex: [10, function (doc) {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/);
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+            const text = document.createTextNode('');
+            node.parentNode.replaceChild(text, node);
+            math.start = {node: text, delim: '', n: 0};
+            math.end = {node: text, delim: '', n: 0};
+            doc.math.push(math);
+          }
+        }, '']
+      }
+    },
+    loader: {
+      load: ['[tex]/noerrors']
+    }
+  };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
+  </head>
+  <body>
+    <div class="btn-wrapper">
+      <!-- <a href="/active_learning" class="btn back_btn previous"><<<</a>
+      <a href="/active_learning" class="btn back_btn next"><</a> -->
+      <a href="/active_learning/i2" class="btn back_btn next">></a>
+      <a href="/active_learning/i2" class="btn back_btn previous">>>></a>
+    </div>
+
+    <div class="myposts">
+
+      <div class="post">
+        <a href="/active_learning/23/01/09/RALtoCOVID.html">
+          <img class="post_img" src="/assets/images/posts/RALtoCOVID/framework.png">
+          <div class="post_detail"> 
+            <p><b>Highly Efficient Representation and Active Learning Framework for Imbalanced Data and Its Application to COVID-19 X-Ray Classification</b></p>
+            <p class="post_p"><h1 id=""></h1>
+<ul>
+  <li>教師なし表現学習とガウス過程を用いた，医用画像向けのALフレームワークを提案</li>
+  <li>COVID-19 Datasetに対する有効性を確認</li>
+</ul>
+</p>
+            <p>
+              <span class="fa fa-calendar"></span> Jan 9, 2023
+              <span class="fa fa-folder"></span> active learning
+              <span class="fa fa-graduation-cap"></span> NIPS workshop
+            </p>
+          </div>
+        </a>
+      </div>
+
+      <div class="post">
+        <a href="/active_learning/23/01/09/LD4AL.html">
+          <img class="post_img" src="/assets/images/posts/LD4AL/framework.png">
+          <div class="post_detail"> 
+            <p><b>When Deep Learners Change Their Mind: Learning Dynamics for Active Learning</b></p>
+            <p class="post_p"><h1 id=""></h1>
+<ul>
+  <li>不確実性の指標に一貫性を用いることで，DLの予測が過信的という不確実性クエリ戦略の問題点を解消</li>
+  <li>CIFAR10，CIFAR100のそれぞれで有効性を確認</li>
+</ul>
+</p>
+            <p>
+              <span class="fa fa-calendar"></span> Jan 9, 2023
+              <span class="fa fa-folder"></span> active learning
+              <span class="fa fa-graduation-cap"></span> CAIP(2021)
+            </p>
+          </div>
+        </a>
+      </div>
+
+      <div class="post">
+        <a href="/active_learning/23/01/08/LL4AL.html">
+          <img class="post_img" src="/assets/images/posts/LL4AL/framework.png">
+          <div class="post_detail"> 
+            <p><b>Learning Loss for Active Learning</b></p>
+            <p class="post_p"><h1 id=""></h1>
+<ul>
+  <li>タスク非依存で特にDNNに効果的な，ラベルなしデータのLossを推測するLL4ALを提案</li>
+  <li>CIFAR10で当時のSoTA</li>
+</ul>            
+</p>
+            <p>
+              <span class="fa fa-calendar"></span> Jan 8, 2023
+              <span class="fa fa-folder"></span> active learning
+              <span class="fa fa-graduation-cap"></span> CVPR(2019)
+            </p>
+          </div>
+        </a>
+      </div>
+
+      <div class="post">
+        <a href="/active_learning/23/01/08/ALonEdgeDevice.html">
+          <img class="post_img" src="/assets/images/posts/ALonEdgeDevice/head.png">
+          <div class="post_detail"> 
+            <p><b>Active Learning for Deep Neural Networks on Edge Devices</b></p>
+            <p class="post_p"><h1 id=""></h1>
+<ul>
+  <li>スマートフォンをはじめとするEdge Device上に高機能の計算機を載せることは困難で，全ての新規データについてモデルの更新を行うことは困難なため，軽量なストリームベースAL手法を提案</li>
+  <li>MNIST，SVHN，CIFAR10において，Edge Deviceを想定した計量モデル，少データで実験</li>
+</ul>              
+</p>
+            <p>
+              <span class="fa fa-calendar"></span> Jan 8, 2023
+              <span class="fa fa-folder"></span> active learning
+              <span class="fa fa-graduation-cap"></span> arXiv
+            </p>
+          </div>
+        </a>
+      </div>
+
+      <div class="post">
+        <a href="/active_learning/23/01/08/ORAL.html">
+          <img class="post_img" src="/assets/images/posts/ORAL/head.png">
+          <div class="post_detail"> 
+            <p><b>One-Round Active Learning</b></p>
+            <p class="post_p"><h1 id=""></h1>
+<ul>
+  <li>既存のDALでは，クエリ➡アノテーション➡学習のサイクルを複数回繰り返すが，これではアノテータが待機➡アノテーションを繰り返すことになるため，1度のクエリで解決するフレームワークを提案</li>
+  <li>既存のクエリ戦略では1度のクエリで精度を示すことが困難であることを示し，MNISTとCIFAR10で実験</li>
+</ul>
+</p>
+            <p>
+              <span class="fa fa-calendar"></span> Jan 8, 2023
+              <span class="fa fa-folder"></span> active learning
+              <span class="fa fa-graduation-cap"></span> arXiv
+            </p>
+          </div>
+        </a>
+      </div>
+
+      <div class="post">
+        <a href="/active_learning/23/01/08/BALanCe.html">
+          <img class="post_img" src="/assets/images/posts/BALanCe/head.png">
+          <div class="post_detail"> 
+            <p><b>BALanCe: Deep Bayesian Active Learning via Equivalence Class Annealing</b></p>
+            <p class="post_p"><h1 id=""></h1>
+<ul>
+  <li>不確実性クエリ戦略(特にベイズ手法)の多くは，クエリしたデータ内の分布に偏りが発生するため，均等にクエリを行うBALanCeを提案</li>
+  <li>MNIST系列の複数のデータセットでSoTAを達成</li>
+</ul>
+</p>
+            <p>
+              <span class="fa fa-calendar"></span> Jan 8, 2023
+              <span class="fa fa-folder"></span> active learning
+              <span class="fa fa-graduation-cap"></span> arXiv
+            </p>
+          </div>
+        </a>
+      </div>
+
+        <div class="post">
+          <a href="/active_learning/23/01/04/DOCSiameseNetAL.html">
+            <img class="post_img" src="/assets/images/posts/DOCSiameseNetAL/framework.png">
+            <div class="post_detail"> 
+              <p><b>Data-efficient Online Classification with Siamese Networks and Active Learning</b></p>
+              <p class="post_p"><h1 id=""></h1>
+<ul>
+  <li>オンライン学習に対して，順に得られるデータが必要か否かをSiameseNetとサンプルを保存するキューを用いた手法を提案</li>
+  <li>不均衡，非定常データにおけるone-by-oneオンラインクラス分類に対し，新たな観点を提供すると同時に，sea4，circles10で既存手法を上回ることを確認</li>
+</ul>
+</p>
+              <p>
+                <span class="fa fa-calendar"></span> Jan 4, 2023
+                <span class="fa fa-folder"></span> active learning
+                <span class="fa fa-graduation-cap"></span> IJCNN(2020)
+              </p>
+            </div>
+          </a>
+        </div>
+
+    <div class="btn-wrapper">
+      <!-- <a href="/active_learning" class="btn back_btn previous"><<<</a>
+      <a href="/active_learning" class="btn back_btn next"><</a> -->
+      <a href="/active_learning/i2" class="btn back_btn next">></a>
+      <a href="/active_learning/i2" class="btn back_btn previous">>>></a>
+    </div>
+  </body>
+</html>
+  </body>
+</html>
+    <footer>
+      <div class="btn-wrapper">
+        <a href="ueno:ueno[at]cv.info.gifu-u.ac.jp" class="bottom-btn email"><i class="fa fa-envelope fa-2x"></i></a>
+        <a href="https://twitter.com/ianidaime" class="bottom-btn twitter"><i class="fa fa-twitter fa-2x"></i></a>
+        <a href="https://github.com/ia-gu" class="bottom-btn github"><i class="fa fa-github fa-2x"></i></a>
+      </div>
+      <div class="container">
+        <p>2022 Copyright</p>
+      </div>
+    </footer>
+  </body>
+</html>
