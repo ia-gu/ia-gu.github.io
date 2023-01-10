@@ -27,10 +27,22 @@
     </header>
     <!DOCTYPE html>
 <html>
-  <title>A Simple Framework for Contrastive Learning of Visual Representations</title>
   <head>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link rel="stylesheet" href="/assets/css/style.css">
+  </head>
+  <body>
+    <div class="top-wrapper">
+      <div class="container">
+        <h1>Self-Supervised Learning</h1>
+      </div>
+    </div>
+    <!DOCTYPE html>
+<html>
+  <title>Self-Supervised Learning</title>
+  <head>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/css/posts.css">
     <script>
   MathJax = {
     tex: {
@@ -72,57 +84,49 @@
 <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
   </head>
   <body>
-    <img class="hero" src="/assets/images/posts/SimCLR/head.png">
-    <h1>A Simple Framework for Contrastive Learning of Visual Representations</h1>
-    <p><span class="fa fa-link"></span><a href="https://arxiv.org/abs/2002.05709"> https://arxiv.org/abs/2002.05709</a></p>
-    <p><span class="fa fa-calendar"></span> Jan 10, 2023 </p>
-    <p><span class="fa fa-flag"></span> <a href="/self_supervised_learning/index.html"> Self-Supervised Learning</a></p>
-    <p><span class="fa fa-graduation-cap"></span> PMLR 2020 </p>
+    <div class="btn-wrapper">
+      <!-- <a href="/posts" class="btn back_btn previous"><<<</a>
+      <a href="/posts" class="btn back_btn next"><</a> -->
+      <!-- <a href="/posts/2" class="btn back_btn next">></a>
+      <a href="/posts/3" class="btn back_btn previous">>>></a> -->
+    </div>
 
-    <h2 id="1-どんなもの">1. どんなもの??何ができる??</h2>
+    <div class="myposts">
 
+      <div class="post">
+        <a href="/self_supervised_learning/2023/01/10/SimCLR.html">
+          <img class="post_img" src="/assets/images/posts/SimCLR/head.png">
+          <div class="post_detail"> 
+            <p><b>A Simple Framework for Contrastive Learning of Visual Representations</b></p>
+            <p class="post_p"><h1 id=""></h1>
 <ul>
   <li>特別な構造や大量のメモリを必要としない対象学習手法としてSimCLRを提案</li>
   <li>巨大なバッチサイズ，エポック数で学習することで既存手法を圧倒する精度を達成</li>
 </ul>
+</p>
+            <p>
+              <span class="fa fa-calendar"></span> Jan 10, 2023
+              <span class="fa fa-folder"></span> self-supvervised learning
+              <span class="fa fa-graduation-cap"></span> PMLR(2020)
+            </p>
+          </div>
+        </a>
+      </div>
 
-
-<h2 id="2-どうやって">2. どうやって??</h2>
-<ul>
-  <li>目的｜あるサンプルから異なるAugmentをされたデータを2つ用意し，同クラスのペア(正例)は類似するように，別クラスのペア(負例)は類似しないように学習すること</li>
-  <ul><li>Augment｜ResizedCrop，ColorJitter，GaussianBlurの組み合わせ(なるべく複雑な方が精度向上することを確認)</li></ul>
-  <li>学習方法｜Encoderが特徴抽出し，2層のMLPからなる予測ヘッドが類似度を最適化するようにマッピング</li>
-  <img src="/assets/images/posts/SimCLR/framework.png" /><br />
-  <li>Lossには↓のNT-Xentを使用</li>
-  <img src="/assets/images/posts/SimCLR/nt_xent.png" /><br />
-  <li>Optimizerには巨大なバッチサイズでも学習可能なLARSを使用</li>
-  <ul><li>SimCLRは正例と負例を扱うために巨大なバッチサイズが必要</li></ul>
-
-</ul>
-
-<h2 id="3-結果は">3. 結果は??</h2>
-<ul>
-    <li>Batch size，epochs 比較結果</li>
-    <img src="/assets/images/posts/SimCLR/result_batch.png" /><br />
-    <li>ImageNet 線形評価</li>
-    <img src="/assets/images/posts/SimCLR/result_lin.png" /><br />
-  <li>ImageNet 少ラベルデータでファインチューニング 結果</li>
-    <img src="/assets/images/posts/SimCLR/result_few_label.png" /><br />
-    <li>他のデータセット 教師あり学習との比較結果</li>
-    <img src="/assets/images/posts/SimCLR/result_other.png" /><br />
-</ul>
-
-<h2 id="4-課題は">4. 課題は??</h2>
-<li>十分な精度を求めた場合に必要なバッチサイズが大きすぎる</li>
 
     <div class="btn-wrapper">
-      <a href="/posts" class="btn back_btn">Back</a>
+      <!-- <a href="/posts" class="btn back_btn previous"><<<</a>
+      <a href="/posts" class="btn back_btn next"><</a> -->
+      <!-- <a href="/posts/2" class="btn back_btn next">></a>
+      <a href="/posts/3" class="btn back_btn previous">>>></a> -->
     </div>
+  </body>
+</html>
   </body>
 </html>
     <footer>
       <div class="btn-wrapper">
-        <a href="mailto:ueno[at]cv.info.gifu-u.ac.jp" class="bottom-btn email"><i class="fa fa-envelope fa-2x"></i></a>
+        <a href="ueno:ueno[at]cv.info.gifu-u.ac.jp" class="bottom-btn email"><i class="fa fa-envelope fa-2x"></i></a>
         <a href="https://twitter.com/ianidaime" class="bottom-btn twitter"><i class="fa fa-twitter fa-2x"></i></a>
         <a href="https://github.com/ia-gu" class="bottom-btn github"><i class="fa fa-github fa-2x"></i></a>
       </div>
