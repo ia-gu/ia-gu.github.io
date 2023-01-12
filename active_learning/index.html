@@ -15,13 +15,22 @@
           <a href="/index" class="header-name">上野詩翔 | Shiryu Ueno</a>
           <div class="header-left">
             <a href="/index">home</a>
-            <a href="/posts">posts</a>
+            <div class="dropmenu">
+                <li><a href="/posts">posts</a>
+                  <ul>
+                    <li><a href="/active_learning">Active Learning</a></li>
+                    <li><a href="/self-supervised learing">Self-Supervised Learning</a></li>
+                    <li><a href="/few_shot_learning/">Few-Shot Learning</a></li>
+                  </ul>
+                </li>
+              </div>
+            
             <a href="/portfolios">portfolios</a>
             <a href="/notes">notes</a>
         </div>
         <div class="header-right">
           <script src="/assets/js/darkmode.js"></script>
-          <a class="fa fa-moon-o" onclick="dark_btn()"></a>
+          <a id="sun_moon" class="fa fa-sun-o" onclick="dark_btn()"></a>
         </div>
       </div>
     </header>
@@ -35,7 +44,7 @@
     <div class="top-wrapper">
       <div class="container">
         <h1>Active Learning</h1>
-        <h3>(2/2)</h3>
+        <h3>(1/2)</h3>
       </div>
     </div>
     <!DOCTYPE html>

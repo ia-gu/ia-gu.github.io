@@ -15,13 +15,22 @@
           <a href="/index" class="header-name">上野詩翔 | Shiryu Ueno</a>
           <div class="header-left">
             <a href="/index">home</a>
-            <a href="/posts">posts</a>
+            <div class="dropmenu">
+                <li><a href="/posts">posts</a>
+                  <ul>
+                    <li><a href="/active_learning">Active Learning</a></li>
+                    <li><a href="/self-supervised learing">Self-Supervised Learning</a></li>
+                    <li><a href="/few_shot_learning/">Few-Shot Learning</a></li>
+                  </ul>
+                </li>
+              </div>
+            
             <a href="/portfolios">portfolios</a>
             <a href="/notes">notes</a>
         </div>
         <div class="header-right">
           <script src="/assets/js/darkmode.js"></script>
-          <a class="fa fa-moon-o" onclick="dark_btn()"></a>
+          <a id="sun_moon" class="fa fa-sun-o" onclick="dark_btn()"></a>
         </div>
       </div>
     </header>
@@ -76,7 +85,7 @@
         <h1>Learning Loss for Active Learning 実装</h1>
         <p><span class="fa fa-link"></span><a href="hhttps://github.com/ia-gu/LearningLossForAL"> リポジトリ</a></p>
         <p><span class="fa fa-calendar"></span> Jan 9, 2023 </p>
-        <p><span class="fa fa-flag"></span> Deep Active Learning</p>
+    <p><span class="fa fa-flag"></span> <a href="/active_learning/"> Active Learning</a></p>
     
         <h2 id="1-どんなもの">1. どんなもの??</h2>
     
