@@ -1,6 +1,9 @@
-dark_mode = true;
-
-change(dark_mode);
+if (window.matchMedia){
+  if (window.matchMedia('(prefers-color-scheme: dark)').matches){
+    dark_mode = true;
+  }
+  change(dark_mode);
+}
 
 function dark_btn() {
   if (dark_mode) {
