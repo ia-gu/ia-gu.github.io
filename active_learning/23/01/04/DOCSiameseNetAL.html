@@ -16,15 +16,13 @@
           <div class="header-left">
             <a href="/index">home</a>
             <div class="dropmenu">
-                <li><a href="/posts">posts</a>
-                  <ul>
-                    <li><a href="/active_learning">Active Learning</a></li>
-                    <li><a href="/self_supervised_learning/">Self-Supervised Learning</a></li>
-                    <li><a href="/few_shot_learning/">Few-Shot Learning</a></li>
-                  </ul>
-                </li>
+                <a href="/posts">posts</a>
+                <ul>
+                  <li><a href="/active_learning">Active Learning</a></li>
+                  <li><a href="/self_supervised_learning/">Self-Supervised Learning</a></li>
+                  <li><a href="/few_shot_learning/">Few-Shot Learning</a></li>
+                </ul>
               </div>
-            
             <a href="/portfolios">portfolios</a>
             <a href="/notes">notes</a>
         </div>
@@ -81,7 +79,7 @@
 <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
   </head>
   <body>
-    <img class="hero" src="/assets/images/posts/DOCSiameseNetAL/framework.png">
+    <center><img class="hero" src="/assets/images/posts/DOCSiameseNetAL/framework.png"></center>
     <h1>Data-efficient Online Classification with Siamese Networks and Active Learning</h1>
     <p><span class="fa fa-link"></span><a href="https://arxiv.org/abs/2010.01659"> https://arxiv.org/abs/2010.01659</a></p>
     <p><span class="fa fa-calendar"></span> Jan 4, 2023 </p>
@@ -98,22 +96,23 @@
 
 <h2 id="2-どうやって">2. どうやって??</h2>
 <ul>
-  <img src="/assets/images/posts/DOCSiameseNetAL/framework.png" /><br />
   <li>データストリームから得られたサンプルxtに対し，SiameseNetが要不要を判断</li>
   <ul><li>サンプルを追加する際，どの時刻でも各クラスに対し同じ長さを維持するためにマルチスライドウィンドウQを使用</li></ul>
   <li>学習にSiameseNetを用いることで各クラスとの距離を考慮することが可能であり，k-NN等と比べ高精度</li>
+  <li>↓フレームワーク全体図</li>
+  <center><img src="/assets/images/posts/DOCSiameseNetAL/framework.png" /></center><br />
 </ul>
 
 <h2 id="3-結果は">3. 結果は??</h2>
 <ul>
     <li>データセット｜sea4</li>
-    <img src="/assets/images/posts/DOCSiameseNetAL/sea4.png" /><br />
+    <center><img src="/assets/images/posts/DOCSiameseNetAL/sea4.png" /></center><br />
     <li>データセット｜circles10</li>
-    <img src="/assets/images/posts/DOCSiameseNetAL/circles10.png" /><br />
+    <center><img src="/assets/images/posts/DOCSiameseNetAL/circles10.png" /></center><br />
     <li>評価指標</li>
-    <img src="/assets/images/posts/DOCSiameseNetAL/gmean.png" /><br />
+    <center><img src="/assets/images/posts/DOCSiameseNetAL/gmean.png" /></center><br />
     <li>実験結果</li>
-    <img src="/assets/images/posts/DOCSiameseNetAL/framework.png" /><br />
+    <center><img src="/assets/images/posts/DOCSiameseNetAL/framework.png" /></center><br />
 <ul>
     <li>既存手法と比べ高精度を示しており，データの分布が途中で変化する場合にも対応可能</li>
 </ul>

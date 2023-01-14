@@ -16,13 +16,12 @@
           <div class="header-left">
             <a href="/index">home</a>
             <div class="dropmenu">
-                <li><a href="/posts">posts</a>
-                  <ul>
-                    <li><a href="/active_learning">Active Learning</a></li>
-                    <li><a href="/self_supervised_learning/">Self-Supervised Learning</a></li>
-                    <li><a href="/few_shot_learning/">Few-Shot Learning</a></li>
-                  </ul>
-                </li>
+                <a href="/posts">posts</a>
+                <ul>
+                  <li><a href="/active_learning">Active Learning</a></li>
+                  <li><a href="/self_supervised_learning/">Self-Supervised Learning</a></li>
+                  <li><a href="/few_shot_learning/">Few-Shot Learning</a></li>
+                </ul>
               </div>
             
             <a href="/portfolios">portfolios</a>
@@ -81,7 +80,7 @@
 <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
   </head>
   <body>
-    <img class="hero" src="/assets/images/posts/LD4AL/framework.png">
+    <center><img class="hero" src="/assets/images/posts/LD4AL/framework.png"></center>
     <h1>When Deep Learners Change Their Mind: Learning Dynamics for Active Learning</h1>
     <p><span class="fa fa-link"></span><a href="https://arxiv.org/abs/2107.14707"> https://arxiv.org/abs/2107.14707</a></p>
     <p><span class="fa fa-calendar"></span> Jan 9, 2023 </p>
@@ -99,17 +98,17 @@
 <h2 id="2-どうやって">2. どうやって??</h2>
 <ul>
   <li>各epochでのモデルの予測が不安定なサンプルにおいて不確実性は高く，既存のクエリ戦略が不確実なサンプルをクエリで来ていない点を指摘</li>
-  <img src="/assets/images/posts/LD4AL/comparison.png" /><br />
+  <center><img src="/assets/images/posts/LD4AL/comparison.png" /></center><br />
   <li>モデルの予測の一貫性を用いて↓のように獲得関数を定義</li>
-  <img src="/assets/images/posts/LD4AL/aquisition.png" /><br />
-  <li>全体のフレームワークは↓</li>
-  <img src="/assets/images/posts/LD4AL/framework.png" /><br />
+  <center><img src="/assets/images/posts/LD4AL/aquisition.png" /></center><br />
+  <li>↓フレームワーク全体図</li>
+  <center><img src="/assets/images/posts/LD4AL/framework.png" /></center>
 </ul>
 
 <h2 id="3-結果は">3. 結果は??</h2>
 <ul>
     <li>CIFAR10，CIFAR100の結果</li>
-    <img src="/assets/images/posts/LD4AL/result.png" /><br />
+    <center><img src="/assets/images/posts/LD4AL/result.png" /></center>
 </ul>
 
 <h2 id="4-課題は">4. 課題は??</h2>

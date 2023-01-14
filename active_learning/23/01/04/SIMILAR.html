@@ -16,15 +16,13 @@
           <div class="header-left">
             <a href="/index">home</a>
             <div class="dropmenu">
-                <li><a href="/posts">posts</a>
-                  <ul>
-                    <li><a href="/active_learning">Active Learning</a></li>
-                    <li><a href="/self_supervised_learning/">Self-Supervised Learning</a></li>
-                    <li><a href="/few_shot_learning/">Few-Shot Learning</a></li>
-                  </ul>
-                </li>
+                <a href="/posts">posts</a>
+                <ul>
+                  <li><a href="/active_learning">Active Learning</a></li>
+                  <li><a href="/self_supervised_learning/">Self-Supervised Learning</a></li>
+                  <li><a href="/few_shot_learning/">Few-Shot Learning</a></li>
+                </ul>
               </div>
-            
             <a href="/portfolios">portfolios</a>
             <a href="/notes">notes</a>
         </div>
@@ -81,7 +79,7 @@
 <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
   </head>
   <body>
-    <img class="hero" src="/assets/images/posts/SIMILAR/head.png">
+    <center><img class="hero" src="/assets/images/posts/SIMILAR/head.png"></center>
     <h1>SIMILAR: Submodular Information Measures Based Active Learning In Realistic Scenarios</h1>
     <p><span class="fa fa-link"></span><a href="https://arxiv.org/abs/2107.00717"> https://arxiv.org/abs/2107.00717</a></p>
     <p><span class="fa fa-calendar"></span> Jan 4, 2023 </p>
@@ -98,15 +96,15 @@
 
 <h2 id="2-どうやって">2. どうやって??</h2>
 <ul>
-  <li>以下のSMIを基にし，不均衡，冗長性，OODのそれぞれに対する獲得関数を定義</li>
-  <img src="/assets/images/posts/SIMILAR/smi.png" /><br />
+  <li>↓のSMIを基に，不均衡，冗長性，OODのそれぞれに対する獲得関数を定義</li>
+  <center><img src="/assets/images/posts/SIMILAR/smi.png" /></center><br />
   <ul>
     <li>不均衡｜希少クラスデータを含む補助セットRを用意し，相互情報量SMIを最大化</li>
-    <img src="/assets/images/posts/SIMILAR/imbalance.png" /><br />
+    <center><img src="/assets/images/posts/SIMILAR/imbalance.png" /></center><br />
     <li>冗長性｜ラベルデータL内に存在しないクラスを持つデータ集合Aを加えることで，条件付き利得SCGを最大化</li>
-    <img src="/assets/images/posts/SIMILAR/redundancy.png" /><br />
+    <center><img src="/assets/images/posts/SIMILAR/redundancy.png" /></center><br />
     <li>OOD｜分布内データI，分布外データOとの類似度と非類似度を用いた条件付き相互情報量SCMIを最大化</li>
-    <img src="/assets/images/posts/SIMILAR/ood.png" /><br />
+    <center><img src="/assets/images/posts/SIMILAR/ood.png" /></center><br />
     <ul><li>OODについては，シンプルなSMIの最大化を使用することも可能</li></ul>
 </ul>
 </ul>
@@ -114,7 +112,7 @@
 <h2 id="3-結果は">3. 結果は??</h2>
 <ul>
 <li>CIFAR10，MNIST，ImageNetにおいて，各設定で既存手法を上回る精度</li>
-<img src="/assets/images/posts/SIMILAR/result.png" /><br />
+<center><img src="/assets/images/posts/SIMILAR/result.png" /></center>
 </ul>
 
 <h2 id="4-課題は">4. 課題は??</h2>

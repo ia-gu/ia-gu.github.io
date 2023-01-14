@@ -16,15 +16,13 @@
           <div class="header-left">
             <a href="/index">home</a>
             <div class="dropmenu">
-                <li><a href="/posts">posts</a>
-                  <ul>
-                    <li><a href="/active_learning">Active Learning</a></li>
-                    <li><a href="/self_supervised_learning/">Self-Supervised Learning</a></li>
-                    <li><a href="/few_shot_learning/">Few-Shot Learning</a></li>
-                  </ul>
-                </li>
+                <a href="/posts">posts</a>
+                <ul>
+                  <li><a href="/active_learning">Active Learning</a></li>
+                  <li><a href="/self_supervised_learning/">Self-Supervised Learning</a></li>
+                  <li><a href="/few_shot_learning/">Few-Shot Learning</a></li>
+                </ul>
               </div>
-            
             <a href="/portfolios">portfolios</a>
             <a href="/notes">notes</a>
         </div>
@@ -81,7 +79,7 @@
 <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
   </head>
   <body>
-    <img class="hero" src="/assets/images/posts/DRAL4PRI/framework.png">
+    <center><img class="hero" src="/assets/images/posts/DRAL4PRI/framework.png"></center>
     <h1>Deep Reinforcement Active Learning for Human-In-The-Loop Person Re-Identification</h1>
     <p><span class="fa fa-link"></span><a href="https://arxiv.org/abs/2009.00236"> https://arxiv.org/abs/2009.00236</a></p>
     <p><span class="fa fa-calendar"></span> Dec 31, 2022</p>
@@ -97,18 +95,18 @@
 <h2 id="2-どうやって">2. どうやって??</h2>
 <ul>
   <li>エージェントの行動を，プールからサンプルを選択することと定義し，クエリ戦略部分を強化学習に置き換えたフレームワークを提案</li><br />
-  <img src="/assets/images/posts/DRAL4PRI/framework.png" /><br />
+  <center><img src="/assets/images/posts/DRAL4PRI/framework.png" /></center><br />
   <li>サンプル間の類似度からエージェントに与える報酬を決定(dはマハラノビス距離)</li><br />
-  <img src="/assets/images/posts/DRAL4PRI/formula1.png" /><br />
-  <img src="/assets/images/posts/DRAL4PRI/formula2.png" /><br />
+  <center>img src="/assets/images/posts/DRAL4PRI/formula1.png" /></center><br />
+  <center><img src="/assets/images/posts/DRAL4PRI/formula2.png" /></center>
 </ul>
 
 <h2 id="3-結果は">3. 結果は??</h2>
 <ul>
   Market1501，Duke，CUHK01で他を圧倒<br />
-  <img src="/assets/images/posts/DRAL4PRI/market1501.png" /><br />
-  <img src="/assets/images/posts/DRAL4PRI/Duke.png" /><br />
-  <img src="/assets/images/posts/DRAL4PRI/CUHK01.png" /><br />
+  <center><img src="/assets/images/posts/DRAL4PRI/market1501.png" /></center><br />
+  <center><img src="/assets/images/posts/DRAL4PRI/Duke.png" /></center><br />
+  <center><img src="/assets/images/posts/DRAL4PRI/CUHK01.png" /></center>
 </ul>
 
 <h2 id="4-課題は">4. 課題は??</h2>

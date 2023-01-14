@@ -16,13 +16,12 @@
           <div class="header-left">
             <a href="/index">home</a>
             <div class="dropmenu">
-                <li><a href="/posts">posts</a>
-                  <ul>
-                    <li><a href="/active_learning">Active Learning</a></li>
-                    <li><a href="/self_supervised_learning/">Self-Supervised Learning</a></li>
-                    <li><a href="/few_shot_learning/">Few-Shot Learning</a></li>
-                  </ul>
-                </li>
+                <a href="/posts">posts</a>
+                <ul>
+                  <li><a href="/active_learning">Active Learning</a></li>
+                  <li><a href="/self_supervised_learning/">Self-Supervised Learning</a></li>
+                  <li><a href="/few_shot_learning/">Few-Shot Learning</a></li>
+                </ul>
               </div>
             
             <a href="/portfolios">portfolios</a>
@@ -81,7 +80,7 @@
 <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
   </head>
   <body>
-    <img class="hero" src="/assets/images/posts/MAML/image.png">
+    <center><img class="hero" src="/assets/images/posts/MAML/image.png"></center>
     <h1>Model-Agnostic Meta-Learning for Fast Adaptation of Deep Networks</h1>
     <p><span class="fa fa-link"></span><a href="https://arxiv.org/abs/1703.03400"> https://arxiv.org/abs/1703.03400</a></p>
     <p><span class="fa fa-calendar"></span> Jan 7, 2023 </p>
@@ -101,15 +100,15 @@
   <li>タスク全体から，部分的にタスクをサンプリングし，モデルは各タスクでパラメータを学習</li>
   <li>部分タスク内ではモデルパラメータの学習を行い，部分がすく終了時にモデルの初期パラメータを学習</li>
   <ul><li>各タスクに対して汎化しやすいモデルの初期値を学習(↓イメージ図)</li></ul>
-  <img src="/assets/images/posts/MAML/image.png" /><br />
+  <center><img src="/assets/images/posts/MAML/image.png" /></center>
 </ul>
 
 <h2 id="3-結果は">3. 結果は??</h2>
 <ul>
 <li>回帰タスクで，sinカーブ上の数点からグラフを回帰可能であることを確認</li>
-<img src="/assets/images/posts/MAML/result.png" /><br />
+<center><img src="/assets/images/posts/MAML/result.png" /></center><br />
 <li>画像認識タスクでは，one-shot，few-shotで当時のSoTA</li>
-<img src="/assets/images/posts/MAML/result_classification.png" /><br />
+<center><img src="/assets/images/posts/MAML/result_classification.png" /></center>
 </ul>
 
 <h2 id="4-課題は">4. 課題は??</h2>

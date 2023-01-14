@@ -16,15 +16,13 @@
           <div class="header-left">
             <a href="/index">home</a>
             <div class="dropmenu">
-                <li><a href="/posts">posts</a>
-                  <ul>
-                    <li><a href="/active_learning">Active Learning</a></li>
-                    <li><a href="/self_supervised_learning/">Self-Supervised Learning</a></li>
-                    <li><a href="/few_shot_learning/">Few-Shot Learning</a></li>
-                  </ul>
-                </li>
+                <a href="/posts">posts</a>
+                <ul>
+                  <li><a href="/active_learning">Active Learning</a></li>
+                  <li><a href="/self_supervised_learning/">Self-Supervised Learning</a></li>
+                  <li><a href="/few_shot_learning/">Few-Shot Learning</a></li>
+                </ul>
               </div>
-            
             <a href="/portfolios">portfolios</a>
             <a href="/notes">notes</a>
         </div>
@@ -81,7 +79,7 @@
 <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
   </head>
   <body>
-    <img class="hero" src="/assets/images/posts/LL4AL/framework.png">
+    <center><img class="hero" src="/assets/images/posts/LL4AL/framework.png"></center>
     <h1>Learning Loss for Active Learning</h1>
     <p><span class="fa fa-link"></span><a href="https://arxiv.org/abs/1905.03677"> https://arxiv.org/abs/1905.03677</a></p>
     <p><span class="fa fa-calendar"></span> Jan 8, 2023 </p>
@@ -99,24 +97,25 @@
 <h2 id="2-どうやって">2. どうやって??</h2>
 <ul>
   <li>モデルを複数のブロックに分割し，ブロックの出力それぞれをGAP，FC，ReLUに通した結果をConcatしてFC層に通すLoss予測モジュールを導入</li>
-  <img src="/assets/images/posts/LL4AL/lp_module.png" /><br />
+  <center><img src="/assets/images/posts/LL4AL/lp_module.png" /></center><br />
   <li>学習時は，モデルの予測LossとLoss予測のLoss(LPL)を計算し，和を逆伝播</li>
-  <img src="/assets/images/posts/LL4AL/loss.png" /><br />
+  <center><img src="/assets/images/posts/LL4AL/loss.png" /></center><br />
   <ul><li>LPLは学習の途中でdetatchする(論文中では120/200epoch)</li></ul>
 </ul>
 
 <h2 id="3-結果は">3. 結果は??</h2>
 <ul>
     <li>CIFAR10で当時のSoTAを達成</li>
-    <img src="/assets/images/posts/LL4AL/result.png" /><br />
+    <center><img src="/assets/images/posts/LL4AL/result.png" /></center><br />
     <li>物体検出やポーズ推定でも高精度で，タスク非依存であることを確認</li>
-    <img src="/assets/images/posts/LL4AL/result_det.png" />
-    <img src="/assets/images/posts/LL4AL/result_pe.png" /><br />
+    <center><img src="/assets/images/posts/LL4AL/result_det.png" /></center>
+    <center><img src="/assets/images/posts/LL4AL/result_pe.png" /></center>
 </ul>
 
 <h2 id="4-課題は">4. 課題は??</h2>
-  <li>実装，実験したので，追加する</li>
-  <li>後継論文?も読んだので，追加する</li>
+  <li>実装しているので詳しくは↓をチェック</li>
+  <p><a href="https://github.com/ia-gu/Siamese_Omniglot"> リポジトリを確認</a></p>
+  <p><a href="/portfolios/omniglot.html"> 実装解説(portfolios)を確認</a></p>
     <div class="btn-wrapper">
       <a href="/posts" class="btn back_btn">Back</a>
     </div>

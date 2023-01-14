@@ -16,15 +16,13 @@
           <div class="header-left">
             <a href="/index">home</a>
             <div class="dropmenu">
-                <li><a href="/posts">posts</a>
-                  <ul>
-                    <li><a href="/active_learning">Active Learning</a></li>
-                    <li><a href="/self_supervised_learning/">Self-Supervised Learning</a></li>
-                    <li><a href="/few_shot_learning/">Few-Shot Learning</a></li>
-                  </ul>
-                </li>
+                <a href="/posts">posts</a>
+                <ul>
+                  <li><a href="/active_learning">Active Learning</a></li>
+                  <li><a href="/self_supervised_learning/">Self-Supervised Learning</a></li>
+                  <li><a href="/few_shot_learning/">Few-Shot Learning</a></li>
+                </ul>
               </div>
-            
             <a href="/portfolios">portfolios</a>
             <a href="/notes">notes</a>
         </div>
@@ -81,7 +79,7 @@
 <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
   </head>
   <body>
-    <img class="hero" src="/assets/images/posts/BALanCe/head.png">
+    <center><img class="hero" src="/assets/images/posts/BALanCe/head.png"></center>
     <h1>BALanCe: Deep Bayesian Active Learning via Equivalence Class Annealing</h1>
     <p><span class="fa fa-link"></span><a href="https://arxiv.org/abs/2112.13737"> https://arxiv.org/abs/2112.13737</a></p>
     <p><span class="fa fa-calendar"></span> Jan 8, 2023 </p>
@@ -99,24 +97,24 @@
 <h2 id="2-どうやって">2. どうやって??</h2>
 <ul>
   <li>BNNとMCドロップアウトを用いてECED(Equivalence Class Edge Discounting)を計算</li>
-    <img src="/assets/images/posts/BALanCe/eced.png" /><br />
+    <center><img src="/assets/images/posts/BALanCe/eced.png" /></center><br />
   <li>同値類であるかを確認するため，ハミング距離dHを計算し，獲得関数を↓のように定義</li>
-    <img src="/assets/images/posts/BALanCe/balance.png" /><br />
-    <img src="/assets/images/posts/BALanCe/lambda.png" /><br />
+    <center><img src="/assets/images/posts/BALanCe/balance.png" /></center><br />
+    <center><img src="/assets/images/posts/BALanCe/lambda.png" /></center><br />
   <li>ただし，↑の式はλの計算にラベルが必要で直接計算することが不可能なため，獲得関数を以下のように近似</li>
   <ul><li>MCドロップアウトサンプル上の同値類を正確に構成することは不可能な点に注意</li></ul>
-    <img src="/assets/images/posts/BALanCe/balance_approx.png" /><br />
+    <center><img src="/assets/images/posts/BALanCe/balance_approx.png" /></center><br />
   <li>以上を基に，Batch-Modeの獲得関数を↓のように定義</li>
-  <img src="/assets/images/posts/BALanCe/balance_b.png" /><br />
+  <center><img src="/assets/images/posts/BALanCe/balance_b.png" /></center>
   
 </ul>
 
 <h2 id="3-結果は">3. 結果は??</h2>
 <ul>
     <li>BALDとの比較結果</li>
-    <img src="/assets/images/posts/BALanCe/compare_result.png" /><br />
+    <center><img src="/assets/images/posts/BALanCe/compare_result.png" /></center><br />
     <li>MNIST，Repeated-MNIST,Fashion-MNIST，EMNISTの結果</li>
-    <img src="/assets/images/posts/BALanCe/result.png" /><br />
+    <center><img src="/assets/images/posts/BALanCe/result.png" /></center><br />
     <ul><li>※Repeated-MNISTはプールを複製し，複製データに正規化・標準偏差=0.1の等方性ガウスノイズを付与したもの</li></ul>
 </ul>
 

@@ -16,13 +16,12 @@
           <div class="header-left">
             <a href="/index">home</a>
             <div class="dropmenu">
-                <li><a href="/posts">posts</a>
-                  <ul>
-                    <li><a href="/active_learning">Active Learning</a></li>
-                    <li><a href="/self_supervised_learning/">Self-Supervised Learning</a></li>
-                    <li><a href="/few_shot_learning/">Few-Shot Learning</a></li>
-                  </ul>
-                </li>
+                <a href="/posts">posts</a>
+                <ul>
+                  <li><a href="/active_learning">Active Learning</a></li>
+                  <li><a href="/self_supervised_learning/">Self-Supervised Learning</a></li>
+                  <li><a href="/few_shot_learning/">Few-Shot Learning</a></li>
+                </ul>
               </div>
             
             <a href="/portfolios">portfolios</a>
@@ -81,7 +80,7 @@
 <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
   </head>
   <body>
-    <img class="hero" src="/assets/images/posts/ORAL/head.png">
+    <center><img class="hero" src="/assets/images/posts/ORAL/head.png"></center>
     <h1>One-Round Active Learning</h1>
     <p><span class="fa fa-link"></span><a href="https://arxiv.org/abs/2104.11843"> https://arxiv.org/abs/2104.11843</a></p>
     <p><span class="fa fa-calendar"></span> Jan 8, 2023 </p>
@@ -100,20 +99,20 @@
 <ul>
   <li>最初のサイクルでランダムにデータを選択し，訓練データと検証データVに分割</li>
   <ul><li>訓練データで学習したモデルfと検証データVを用いて↓を計算</li></ul>
-  <img src="/assets/images/posts/ORAL/utility.png" /><br />
-  <img src="/assets/images/posts/ORAL/utility_truth.png" /><br />
+  <center><img src="/assets/images/posts/ORAL/utility.png" /></center><br />
+  <center><img src="/assets/images/posts/ORAL/utility_truth.png" /></center><br />
   <li>集合関数の学習で標準的なDeepSetsを↓のように学習</li>
-    <img src="/assets/images/posts/ORAL/model_algorithm.png" /><br />
-  <li>↓AL全体のアルゴリズム</li>
-    <img src="/assets/images/posts/ORAL/algorithm.png" /><br />
+  <center><img src="/assets/images/posts/ORAL/model_algorithm.png" /></center><br />
+  <li>↓フレームワーク全体図</li>
+  <center><img src="/assets/images/posts/ORAL/algorithm.png" /></center>
 </ul>
 
 <h2 id="3-結果は">3. 結果は??</h2>
 <ul>
     <li>MNIST，CIFAR10の不均衡，ノイズ有で有効性を確認</li>
-    <img src="/assets/images/posts/ORAL/result.png" /><br />
+    <center><img src="/assets/images/posts/ORAL/result.png" /></center><br />
     <li>実世界データセットのUSPS，PubFig83における有効性を確認</li>
-    <img src="/assets/images/posts/ORAL/result_real.png" /><br />
+    <center><img src="/assets/images/posts/ORAL/result_real.png" /></center>
 </ul>
 
 <h2 id="4-課題は">4. 課題は??</h2>

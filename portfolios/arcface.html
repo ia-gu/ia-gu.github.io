@@ -16,13 +16,12 @@
           <div class="header-left">
             <a href="/index">home</a>
             <div class="dropmenu">
-                <li><a href="/posts">posts</a>
-                  <ul>
-                    <li><a href="/active_learning">Active Learning</a></li>
-                    <li><a href="/self_supervised_learning/">Self-Supervised Learning</a></li>
-                    <li><a href="/few_shot_learning/">Few-Shot Learning</a></li>
-                  </ul>
-                </li>
+                <a href="/posts">posts</a>
+                <ul>
+                  <li><a href="/active_learning">Active Learning</a></li>
+                  <li><a href="/self_supervised_learning/">Self-Supervised Learning</a></li>
+                  <li><a href="/few_shot_learning/">Few-Shot Learning</a></li>
+                </ul>
               </div>
             
             <a href="/portfolios">portfolios</a>
@@ -81,7 +80,7 @@
     <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
       </head>
       <body>
-        <img class="hero" src="/assets/images/portfolios/arcface/arcface.png">
+        <center><img class="hero" src="/assets/images/portfolios/arcface/arcface.png"></center>
         <h1>LFWをArcfaceで分類</h1>
         <p><span class="fa fa-link"></span><a href="https://github.com/ia-gu/Arcface_Adacos"> リポジトリ</a></p>
         <p><span class="fa fa-calendar"></span> Jan 8, 2023 </p>
@@ -101,14 +100,14 @@
       <li>必要なソースコードはsrcフォルダ下にあるので，<code>bash main.sh</code>を叩けば実行可能</li>
       <ul><li>データローダのPath等は適宜変更が必要</li></ul>
       <ul><li>Arcface/AdaCosの切り替えはyaml内で可能</li></ul>
-      <li>その他のハイパラチューニングは全てyamlを用いたため，複数用意すればマルチランも可能(この時OmegaConf知らない)</li>
+      <li>その他ハイパラもyamlで管理</li>
     
     <h2 id="3-余談">3. 余談</h2>
       <li>このコードはB3の研究室での最終課題(2個目)で，<a href="https://github.com/penguinone-cv/Arcface"> 当時の先輩のリポジトリ</a>を元に作成したコード</li>    
       <ul><li>AdaCosは自分で作成</li></ul>
-      <li>実験で使用したLFW datasetは↓からダウンロード</li>    
-      <p><span class="fa fa-link"></span><a href="http://vis-www.cs.umass.edu/lfw//"> LFW dataset</a></p>
-      <ul><li>すべてのデータを使うわけではないので，<code>mktrain_data.py</code>，<code>mktest_data.py</code>を使う</li></ul>
+      <li>実験で使用したLFW datasetは↓からダウンロード可能</li>    
+      <center><p></span><a href="http://vis-www.cs.umass.edu/lfw//"> LFW dataset</a></p></center>
+      <center><p>※すべてのデータを使うわけではないので，<code>mktrain_data.py</code>，<code>mktest_data.py</code>を使う</p></center>
     
         <div class="btn-wrapper">
           <a href="/portfolios" class="btn back_btn">Back</a>

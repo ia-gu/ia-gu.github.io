@@ -16,15 +16,13 @@
           <div class="header-left">
             <a href="/index">home</a>
             <div class="dropmenu">
-                <li><a href="/posts">posts</a>
-                  <ul>
-                    <li><a href="/active_learning">Active Learning</a></li>
-                    <li><a href="/self_supervised_learning/">Self-Supervised Learning</a></li>
-                    <li><a href="/few_shot_learning/">Few-Shot Learning</a></li>
-                  </ul>
-                </li>
+                <a href="/posts">posts</a>
+                <ul>
+                  <li><a href="/active_learning">Active Learning</a></li>
+                  <li><a href="/self_supervised_learning/">Self-Supervised Learning</a></li>
+                  <li><a href="/few_shot_learning/">Few-Shot Learning</a></li>
+                </ul>
               </div>
-            
             <a href="/portfolios">portfolios</a>
             <a href="/notes">notes</a>
         </div>
@@ -81,7 +79,7 @@
 <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
   </head>
   <body>
-    <img class="hero" src="/assets/images/posts/ALonEdgeDevice/head.png">
+    <center><img class="hero" src="/assets/images/posts/ALonEdgeDevice/head.png"></center>
     <h1>Active Learning for Deep Neural Networks on Edge Devices</h1>
     <p><span class="fa fa-link"></span><a href="https://arxiv.org/abs/2106.10836"> https://arxiv.org/abs/2106.10836</a></p>
     <p><span class="fa fa-calendar"></span> Jan 8, 2023 </p>
@@ -99,9 +97,9 @@
 <h2 id="2-どうやって">2. どうやって??</h2>
 <ul>
   <li>各サンプルの情報量は劣モジュラgを用いて↓のように定式化</li>
-  <img src="/assets/images/posts/ALonEdgeDevice/submodular.png" /><br />
+  <center><img src="/assets/images/posts/ALonEdgeDevice/submodular.png" /></center><br />
   <li>多様性はクエリデータ内の類似度行列Msと固有値行列Iを用いて↓のように定式化</li>
-  <img src="/assets/images/posts/ALonEdgeDevice/diversity.png" /><br />
+  <center><img src="/assets/images/posts/ALonEdgeDevice/diversity.png" /></center><br />
   <ul><li>1ラウンド前の行列の情報と対数行列式を用いた近似により，計算量をO(n)に削減</li></ul>
   <li>一定数のサンプルを確認したのち，複数サンプルをバッチとしてOracleに渡す</li>
 </ul>
@@ -109,16 +107,16 @@
 <h2 id="3-結果は">3. 結果は??</h2>
 <ul>
     <li>MNIST，SVHN，CIFAR10で有効性を確認</li>
-    <img src="/assets/images/posts/ALonEdgeDevice/result.png" /><br />
+    <center><img src="/assets/images/posts/ALonEdgeDevice/result.png" /></center><br />
     <li>同データセットで，ドメインシフトに対するロバスト性を確認</li>
-    <img src="/assets/images/posts/ALonEdgeDevice/result_da.png" /><br />
+    <center><img src="/assets/images/posts/ALonEdgeDevice/result_da.png" /></center><br />
     <li>物体検出においても，ドメインシフトに対するロバスト性を確認</li>
-    <img src="/assets/images/posts/ALonEdgeDevice/result_det.png" /><br />
+    <center><img src="/assets/images/posts/ALonEdgeDevice/result_det.png" /></center>
 </ul>
 
 <h2 id="4-課題は">4. 課題は??</h2>
-  <li>不確実性の高い序盤では，メモリを圧迫</li>
-  <img src="/assets/images/posts/ALonEdgeDevice/memory_footprint.png" /><br />
+  <li>不確実性の高い序盤はメモリを圧迫</li>
+  <center><img src="/assets/images/posts/ALonEdgeDevice/memory_footprint.png" /></center>
     <div class="btn-wrapper">
       <a href="/posts" class="btn back_btn">Back</a>
     </div>

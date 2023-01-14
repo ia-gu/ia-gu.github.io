@@ -16,15 +16,13 @@
           <div class="header-left">
             <a href="/index">home</a>
             <div class="dropmenu">
-                <li><a href="/posts">posts</a>
-                  <ul>
-                    <li><a href="/active_learning">Active Learning</a></li>
-                    <li><a href="/self_supervised_learning/">Self-Supervised Learning</a></li>
-                    <li><a href="/few_shot_learning/">Few-Shot Learning</a></li>
-                  </ul>
-                </li>
+                <a href="/posts">posts</a>
+                <ul>
+                  <li><a href="/active_learning">Active Learning</a></li>
+                  <li><a href="/self_supervised_learning/">Self-Supervised Learning</a></li>
+                  <li><a href="/few_shot_learning/">Few-Shot Learning</a></li>
+                </ul>
               </div>
-            
             <a href="/portfolios">portfolios</a>
             <a href="/notes">notes</a>
         </div>
@@ -81,7 +79,7 @@
 <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
   </head>
   <body>
-    <img class="hero" src="/assets/images/posts/GLISTER/framework.png">
+    <center><img class="hero" src="/assets/images/posts/GLISTER/framework.png"></center>
     <h1>GLISTER: Generalization based Data Subset Selection for Efficient and Robust Learning</h1>
     <p><span class="fa fa-link"></span><a href="https://arxiv.org/abs/2012.10630"> https://arxiv.org/abs/2012.10630</a></p>
     <p><span class="fa fa-calendar"></span> Jan 3, 2023 </p>
@@ -100,16 +98,16 @@
 <ul>
   <li>outer-layer｜検証セットに対する対数尤度LLVを最大化するような部分集合を選択</li>
   <li>inner-layer｜訓練セットに対する対数尤度LLTを最大化するようにパラメータを最適化</li>
-  <img src="/assets/images/posts/GLISTER/log_likelihood.png" /><br />
+  <center><img src="/assets/images/posts/GLISTER/log_likelihood.png" /></center><br />
   (inner-layerの最適化は計算量が大きいため，テイラー展開で近似)
 </ul>
 
 <h2 id="3-結果は">3. 結果は??</h2>
 <ul>
 <li>CIFAR10，MNISTにおいて，不均衡やノイズラベルを含む場合も既存手法と比べ精度が高いことを確認</li>
-<img src="/assets/images/posts/GLISTER/result.png" /><br />
+<center><img src="/assets/images/posts/GLISTER/result.png" /></center><br />
 <li>DALのフレームワークに合わせたGLISTER ACTIVEが各設定において既存手法より精度が高いことを確認</li>
-<img src="/assets/images/posts/GLISTER/al_result.png" /><br />
+<center><img src="/assets/images/posts/GLISTER/al_result.png" /></center><br />
 </ul>
 
 <h2 id="4-課題は">4. 課題は??</h2>

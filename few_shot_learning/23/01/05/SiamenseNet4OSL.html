@@ -16,13 +16,12 @@
           <div class="header-left">
             <a href="/index">home</a>
             <div class="dropmenu">
-                <li><a href="/posts">posts</a>
-                  <ul>
-                    <li><a href="/active_learning">Active Learning</a></li>
-                    <li><a href="/self_supervised_learning/">Self-Supervised Learning</a></li>
-                    <li><a href="/few_shot_learning/">Few-Shot Learning</a></li>
-                  </ul>
-                </li>
+                <a href="/posts">posts</a>
+                <ul>
+                  <li><a href="/active_learning">Active Learning</a></li>
+                  <li><a href="/self_supervised_learning/">Self-Supervised Learning</a></li>
+                  <li><a href="/few_shot_learning/">Few-Shot Learning</a></li>
+                </ul>
               </div>
             
             <a href="/portfolios">portfolios</a>
@@ -81,7 +80,7 @@
 <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
   </head>
   <body>
-    <img class="hero" src="/assets/images/posts/SiameseNet4OSL/framework.png">
+    <center><img class="hero" src="/assets/images/posts/SiameseNet4OSL/framework.png"></center>
     <h1>Siamese Neural Networks for One-shot Image Recognition</h1>
     <p><span class="fa fa-link"></span><a href="https://www.cs.cmu.edu/~rsalakhu/papers/oneshot1.pdf"> https://www.cs.cmu.edu/~rsalakhu/papers/oneshot1.pdf</a></p>
     <p><span class="fa fa-calendar"></span> Jan 5, 2023 </p>
@@ -99,27 +98,27 @@
 <h2 id="2-どうやって">2. どうやって??</h2>
 <ul>
   <li>モデル構造</li>
-  <img src="/assets/images/posts/SiameseNet4OSL/framework.png" /><br />
+  <center><img src="/assets/images/posts/SiameseNet4OSL/framework.png" /></center><br />
   <li>訓練データ内から2つのサンプルを選択し入力ペアを用いて学習</li>
   <ul><li>ペアが同一クラスか否かの2値分類を学習</li></ul>
   <li>損失関数にはCross Entropyを一般化した以下を使用</li>
-  <img src="/assets/images/posts/SiameseNet4OSL/loss.png" /><br />
+  <center><img src="/assets/images/posts/SiameseNet4OSL/loss.png" /></center>
 </ul>
 
 <h2 id="3-結果は">3. 結果は??</h2>
 <ul>
     <li>データセット｜omniglot</li>
-    <img src="/assets/images/posts/SiameseNet4OSL/omniglot.png" /><br />
+    <center><img src="/assets/images/posts/SiameseNet4OSL/omniglot.png" /></center><br />
     <li>実験結果</li>
-    <img src="/assets/images/posts/SiameseNet4OSL/result.png" /><br />
+    <center><img src="/assets/images/posts/SiameseNet4OSL/result.png" /></center><br />
     <li>MNISTのOSL結果</li>
-    <img src="/assets/images/posts/SiameseNet4OSL/result_osl.png" /><br />
+    <center><img src="/assets/images/posts/SiameseNet4OSL/result_osl.png" /></center>
 </ul>
 
 <h2 id="4-課題は">4. 課題は??</h2>
-    <li>実装しているので細かく知りたい方は↓参照</li>
+    <li>実装しているので詳しくは↓をチェック</li>
       <p><a href="https://github.com/ia-gu/Siamese_Omniglot"> リポジトリを確認</a></p>
-      <p><a href="/portfolios/omniglot.html"> 解説(portfolios)を確認</a></p>
+      <p><a href="/portfolios/omniglot.html"> 実装解説(portfolios)を確認</a></p>
       <div class="btn-wrapper">
       <a href="/posts" class="btn back_btn">Back</a>
     </div>

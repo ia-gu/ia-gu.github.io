@@ -16,15 +16,13 @@
           <div class="header-left">
             <a href="/index">home</a>
             <div class="dropmenu">
-                <li><a href="/posts">posts</a>
-                  <ul>
-                    <li><a href="/active_learning">Active Learning</a></li>
-                    <li><a href="/self_supervised_learning/">Self-Supervised Learning</a></li>
-                    <li><a href="/few_shot_learning/">Few-Shot Learning</a></li>
-                  </ul>
-                </li>
+                <a href="/posts">posts</a>
+                <ul>
+                  <li><a href="/active_learning">Active Learning</a></li>
+                  <li><a href="/self_supervised_learning/">Self-Supervised Learning</a></li>
+                  <li><a href="/few_shot_learning/">Few-Shot Learning</a></li>
+                </ul>
               </div>
-            
             <a href="/portfolios">portfolios</a>
             <a href="/notes">notes</a>
         </div>
@@ -81,7 +79,7 @@
 <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
   </head>
   <body>
-    <img class="hero" src="/assets/images/posts/ASSSL/framework.png">
+    <center><img class="hero" src="/assets/images/posts/ASSSL/framework.png"></center>
     <h1>Active Self-Semi-Supervised Learning for Few Labeled Samples Fast Training</h1>
     <p><span class="fa fa-link"></span><a href="https://arxiv.org/abs/2203.04560"> https://arxiv.org/abs/2203.04560</a></p>
     <p><span class="fa fa-calendar"></span> Jan 4, 2023 </p>
@@ -98,13 +96,13 @@
 
 <h2 id="2-どうやって">2. どうやって??</h2>
 <ul>
-  <img src="/assets/images/posts/ASSSL/framework.png" /><br />
+  <center><img src="/assets/images/posts/ASSSL/framework.png" /></center><br />
   <li>手順</li>
 <ol>
   <li>事前学習で訓練したモデルがALによってサンプルを選択</li>
   <li>grand truthと疑似ラベルによるLossを伝播し，他のラベル付きデータの事前疑似ラベルを獲得</li>
   <li>事前分布とモデルの予測から以下のLossを基に半教師モデルを学習</li>
-  <img src="/assets/images/posts/ASSSL/semi-supervised.png" /><br />
+  <center><img src="/assets/images/posts/ASSSL/semi-supervised.png" /></center><br />
 </ol>
   <ul><li>ALでは，クラスタリングの際のクラスタ中心に近いサンプルを選択</li></ul>
 </ul>
@@ -112,13 +110,13 @@
 <h2 id="3-結果は">3. 結果は??</h2>
 <ul>
     <li>クラスタリング結果</li>
-    <img src="/assets/images/posts/ASSSL/clustering_result.png" /><br />
+    <center><img src="/assets/images/posts/ASSSL/clustering_result.png" /></center><br />
 <ul>    
     <li>自己教師あり学習だけではうまく特徴が取れていない(左)</li>
     <li>提案するフレームワークでは，40枚のラベル付きデータで特徴が取れている(右)</li>
 </ul>
     <li>実験結果</li>
-    <img src="/assets/images/posts/ASSSL/result.png" /><br />
+    <center><img src="/assets/images/posts/ASSSL/result.png" /></center><br />
 <ul>
     <li>CIFAR10において，10枚で学習した場合(左)，40枚で学習した場合(右)のどちらも高精度であり既存手法よりも少ない枚数で学習が可能</li>
 </ul>
