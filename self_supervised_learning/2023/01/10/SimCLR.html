@@ -16,13 +16,12 @@
           <div class="header-left">
             <a href="/index">home</a>
             <div class="dropmenu">
-                <li><a href="/posts">posts</a>
-                  <ul>
-                    <li><a href="/active_learning">Active Learning</a></li>
-                    <li><a href="/self_supervised_learning/">Self-Supervised Learning</a></li>
-                    <li><a href="/few_shot_learning/">Few-Shot Learning</a></li>
-                  </ul>
-                </li>
+                <a href="/posts">posts</a>
+                <ul>
+                  <li><a href="/active_learning">Active Learning</a></li>
+                  <li><a href="/self_supervised_learning/">Self-Supervised Learning</a></li>
+                  <li><a href="/few_shot_learning/">Few-Shot Learning</a></li>
+                </ul>
               </div>
             
             <a href="/portfolios">portfolios</a>
@@ -81,7 +80,7 @@
 <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
   </head>
   <body>
-    <img class="hero" src="/assets/images/posts/SimCLR/head.png">
+    <center><img class="hero" src="/assets/images/posts/SimCLR/head.png"></center>
     <h1>A Simple Framework for Contrastive Learning of Visual Representations</h1>
     <p><span class="fa fa-link"></span><a href="https://arxiv.org/abs/2002.05709"> https://arxiv.org/abs/2002.05709</a></p>
     <p><span class="fa fa-calendar"></span> Jan 10, 2023 </p>
@@ -101,9 +100,9 @@
   <li>目的｜あるサンプルから異なるAugmentをされたデータを2つ用意し，同クラスのペア(正例)は類似するように，別クラスのペア(負例)は類似しないように学習すること</li>
   <ul><li>Augment｜ResizedCrop，ColorJitter，GaussianBlurの組み合わせ(なるべく複雑な方が精度向上することを確認)</li></ul>
   <li>学習方法｜Encoderが特徴抽出し，2層のMLPからなる予測ヘッドが類似度を最適化するようにマッピング</li>
-  <img src="/assets/images/posts/SimCLR/framework.png" /><br />
+  <center><img src="/assets/images/posts/SimCLR/framework.png" /></center><br />
   <li>Lossには↓のNT-Xentを使用</li>
-  <img src="/assets/images/posts/SimCLR/nt_xent.png" /><br />
+  <center><img src="/assets/images/posts/SimCLR/nt_xent.png" /></center><br />
   <li>Optimizerには巨大なバッチサイズでも学習可能なLARSを使用</li>
   <ul><li>SimCLRは正例と負例を扱うために巨大なバッチサイズが必要</li></ul>
 
@@ -112,13 +111,13 @@
 <h2 id="3-結果は">3. 結果は??</h2>
 <ul>
     <li>Batch size，epochs 比較結果</li>
-    <img src="/assets/images/posts/SimCLR/result_batch.png" /><br />
+    <center><img src="/assets/images/posts/SimCLR/result_batch.png" /></center><br />
     <li>ImageNet 線形評価</li>
-    <img src="/assets/images/posts/SimCLR/result_lin.png" /><br />
-  <li>ImageNet 少ラベルデータでファインチューニング 結果</li>
-    <img src="/assets/images/posts/SimCLR/result_few_label.png" /><br />
+    <center><img src="/assets/images/posts/SimCLR/result_lin.png" /></center><br />
+    <li>ImageNet 少ラベルデータでファインチューニング 結果</li>
+    <center><img src="/assets/images/posts/SimCLR/result_few_label.png" /></center><br />
     <li>他のデータセット 教師あり学習との比較結果</li>
-    <img src="/assets/images/posts/SimCLR/result_other.png" /><br />
+    <center><img src="/assets/images/posts/SimCLR/result_other.png" /></center><br />
 </ul>
 
 <h2 id="4-課題は">4. 課題は??</h2>

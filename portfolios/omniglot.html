@@ -16,13 +16,12 @@
           <div class="header-left">
             <a href="/index">home</a>
             <div class="dropmenu">
-                <li><a href="/posts">posts</a>
-                  <ul>
-                    <li><a href="/active_learning">Active Learning</a></li>
-                    <li><a href="/self_supervised_learning/">Self-Supervised Learning</a></li>
-                    <li><a href="/few_shot_learning/">Few-Shot Learning</a></li>
-                  </ul>
-                </li>
+                <a href="/posts">posts</a>
+                <ul>
+                  <li><a href="/active_learning">Active Learning</a></li>
+                  <li><a href="/self_supervised_learning/">Self-Supervised Learning</a></li>
+                  <li><a href="/few_shot_learning/">Few-Shot Learning</a></li>
+                </ul>
               </div>
             
             <a href="/portfolios">portfolios</a>
@@ -81,7 +80,7 @@
     <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
       </head>
       <body>
-        <img class="hero" src="/assets/images/portfolios/omniglot/omniglot.png">
+        <center><img class="hero" src="/assets/images/portfolios/omniglot/omniglot.png"></center>
         <h1>omniglotをSiamese Networkで分類</h1>
         <p><span class="fa fa-link"></span><a href="https://github.com/ia-gu/Siamese_Omniglot"> リポジトリ</a></p>
         <p><span class="fa fa-calendar"></span> Jan 4, 2023 </p>
@@ -99,13 +98,13 @@
     <h2 id="2-使い方">2. 使い方</h2>
       <li>必要なソースコードはsrcフォルダ下にあるので，<code>bash main.sh</code>を叩けば実行可能</li>
       <li>(データローダのPath等は適宜変更してください)</li>
-      <li>ハイパラチューニングは全てyamlを用いたため，複数用意すればマルチランも可能(この時はOmegaConfなんで知らない)</li>
+      <li>ハイパラチューニングは全てyamlで管理</li>
     
     <h2 id="3-余談">3. 余談</h2>
-      <li>このコードはB3の研究室での最終課題で，先輩に聞きながら2週間くらいで作ったコード</li>    
-      <li>データローダがおかしい，AUROCを出すための処理が無茶苦茶 といった問題があるので微修正推奨(時間ができたら直します)</li>    
-      <li>実験で使用したomniglot datasetは↓からダウンロード</li>    
-      <p><span class="fa fa-link"></span><a href="https://omniglot.com/"> omniglot dataset</a></p>
+      <li>このコードはB3の研究室での最終課題で，先輩に聞きながら作ったコード</li>    
+      <li>データローダがヘタクソ，AUROCを出すための処理が無茶苦茶 といった問題があるので微修正推奨(時間ができたら直します)</li>    
+      <li>実験で使用したomniglot datasetは↓からダウンロード可能</li>    
+      <p><a href="https://omniglot.com/"> omniglot dataset</a></p>
     
         <div class="btn-wrapper">
           <a href="/portfolios/" class="btn back_btn">Back</a>
