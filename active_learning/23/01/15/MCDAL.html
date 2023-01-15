@@ -35,7 +35,7 @@
     </header>
     <!DOCTYPE html>
 <html>
-  <title>Highly Efficient Representation and Active Learning Framework for Imbalanced Data and Its Application to COVID-19 X-Ray Classification</title>
+  <title>MCDAL: Maximum Classifier Discrepancy for Active Learning</title>
   <head>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link rel="stylesheet" href="/assets/css/style.css">
@@ -80,42 +80,49 @@
 <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
   </head>
   <body>
-    <center><img class="hero" src="/assets/images/posts/LD4AL/framework.png"></center>
-    <h1>Highly Efficient Representation and Active Learning Framework for Imbalanced Data and Its Application to COVID-19 X-Ray Classification</h1>
-    <p><span class="fa fa-link"></span><a href="https://arxiv.org/abs/2103.05109"> https://arxiv.org/abs/2103.05109</a></p>
-    <p><span class="fa fa-calendar"></span> Jan 9, 2023 </p>
+    <center><img class="hero" src="/assets/images/posts/MCDAL/framework.png"></center>
+    <h1>MCDAL: Maximum Classifier Discrepancy for Active Learning</h1>
+    <p><span class="fa fa-link"></span><a href="https://arxiv.org/abs/2107.11049"> https://arxiv.org/abs/2107.11049</a></p>
+    <p><span class="fa fa-calendar"></span> Jan 15, 2023 </p>
     <p><span class="fa fa-flag"></span> <a href="/active_learning"> Active Learning</a></p>
-    <p><span class="fa fa-graduation-cap"></span> NIPS workshop </p>
+    <p><span class="fa fa-graduation-cap"></span> IEEE-TNNLS </p>
 
     <h2 id="1-どんなもの">1. どんなもの??何ができる??</h2>
 
 <ul>
-  <li>教師なし表現学習とガウス過程を用いた，医用画像向けのALフレームワークを提案</li>
-  <li>COVID-19 Datasetに対する有効性を確認</li>
+  <li>複数の識別の予測不一致を用いてクエリを行うMCDALを提案</li>
+  <li>CIFAR10，CIFAR100，Caltech101で有効性を確認</li>
 </ul>
 
 
 <h2 id="2-どうやって">2. どうやって??</h2>
 <ul>
-  <li>ステップ1｜下流タスクに向け汎用的な特徴を獲得することを目的とした教師なし表現学習</li>
-  <ul><li>ResNet50をSimCLRで学習</li></ul>
-  <li>ステップ2｜DNNのトップを用いて不確実性を獲得するノンパラメトリックなベイズ手法であるガウス過程を適用</li>
-  <ul><li>ガウス過程で精度を出すには良い特徴量が必要なため事前に表現学習を使用</li></ul>
-  <li>↓フレームワーク全体図</li>
-  <center><img src="/assets/images/posts/RALtoCOVID/framework.png" /></center>
+  <li>学習時，識別器を複数用意したモデルにすべてのデータを入力し，必要なメトリックを計算</li>
+  <ul><li>ラベル付きデータ｜メインの識別器で分類を行いモデルを学習</li></ul>
+  <ul><li>ラベルなしデータ｜補助的な識別器で分類を行い各予測を比べ，不一致を基にしたLdisで補助識別器を学習</li></ul>
+  <center><img src="/assets/images/posts/MCDAL/ldis.png" /></center>
+  <ul><ul><li>↓補助識別器の学習でやりたいこと</li></ul></ul>
+  <center><img src="/assets/images/posts/MCDAL/training_aim.png" /></center>
+  <li>クエリは↓を最大化するように実行</li>
+  <center><img src="/assets/images/posts/MCDAL/aquisition.png" /></center>
+  <center><img src="/assets/images/posts/MCDAL/large_d.png" /></center>
 </ul>
 
 <h2 id="3-結果は">3. 結果は??</h2>
 <ul>
-    <li>COVID-19 Dataset 結果</li>
-    <center><img src="/assets/images/posts/RALtoCOVID/result_covid.png" /></center><br />
-    <li>Nerthus 結果</li>
-    <center><img src="/assets/images/posts/RALtoCOVID/result_nerthus.png" /></center><br />
-  <ul><li>Nerthus 詳細</li></ul>
-    <center><img src="/assets/images/posts/RALtoCOVID/nerthus.png" /></center>
+    <li>CIFAR10 結果</li>
+    <center><img src="/assets/images/posts/MCDAL/result_cifar10.png" /></center><br />
+    <li>CIFAR100 結果</li>
+    <center><img src="/assets/images/posts/MCDAL/result_cifar100.png" /></center><br />
+    <li>Caltech101 結果</li>
+    <center><img src="/assets/images/posts/MCDAL/result_caltech101.png" /></center>
+    <li>CIFAR10 結果</li>
+    <center><img src="/assets/images/posts/MCDAL/result_cityscapes.png" /></center><br />
 </ul>
 
 <h2 id="4-課題は">4. 課題は??</h2>
+<li>現在再現実験中</li>
+<li>半教師あり学習と組み合わせたほうが上手くいきそうだな という印象</li>
 
     <div class="btn-wrapper">
       <a href="/posts" class="btn back_btn">Back</a>
