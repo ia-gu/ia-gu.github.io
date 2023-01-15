@@ -35,23 +35,10 @@
     </header>
     <!DOCTYPE html>
 <html>
+  <title>Active Learning at the ImageNet Scale</title>
   <head>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link rel="stylesheet" href="/assets/css/style.css">
-  </head>
-  <body>
-    <div class="top-wrapper">
-      <div class="container">
-        <h1>Active Learning</h1>
-        <h3>(1/3)</h3>
-      </div>
-    </div>
-    <!DOCTYPE html>
-<html>
-  <title>Active Learning</title>
-  <head>
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-    <link rel="stylesheet" href="/assets/css/posts.css">
     <script>
   MathJax = {
     tex: {
@@ -93,48 +80,60 @@
 <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
   </head>
   <body>
+    <center><img class="hero" src="/assets/images/posts/AL@ImageNet/head.png"></center>
+    <h1>Active Learning at the ImageNet Scale</h1>
+    <p><span class="fa fa-link"></span><a href="https://arxiv.org/abs/2111.12880"> https://arxiv.org/abs/2111.12880</a></p>
+    <p><span class="fa fa-calendar"></span> Jan 15, 2023 </p>
+    <p><span class="fa fa-flag"></span> <a href="/active_learning"> Active Learning</a></p>
+    <p><span class="fa fa-graduation-cap"></span> ICLR (2023 submitted) </p>
+
+    <h2 id="1-どんなもの">1. どんなもの??何ができる??</h2>
+
+<ul>
+  <li>CIFAR10のような小規模データセットで機能するAL手法がImageNetの規模では機能しないことを発見</li>
+  <li>ImageNetにおいても機能するBASE(Balanced Selection)を提案</li>
+</ul>
+
+
+<h2 id="2-どうやって">2. どうやって??</h2>
+<ul>
+  <li>BASEのベースとして，決定境界付近のサンプルをクエリするMASE(Margin Selection)を提案(↓決定境界との距離)</li>
+  <center><img src="/assets/images/posts/AL@ImageNet/mase.png" /></center>
+  <li>任意のクラス同士の決定境界とサンプルの距離を↓のように定義し，BASEで使用</li>
+  <center><img src="/assets/images/posts/AL@ImageNet/base.png" /></center>
+  <li>DCSDBは一度だけ計算すればいいため，クエリにかかる時間は↓</li>
+  <center><img src="/assets/images/posts/AL@ImageNet/calc.png" /></center>
+  <ul><li>(ラベルなしデータはどのクラスに属するかわからないため，決定境界との最短距離を求めるには全探索が必要なはずだが，それにしては計算量が小さい．謎)</li></ul>
+</ul>
+
+<h2 id="3-結果は">3. 結果は??</h2>
+<ul>
+    <li>ImageNet 既存手法 vs ランダム</li>
+    <center><img src="/assets/images/posts/AL@ImageNet/vaal_random.png" /></center><br />
+    <ul><li>SSP｜MoCo v2で事前学習済</li></ul>
+    <li>CIFAR10 結果</li>
+    <center><img src="/assets/images/posts/AL@ImageNet/result_cifar10.png" /></center><br />
+    <li>Imagenet 結果</li>
+    <center><img src="/assets/images/posts/AL@ImageNet/result_imagenet.png" /></center>
+    <li>不均衡CIFAR10 結果</li>
+    <center><img src="/assets/images/posts/AL@ImageNet/result_cifar10_imb.png" /></center><br />
+</ul>
+
+<h2 id="4-課題は">4. 課題は??</h2>
+<li>クエリ戦略ごり押し過ぎないか問題</li>
+<ul><li>ラベルなしデータの全探索はメモリバカ食いなので，方針が限られるという話はあるが</li></ul>
+<ul><li>考え方はAdversarial Samplingに近いので比較してほしい</li></ul>
+<li>SSLを用いた場合のRandomと比較するべき という主張だけでも十分</li>
+<ul><li>VAALだけ事前学習ありの場合を比べないのはズルい気もするが</li></ul>
+
     <div class="btn-wrapper">
-      <!-- <a href="/active_learning" class="btn back_btn previous"><<<</a>
-      <a href="/active_learning" class="btn back_btn next"><</a> -->
-      <a href="/active_learning/i2" class="btn back_btn next">></a>
-      <a href="/active_learning/i3" class="btn back_btn previous">>>></a>
+      <a href="/posts" class="btn back_btn">Back</a>
     </div>
-
-    <div class="myposts">
-
-      <div class="post">
-        <a href="/active_learning/23/01/15/AL@ImageNet.html">
-          <img class="post_img" src="/assets/images/posts/AL@ImageNet/head.png">
-          <div class="post_detail"> 
-            <p><b>Active Learning at the ImageNet Scale</b></p>
-            <p class="post_p"><h1 id=""></h1>
-              <ul>
-                <li>CIFAR10のような小規模データセットで機能するAL手法がImageNetの規模では機能しないことを発見</li>
-                <li>ImageNetにおいても機能するBASE(Balanced Selection)を提案</li>
-              </ul>
-</p>
-            <p>
-              <span class="fa fa-calendar"></span> Jan 15, 2023
-              <span class="fa fa-folder"></span> active learning
-              <span class="fa fa-graduation-cap"></span> ICLR (2023 submitted)
-            </p>
-          </div>
-        </a>
-      </div>
-
-    <div class="btn-wrapper">
-      <!-- <a href="/active_learning" class="btn back_btn previous"><<<</a>
-      <a href="/active_learning" class="btn back_btn next"><</a> -->
-      <a href="/active_learning/i2" class="btn back_btn next">></a>
-      <a href="/active_learning/i3" class="btn back_btn previous">>>></a>
-    </div>
-  </body>
-</html>
   </body>
 </html>
     <footer>
       <div class="btn-wrapper">
-        <a href="ueno:ueno[at]cv.info.gifu-u.ac.jp" class="bottom-btn email"><i class="fa fa-envelope fa-2x"></i></a>
+        <a href="mailto:ueno[at]cv.info.gifu-u.ac.jp" class="bottom-btn email"><i class="fa fa-envelope fa-2x"></i></a>
         <a href="https://twitter.com/ianidaime" class="bottom-btn twitter"><i class="fa fa-twitter fa-2x"></i></a>
         <a href="https://github.com/ia-gu" class="bottom-btn github"><i class="fa fa-github fa-2x"></i></a>
       </div>
