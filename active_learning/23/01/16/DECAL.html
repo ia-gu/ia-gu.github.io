@@ -35,7 +35,7 @@
     </header>
     <!DOCTYPE html>
 <html>
-  <title>One-Round Active Learning</title>
+  <title>DECAL: DEployable Clinical Active Learning</title>
   <head>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link rel="stylesheet" href="/assets/css/style.css">
@@ -80,46 +80,40 @@
 <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
   </head>
   <body>
-    <center><img class="hero" src="/assets/images/posts/ORAL/head.png"></center>
-    <h1>One-Round Active Learning</h1>
-    <p><span class="fa fa-link"></span><a href="https://arxiv.org/abs/2104.11843"> https://arxiv.org/abs/2104.11843</a></p>
-    <p><span class="fa fa-calendar"></span> Jan 8, 2023 </p>
+    <center><img class="hero" src="/assets/images/posts/DECAL/head.png"></center>
+    <h1>DECAL: DEployable Clinical Active Learning</h1>
+    <p><span class="fa fa-link"></span><a href="https://arxiv.org/abs/2206.10120"> https://arxiv.org/abs/2206.10120</a></p>
+    <p><span class="fa fa-calendar"></span> Jan 16, 2023 </p>
     <p><span class="fa fa-flag"></span> <a href="/active_learning"> Active Learning</a></p>
-    <p><span class="fa fa-graduation-cap"></span> arXiv(2021) </p>
+    <p><span class="fa fa-graduation-cap"></span> ICML (2022) </p>
 
     <h2 id="1-どんなもの">1. どんなもの??何ができる??</h2>
 
 <ul>
-  <li>既存のDALでは，クエリ➡アノテーション➡学習のサイクルを複数回繰り返すが，これではアノテータが待機➡アノテーションを繰り返すことになるため，1度のクエリで解決するフレームワークを提案</li>
-  <li>既存のクエリ戦略では1度のクエリで精度を示すことが困難であることを示し，MNISTとCIFAR10で実験</li>
+  <li>自然画像を対象に提案された機械学習システムは，医用画像に対する能力が足りていないことを指摘し，プラグイン方式のDECALを提案</li>
+  <li>OCT，X-Rayデータで有効性を評価</li>
 </ul>
 
 
 <h2 id="2-どうやって">2. どうやって??</h2>
 <ul>
-  <li>最初のサイクルでランダムにデータを選択し，訓練データと検証データVに分割</li>
-  <ul><li>訓練データで学習したモデルfと検証データVを用いて↓を計算</li></ul>
-  <center><img src="/assets/images/posts/ORAL/utility.png" /></center><br />
-  <center><img src="/assets/images/posts/ORAL/utility_truth.png" /></center><br />
-  <li>集合関数の学習で標準的なDeepSetsを↓のように学習</li>
-  <center><img src="/assets/images/posts/ORAL/model_algorithm.png" /></center><br />
-  <li>↓フレームワーク全体図</li>
-  <center><img src="/assets/images/posts/ORAL/algorithm.png" /></center>
+  <li>プール全体の患者の分布を計算し，各患者から一定数の画像をクエリして初期学習セットを容易</li>
+    <ul><li>EMRデータを統合できるため，不均衡な医用画像でも機能する初期クエリが可能</li></ul>
 </ul>
 
 <h2 id="3-結果は">3. 結果は??</h2>
 <ul>
-    <li>MNIST，CIFAR10の不均衡，ノイズ有で有効性を確認</li>
-    <center><img src="/assets/images/posts/ORAL/result.png" /></center><br />
-    <li>実世界データセットのUSPS，PubFig83における有効性を確認</li>
-    <center><img src="/assets/images/posts/ORAL/result_real.png" /></center>
+    <li>OCT, X-Ray Randomとの比較</li>
+    <center><img src="/assets/images/posts/DECAL/result_init.png" /></center><br />
+    <li>既存手法への適用 結果</li>
+    <center><img src="/assets/images/posts/DECAL/result.png" /></center><br />
 </ul>
 
 <h2 id="4-課題は">4. 課題は??</h2>
 <ul>
-  <li>DeepSetsの学習と評価に時間がかかるため，巨大なモデル・データセットに対し提案手法を適用することは困難</li>
-  <li>最初のサイクルでは，通常通りランダムに選択されたデータを使用しているため，これを解決することができれば，cold-start問題の解決にもつながる</li>
-  <ul><li><a href="/https://arxiv.org/abs/2107.06703">Zero-Round Active Learning</a>という論文も出ているため，要チェック</li></ul>
+        <li>EMRデータは本当に用いてOK??</li>
+        <ul><li>画像データと紐づけるだけなら負担にはならなそう</li></ul>
+    <li>OCTの精度が低い</li>
 </ul>
 
     <div class="btn-wrapper">
