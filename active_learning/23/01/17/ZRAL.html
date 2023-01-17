@@ -35,7 +35,7 @@
     </header>
     <!DOCTYPE html>
 <html>
-  <title>One-Round Active Learning</title>
+  <title>Zero-Round Active Learning</title>
   <head>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link rel="stylesheet" href="/assets/css/style.css">
@@ -80,46 +80,47 @@
 <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
   </head>
   <body>
-    <center><img class="hero" src="/assets/images/posts/ORAL/head.png"></center>
-    <h1>One-Round Active Learning</h1>
-    <p><span class="fa fa-link"></span><a href="https://arxiv.org/abs/2104.11843"> https://arxiv.org/abs/2104.11843</a></p>
-    <p><span class="fa fa-calendar"></span> Jan 8, 2023 </p>
+    <center><img class="hero" src="/assets/images/posts/ZRAL/framework.png"></center>
+    <h1>Zero-Round Active Learning</h1>
+    <p><span class="fa fa-link"></span><a href="https://arxiv.org/abs/2107.06703"> https://arxiv.org/abs/2107.06703</a></p>
+    <p><span class="fa fa-calendar"></span> Jan 17, 2023 </p>
     <p><span class="fa fa-flag"></span> <a href="/active_learning"> Active Learning</a></p>
-    <p><span class="fa fa-graduation-cap"></span> arXiv(2021) </p>
+    <p><span class="fa fa-graduation-cap"></span> arXiv (2021) </p>
 
     <h2 id="1-どんなもの">1. どんなもの??何ができる??</h2>
 
 <ul>
-  <li>既存のDALでは，クエリ➡アノテーション➡学習のサイクルを複数回繰り返すが，これではアノテータが待機➡アノテーションを繰り返すことになるため，1度のクエリで解決するフレームワークを提案</li>
-  <li>既存のクエリ戦略では1度のクエリで精度を示すことが困難であることを示し，MNISTとCIFAR10で実験</li>
+  <li>既存のALフレームワークではアノテータに繰り返しアクセスしたり，最初に少量のラベル付きデータを用意する必要があるため，ドメイン適応を用いてこれを解決するD2ULOを提案</li>
+  <li>CIFAR10等で有効性を評価し，ドメイン適応を用いる既存手法を上回ることを確認</li>
 </ul>
 
 
 <h2 id="2-どうやって">2. どうやって??</h2>
 <ul>
-  <li>最初のサイクルでランダムにデータを選択し，訓練データと検証データVに分割</li>
-  <ul><li>訓練データで学習したモデルfと検証データVを用いて↓を計算</li></ul>
-  <center><img src="/assets/images/posts/ORAL/utility.png" /></center><br />
-  <center><img src="/assets/images/posts/ORAL/utility_truth.png" /></center><br />
-  <li>集合関数の学習で標準的なDeepSetsを↓のように学習</li>
-  <center><img src="/assets/images/posts/ORAL/model_algorithm.png" /></center><br />
-  <li>↓フレームワーク全体図</li>
-  <center><img src="/assets/images/posts/ORAL/algorithm.png" /></center>
+  <li>ターゲットドメインに分布が似たソースドメインが存在する という仮定の下，ドメイン適応を用いてDeepSetsを学習</li>
+  <ul><li>DeepSets｜データの有用性を定量化するモデル</li></ul>
+  <center><img src="/assets/images/posts/ZRAL/framework.png" /></center><br />
+  <li>↓獲得関数</li>
+  <center><img src="/assets/images/posts/ZRAL/aquisition.png" /></center><br />
+  <li>↓DS(DeepSets)に用いるLoss</li>
+  <center><img src="/assets/images/posts/ZRAL/loss_ds.png" /></center><br />
+  <li>↓ソースドメイン/ターゲットドメインの識別器に用いるLoss</li>
+  <center><img src="/assets/images/posts/ZRAL/loss_gan.png" /></center><br />
 </ul>
 
 <h2 id="3-結果は">3. 結果は??</h2>
 <ul>
-    <li>MNIST，CIFAR10の不均衡，ノイズ有で有効性を確認</li>
-    <center><img src="/assets/images/posts/ORAL/result.png" /></center><br />
-    <li>実世界データセットのUSPS，PubFig83における有効性を確認</li>
-    <center><img src="/assets/images/posts/ORAL/result_real.png" /></center>
+    <p>ソースドメイン，ターゲットドメインにMNIST，USPS，SVHN，CIFAR10，STL10のいずれかを使用</p>
+    <li>比較結果</li>
+    <center><img src="/assets/images/posts/ZRAL/result_d2ulo.png" /></center><br />
+    <li>VISDA2017(合成データ→実データ) 比較結果</li>
+    <center><img src="/assets/images/posts/ZRAL/result_visda.png" /></center><br />
 </ul>
 
 <h2 id="4-課題は">4. 課題は??</h2>
 <ul>
-  <li>DeepSetsの学習と評価に時間がかかるため，巨大なモデル・データセットに対し提案手法を適用することは困難</li>
-  <li>最初のサイクルでは，通常通りランダムに選択されたデータを使用しているため，これを解決することができれば，cold-start問題の解決にもつながる</li>
-  <a href="/active_learning/23/01/17/ZRAL.html">後継論文</a>
+    <li>Zero-Roundなのに初期点が揃ってる??</li>
+    <ul><li>最初から良いデータは取れるはずでは</li></ul>
 </ul>
 
     <div class="btn-wrapper">
