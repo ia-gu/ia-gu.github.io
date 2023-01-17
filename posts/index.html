@@ -43,7 +43,7 @@
     <div class="top-wrapper">
       <div class="container">
         <h1>Posts</h1>
-        <h3>(1/3)</h3>
+        <h3>(1/4)</h3>
       </div>
     </div>
     <!DOCTYPE html>
@@ -97,170 +97,31 @@
       <!-- <a href="/posts" class="btn back_btn previous"><<<</a>
       <a href="/posts" class="btn back_btn next"><</a> -->
       <a href="/posts/2" class="btn back_btn next">></a>
-      <a href="/posts/3" class="btn back_btn previous">>>></a>
+      <a href="/posts/4" class="btn back_btn previous">>>></a>
     </div>
 
     <div class="myposts">
 
       <div class="post">
-        <a href="/active_learning/23/01/17/ZRAL.html">
-          <img class="post_img" src="/assets/images/posts/ZRAL/framework.png">
+        <a href="/active_learning/23/01/17/LR4AL.html">
+          <img class="post_img" src="/assets/images/posts/LR4AL/framework.png">
           <div class="post_detail"> 
-            <p><b>Zero-Round Active Learning</b></p>
+            <p><b>Learning to Rank for Active Learning: A Listwise Approach</b></p>
             <p class="post_p"><h1 id=""></h1>
               <ul>
-                <li>既存のALフレームワークではアノテータに繰り返しアクセスしたり，最初に少量のラベル付きデータを用意する必要があるため，ドメイン適応を用いてこれを解決するD2ULOを提案</li>
-                <li>CIFAR10等で有効性を評価し，ドメイン適応を用いる既存手法を上回ることを確認</li>
+                <li>LL4ALがランク付けのための学習であることを示し，リストワイズ法に改良したL2R-ALを提案</li>
+                <li>CIFAR10，CelebAで有効性を評価し，僅かながらLL4ALより精度向上を確認</li>
               </ul>
 </p>
             <p>
               <span class="fa fa-calendar"></span> Jan 17, 2023
               <span class="fa fa-folder"></span> active learning
-              <span class="fa fa-graduation-cap"></span> arXiv (2021)
+              <span class="fa fa-graduation-cap"></span> ICPR (2020)
             </p>
           </div>
         </a>
       </div>
       
-      <div class="post">
-        <a href="/active_learning/23/01/17/ACTIVEMATCH.html">
-          <img class="post_img" src="/assets/images/posts/ACTIVEMATCH/framework.png">
-          <div class="post_detail"> 
-            <p><b>ActiveMatch: End-to-end Semi-supervised Active Representation Learning</b></p>
-            <p class="post_p"><h1 id=""></h1>
-              <ul>
-                <li>半教師あり学習(SSL)では，適切なラベルデータが十分でないとき学習できないことを指摘し，SSLとDALを組み合わせたActiveMatchを提案</li>
-                <li>CIFAR10において，MixMatchやFixMatchと同設定でこれらを上回ることを確認</li>
-              </ul>
-</p>
-            <p>
-              <span class="fa fa-calendar"></span> Jan 17, 2023
-              <span class="fa fa-folder"></span> active learning
-              <span class="fa fa-graduation-cap"></span> ICIP (2022)
-            </p>
-          </div>
-        </a>
-      </div>
-
-      <div class="post">
-        <a href="/self_supervised_learning/23/01/16/SimSiam.html">
-          <img class="post_img" src="/assets/images/posts/SimSiam/framework.png">
-          <div class="post_detail"> 
-            <p><b>Exploring Simple Siamese Representation Learning</b></p>
-            <p class="post_p"><h1 id=""></h1>
-              <ul>
-                <li>Siamese Network構造を基に，負例を用いずに対象学習を行うSimSiamを提案</li>
-                <li>分類，物体検出で有効性を示した他，SimCLR等と比べバッチサイズが小さくても機能することを確認</li>
-              </ul>
-</p>
-            <p>
-              <span class="fa fa-calendar"></span> Jan 16, 2023
-              <span class="fa fa-folder"></span> self-supvervised learning
-              <span class="fa fa-graduation-cap"></span> CVPR (2021)
-            </p>
-          </div>
-        </a>
-      </div>
-      
-      <div class="post">
-        <a href="/active_learning/23/01/16/DECAL.html">
-          <img class="post_img" src="/assets/images/posts/DECAL/head.png">
-          <div class="post_detail"> 
-            <p><b>DECAL: DEployable Clinical Active Learning</b></p>
-            <p class="post_p"><h1 id=""></h1>
-              <ul>
-                <li>自然画像を対象に提案された機械学習システムは，医用画像に対する能力が足りていないことを指摘し，プラグイン方式のDECALを提案</li>
-                <li>OCT，X-Rayデータで有効性を評価</li>
-              </ul>
-</p>
-            <p>
-              <span class="fa fa-calendar"></span> Jan 16, 2023
-              <span class="fa fa-folder"></span> active learning
-              <span class="fa fa-graduation-cap"></span> ICML (2022)
-            </p>
-          </div>
-        </a>
-      </div>
-      
-      <div class="post">
-        <a href="/active_learning/23/01/15/MCDAL.html">
-          <img class="post_img" src="/assets/images/posts/MCDAL/framework.png">
-          <div class="post_detail"> 
-            <p><b>MCDAL: Maximum Classifier Discrepancy for Active Learning</b></p>
-            <p class="post_p"><h1 id=""></h1>
-<ul>
-  <li>複数の識別の予測不一致を用いてクエリを行うMCDALを提案</li>
-  <li>CIFAR10，CIFAR100，Caltech101で有効性を確認</li>
-</ul>
-</p>
-            <p>
-              <span class="fa fa-calendar"></span> Jan 15, 2023
-              <span class="fa fa-folder"></span> active learning
-              <span class="fa fa-graduation-cap"></span> IEEE-TNNLS
-            </p>
-          </div>
-        </a>
-      </div>
-
-      <div class="post">
-        <a href="/self_supervised_learning/23/01/10/SimCLR.html">
-          <img class="post_img" src="/assets/images/posts/SimCLR/head.png">
-          <div class="post_detail"> 
-            <p><b>A Simple Framework for Contrastive Learning of Visual Representations</b></p>
-            <p class="post_p"><h1 id=""></h1>
-<ul>
-  <li>特別な構造や大量のメモリを必要としない対象学習手法としてSimCLRを提案</li>
-  <li>巨大なバッチサイズ，エポック数で学習することで既存手法を圧倒する精度を達成</li>
-</ul>
-</p>
-            <p>
-              <span class="fa fa-calendar"></span> Jan 10, 2023
-              <span class="fa fa-folder"></span> self-supvervised learning
-              <span class="fa fa-graduation-cap"></span> PMLR(2020)
-            </p>
-          </div>
-        </a>
-      </div>
-
-      <div class="post">
-        <a href="/active_learning/23/01/09/RALtoCOVID.html">
-          <img class="post_img" src="/assets/images/posts/RALtoCOVID/framework.png">
-          <div class="post_detail"> 
-            <p><b>Highly Efficient Representation and Active Learning Framework for Imbalanced Data and Its Application to COVID-19 X-Ray Classification</b></p>
-            <p class="post_p"><h1 id=""></h1>
-<ul>
-  <li>教師なし表現学習とガウス過程を用いた，医用画像向けのALフレームワークを提案</li>
-  <li>COVID-19 Datasetに対する有効性を確認</li>
-</ul>
-</p>
-            <p>
-              <span class="fa fa-calendar"></span> Jan 9, 2023
-              <span class="fa fa-folder"></span> active learning
-              <span class="fa fa-graduation-cap"></span> NIPS workshop
-            </p>
-          </div>
-        </a>
-      </div>
-
-      <div class="post">
-        <a href="/active_learning/23/01/09/LD4AL.html">
-          <img class="post_img" src="/assets/images/posts/LD4AL/framework.png">
-          <div class="post_detail"> 
-            <p><b>When Deep Learners Change Their Mind: Learning Dynamics for Active Learning</b></p>
-            <p class="post_p"><h1 id=""></h1>
-<ul>
-  <li>不確実性の指標に一貫性を用いることで，DLの予測が過信的という不確実性クエリ戦略の問題点を解消</li>
-  <li>CIFAR10，CIFAR100のそれぞれで有効性を確認</li>
-</ul>
-</p>
-            <p>
-              <span class="fa fa-calendar"></span> Jan 9, 2023
-              <span class="fa fa-folder"></span> active learning
-              <span class="fa fa-graduation-cap"></span> CAIP(2021)
-            </p>
-          </div>
-        </a>
-      </div>
 
     <div class="btn-wrapper">
       <!-- <a href="/posts" class="btn back_btn previous"><<<</a>

@@ -35,7 +35,7 @@
     </header>
     <!DOCTYPE html>
 <html>
-  <title>ACTIVEMATCH: END-TO-END SEMI-SUPERVISED ACTIVE REPRESENTATION LEARNING</title>
+  <title>Learning to Rank for Active Learning: A Listwise Approach</title>
   <head>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link rel="stylesheet" href="/assets/css/style.css">
@@ -80,50 +80,46 @@
 <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
   </head>
   <body>
-    <center><img class="hero" src="/assets/images/posts/ACTIVEMATCH/framework.png"></center>
-    <h1>ActiveMatch: End-to-end Semi-supervised Active Representation Learning</h1>
-    <p><span class="fa fa-link"></span><a href="https://arxiv.org/abs/2110.02521"> https://arxiv.org/abs/2110.02521</a></p>
+    <center><img class="hero" src="/assets/images/posts/LR4AL/framework.png"></center>
+    <h1>Learning to Rank for Active Learning: A Listwise Approach</h1>
+    <p><span class="fa fa-link"></span><a href="https://arxiv.org/abs/2008.00078"> https://arxiv.org/abs/2008.00078</a></p>
     <p><span class="fa fa-calendar"></span> Jan 17, 2023 </p>
     <p><span class="fa fa-flag"></span> <a href="/active_learning"> Active Learning</a></p>
-    <p><span class="fa fa-graduation-cap"></span> ICIP (2022) </p>
+    <p><span class="fa fa-graduation-cap"></span> ICPR (2020) </p>
 
     <h2 id="1-どんなもの">1. どんなもの??何ができる??</h2>
 
 <ul>
-  <li>半教師あり学習(SSL)では，適切なラベルデータが十分でないとき学習できないことを指摘し，SSLとDALを組み合わせたActiveMatchを提案</li>
-  <li>CIFAR10において，MixMatchやFixMatchと同設定でこれらを上回ることを確認</li>
+  <li>LL4ALがランク付けのための学習であることを示し，リストワイズ法に改良したL2R-ALを提案</li>
+  <li>CIFAR10，CelebAで有効性を評価し，僅かながらLL4ALより精度向上を確認</li>
 </ul>
 
 
 <h2 id="2-どうやって">2. どうやって??</h2>
 <ul>
-  <li>FixMatchのフレームワークに対象学習を組み込んで学習</li>
-    <ul><li>ラベル付きデータ｜対象学習，教師あり学習を実行</li></ul>
-    <ul><li>ラベルなしデータ｜対象学習，FixMatchを実行</li></ul>
-    <ul><ul><li>FixMatch｜弱いデータ拡張と強いデータ拡張を行い，弱いデータ拡張をしたデータから得られる出力を疑似ラベルとして学習する手法</li></ul></ul>
+  <li>機械学習を用いてランキングを行うランキングモデルを用いてラベルなしデータのランキングリストを生成</li>
+    <ul><li>平均精度や順位創刊では微分不可能で学習できないため</li></ul>
+    <li>↓ランキングLoss</li>
+  <center><img src="/assets/images/posts/LR4AL/rank_optim.png" /></center><br />
+  <center><img src="/assets/images/posts/LR4AL/loss_rank.png" /></center><br />
+  <center><img src="/assets/images/posts/LR4AL/loss_batch.png" /></center><br />
+  <li>クエリ時はランキングの高いサンプルを選択</li>
   <li>↓フレームワーク全体図</li>
-  <center><img src="/assets/images/posts/ACTIVEMATCH/framework.png" /></center><br />
-  <li>ラベル付きデータの教師あり学習にCELを使用し，以下のLossをスケールした和を用いて最適化</li>
-<ul>
-  <li>ラベルなしデータの対象学習で使用するLoss</li>
-    <center><img src="/assets/images/posts/ACTIVEMATCH/loss_unsupervised_contrastive.png" /></center><br />
-  <li>ラベル付きデータの対象学習で使用するLoss</li>
-    <center><img src="/assets/images/posts/ACTIVEMATCH/loss_supervised_contrastive.png" /></center><br />
-  <li>FixMatch部分で使用するLoss</li>
-    <center><img src="/assets/images/posts/ACTIVEMATCH/loss_semisupervised.png" /></center><br />
-</ul>
+  <center><img src="/assets/images/posts/LR4AL/framework.png" /></center><br />
 </ul>
 
 <h2 id="3-結果は">3. 結果は??</h2>
 <ul>
-    <li>CIFAR10，CIFAR100，SVHN FixMatch，MixMatchとの比較</li>
-    <center><img src="/assets/images/posts/ACTIVEMATCH/result.png" /></center><br />
-    <li>Active/Passive 比較結果</li>
-    <center><img src="/assets/images/posts/ACTIVEMATCH/result_active.png" /></center><br />
+    <li>CIFAR10 比較結果</li>
+    <center><img src="/assets/images/posts/LR4AL/result_cifar10.png" /></center><br />
+    <li>CelebA 比較結果</li>
+    <center><img src="/assets/images/posts/LR4AL/result_celeba.png" /></center><br />
 </ul>
 
 <h2 id="4-課題は">4. 課題は??</h2>
 <ul>
+    <li>精度の差は誤差レベル</li>
+    <li>CelebAの初期点ズレてるかも</li>
 </ul>
 
     <div class="btn-wrapper">
