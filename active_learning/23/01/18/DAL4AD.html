@@ -35,23 +35,10 @@
     </header>
     <!DOCTYPE html>
 <html>
+  <title>Deep Active Learning for Anomaly Detection</title>
   <head>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link rel="stylesheet" href="/assets/css/style.css">
-  </head>
-  <body>
-    <div class="top-wrapper">
-      <div class="container">
-        <h1>Posts</h1>
-        <h3>(1/4)</h3>
-      </div>
-    </div>
-    <!DOCTYPE html>
-<html>
-  <title>Posts</title>
-  <head>
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-    <link rel="stylesheet" href="/assets/css/posts.css">
     <script>
   MathJax = {
     tex: {
@@ -93,69 +80,59 @@
 <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
   </head>
   <body>
-    <div class="btn-wrapper">
-      <!-- <a href="/posts" class="btn back_btn previous"><<<</a>
-      <a href="/posts" class="btn back_btn next"><</a> -->
-      <a href="/posts/2" class="btn back_btn next">></a>
-      <a href="/posts/4" class="btn back_btn previous">>>></a>
-    </div>
+    <center><img class="hero" src="/assets/images/posts/DAL4AD/framework.png"></center>
+    <h1>Deep Active Learning for Anomaly Detection</h1>
+    <p><span class="fa fa-link"></span><a href="https://arxiv.org/abs/1805.09411"> https://arxiv.org/abs/1805.09411</a></p>
+    <p><span class="fa fa-calendar"></span> Jan 18, 2023 </p>
+    <p><span class="fa fa-flag"></span> <a href="/active_learning"> Active Learning</a></p>
+    <p><span class="fa fa-graduation-cap"></span> IJCNN (2020) </p>
 
-    <div class="myposts">
+    <h2 id="1-どんなもの">1. どんなもの??何ができる??</h2>
 
-      <div class="post">
-        <a href="/active_learning/23/01/18/DAL4AD.html">
-          <img class="post_img" src="/assets/images/posts/DAL4AD/framework.png">
-          <div class="post_detail"> 
-            <p><b>Deep Active Learning for Anomaly Detection</b></p>
-            <p class="post_p"><h1 id=""></h1>
-              <ul>
-                <li>既存のUAD手法とDAL手法を組み合わせたフレームワークを提案</li>
-                <li>MNIST，Fashion-MNISTで有効性を確認</li>
-              </ul>
-</p>
-            <p>
-              <span class="fa fa-calendar"></span> Jan 18, 2023
-              <span class="fa fa-folder"></span> active learning
-              <span class="fa fa-graduation-cap"></span> IJCNN (2020)
-            </p>
-          </div>
-        </a>
-      </div>
-      
-      <div class="post">
-        <a href="/active_learning/23/01/17/LR4AL.html">
-          <img class="post_img" src="/assets/images/posts/LR4AL/framework.png">
-          <div class="post_detail"> 
-            <p><b>Learning to Rank for Active Learning: A Listwise Approach</b></p>
-            <p class="post_p"><h1 id=""></h1>
-              <ul>
-                <li>LL4ALがランク付けのための学習であることを示し，リストワイズ法に改良したL2R-ALを提案</li>
-                <li>CIFAR10，CelebAで有効性を評価し，僅かながらLL4ALより精度向上を確認</li>
-              </ul>
-</p>
-            <p>
-              <span class="fa fa-calendar"></span> Jan 17, 2023
-              <span class="fa fa-folder"></span> active learning
-              <span class="fa fa-graduation-cap"></span> ICPR (2020)
-            </p>
-          </div>
-        </a>
-      </div>
-      
+<ul>
+  <li>既存のUAD手法とDAL手法を組み合わせたフレームワークを提案</li>
+  <li>MNIST，Fashion-MNISTで有効性を確認</li>
+</ul>
+
+
+<h2 id="2-どうやって">2. どうやって??</h2>
+<ul>
+  <li>DAE(Denoising Auto Encoder)にUAI(Unsupervised to Active Inference)層を追加し，潜在表現と異常スコアを用いてサンプルごとの異常度を定義</li>
+  <center><img src="/assets/images/posts/DAL4AD/anomaly_score.png" /></center><br />
+  <ul><li>l(x)｜表現層，s(x)｜異常度</li></ul>
+  <li>UAI層をロジスティック回帰とみなし，線形変換W，バイアスb，シグモイド関数σを用いて異常度の識別器を定義</li>
+  <center><img src="/assets/images/posts/DAL4AD/anomaly_score_classifier.png" /></center><br />
+  <li>DAEを定式化し，DAEの異常度を定義</li>
+  <center><img src="/assets/images/posts/DAL4AD/dae.png" /></center><br />
+  <center><img src="/assets/images/posts/DAL4AD/dae_uai_formula.png" /></center><br />
+  <li>↓フレームワーク全体図</li>
+  <center><img src="/assets/images/posts/DAL4AD/dae_uai.png" /></center>
+  <center><img src="/assets/images/posts/DAL4AD/uai.png" /></center>
+</ul>
+
+<h2 id="3-結果は">3. 結果は??</h2>
+<ul>
+    <li>MNIST 比較結果</li>
+    <center><img src="/assets/images/posts/DAL4AD/result_mnist.png" /></center><br />
+    <li>Fashion-MNIST 比較結果</li>
+    <center><img src="/assets/images/posts/DAL4AD/result_fmnist.png" /></center><br />
+    <li>実データ 比較結果</li>
+    <center><img src="/assets/images/posts/DAL4AD/result_real.png" /></center><br />
+</ul>
+
+<h2 id="4-課題は">4. 課題は??</h2>
+<ul>
+    <li>提案時期が古すぎて，今のデータ・手法でどの程度機能するかは不明</li>
+</ul>
 
     <div class="btn-wrapper">
-      <!-- <a href="/posts" class="btn back_btn previous"><<<</a>
-      <a href="/posts" class="btn back_btn next"><</a> -->
-      <a href="/posts/2" class="btn back_btn next">></a>
-      <a href="/posts/3" class="btn back_btn previous">>>></a>
+      <a href="/posts" class="btn back_btn">Back</a>
     </div>
-  </body>
-</html>
   </body>
 </html>
     <footer>
       <div class="btn-wrapper">
-        <a href="ueno:ueno[at]cv.info.gifu-u.ac.jp" class="bottom-btn email"><i class="fa fa-envelope fa-2x"></i></a>
+        <a href="mailto:ueno[at]cv.info.gifu-u.ac.jp" class="bottom-btn email"><i class="fa fa-envelope fa-2x"></i></a>
         <a href="https://twitter.com/ianidaime" class="bottom-btn twitter"><i class="fa fa-twitter fa-2x"></i></a>
         <a href="https://github.com/ia-gu" class="bottom-btn github"><i class="fa fa-github fa-2x"></i></a>
       </div>
