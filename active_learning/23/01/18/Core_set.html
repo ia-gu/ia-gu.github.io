@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/markdown.css">
+    <link rel="stylesheet" href="/assets/css/header.css">
+    <link rel="icon" href="/assets/images/git_icon.ico">
+    
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+          <a href="/index" class="header-name">上野詩翔 | Shiryu Ueno</a>
+          <div class="header-left">
+            <a href="/index">home</a>
+            <div class="dropmenu">
+                <a href="/posts">posts</a>
+                <ul>
+                  <li><a href="/active_learning">Active Learning</a></li>
+                  <li><a href="/self_supervised_learning/">Self-Supervised Learning</a></li>
+                  <li><a href="/few_shot_learning/">Few-Shot Learning</a></li>
+                </ul>
+              </div>
+            
+            <a href="/portfolios">portfolios</a>
+            <a href="/notes">notes</a>
+        </div>
+        <div class="header-right">
+          <script src="/assets/js/darkmode.js"></script>
+          <a id="sun_moon" class="fa fa-sun-o" onclick="dark_btn()"></a>
+        </div>
+      </div>
+    </header>
+    <!DOCTYPE html>
+<html>
+  <title>Active Learning for Convolutional Neural Networks: A Core-Set Approach</title>
+  <head>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      processEscapes: true,
+      tags: "ams",
+      autoload: {
+        color: [],
+        colorV2: ['color']
+      },
+      packages: {'[+]': ['noerrors']}
+    },
+    chtml: {
+      matchFontHeight: false,
+      displayAlign: "left",
+      displayIndent: "2em"
+    },
+    options: {
+      renderActions: {
+        /* add a new named action to render <script type="math/tex"> */
+        find_script_mathtex: [10, function (doc) {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/);
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+            const text = document.createTextNode('');
+            node.parentNode.replaceChild(text, node);
+            math.start = {node: text, delim: '', n: 0};
+            math.end = {node: text, delim: '', n: 0};
+            doc.math.push(math);
+          }
+        }, '']
+      }
+    },
+    loader: {
+      load: ['[tex]/noerrors']
+    }
+  };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
+  </head>
+  <body>
+    <center><img class="hero" src="/assets/images/posts/Core_set/head.png"></center>
+    <h1>Active Learning for Convolutional Neural Networks: A Core-Set Approach</h1>
+    <p><span class="fa fa-link"></span><a href="https://arxiv.org/abs/1708.00489"> https://arxiv.org/abs/1708.00489</a></p>
+    <p><span class="fa fa-calendar"></span> Jan 18, 2023 </p>
+    <p><span class="fa fa-flag"></span> <a href="/active_learning"> Active Learning</a></p>
+    <p><span class="fa fa-graduation-cap"></span> ICLR (2018) </p>
+
+    <h2 id="1-どんなもの">1. どんなもの??何ができる??</h2>
+
+<ul>
+  <li>DALのクエリをフルデータの分布を表す部分集合(Coreset)を選択する問題と定義した多様性ベースクエリ戦略を提案</li>
+  <li>CIFAR10において，多様性ベースのSoTAを達成</li>
+</ul>
+
+
+<h2 id="2-どうやって">2. どうやって??</h2>
+<ul>
+  <li>やりたいことのイメージ</li>
+  <center><img src="/assets/images/posts/Core_set/head.png" /></center><br />
+  <li>Coresetの選択をk-centerで近似</li>
+  <center><img src="/assets/images/posts/Core_set/k_center_formula.png" /></center><br />
+  <ul><li>k-center問題はNP困難なので使用不能</li></ul>
+  <li>初期化にk-center greedyを使用</li>
+  <center><img src="/assets/images/posts/Core_set/k_center_greedy.png" /></center><br />
+  <li>探索はロバスト性を持たせるために外れ値の上限を設定したmixed integer programを使用</li>
+  <center><img src="/assets/images/posts/Core_set/robust_k_center.png" /></center><br />
+  <li>アルゴリズム</li>
+  <center><img src="/assets/images/posts/Core_set/algorithm.png" /></center><br />
+  <center><img src="/assets/images/posts/Core_set/algorithm_vis.png" /></center><br />
+</ul>
+
+<h2 id="3-結果は">3. 結果は??</h2>
+<ul>
+    <li>弱教師モデル 比較結果</li>
+    <center><img src="/assets/images/posts/Core_set/result_wsm.png" /></center><br />
+    <li>教師モデル 比較結果</li>
+    <center><img src="/assets/images/posts/Core_set/result_fsm.png" /></center><br />
+</ul>
+
+<h2 id="4-課題は">4. 課題は??</h2>
+<ul>
+</ul>
+
+    <div class="btn-wrapper">
+      <a href="/posts" class="btn back_btn">Back</a>
+    </div>
+  </body>
+</html>
+    <footer>
+      <div class="btn-wrapper">
+        <a href="mailto:ueno[at]cv.info.gifu-u.ac.jp" class="bottom-btn email"><i class="fa fa-envelope fa-2x"></i></a>
+        <a href="https://twitter.com/ianidaime" class="bottom-btn twitter"><i class="fa fa-twitter fa-2x"></i></a>
+        <a href="https://github.com/ia-gu" class="bottom-btn github"><i class="fa fa-github fa-2x"></i></a>
+      </div>
+      <div class="container">
+        <p>2022 Copyright</p>
+      </div>
+    </footer>
+  </body>
+</html>

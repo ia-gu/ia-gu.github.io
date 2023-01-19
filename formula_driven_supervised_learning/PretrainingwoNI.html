@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/markdown.css">
+    <link rel="stylesheet" href="/assets/css/header.css">
+    <link rel="icon" href="/assets/images/git_icon.ico">
+    
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+          <a href="/index" class="header-name">上野詩翔 | Shiryu Ueno</a>
+          <div class="header-left">
+            <a href="/index">home</a>
+            <div class="dropmenu">
+                <a href="/posts">posts</a>
+                <ul>
+                  <li><a href="/active_learning">Active Learning</a></li>
+                  <li><a href="/self_supervised_learning/">Self-Supervised Learning</a></li>
+                  <li><a href="/few_shot_learning/">Few-Shot Learning</a></li>
+                </ul>
+              </div>
+            
+            <a href="/portfolios">portfolios</a>
+            <a href="/notes">notes</a>
+        </div>
+        <div class="header-right">
+          <script src="/assets/js/darkmode.js"></script>
+          <a id="sun_moon" class="fa fa-sun-o" onclick="dark_btn()"></a>
+        </div>
+      </div>
+    </header>
+    <!DOCTYPE html>
+<html>
+  <title>Pre-training without Natural Images</title>
+  <head>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      processEscapes: true,
+      tags: "ams",
+      autoload: {
+        color: [],
+        colorV2: ['color']
+      },
+      packages: {'[+]': ['noerrors']}
+    },
+    chtml: {
+      matchFontHeight: false,
+      displayAlign: "left",
+      displayIndent: "2em"
+    },
+    options: {
+      renderActions: {
+        /* add a new named action to render <script type="math/tex"> */
+        find_script_mathtex: [10, function (doc) {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/);
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+            const text = document.createTextNode('');
+            node.parentNode.replaceChild(text, node);
+            math.start = {node: text, delim: '', n: 0};
+            math.end = {node: text, delim: '', n: 0};
+            doc.math.push(math);
+          }
+        }, '']
+      }
+    },
+    loader: {
+      load: ['[tex]/noerrors']
+    }
+  };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
+  </head>
+  <body>
+    <center><img class="hero" src="/assets/images/posts/PretrainingwoNI/head.png"></center>
+    <h1>Pre-training without Natural Images</h1>
+    <p><span class="fa fa-link"></span><a href="https://arxiv.org/abs/2101.08515"> https://arxiv.org/abs/2101.08515</a></p>
+    <p><span class="fa fa-calendar"></span> Jan 19, 2023 </p>
+    <p><span class="fa fa-flag"></span> <a href="/active_learning"> Active Learning</a></p>
+    <p><span class="fa fa-graduation-cap"></span> ACCV (2020) </p>
+
+    <h2 id="1-どんなもの">1. どんなもの??何ができる??</h2>
+
+<ul>
+  <li>実画像の代わりにフラクタルでカテゴリ分けした人工生成画像を用いるFDSL(Formula-driven Supervised Learning)を提案</li>
+  <li>CIFAR100やOmniglot等でImageNet事前学習済モデルを上回る精度を達成</li>
+</ul>
+
+
+<h2 id="2-どうやって">2. どうやって??</h2>
+<ul>
+  <li>フラクタルのカテゴリ構築にメトリック空間が↓で定義されるIFSを使用</li>
+  <center><img src="/assets/images/posts/PretrainingwoNI/ifs.png" /></center><br />
+  <li>事前に用意した確率分布に従い，↓で定義されるアフィン変換を用いてフラクタルを構築</li>
+  <center><img src="/assets/images/posts/PretrainingwoNI/affine.png" /></center><br />
+  <li>フラクタルデータ生成手順</li>
+  <ul><li>集合｛2,3,4,5,6,7,8｝からNを選択</li></ul>
+  <ul><li>アフィン変換のパラメータを[-1, 1]^6からN回選択</li></ul>
+  <ul><li>アフィン変換の回転行列Aを用いて↓を計算</li></ul>
+  <center><img src="/assets/images/posts/PretrainingwoNI/affine_prob.png" /></center><br />
+  <ul><li>カテゴリ内の画像がレートを満たすと判断された場合，新しいカテゴリとして認証</li></ul>
+  <ul><ul><li>レート｜フラクタルのピクセル数の，ピクセル値の和による偏導関数から計算</li></ul></ul>
+  <center><img src="/assets/images/posts/PretrainingwoNI/filling_rate.png" /></center><br />
+</ul>
+
+<h2 id="3-結果は">3. 結果は??</h2>
+<ul>
+    <li>カテゴリ数 比較結果</li>
+    <center><img src="/assets/images/posts/PretrainingwoNI/result_category.png" /></center><br />
+    <li>生成の際のフィルタパッチサイズ 比較結果</li>
+    <center><img src="/assets/images/posts/PretrainingwoNI/result_patch.png" /></center><br />
+    <li>画像サイズ 比較結果</li>
+    <center><img src="/assets/images/posts/PretrainingwoNI/result_size.png" /></center><br />
+    <li>事前学習済モデル 比較結果</li>
+    <center><img src="/assets/images/posts/PretrainingwoNI/result_pretrain.png" /></center><br />
+    <li>Grad-CAMによる可視化結果</li>
+    <center><img src="/assets/images/posts/PretrainingwoNI/result_gradcam.png" /></center><br />
+  </ul>
+
+<h2 id="4-課題は">4. 課題は??</h2>
+<ul>
+</ul>
+
+    <div class="btn-wrapper">
+      <a href="/posts" class="btn back_btn">Back</a>
+    </div>
+  </body>
+</html>
+    <footer>
+      <div class="btn-wrapper">
+        <a href="mailto:ueno[at]cv.info.gifu-u.ac.jp" class="bottom-btn email"><i class="fa fa-envelope fa-2x"></i></a>
+        <a href="https://twitter.com/ianidaime" class="bottom-btn twitter"><i class="fa fa-twitter fa-2x"></i></a>
+        <a href="https://github.com/ia-gu" class="bottom-btn github"><i class="fa fa-github fa-2x"></i></a>
+      </div>
+      <div class="container">
+        <p>2022 Copyright</p>
+      </div>
+    </footer>
+  </body>
+</html>

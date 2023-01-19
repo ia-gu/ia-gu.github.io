@@ -169,6 +169,11 @@ header {
   color: #325E35;
 }
 
+iframe {
+  width: 100vw;
+  background: transparent;
+}
+
 @media all and (max-width: 720px) {
   .icon {
     width: 200px;
