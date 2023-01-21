@@ -51,49 +51,45 @@
 <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
   </head>
   <body>
-    <center><img class="hero" src="/assets/images/posts/DAL4AD/framework.png"></center>
-    <h1>Deep Active Learning for Anomaly Detection</h1>
-    <p><span class="fa fa-link"></span><a href="https://arxiv.org/abs/1805.09411"> https://arxiv.org/abs/1805.09411</a></p>
-    <p><span class="fa fa-calendar"></span> Jan 18, 2023 </p>
+    <center><img class="hero" src="/assets/images/posts/ALwPDA/framework.png"></center>
+    <h1>Agreement-Discrepancy-Selection Active Learning with Progressive Distribution Alignment</h1>
+    <p><span class="fa fa-link"></span><a href="https://ojs.aaai.org/index.php/AAAI/article/view/16915"> https://ojs.aaai.org/index.php/AAAI/article/view/16915</a></p>
+    <p><span class="fa fa-calendar"></span> Jan 21, 2023 </p>
     <p><span class="fa fa-flag"></span> <a href="/active_learning"> Active Learning</a></p>
-    <p><span class="fa fa-graduation-cap"></span> IJCNN (2020) </p>
+    <p><span class="fa fa-graduation-cap"></span> AAAI (2021) </p>
 
     <h2 id="1-どんなもの">1. どんなもの??何ができる??</h2>
 
 <ul>
-  <li>既存のUAD手法とDAL手法を組み合わせたフレームワークを提案</li>
-  <li>MNIST，Fashion-MNISTで有効性を確認</li>
+  <li>DALにおいてラベル付きデータで学習したモデルが情報量の多いラベルなしデータを選択することができていないと主張し，CNNに敵対的分類器を導入したADS(agreement-discrepancy-selection)を提案</li>
+  <li>CIFAR10，CIFAR100で有効性を確認</li>
 </ul>
 
 
 <h2 id="2-どうやって">2. どうやって??</h2>
 <ul>
-  <li>DAE(Denoising Auto Encoder)にUAI(Unsupervised to Active Inference)層を追加し，潜在表現と異常スコアを用いてサンプルごとの異常度を定義</li>
-  <center><img src="/assets/images/posts/DAL4AD/anomaly_score.png" /></center><br />
-  <ul><li>l(x)｜表現層，s(x)｜異常度</li></ul>
-  <li>UAI層をロジスティック回帰とみなし，線形変換W，バイアスb，シグモイド関数σを用いて異常度の識別器を定義</li>
-  <center><img src="/assets/images/posts/DAL4AD/anomaly_score_classifier.png" /></center><br />
-  <li>DAEを定式化し，DAEの異常度を定義</li>
-  <center><img src="/assets/images/posts/DAL4AD/dae.png" /></center><br />
-  <center><img src="/assets/images/posts/DAL4AD/dae_uai_formula.png" /></center><br />
-  <li>↓フレームワーク全体図</li>
-  <center><img src="/assets/images/posts/DAL4AD/dae_uai.png" /></center>
-  <center><img src="/assets/images/posts/DAL4AD/uai.png" /></center>
+  <li>バックボーンgと敵対的分類器f1, f2を用いて学習，予測の一致，不一致を扱う</li>
+  <center><img src="/assets/images/posts/ALwPDA/models.png" /></center><br />
+  <ul><li>(a)｜ラベル付きデータでg, f1, f2を学習(BCELoss)</li></ul>
+  <ul><li>(b)｜ラベルなしデータに対する予測一致率が最大となるように↓を最適化</li></ul>
+  <center><img src="/assets/images/posts/ALwPDA/discrepancy.png" /></center><br />
+  <ul><li>(c)｜サンプルの難易度と予測の不一致の関係性から不一致度校正重みを↓のように定義</li></ul>
+  <center><img src="/assets/images/posts/ALwPDA/wd.png" /></center><br />
 </ul>
 
 <h2 id="3-結果は">3. 結果は??</h2>
 <ul>
-    <li>MNIST 比較結果</li>
-    <center><img src="/assets/images/posts/DAL4AD/result_mnist.png" /></center><br />
-    <li>Fashion-MNIST 比較結果</li>
-    <center><img src="/assets/images/posts/DAL4AD/result_fmnist.png" /></center><br />
-    <li>実データ 比較結果</li>
-    <center><img src="/assets/images/posts/DAL4AD/result_real.png" /></center><br />
+    <li>CIFAR10 比較結果</li>
+    <center><img src="/assets/images/posts/ALwPDA/result_cifar10.png" /></center><br />
+    <li>CIFAR10 ADSメトリック比較結果</li>
+    <center><img src="/assets/images/posts/ALwPDA/result_ads.png" /></center><br />
+    <li>CIFAR10，CIFAR100 比較結果</li>
+    <center><img src="/assets/images/posts/ALwPDA/result_cifar.png" /></center><br />
 </ul>
 
 <h2 id="4-課題は">4. 課題は??</h2>
 <ul>
-    <li>提案時期が古すぎて，今のデータ・手法でどの程度機能するかは不明</li>
+    <li>Entropyを否定しながらEntropyを使って調整するのはどうなんだ</li>
 </ul>
 
     <div class="btn-wrapper">
