@@ -7,7 +7,7 @@
   <body>
     <div class="top-wrapper">
       <div class="container">
-        <h1>Few-Shot Learning</h1>
+        <h1>Formula-Driven Supervised Learning</h1>
       </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
@@ -73,44 +73,64 @@
     <div class="myposts">
 
         <div class="post">
-            <a href="/few_shot_learning/23/01/07/MAML.html">
-              <img class="post_img" src="/assets/images/posts/MAML/image.png">
+            <a href="/formula_driven_supervised_learning/23/01/20/FDSLwRTP.html">
+              <img class="post_img" src="/assets/images/posts/FDSLwRTP/head.png">
               <div class="post_detail"> 
-                <p><b>Model-Agnostic Meta-Learning for Fast Adaptation of Deep Networks</b></p>
+                <p><b>Formula-driven Supervised Learning with Recursive Tiling Patterns</b></p>
                 <p class="post_p"><h1 id=""></h1>
-    <ul>
-      <li>モデル，タスク非依存なメタ学習フレームワークであるMAMLを提案</li>
-      <li>既存のメタ学習の問題点であった汎用性を改善し，回帰タスクでは偏ったデータの学習による精度も確認</li>
-    </ul>
+                  <ul>
+                    <li>タイルパターンが敷き詰まった画像データセットTile DBを自動構築</li>
+                    <li>Fractal DBより少ないパラメータで構築可能で，ImageNetに類似した畳み込みフィルタが得られることを確認</li>
+                  </ul>
     </p>
                 <p>
-                  <span class="fa fa-calendar"></span> Jan 7, 2023
-                  <span class="fa fa-folder"></span> Few-Shot Learning
-                  <span class="fa fa-graduation-cap"></span> PMLR(2017)
+                  <span class="fa fa-calendar"></span> Jan 20, 2023
+                  <span class="fa fa-folder"></span> formula driven supervised learning
+                  <span class="fa fa-graduation-cap"></span> ICCV (2022)
                 </p>
               </div>
             </a>
           </div>
-
-      <div class="post">
-        <a href="/few_shot_learning/23/01/05/SiamenseNet4OSL.html">
-          <img class="post_img" src="/assets/images/posts/SiameseNet4OSL/framework.png">
-          <div class="post_detail"> 
-            <p><b>Siamese Neural Networks for One-Shot Image Recognition</b></p>
-            <p class="post_p"><h1 id=""></h1>
-<ul>
-  <li>2つのサンプルを入力のペアとして同一のモデルに通し，ペアが同クラスか否かを判別するSiamese Networkを提案</li>
-  <li>omniglotで93.42%を達成．Siamese Networkは後の距離学習や対象学習でも利用</li>
-</ul>
-</p>
-            <p>
-              <span class="fa fa-calendar"></span> Jan 5, 2023
-              <span class="fa fa-folder"></span> Few-Shot Learning
-              <span class="fa fa-graduation-cap"></span> ICML(2015)
-            </p>
+    
+          <div class="post">
+            <a href="/formula_driven_supervised_learning/23/01/20/ViTwoNI.html">
+              <img class="post_img" src="/assets/images/posts/ViTwoNI/head.png">
+              <div class="post_detail"> 
+                <p><b>Can Vision Transformers Learn without Natural Images?</b></p>
+                <p class="post_p"><h1 id=""></h1>
+                  <ul>
+                    <li>実画像データを用いず，FDSLを用いた事前学習がViTに対して有効か調査</li>
+                    <li>CIFARやPascal VOCにおいて，MoCo v2やSimCLR v2を上回ることを確認</li>
+                  </ul>
+    </p>
+                <p>
+                  <span class="fa fa-calendar"></span> Jan 20, 2023
+                  <span class="fa fa-folder"></span> formula driven supervised learning
+                  <span class="fa fa-graduation-cap"></span> AAAI (2022)
+                </p>
+              </div>
+            </a>
           </div>
-        </a>
-      </div>
+    
+          <div class="post">
+            <a href="/formula_driven_supervised_learning/23/01/19/PretrainingwoNI.html">
+              <img class="post_img" src="/assets/images/posts/PretrainingwoNI/head.png">
+              <div class="post_detail"> 
+                <p><b>Pre-training without Natural Images</b></p>
+                <p class="post_p"><h1 id=""></h1>
+                  <ul>
+                    <li>実画像の代わりにフラクタルでカテゴリ分けした人工生成画像を用いるFDSL(Formula-driven Supervised Learning)を提案</li>
+                    <li>著作権フリーなビッグデータFractalDBを構築し，CIFAR100やOmniglot等でImageNet事前学習済モデルを上回る精度を達成</li>
+                  </ul>
+    </p>
+                <p>
+                  <span class="fa fa-calendar"></span> Jan 19, 2023
+                  <span class="fa fa-folder"></span> formula driven supervised learning
+                  <span class="fa fa-graduation-cap"></span> ACCV (2020)
+                </p>
+              </div>
+            </a>
+          </div>
 
     <div class="btn-wrapper">
       <!-- <a href="/active_learning" class="btn back_btn previous"><<<</a>

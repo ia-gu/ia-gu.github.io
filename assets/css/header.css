@@ -21,6 +21,9 @@
   transition: all .1s;
   position: relative;
   }
+  .header-left a:hover{
+    color:aquamarine
+    }
   .header-left a::after {
       position: absolute;
       left: 0;
@@ -52,7 +55,7 @@
 }
 .dropmenu ul li{
   overflow: hidden;
-  width: 200%;
+  width: 350px;
   height: 0;
   color: var(--header);
   transition: all .2s;
