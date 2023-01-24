@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <div id="header"></div>
+    <script>
+      $(function(){
+          $('#header').load('/header.html');
+      });
+  </script>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      processEscapes: true,
+      tags: "ams",
+      autoload: {
+        color: [],
+        colorV2: ['color']
+      },
+      packages: {'[+]': ['noerrors']}
+    },
+    chtml: {
+      matchFontHeight: false,
+      displayAlign: "left",
+      displayIndent: "2em"
+    },
+    options: {
+      renderActions: {
+        /* add a new named action to render <script type="math/tex"> */
+        find_script_mathtex: [10, function (doc) {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/);
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+            const text = document.createTextNode('');
+            node.parentNode.replaceChild(text, node);
+            math.start = {node: text, delim: '', n: 0};
+            math.end = {node: text, delim: '', n: 0};
+            doc.math.push(math);
+          }
+        }, '']
+      }
+    },
+    loader: {
+      load: ['[tex]/noerrors']
+    }
+  };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
+  </head>
+  <body>
+    <center><img class="hero" src="/assets/images/posts/PT4AL/framework.png"></center>
+    <h1>Using Self-Supervised Pretext Tasks for Active Learning</h1>
+    <p><span class="fa fa-link"></span><a href="https://arxiv.org/abs/2201.07459"> https://arxiv.org/abs/2201.07459</a></p>
+    <p><span class="fa fa-calendar"></span> Jan 24, 2023 </p>
+    <p><span class="fa fa-flag"></span> <a href="/active_learning"> Active Learning</a></p>
+    <p><span class="fa fa-graduation-cap"></span> ECCV (2022) </p>
+
+    <h2 id="1-どんなもの">1. どんなもの??何ができる??</h2>
+
+<ul>
+  <li>自己教師あり学習の疑似タスクを行い，疑似タスクのLossを用いてクエリを行うPT4ALを提案</li>
+  <li>CIFAR10でSoTAを達成</li>
+</ul>
+
+
+<h2 id="2-どうやって">2. どうやって??</h2>
+<ul>
+  <li>事前に，回転予測の疑似タスクで自己教師あり学習を行う</li>
+  <center><img src="/assets/images/posts/PT4AL/pretext_task.png" /></center><br />
+  <li>学習後，疑似タスクをもう1epoch行い，各データに対するLossを算出</li>
+  <center><img src="/assets/images/posts/PT4AL/loss_pt.png" /></center><br />
+  <li>全データをLossでソートし，サイクル数分のバッチに分割し，各サイクルで対応するバッチからLeastConfでクエリ</li>
+  <li>↓フレームワーク全体</li>
+  <center><img src="/assets/images/posts/PT4AL/framework.png" /></center><br />
+</ul>
+
+<h2 id="3-結果は">3. 結果は??</h2>
+<ul>
+    <li>CIFAR10，Caltech101，ImageNet67 比較結果</li>
+    <center><img src="/assets/images/posts/PT4AL/result.pngA" /></center><br />
+    <li>Cityscapes，不均衡CIFAR10 比較結果</li>
+    <center><img src="/assets/images/posts/PT4AL/result+.png" /></center><br />
+    <li>Pretext task 比較結果</li>
+    <center><img src="/assets/images/posts/PT4AL/result_pt.png" /></center><br />
+    <li>Leastconf以外のクエリ 比較結果</li>
+    <center><img src="/assets/images/posts/PT4AL/result_q.png" /></center><br />
+    <li>降順ソート/昇順ソート 比較結果</li>
+    <center><img src="/assets/images/posts/PT4AL/result_sort.png" /></center><br />
+</ul>
+
+<h2 id="4-課題は">4. 課題は??</h2>
+<ul>
+    <li>実装コードを見た感じ，カンニングの可能性大</li>
+    <li>解説もそのうち用意</li>
+</ul>
+
+    <div class="btn-wrapper">
+      <a href="/posts" class="btn back_btn">Back</a>
+    </div>
+  </body>
+</html>
+    <footer>
+      <div class="btn-wrapper">
+        <a href="mailto:ueno[at]cv.info.gifu-u.ac.jp" class="bottom-btn email"><i class="fa fa-envelope fa-2x"></i></a>
+        <a href="https://twitter.com/ianidaime" class="bottom-btn twitter"><i class="fa fa-twitter fa-2x"></i></a>
+        <a href="https://github.com/ia-gu" class="bottom-btn github"><i class="fa fa-github fa-2x"></i></a>
+      </div>
+      <div class="container">
+        <p>The page is based on <a href="https://github.com/Absolute-Value/Absolute-Value.github.io" >here</a></p>
+        <p>2022 Copyright</p>
+      </div>
+    </footer>
+  </body>
+</html>
