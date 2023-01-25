@@ -51,51 +51,45 @@
 <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
   </head>
   <body>
-    <center><img class="hero" src="/assets/images/posts/InDefenseOfCoreset/framework.png"></center>
-    <h1>In Defense of Core-set: A Density-aware Core-set Selection for Active Learning</h1>
-    <p><span class="fa fa-link"></span><a href="https://arxiv.org/abs/2206.04838"> https://arxiv.org/abs/2206.04838</a></p>
+    <center><img class="hero" src="/assets/images/posts/TowardsMinimizingLabelingCost/framework.png"></center>
+    <h1>Consistency-based Semi-supervised Active Learning: Towards Minimizing Labeling Cost</h1>
+    <p><span class="fa fa-link"></span><a href="https://arxiv.org/abs/1910.07153"> https://arxiv.org/abs/1910.07153</a></p>
     <p><span class="fa fa-calendar"></span> Jan 25, 2023 </p>
     <p><span class="fa fa-flag"></span> <a href="/active_learning"> Active Learning</a></p>
-    <p><span class="fa fa-graduation-cap"></span> KDD (2022) </p>
+    <p><span class="fa fa-graduation-cap"></span> ECCV (2020) </p>
 
     <h2 id="1-どんなもの">1. どんなもの??何ができる??</h2>
 
 <ul>
-  <li>特徴空間上で疎な部分が密な部分に比べて情報量の多いサンプルを持つ傾向があることを発見し，密度を考慮したDACS(Density-aware Core-set)を提案</li>
-  <li>CIFAR10，RMNIST等で有効性を確認</li>
+  <li>半教師あり学習と組み合わせて一貫性ベースでクエリする手法を提案し，cold-start問題についても調査</li>
+  <li>CIFAR，ImageNetで有効性を確認，cold-startについて検証</li>
 </ul>
 
 
 <h2 id="2-どうやって">2. どうやって??</h2>
 <ul>
-  <li>クラス分類のLossを定義</li>
-  <center><img src="/assets/images/posts/InDefenseOfCoreset/loss_classification.png" /></center><br />
-  <li>補助識別器のLossを定義</li>
-  <center><img src="/assets/images/posts/InDefenseOfCoreset/loss_auxiliary.png" /></center><br />
-  <li>コサイン類似度から密度を定義</li>
-  <center><img src="/assets/images/posts/InDefenseOfCoreset/density.png" /></center><br />
-  <li>DACSの獲得関数を定義</li>
-  <center><img src="/assets/images/posts/InDefenseOfCoreset/aquisition.png" /></center><br />
+  <li>半教師あり学習にはMixMatchを採用</li>
+  <li>ラベルなしデータのLossを定義(Dは距離関数)</li>
+  <center><img src="/assets/images/posts/TowardsMinimizingLabelingCost/loss_unsupervised.png" /></center><br />
+  <li>クエリの際，Augmentされた画像を大量に用意して一貫性を調査</li>
   <li>↓フレームワーク全体</li>
-  <center><img src="/assets/images/posts/InDefenseOfCoreset/framework.png" /></center><br />
-  <ul><li>既存の不確実性ベースクエリ戦略と組み合わせることも可能</li></ul>
+  <center><img src="/assets/images/posts/TowardsMinimizingLabelingCost/framework.png" /></center><br />
+  <li>cols-startについて，ALのLoss(RH)に上限と下限が存在することを発見</li>
+  <center><img src="/assets/images/posts/TowardsMinimizingLabelingCost/loss_al.png" /></center><br />
 </ul>
 
 <h2 id="3-結果は">3. 結果は??</h2>
 <ul>
-    <li>CIFAR10 比較結果</li>
-    <center><img src="/assets/images/posts/InDefenseOfCoreset/result_cifar10.png" /></center><br />
-    <li>RMNIST 比較結果</li>
-    <center><img src="/assets/images/posts/InDefenseOfCoreset/result_rmnist.png" /></center><br />
-    <li>Davis 比較結果(↓)</li>
-    <center><img src="/assets/images/posts/InDefenseOfCoreset/result_davis.png" /></center><br />
-    <li>各データセットでクエリ枚数が少ない場合 比較結果</li>
-    <center><img src="/assets/images/posts/InDefenseOfCoreset/result_few.png" /></center><br />
+    <li>CIFAR，ImageNet 比較結果</li>
+    <center><img src="/assets/images/posts/TowardsMinimizingLabelingCost/result.png" /></center><br />
+    <li>CIFAR10のCold-Start問題</li>
+    <center><img src="/assets/images/posts/TowardsMinimizingLabelingCost/coldstart_cifar.png" /></center><br />
+    <li>上限下限を基に近似したエントロピーの精度</li>
+    <center><img src="/assets/images/posts/TowardsMinimizingLabelingCost/result_approx.png" /></center><br />
 </ul>
 
 <h2 id="4-課題は">4. 課題は??</h2>
 <ul>
-    <li>LL4ALと組み合わせるとき，LossPredictionModuleのLoss(LPL)はどうやって考慮された??</li>
 </ul>
 
     <div class="btn-wrapper">
