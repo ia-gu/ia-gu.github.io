@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <div id="header"></div>
+    <script>
+      $(function(){
+          $('#header').load('/header.html');
+      });
+  </script>
+    <script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      processEscapes: true,
+      tags: "ams",
+      autoload: {
+        color: [],
+        colorV2: ['color']
+      },
+      packages: {'[+]': ['noerrors']}
+    },
+    chtml: {
+      matchFontHeight: false,
+      displayAlign: "left",
+      displayIndent: "2em"
+    },
+    options: {
+      renderActions: {
+        /* add a new named action to render <script type="math/tex"> */
+        find_script_mathtex: [10, function (doc) {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/);
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+            const text = document.createTextNode('');
+            node.parentNode.replaceChild(text, node);
+            math.start = {node: text, delim: '', n: 0};
+            math.end = {node: text, delim: '', n: 0};
+            doc.math.push(math);
+          }
+        }, '']
+      }
+    },
+    loader: {
+      load: ['[tex]/noerrors']
+    }
+  };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
+  </head>
+  <body>
+    <center><img class="hero" src="/assets/images/posts/MoBY/framework.png"></center>
+    <h1>Self-Supervised Learning with Swin Transformers</h1>
+    <p><span class="fa fa-link"></span><a href="https://arxiv.org/abs/2105.04553"> https://arxiv.org/abs/2105.04553</a></p>
+    <p><span class="fa fa-calendar"></span> Jan 25, 2023 </p>
+    <p><span class="fa fa-flag"></span> <a href="/self_supervised_learning/index.html"> Self-Supervised Learning</a></p>
+    <p><span class="fa fa-graduation-cap"></span> arXiv (2021) </p>
+
+    <h2 id="1-どんなもの">1. どんなもの??何ができる??</h2>
+
+<ul>
+  <li>MoCo v2とBYOLを組み合わせ，バックボーンモデルとしてSwin-Transformerを学習するMoBYを提案</li>
+  <li>ImageNetやCOCOで有効性を確認</li>
+</ul>
+
+
+<h2 id="2-どうやって">2. どうやって??</h2>
+<ul>
+  <li>BYOLのオンラインモデルとターゲットモデルを用いて，MoCo v2のQuery Key問題を解く</li>
+  <li>EncoderをSwin-Transformerに変更し，学習できるようにチューニング</li>
+  <li>↓対照学習のLoss</li>
+  <center><img src="/assets/images/posts/MoBY/contrastive_loss.png" /></center><br />
+  <li>↓フレームワーク全体</li>
+  <center><img src="/assets/images/posts/MoBY/framework.png" /></center>
+</ul>
+
+<h2 id="3-結果は">3. 結果は??</h2>
+<ul>
+    <li>ImageNet 結果比較</li>
+    <center><img src="/assets/images/posts/MoBY/result_imagenet.png" /></center><br />
+    <ul><li>マルチクロップのDINOには勝てない</li></ul>
+    <li>ImageNetからCOCOへの転移学習 結果比較</li>
+    <center><img src="/assets/images/posts/MoBY/result_coco.png" /></center><br />
+    <li>ImageNetからADE20kへの転移学習 結果比較</li>
+    <center><img src="/assets/images/posts/MoBY/result_ade20.png" /></center>
+</ul>
+
+<h2 id="4-課題は">4. 課題は??</h2>
+  <ul>
+    <li>(自分の課題)DINOがよくわからんので調査</li>
+  </ul>
+    <div class="btn-wrapper">
+      <a href="/posts" class="btn back_btn">Back</a>
+    </div>
+  </body>
+</html>
+    <footer>
+      <div class="btn-wrapper">
+        <a href="mailto:ueno[at]cv.info.gifu-u.ac.jp" class="bottom-btn email"><i class="fa fa-envelope fa-2x"></i></a>
+        <a href="https://twitter.com/ianidaime" class="bottom-btn twitter"><i class="fa fa-twitter fa-2x"></i></a>
+        <a href="https://github.com/ia-gu" class="bottom-btn github"><i class="fa fa-github fa-2x"></i></a>
+      </div>
+      <div class="container">
+        <p>The page is based on <a href="https://github.com/Absolute-Value/Absolute-Value.github.io" >here</a></p>
+        <p>2022 Copyright</p>
+      </div>
+    </footer>
+  </body>
+</html>
