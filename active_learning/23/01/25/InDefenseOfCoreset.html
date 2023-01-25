@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <div id="header"></div>
+    <script>
+      $(function(){
+          $('#header').load('/header.html');
+      });
+  </script>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      processEscapes: true,
+      tags: "ams",
+      autoload: {
+        color: [],
+        colorV2: ['color']
+      },
+      packages: {'[+]': ['noerrors']}
+    },
+    chtml: {
+      matchFontHeight: false,
+      displayAlign: "left",
+      displayIndent: "2em"
+    },
+    options: {
+      renderActions: {
+        /* add a new named action to render <script type="math/tex"> */
+        find_script_mathtex: [10, function (doc) {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/);
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+            const text = document.createTextNode('');
+            node.parentNode.replaceChild(text, node);
+            math.start = {node: text, delim: '', n: 0};
+            math.end = {node: text, delim: '', n: 0};
+            doc.math.push(math);
+          }
+        }, '']
+      }
+    },
+    loader: {
+      load: ['[tex]/noerrors']
+    }
+  };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
+  </head>
+  <body>
+    <center><img class="hero" src="/assets/images/posts/InDefenseOfCoreset/framework.png"></center>
+    <h1>In Defense of Core-set: A Density-aware Core-set Selection for Active Learning</h1>
+    <p><span class="fa fa-link"></span><a href="https://arxiv.org/abs/2206.04838"> https://arxiv.org/abs/2206.04838</a></p>
+    <p><span class="fa fa-calendar"></span> Jan 25, 2023 </p>
+    <p><span class="fa fa-flag"></span> <a href="/active_learning"> Active Learning</a></p>
+    <p><span class="fa fa-graduation-cap"></span> KDD (2022) </p>
+
+    <h2 id="1-どんなもの">1. どんなもの??何ができる??</h2>
+
+<ul>
+  <li>特徴空間上で疎な部分が密な部分に比べて情報量の多いサンプルを持つ傾向があることを発見し，密度を考慮したDACS(Density-aware Core-set)を提案</li>
+  <li>CIFAR10，RMNIST等で湯攻勢を確認</li>
+</ul>
+
+
+<h2 id="2-どうやって">2. どうやって??</h2>
+<ul>
+  <li>クラス分類のLossを定義</li>
+  <center><img src="/assets/images/posts/InDefenseOfCoreset/loss_classification.png" /></center><br />
+  <li>補助識別器のLossを定義</li>
+  <center><img src="/assets/images/posts/InDefenseOfCoreset/loss_auxiliary.png" /></center><br />
+  <li>コサイン類似度から密度を定義</li>
+  <center><img src="/assets/images/posts/InDefenseOfCoreset/density.png" /></center><br />
+  <li>DACSの獲得関数を定義</li>
+  <center><img src="/assets/images/posts/InDefenseOfCoreset/aquisition.png" /></center><br />
+  <li>↓フレームワーク全体</li>
+  <center><img src="/assets/images/posts/InDefenseOfCoreset/framework.png" /></center><br />
+  <ul><li>既存の不確実性ベースクエリ戦略と組み合わせることも可能</li></ul>
+</ul>
+
+<h2 id="3-結果は">3. 結果は??</h2>
+<ul>
+    <li>CIFAR10 比較結果</li>
+    <center><img src="/assets/images/posts/InDefenseOfCoreset/result_cifar10.png" /></center><br />
+    <li>RMNIST 比較結果</li>
+    <center><img src="/assets/images/posts/InDefenseOfCoreset/result_rmnist.png" /></center><br />
+    <li>Davis 比較結果(↓)</li>
+    <center><img src="/assets/images/posts/InDefenseOfCoreset/result_davis.png" /></center><br />
+    <li>各データセットでクエリ枚数が少ない場合 比較結果</li>
+    <center><img src="/assets/images/posts/InDefenseOfCoreset/result_few.png" /></center><br />
+</ul>
+
+<h2 id="4-課題は">4. 課題は??</h2>
+<ul>
+    <li>LL4ALと組み合わせるとき，LossPredictionModuleのLoss(LPL)はどうやって考慮された??</li>
+</ul>
+
+    <div class="btn-wrapper">
+      <a href="/posts" class="btn back_btn">Back</a>
+    </div>
+  </body>
+</html>
+    <footer>
+      <div class="btn-wrapper">
+        <a href="mailto:ueno[at]cv.info.gifu-u.ac.jp" class="bottom-btn email"><i class="fa fa-envelope fa-2x"></i></a>
+        <a href="https://twitter.com/ianidaime" class="bottom-btn twitter"><i class="fa fa-twitter fa-2x"></i></a>
+        <a href="https://github.com/ia-gu" class="bottom-btn github"><i class="fa fa-github fa-2x"></i></a>
+      </div>
+      <div class="container">
+        <p>The page is based on <a href="https://github.com/Absolute-Value/Absolute-Value.github.io" >here</a></p>
+        <p>2022 Copyright</p>
+      </div>
+    </footer>
+  </body>
+</html>

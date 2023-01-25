@@ -7,8 +7,8 @@
   <body>
     <div class="top-wrapper">
       <div class="container">
-        <h1>Posts</h1>
-        <h3>(5/5)</h3>
+        <h1>Active Learning</h1>
+        <h3>(3/3)</h3>
       </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
@@ -65,27 +65,128 @@
   </head>
   <body>
     <div class="btn-wrapper">
-      <a href="/posts" class="btn back_btn previous"><<<</a>
-      <a href="/posts/4" class="btn back_btn previous"><</a>
+      <a href="/active_learning" class="btn back_btn previous"><<<</a>
+      <a href="/active_learning/i2" class="btn back_btn next"><</a>
     </div>
 
     <div class="myposts">
 
+
       <div class="post">
-        <a href="/few_shot_learning/23/01/05/SiamenseNet4OSL.html">
-          <img class="post_img" src="/assets/images/posts/SiameseNet4OSL/framework.png">
+        <a href="/active_learning/23/01/09/RALtoCOVID.html">
+          <img class="post_img" src="/assets/images/posts/RALtoCOVID/framework.png">
           <div class="post_detail"> 
-            <p><b>Siamese Neural Networks for One-Shot Image Recognition</b></p>
+            <p><b>Highly Efficient Representation and Active Learning Framework for Imbalanced Data and Its Application to COVID-19 X-Ray Classification</b></p>
             <p class="post_p"><h1 id=""></h1>
 <ul>
-  <li>2つのサンプルを入力のペアとして同一のモデルに通し，ペアが同クラスか否かを判別するSiamese Networkを提案</li>
-  <li>omniglotで93.42%を達成．Siamese Networkは後の距離学習や対象学習でも利用</li>
+  <li>教師なし表現学習とガウス過程を用いた，医用画像向けのALフレームワークを提案</li>
+  <li>COVID-19 Datasetに対する有効性を確認</li>
 </ul>
 </p>
             <p>
-              <span class="fa fa-calendar"></span> Jan 5, 2023
-              <span class="fa fa-folder"></span> Few-Shot Learning
-              <span class="fa fa-graduation-cap"></span> ICML(2015)
+              <span class="fa fa-calendar"></span> Jan 9, 2023
+              <span class="fa fa-folder"></span> active learning
+              <span class="fa fa-graduation-cap"></span> NIPS workshop
+            </p>
+          </div>
+        </a>
+      </div>
+
+      <div class="post">
+        <a href="/active_learning/23/01/09/LD4AL.html">
+          <img class="post_img" src="/assets/images/posts/LD4AL/framework.png">
+          <div class="post_detail"> 
+            <p><b>When Deep Learners Change Their Mind: Learning Dynamics for Active Learning</b></p>
+            <p class="post_p"><h1 id=""></h1>
+<ul>
+  <li>不確実性の指標に一貫性を用いることで，DLの予測が過信的という不確実性クエリ戦略の問題点を解消</li>
+  <li>CIFAR10，CIFAR100のそれぞれで有効性を確認</li>
+</ul>
+</p>
+            <p>
+              <span class="fa fa-calendar"></span> Jan 9, 2023
+              <span class="fa fa-folder"></span> active learning
+              <span class="fa fa-graduation-cap"></span> CAIP(2021)
+            </p>
+          </div>
+        </a>
+      </div>
+
+      <div class="post">
+        <a href="/active_learning/23/01/08/LL4AL.html">
+          <img class="post_img" src="/assets/images/posts/LL4AL/framework.png">
+          <div class="post_detail"> 
+            <p><b>Learning Loss for Active Learning</b></p>
+            <p class="post_p"><h1 id=""></h1>
+<ul>
+  <li>タスク非依存で特にDNNに効果的な，ラベルなしデータのLossを推測するLL4ALを提案</li>
+  <li>CIFAR10で当時のSoTA</li>
+</ul>            
+</p>
+            <p>
+              <span class="fa fa-calendar"></span> Jan 8, 2023
+              <span class="fa fa-folder"></span> active learning
+              <span class="fa fa-graduation-cap"></span> CVPR(2019)
+            </p>
+          </div>
+        </a>
+      </div>
+
+      <div class="post">
+        <a href="/active_learning/23/01/08/ALonEdgeDevice.html">
+          <img class="post_img" src="/assets/images/posts/ALonEdgeDevice/head.png">
+          <div class="post_detail"> 
+            <p><b>Active Learning for Deep Neural Networks on Edge Devices</b></p>
+            <p class="post_p"><h1 id=""></h1>
+<ul>
+  <li>スマートフォンをはじめとするEdge Device上に高機能の計算機を載せることは困難で，全ての新規データについてモデルの更新を行うことは困難なため，軽量なストリームベースAL手法を提案</li>
+  <li>MNIST，SVHN，CIFAR10において，Edge Deviceを想定した計量モデル，少データで実験</li>
+</ul>              
+</p>
+            <p>
+              <span class="fa fa-calendar"></span> Jan 8, 2023
+              <span class="fa fa-folder"></span> active learning
+              <span class="fa fa-graduation-cap"></span> arXiv
+            </p>
+          </div>
+        </a>
+      </div>
+
+      <div class="post">
+        <a href="/active_learning/23/01/08/ORAL.html">
+          <img class="post_img" src="/assets/images/posts/ORAL/head.png">
+          <div class="post_detail"> 
+            <p><b>One-Round Active Learning</b></p>
+            <p class="post_p"><h1 id=""></h1>
+<ul>
+  <li>既存のDALでは，クエリ➡アノテーション➡学習のサイクルを複数回繰り返すが，これではアノテータが待機➡アノテーションを繰り返すことになるため，1度のクエリで解決するフレームワークを提案</li>
+  <li>既存のクエリ戦略では1度のクエリで精度を示すことが困難であることを示し，MNISTとCIFAR10で実験</li>
+</ul>
+</p>
+            <p>
+              <span class="fa fa-calendar"></span> Jan 8, 2023
+              <span class="fa fa-folder"></span> active learning
+              <span class="fa fa-graduation-cap"></span> arXiv
+            </p>
+          </div>
+        </a>
+      </div>
+
+      <div class="post">
+        <a href="/active_learning/23/01/08/BALanCe.html">
+          <img class="post_img" src="/assets/images/posts/BALanCe/head.png">
+          <div class="post_detail"> 
+            <p><b>BALanCe: Deep Bayesian Active Learning via Equivalence Class Annealing</b></p>
+            <p class="post_p"><h1 id=""></h1>
+<ul>
+  <li>不確実性クエリ戦略(特にベイズ手法)の多くは，クエリしたデータ内の分布に偏りが発生するため，均等にクエリを行うBALanCeを提案</li>
+  <li>MNIST系列の複数のデータセットでSoTAを達成</li>
+</ul>
+</p>
+            <p>
+              <span class="fa fa-calendar"></span> Jan 8, 2023
+              <span class="fa fa-folder"></span> active learning
+              <span class="fa fa-graduation-cap"></span> arXiv
             </p>
           </div>
         </a>
@@ -110,7 +211,7 @@
             </div>
           </a>
         </div>
-        
+
       <div class="post">
         <a href="/active_learning/23/01/04/ASSSL.html">
           <img class="post_img" src="/assets/images/posts/ASSSL/framework.png">
@@ -276,10 +377,10 @@
             </div>
           </a>
         </div>
-    
+
     <div class="btn-wrapper">
-      <a href="/posts" class="btn back_btn previous"><<<</a>
-      <a href="/posts/4" class="btn back_btn previous"><</a>
+      <a href="/active_learning" class="btn back_btn previous"><<<</a>
+      <a href="/active_learning/i2" class="btn back_btn next"><</a>
     </div>
   </body>
 </html>
