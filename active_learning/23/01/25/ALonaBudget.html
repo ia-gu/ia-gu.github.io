@@ -51,41 +51,35 @@
 <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
   </head>
   <body>
-    <center><img class="hero" src="/assets/images/posts/MakingYourFirstChoice/framework.png"></center>
-    <h1>Making Your First Choice: To Address Cold Start Problem in Vision Active Learning</h1>
-    <p><span class="fa fa-link"></span><a href="https://arxiv.org/abs/2210.02442"> https://arxiv.org/abs/2210.02442</a></p>
+    <center><img class="hero" src="/assets/images/posts/ALonaBudget/head.png"></center>
+    <h1>Active Learning on a Budget: Opposite Strategies Suit High and Low Budgets</h1>
+    <p><span class="fa fa-link"></span><a href="https://arxiv.org/abs/2202.02794"> https://arxiv.org/abs/2202.02794</a></p>
     <p><span class="fa fa-calendar"></span> Jan 25, 2023 </p>
     <p><span class="fa fa-flag"></span> <a href="/active_learning"> Active Learning</a></p>
-    <p><span class="fa fa-graduation-cap"></span> arXiv (2022) </p>
+    <p><span class="fa fa-graduation-cap"></span> ICML (2022) </p>
 
     <h2 id="1-どんなもの">1. どんなもの??何ができる??</h2>
 
 <ul>
-  <li>対象学習と疑似ラベルを用いてcold-start問題の解決に挑戦</li>
-  <li>CIFAR10と3つの医用画像で既存のクエリ戦略と比べ幅広くデータを選択できることを確認</li>
+  <li>ラベルデータが少ない場合は簡単なサンプル，ラベルデータが多い場合は難しいサンプルを選択することで精度向上することを示し，予算が少ない場合に有効なTypiClustを提案</li>
+  <li>CIFAR，ImageNetで有効性を確認</li>
 </ul>
 
 
 <h2 id="2-どうやって">2. どうやって??</h2>
 <ul>
-  <li>MoCo v2で事前学習したモデルを用いてk-means clusteringを実行</li>
-  <li>疑似ラベルを用いてDataset Mapを生成</li>
-  <ul><li>Dataset Map｜ラベルに対するモデルの予測確率の平均と標準偏差で定義</li></ul>
-  <li>対象学習の難易度を基にMapが生成される</li>
-  <ul><li>対象学習が簡単｜他との区別がつく＝難しい，外れ値</li></ul>
-  <ul><li>対象学習が困難｜他との区別がつかない＝典型的</li></ul>
-  <li>↓フレームワーク全体</li>
-  <center><img src="/assets/images/posts/MakingYourFirstChoice/framework.png" /></center>
+  <li>ImageNetではDINO，他ではSimCLRを用いて事前学習し，k-means clustering</li>
+  <li>(既にラベル付けされたデータ数+予算)個のクラスタを作ることで，ラベル付けされていないデータを含むクラスタを(予算)個獲得</li>
+  <li>(予算)このクラスタから最も典型的なサンプルを選択</li>
+  <ul><li>↓典型さ</li></ul>
+    <center><img src="/assets/images/posts/ALonaBudget/typicality.png" /></center><br />
 </ul>
 
 <h2 id="3-結果は">3. 結果は??</h2>
 <ul>
-    <li>PathMNISTの初回クエリの分布比較</li>
-    <center><img src="/assets/images/posts/MakingYourFirstChoice/result.png" /></center><br />
-    <li>OrganaMNIST 結果比較</li>
-    <center><img src="/assets/images/posts/MakingYourFirstChoice/result_organamnist.png" /></center><br />
-    <li>クエリデータ内の各クラスのカバー率(多様性)</li>
-    <center><img src="/assets/images/posts/MakingYourFirstChoice/result_coverage.png" /></center>
+    <li>CIFAR，ImageNet 結果比較</li>
+    <center><img src="/assets/images/posts/ALonaBudget/result.png" /></center><br />
+    <ul><li>枚数が少ない場合に圧倒的な精度</li></ul>
 </ul>
 
 <h2 id="4-課題は">4. 課題は??</h2>
