@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <div id="header"></div>
+    <script>
+      $(function(){
+          $('#header').load('/header.html');
+      });
+  </script>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      processEscapes: true,
+      tags: "ams",
+      autoload: {
+        color: [],
+        colorV2: ['color']
+      },
+      packages: {'[+]': ['noerrors']}
+    },
+    chtml: {
+      matchFontHeight: false,
+      displayAlign: "left",
+      displayIndent: "2em"
+    },
+    options: {
+      renderActions: {
+        /* add a new named action to render <script type="math/tex"> */
+        find_script_mathtex: [10, function (doc) {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/);
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+            const text = document.createTextNode('');
+            node.parentNode.replaceChild(text, node);
+            math.start = {node: text, delim: '', n: 0};
+            math.end = {node: text, delim: '', n: 0};
+            doc.math.push(math);
+          }
+        }, '']
+      }
+    },
+    loader: {
+      load: ['[tex]/noerrors']
+    }
+  };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
+  </head>
+  <body>
+    <center><img class="hero" src="/assets/images/posts/TheVendiScore/head.png"></center>
+    <h1>The Vendi Score: A Diversity Evaluation Metric for Machine Learning</h1>
+    <p><span class="fa fa-link"></span><a href="https://arxiv.org/abs/2210.02410"> https://arxiv.org/abs/2210.02410</a></p>
+    <p><span class="fa fa-calendar"></span> Jan 25, 2023 </p>
+    <p><span class="fa fa-flag"></span> Machine Learning</p>
+    <p><span class="fa fa-graduation-cap"></span> arXiv (2022) </p>
+
+    <h2 id="1-どんなもの">1. どんなもの??何ができる??</h2>
+
+<ul>
+  <li>検証セット，事前学習，ラベル不要で入力データ内の多様性をスコア化するVendi Scoreを提案</li>
+  <li>MNISTやCIFARで効果を検証し，GANの生成データの分布についても分析</li>
+</ul>
+
+
+<h2 id="2-どうやって">2. どうやって??</h2>
+<ul>
+  <li>シャノンエントロピーによる定義</li>
+  <center><img src="/assets/images/posts/TheVendiScore/definition.png" /></center><br />
+  <ul><li>類似度行列/nの固有値のエントロピー</li></ul>
+  <ul><li>xはピクセル値をflattenしたもの or Inception v3から得られる特徴量</li></ul>
+  <ul><ul><li>ピクセル値はグレースケール画像にのみ有効</li></ul></ul>
+  <li>ノイマンエントロピーによる定義</li>
+  <center><img src="/assets/images/posts/TheVendiScore/neumann_ver.png" /></center><br />
+</ul>
+
+<h2 id="3-結果は">3. 結果は??</h2>
+<ul>
+    <li>MNIST，MultiNLIの検証</li>
+    <center><img src="/assets/images/posts/TheVendiScore/result.png" /></center><br />
+  <ul><li>クラスが増えるにつれて徐々にスコアが上昇</li></ul>
+  <li>CIFAR，ImageNet，LSUNの検証</li>
+    <center><img src="/assets/images/posts/TheVendiScore/result+.png" /></center><br />
+    <li>GANの検証</li>
+    <center><img src="/assets/images/posts/TheVendiScore/GAN.png" /></center><br />
+  <ul><li>生成データの分布が学習データの分布より狭いことを確認</li></ul>
+  <ul><li>内包しているかどうかは不明な点に注意</li></ul>
+</ul>
+
+<h2 id="4-課題は">4. 課題は??</h2>
+<li>手元で検証したので，追加する</li>
+    <div class="btn-wrapper">
+      <a href="/posts" class="btn back_btn">Back</a>
+    </div>
+  </body>
+</html>
+    <footer>
+      <div class="btn-wrapper">
+        <a href="mailto:ueno[at]cv.info.gifu-u.ac.jp" class="bottom-btn email"><i class="fa fa-envelope fa-2x"></i></a>
+        <a href="https://twitter.com/ianidaime" class="bottom-btn twitter"><i class="fa fa-twitter fa-2x"></i></a>
+        <a href="https://github.com/ia-gu" class="bottom-btn github"><i class="fa fa-github fa-2x"></i></a>
+      </div>
+      <div class="container">
+        <p>The page is based on <a href="https://github.com/Absolute-Value/Absolute-Value.github.io" >here</a></p>
+        <p>2022 Copyright</p>
+      </div>
+    </footer>
+  </body>
+</html>
