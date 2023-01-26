@@ -51,42 +51,39 @@
 <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
   </head>
   <body>
-    <center><img class="hero" src="/assets/images/posts/SelfPacedAL/head.png"></center>
-    <h1>Self-Paced Active Learning: Query the Right Thing at the Right Time</h1>
-    <p><span class="fa fa-link"></span><a href="https://ojs.aaai.org/index.php/AAAI/article/view/4445"> https://ojs.aaai.org/index.php/AAAI/article/view/4445</a></p>
+    <center><img class="hero" src="/assets/images/posts/AdaCM/framework.png"></center>
+    <h1>Towards Semi-Supervised Deep Facial Expression Recognition with An Adaptive Confidence Margin</h1>
+    <p><span class="fa fa-link"></span><a href="https://arxiv.org/abs/2203.12341"> https://arxiv.org/abs/2203.12341</a></p>
     <p><span class="fa fa-calendar"></span> Jan 26, 2023 </p>
-    <p><span class="fa fa-flag"></span> <a href="/active_learning"> Active Learning</a></p>
-    <p><span class="fa fa-graduation-cap"></span> AAAI (2019) </p>
+    <p><span class="fa fa-flag"></span> <a href="/active_learning"> Semi-Supervised Learning</a></p>
+    <p><span class="fa fa-graduation-cap"></span> CVPR (2022) </p>
 
     <h2 id="1-どんなもの">1. どんなもの??何ができる??</h2>
 
 <ul>
-  <li>サンプルの情報量と簡単さを同時に考慮するSelf-Paced ALを提案</li>
-  <li>ラベル付きデータが少ない状況で難しいサンプルをクエリすることを避ける</li>
+  <li>学習可能な閾値パラメータを用意し，閾値以上のサンプルを疑似ラベルで，閾値以下のサンプルを対象学習するAdaCMを提案</li>
+  <li>RAF-DB等の表情認識タスクでSoTAを達成</li>
 </ul>
 
 
 <h2 id="2-どうやって">2. どうやって??</h2>
 <ul>
-  <li>情報量w∊[0, 1]，簡単さv∊[0, 1]，フィルタgを基に目的関数を定義</li>
-  <center><img src="/assets/images/posts/SelfPacedAL/objective_func.png" /></center>
-  <center><img src="/assets/images/posts/SelfPacedAL/K.png" /></center><br />
-  <li>最適化方法</li>
-  <center><img src="/assets/images/posts/SelfPacedAL/optimize_func.png" /></center><br />
-  <li>wの最適化</li>
-  <center><img src="/assets/images/posts/SelfPacedAL/w_optim.png" /></center><br />
-  <li>vの最適化</li>
-  <center><img src="/assets/images/posts/SelfPacedAL/v_optim.png" /></center>
+  <li>正しく識別できたサンプルに対し↓を用いて閾値を更新</li>
+  <center><img src="/assets/images/posts/AdaCM/tc.png" /></center>
+  <li>識別器の性能はエポックが増えるにつれて上がるため，↓のように書き換え可能</li>
+  <center><img src="/assets/images/posts/AdaCM/tc+.png" /></center><br />
+  <ul><li>B, γはハイパラ</li></ul>
 </ul>
 
 <h2 id="3-結果は">3. 結果は??</h2>
 <ul>
-    <li>データセット</li>
-    <center><img src="/assets/images/posts/SelfPacedAL/dataset.png" /></center><br />
-  <li>比較結果</li>
-    <center><img src="/assets/images/posts/SelfPacedAL/result_table.png" /></center>
-    <center><img src="/assets/images/posts/SelfPacedAL/result_figure.png" /></center>
-</ul>
+    <li>既存手法との比較</li>
+    <center><img src="/assets/images/posts/AdaCM/result.png" /></center><br />
+  <li>Bとγのチューニング結果</li>
+    <center><img src="/assets/images/posts/AdaCM/result_tuning.png" /></center><br />
+  <li>RAF-DBで学習，CK+でファインチューニング</li>
+    <center><img src="/assets/images/posts/AdaCM/result_ssl.png" /></center><br />
+  </ul>
 
 <h2 id="4-課題は">4. 課題は??</h2>
 <ul>
