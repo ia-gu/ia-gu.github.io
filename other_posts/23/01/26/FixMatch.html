@@ -51,53 +51,54 @@
 <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
   </head>
   <body>
-    <center><img class="hero" src="/assets/images/posts/TheVendiScore/head.png"></center>
-    <h1>The Vendi Score: A Diversity Evaluation Metric for Machine Learning</h1>
-    <p><span class="fa fa-link"></span><a href="https://arxiv.org/abs/2210.02410"> https://arxiv.org/abs/2210.02410</a></p>
-    <p><span class="fa fa-calendar"></span> Jan 25, 2023 </p>
-    <p><span class="fa fa-flag"></span><a href="/other_posts/"> Machine Learning</a></p>
-    <p><span class="fa fa-graduation-cap"></span> arXiv (2022) </p>
+    <center><img class="hero" src="/assets/images/posts/FixMatch/framework.png"></center>
+    <h1>FixMatch: Simplifying Semi-Supervised Learning with Consistency and Confidence</h1>
+    <p><span class="fa fa-link"></span><a href="https://arxiv.org/abs/2001.07685"> https://arxiv.org/abs/2001.07685</a></p>
+    <p><span class="fa fa-calendar"></span> Jan 26, 2023 </p>
+    <p><span class="fa fa-flag"></span> <a href="/other_posts/"> Semi-Supervised Learning</a></p>
+    <p><span class="fa fa-graduation-cap"></span> NIPS (2020) </p>
 
     <h2 id="1-どんなもの">1. どんなもの??何ができる??</h2>
 
 <ul>
-  <li>検証セット，事前学習，ラベル不要で入力データ内の多様性をスコア化するVendi Scoreを提案</li>
-  <li>MNISTやCIFARで効果を検証し，GANの生成データの分布についても分析</li>
+  <li>Consistency regularizationを用いたシンプルな半教師あり学習フレームワークFixMatchを提案</li>
+  <li>CIFAR10では10枚で78%，40枚で87%と既存手法を圧倒</li>
 </ul>
 
 
 <h2 id="2-どうやって">2. どうやって??</h2>
 <ul>
-  <li>シャノンエントロピーによる定義</li>
-  <center><img src="/assets/images/posts/TheVendiScore/definition.png" /></center><br />
-  <ul><li>類似度行列/nの固有値のエントロピー</li></ul>
-  <ul><li>xはピクセル値をflattenしたもの or Inception v3から得られる特徴量</li></ul>
-  <ul><ul><li>ピクセル値はグレースケール画像にのみ有効</li></ul></ul>
-  <li>ノイマンエントロピーによる定義</li>
-  <center><img src="/assets/images/posts/TheVendiScore/neumann_ver.png" /></center><br />
+  <li>↓フレームワーク全体</li>
+  <center><img src="/assets/images/posts/FixMatch/framework.png" /></center><br />
+  <ul><li>1枚の画像から弱いデータ拡張と強いデータ拡張をした2つのデータを生成</li></ul>
+  <ul><ul><li>弱いデータ拡張｜モデルに入力し予測から疑似ラベルを制史枝</li></ul></ul>
+  <center><img src="/assets/images/posts/FixMatch/pseudo_label.png" /></center><br />
+  <ul><ul><li>強いデータ拡張｜疑似ラベルを用いて学習</li></ul></ul>
+  <center><img src="/assets/images/posts/FixMatch/loss_unlabeled.png" /></center><br />
+  <li>全体のLossはハイパラλを用いて↓で計算</li>
+  <center><img src="/assets/images/posts/FixMatch/loss.png" /></center><br />
 </ul>
 
 <h2 id="3-結果は">3. 結果は??</h2>
 <ul>
-    <li>MNIST，MultiNLIの検証</li>
-    <center><img src="/assets/images/posts/TheVendiScore/result.png" /></center><br />
-  <ul><li>クラスが増えるにつれて徐々にスコアが上昇</li></ul>
-  <li>CIFAR，ImageNet，LSUNの検証</li>
-    <center><img src="/assets/images/posts/TheVendiScore/result+.png" /></center><br />
-    <li>GANの検証</li>
-    <center><img src="/assets/images/posts/TheVendiScore/GAN.png" /></center><br />
-  <ul><li>生成データの分布が学習データの分布より狭いことを確認</li></ul>
-  <ul><li>内包しているかどうかは不明な点に注意</li></ul>
-</ul>
+    <li>CIFAR，SVHN，STL10</li>
+    <center><img src="/assets/images/posts/FixMatch/result.png" /></center><br />
+  <li>CIFAR10 78%を達成した10枚</li>
+    <center><img src="/assets/images/posts/FixMatch/result_cifar78.png" /></center><br />
+  <li>閾値τのチューニング</li>
+    <center><img src="/assets/images/posts/FixMatch/result_tuning.png" /></center>
+  </ul>
 
 <h2 id="4-課題は">4. 課題は??</h2>
-<li>手元で検証したので，追加する</li>
+<ul>
+  </ul>
+
     <div class="btn-wrapper">
       <a href="/posts" class="btn back_btn">Back</a>
     </div>
   </body>
 </html>
-    <footer>
+    <footer
       <div class="btn-wrapper">
         <a href="mailto:ueno[at]cv.info.gifu-u.ac.jp" class="bottom-btn email"><i class="fa fa-envelope fa-2x"></i></a>
         <a href="https://twitter.com/ianidaime" class="bottom-btn twitter"><i class="fa fa-twitter fa-2x"></i></a>
