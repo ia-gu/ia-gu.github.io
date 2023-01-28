@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <div id="header"></div>
+    <script>
+      $(function(){
+          $('#header').load('/header.html');
+      });
+  </script>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      processEscapes: true,
+      tags: "ams",
+      autoload: {
+        color: [],
+        colorV2: ['color']
+      },
+      packages: {'[+]': ['noerrors']}
+    },
+    chtml: {
+      matchFontHeight: false,
+      displayAlign: "left",
+      displayIndent: "2em"
+    },
+    options: {
+      renderActions: {
+        /* add a new named action to render <script type="math/tex"> */
+        find_script_mathtex: [10, function (doc) {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/);
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+            const text = document.createTextNode('');
+            node.parentNode.replaceChild(text, node);
+            math.start = {node: text, delim: '', n: 0};
+            math.end = {node: text, delim: '', n: 0};
+            doc.math.push(math);
+          }
+        }, '']
+      }
+    },
+    loader: {
+      load: ['[tex]/noerrors']
+    }
+  };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
+  </head>
+  <body>
+    <center><img class="hero" src="/assets/images/posts/FALSE/framework.png"></center>
+    <h1>Forgetful Active Learning with Switch Events: Efficient Sampling for Out-of-Distribution Data</h1>
+    <p><span class="fa fa-link"></span><a href="https://arxiv.org/abs/2301.05106"> https://arxiv.org/abs/2301.05106</a></p>
+    <p><span class="fa fa-calendar"></span> Jan 28, 2023 </p>
+    <p><span class="fa fa-flag"></span> <a href="/active_learning"> Active Learning</a></p>
+    <p><span class="fa fa-graduation-cap"></span> arXiv (2023) </p>
+
+    <h2 id="1-どんなもの">1. どんなもの??何ができる??</h2>
+
+<ul>
+  <li>OOD(Out-of-Distribution)データに対するDAL手法としてFALSE(forgetful active learning with switch events)を提案</li>
+  <li>CIFAR10，CINIC10，CIFAR10-C等で有効性を確認</li>
+</ul>
+
+
+<h2 id="2-どうやって">2. どうやって??</h2>
+<ul>
+  <li>モデルの予測が変化する(論文中では"忘れる"と呼称)サンプルに価値があると考え，忘れを↓で定義</li>
+  <center><img src="/assets/images/posts/FALSE/forget.png" /></center><br />
+  <li>↓忘れた回数を基に定義された獲得関数</li>
+  <center><img src="/assets/images/posts/FALSE/aquisition.png" /></center><br />
+  <li>↓フレームワーク全体</li>
+  <center><img src="/assets/images/posts/FALSE/framework.png" /></center>
+</ul>
+
+<h2 id="3-結果は">3. 結果は??</h2>
+<ul>
+    <li>CIFAR，CINIC 手法，モデル比較結果</li>
+    <center><img src="/assets/images/posts/FALSE/result.png" /></center><br />
+    <ul><li>学習曲線の下部面積(珍しい評価の仕方してる)</li></ul>
+  <li>CIFAR10-C 学習曲線</li>
+    <center><img src="/assets/images/posts/FALSE/result_condition.png" /></center>
+</ul>
+
+<h2 id="4-課題は">4. 課題は??</h2>
+<ul>
+  </ul>
+
+    <div class="btn-wrapper">
+      <a href="/posts" class="btn back_btn">Back</a>
+    </div>
+  </body>
+</html>
+    <footer>
+      <div class="btn-wrapper">
+        <a href="mailto:ueno[at]cv.info.gifu-u.ac.jp" class="bottom-btn email"><i class="fa fa-envelope fa-2x"></i></a>
+        <a href="https://twitter.com/ianidaime" class="bottom-btn twitter"><i class="fa fa-twitter fa-2x"></i></a>
+        <a href="https://github.com/ia-gu" class="bottom-btn github"><i class="fa fa-github fa-2x"></i></a>
+      </div>
+      <div class="container">
+        <p>The page is based on <a href="https://github.com/Absolute-Value/Absolute-Value.github.io" >here</a></p>
+        <p>2022 Copyright</p>
+      </div>
+    </footer>
+  </body>
+</html>
