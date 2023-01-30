@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/css/style.css">
+  </head>
+  <body>
+    <div class="top-wrapper">
+      <div class="container">
+        <h1>Posts</h1>
+        <h3>(7/7)</h3>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <div id="header"></div>
+    <script>
+      $(function(){
+          $('#header').load('/header.html');
+      });
+  </script>
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/css/posts.css">
+    <script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      processEscapes: true,
+      tags: "ams",
+      autoload: {
+        color: [],
+        colorV2: ['color']
+      },
+      packages: {'[+]': ['noerrors']}
+    },
+    chtml: {
+      matchFontHeight: false,
+      displayAlign: "left",
+      displayIndent: "2em"
+    },
+    options: {
+      renderActions: {
+        /* add a new named action to render <script type="math/tex"> */
+        find_script_mathtex: [10, function (doc) {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/);
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+            const text = document.createTextNode('');
+            node.parentNode.replaceChild(text, node);
+            math.start = {node: text, delim: '', n: 0};
+            math.end = {node: text, delim: '', n: 0};
+            doc.math.push(math);
+          }
+        }, '']
+      }
+    },
+    loader: {
+      load: ['[tex]/noerrors']
+    }
+  };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
+  </head>
+  <body>
+    <div class="btn-wrapper">
+      <a href="/posts" class="btn back_btn previous"><<<</a>
+      <a href="/posts/6" class="btn back_btn previous"><</a>
+    </div>
+
+    <div class="myposts">
+
+      <div class="post">
+        <a href="/few_shot_learning/23/01/05/SiamenseNet4OSL.html">
+          <img class="post_img" src="/assets/images/posts/SiameseNet4OSL/framework.png">
+          <div class="post_detail"> 
+            <p><b>Siamese Neural Networks for One-Shot Image Recognition</b></p>
+            <p class="post_p"><h1 id=""></h1>
+<ul>
+  <li>2つのサンプルを入力のペアとして同一のモデルに通し，ペアが同クラスか否かを判別するSiamese Networkを提案</li>
+  <li>omniglotで93.42%を達成．Siamese Networkは後の距離学習や対象学習でも利用</li>
+</ul>
+</p>
+            <p>
+              <span class="fa fa-calendar"></span> Jan 5, 2023
+              <span class="fa fa-folder"></span> Few-Shot Learning
+              <span class="fa fa-graduation-cap"></span> ICML(2015)
+            </p>
+          </div>
+        </a>
+      </div>
+
+        <div class="post">
+          <a href="/active_learning/23/01/04/DOCSiameseNetAL.html">
+            <img class="post_img" src="/assets/images/posts/DOCSiameseNetAL/framework.png">
+            <div class="post_detail"> 
+              <p><b>Data-efficient Online Classification with Siamese Networks and Active Learning</b></p>
+              <p class="post_p"><h1 id=""></h1>
+<ul>
+  <li>オンライン学習に対して，順に得られるデータが必要か否かをSiameseNetとサンプルを保存するキューを用いた手法を提案</li>
+  <li>不均衡，非定常データにおけるone-by-oneオンラインクラス分類に対し，新たな観点を提供すると同時に，sea4，circles10で既存手法を上回ることを確認</li>
+</ul>
+</p>
+              <p>
+                <span class="fa fa-calendar"></span> Jan 4, 2023
+                <span class="fa fa-folder"></span> active learning
+                <span class="fa fa-graduation-cap"></span> IJCNN(2020)
+              </p>
+            </div>
+          </a>
+        </div>
+        
+      <div class="post">
+        <a href="/active_learning/23/01/04/ASSSL.html">
+          <img class="post_img" src="/assets/images/posts/ASSSL/framework.png">
+          <div class="post_detail"> 
+            <p><b>Active Self-Semi-Supervised Learning for Few Labeled Samples Fast Training</b></p>
+            <p class="post_p"><h1 id=""></h1>
+<ul>
+  <li>自己教師あり学習の事前学習から得られる疑似ラベルを用いて半教師あり学習に有益な少数サンプルを選択するフレームワークとしてActive Self-Semi-Supervised Learningを提案</li>
+  <li>既存手法と比べはるかに少ない枚数で高精度を出すことが可能であり，CIFAR10では10枚のアノテーションで83%を達成</li>
+</ul>
+</p>
+            <p>
+              <span class="fa fa-calendar"></span> Jan 4, 2023
+              <span class="fa fa-folder"></span> active learning
+              <span class="fa fa-graduation-cap"></span> arXiv
+            </p>
+          </div>
+        </a>
+      </div>
+
+      <div class="post">
+        <a href="/active_learning/23/01/04/SIMILAR.html">
+          <img class="post_img" src="/assets/images/posts/SIMILAR/head.png">
+          <div class="post_detail"> 
+            <p><b>SIMILAR: Submodular Information Measures Based Active Learning In Realistic Scenarios</b></p>
+            <p class="post_p"><h1 id=""></h1>
+<ul>
+  <li>獲得関数に劣モジュラ情報量(SIM)を用いることで，不均衡・冗長性・OODに対し有効なDAL手法を提案</li>
+  <li>SMI，SCG,SCMIを使い分けることで，CIFAR10において各状況下で高精度を達成</li>
+</ul>
+</p>
+            <p>
+              <span class="fa fa-calendar"></span> Jan 4, 2023
+              <span class="fa fa-folder"></span> active learning
+              <span class="fa fa-graduation-cap"></span> arXiv
+            </p>
+          </div>
+        </a>
+      </div>
+
+      <div class="post">
+        <a href="/active_learning/23/01/03/GLISTER.html">
+          <img class="post_img" src="/assets/images/posts/GLISTER/framework.png">
+          <div class="post_detail"> 
+            <p><b>GLISTER: Generalization based Data Subset Selection for Efficient and Robust Learning</b></p>
+            <p class="post_p"><h1 id=""></h1>
+<ul>
+  <li>DALにおける有益なサブセットの選択を劣モジュラ最適化で定式化することで，効率性，ロバスト性の両方を重視した手法としてGLISTERを提案</li>
+  <li>CIFAR10やMNISTで，不均衡・ミスラベルの場合でも高精度</li>
+</ul>
+</p>
+            <p>
+              <span class="fa fa-calendar"></span> Jan 3, 2023
+              <span class="fa fa-folder"></span> active learning
+              <span class="fa fa-graduation-cap"></span> arXiv
+            </p>
+          </div>
+        </a>
+      </div>
+
+      <div class="post">
+        <a href="/active_learning/22/12/31/DMBAL.html">
+          <img class="post_img" src="/assets/images/posts/DMBAL/head.png">
+          <div class="post_detail"> 
+            <p><b>Diverse mini-batch Active Learning</b></p>
+            <p class="post_p"><h1 id=""></h1>
+<ul>
+<li>既存の逐次的にサンプルを選択し追加するフレームワークはDLに対しては非実用的</li>
+<li>不確実性と代表性・多様性を同時に考慮するために，Marginとk-meansを使用するハイブリット戦略を提案</li>
+</ul>
+</p>
+            <p>
+              <span class="fa fa-calendar"></span> Dec 31, 2022
+              <span class="fa fa-folder"></span> active learning
+              <span class="fa fa-graduation-cap"></span> ACM journal
+            </p>
+          </div>
+        </a>
+      </div>
+
+
+      <div class="post">
+        <a href="/active_learning/22/12/31/DRAL4PRI.html">
+          <img class="post_img" src="/assets/images/posts/DRAL4PRI/framework.png">
+          <div class="post_detail"> 
+            <p><b>Deep Reinforcement Active Learning for Human-In-The-Loop Person Re-Identification</b></p>
+            <p class="post_p"><h1 id=""></h1>
+<ul>
+<li>ヒトのRe-IDタスクに対しDALを適用することで，アノテーションの際の負担やエラーを低減，複数のカメラへの応用を可能に</li>
+<li>クエリ戦略に強化学習を導入し，学習段階に依存するクエリが可能</li>
+</ul>
+</p>
+            <p>
+              <span class="fa fa-calendar"></span> Dec 31, 2022
+              <span class="fa fa-folder"></span> active learning
+              <span class="fa fa-graduation-cap"></span> ACM journal
+            </p>
+          </div>
+        </a>
+      </div>
+      
+
+      <div class="post">
+        <a href="/active_learning/22/12/31/AComparativeSurveyOfDAL.html">
+          <img class="post_img" src="/assets/images/posts/AComparativeSurveyOfDAL/head.png">
+          <div class="post_detail"> 
+            <p><b>A Comparative Survey of Deep Active Learning</b></p>
+            <p class="post_p"><h1 id=""></h1>
+<ul>
+<li>2022年に発表された深層能動学習(DAL)のサーベイ論文．本論文ではプールベースサンプリング手法について細かくサーベイ</li>
+<li>大きく15種類のクエリ戦略と10種類のしぜ前画像データセットを用いて性能評価</li>
+</ul>
+</p>
+            <p>
+              <span class="fa fa-calendar"></span> Dec 31, 2022
+              <span class="fa fa-folder"></span> active learning
+              <span class="fa fa-graduation-cap"></span> arXiv
+            </p>
+          </div>
+        </a>
+      </div>
+
+
+      <div class="post">
+        <a href="/active_learning/22/12/31/DBALSurvey.html">
+          <img class="post_img" src="/assets/images/posts/DBALSurvey/framework.png">
+          <div class="post_detail"> 
+            <p><b>Deep Bayesian Active Learning, A Brief Survey on Recent Advances</b></p>
+            <p class="post_p"><h1 id=""></h1>
+<ul>
+<li>深層能動学習(DAL)の中でも，Bayes手法に絞ったサーベイ論文．</li>
+<li>DL登場以前と以降で，Bayes手法がどのように変化していったかを紹介</li>
+</ul>
+</p>
+            <p>
+              <span class="fa fa-calendar"></span> Dec 31, 2022
+              <span class="fa fa-folder"></span> active learning
+              <span class="fa fa-graduation-cap"></span> ACM journal
+            </p>
+          </div>
+        </a>
+      </div>
+    
+  </div>
+
+
+        <div class="post">
+          <a href="/active_learning/22/12/31/ASurveyOfDAL.html">
+            <img class="post_img" src="/assets/images/posts/ASurveyOfDAL/dal_framework.png">
+            <div class="post_detail"> 
+              <p><b>A Survey of Deep Active Learning</b></p>
+              <p class="post_p"><h1 id=""></h1>
+<ul>
+  <li>2020年に発表された深層能動学習(DAL)のサーベイ論文</li>
+  <li>DALとは何か??という話から最新のプールベースサンプリング手法，ベイズや強化学習を組み込んだ手法等を幅広くサーベイ</li>
+</ul>
+</p>
+              <p>
+                <span class="fa fa-calendar"></span> Dec 31, 2022
+                <span class="fa fa-folder"></span> active learning
+                <span class="fa fa-graduation-cap"></span> ACM journal
+              </p>
+            </div>
+          </a>
+        </div>
+    
+    <div class="btn-wrapper">
+      <a href="/posts" class="btn back_btn previous"><<<</a>
+      <a href="/posts/6" class="btn back_btn previous"><</a>
+    </div>
+  </body>
+</html>
+  </body>
+</html>
+    <footer>
+      <div class="btn-wrapper">
+        <a href="ueno:ueno[at]cv.info.gifu-u.ac.jp" class="bottom-btn email"><i class="fa fa-envelope fa-2x"></i></a>
+        <a href="https://twitter.com/ianidaime" class="bottom-btn twitter"><i class="fa fa-twitter fa-2x"></i></a>
+        <a href="https://github.com/ia-gu" class="bottom-btn github"><i class="fa fa-github fa-2x"></i></a>
+      </div>
+      <div class="container">
+        <p>The page is based on <a href="https://github.com/Absolute-Value/Absolute-Value.github.io" >here</a></p>
+        <p>2022 Copyright</p>
+      </div>
+    </footer>
+  </body>
+</html>

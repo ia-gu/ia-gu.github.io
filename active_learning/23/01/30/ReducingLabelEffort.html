@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <div id="header"></div>
+    <script>
+      $(function(){
+          $('#header').load('/header.html');
+      });
+  </script>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      processEscapes: true,
+      tags: "ams",
+      autoload: {
+        color: [],
+        colorV2: ['color']
+      },
+      packages: {'[+]': ['noerrors']}
+    },
+    chtml: {
+      matchFontHeight: false,
+      displayAlign: "left",
+      displayIndent: "2em"
+    },
+    options: {
+      renderActions: {
+        /* add a new named action to render <script type="math/tex"> */
+        find_script_mathtex: [10, function (doc) {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/);
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+            const text = document.createTextNode('');
+            node.parentNode.replaceChild(text, node);
+            math.start = {node: text, delim: '', n: 0};
+            math.end = {node: text, delim: '', n: 0};
+            doc.math.push(math);
+          }
+        }, '']
+      }
+    },
+    loader: {
+      load: ['[tex]/noerrors']
+    }
+  };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
+  </head>
+  <body>
+    <center><img class="hero" src="/assets/images/posts/ReducingLabelEffort/framework.png"></center>
+    <h1>Reducing Label Effort: Self-Supervised meets Active Learning</h1>
+    <p><span class="fa fa-link"></span><a href="https://arxiv.org/abs/2108.11458"> https://arxiv.org/abs/2108.11458</a></p>
+    <p><span class="fa fa-calendar"></span> Jan 30, 2023 </p>
+    <p><span class="fa fa-flag"></span> <a href="/active_learning"> Active Learning</a></p>
+    <p><span class="fa fa-graduation-cap"></span> ICCVW (2021) </p>
+
+    <h2 id="1-どんなもの">1. どんなもの??何ができる??</h2>
+
+<ul>
+  <li>DALの前にSSLを行うことでDALの性能を向上するフレームワークを提案</li>
+  <li>CIFAR，TinyImageNetでラベルデータ数が少ない場合にスクラッチと比べ大きく性能向上することを確認</li>
+</ul>
+
+
+<h2 id="2-どうやって">2. どうやって??</h2>
+<ul>
+  <li>↓フレームワーク全体</li>
+  <center><img src="/assets/images/posts/ReducingLabelEffort/framework.png" /></center><br />
+    <ul><li>DALでは識別器のみを学習(線形評価)</li></ul>
+    <li>SSLにはSimSiamを使用</li>
+  <center><img src="/assets/images/posts/ReducingLabelEffort/simsiam.png" /></center><br />
+  <li>SimSiamのLoss</li>
+  <center><img src="/assets/images/posts/ReducingLabelEffort/loss.png" /></center><br />
+    <ul><li>コサイン類似度</li></ul>
+    <ul><li>CNNがLossを小さくするように学習するため(-)倍</li></ul>
+</ul>
+
+<h2 id="3-結果は">3. 結果は??</h2>
+<ul>
+  <li>CIFAR10 比較</li>
+    <center><img src="/assets/images/posts/ReducingLabelEffort/result_cifar10.png" /></center><br />
+    <li>CIFAR100 比較</li>
+    <center><img src="/assets/images/posts/ReducingLabelEffort/result_cifar100.png" /></center><br />
+    <li>TinyImageNet 比較</li>
+    <center><img src="/assets/images/posts/ReducingLabelEffort/result_tinyimagenet.png" /></center><br />
+    <li>初期ラベルデータが訓練全体の50%の場合</li>
+    <center><img src="/assets/images/posts/ReducingLabelEffort/result_p50.png" /></center>
+</ul>
+
+<h2 id="4-課題は">4. 課題は??</h2>
+<ul>
+  </ul>
+
+    <div class="btn-wrapper">
+      <a href="/posts" class="btn back_btn">Back</a>
+    </div>
+  </body>
+</html>
+    <footer>
+      <div class="btn-wrapper">
+        <a href="mailto:ueno[at]cv.info.gifu-u.ac.jp" class="bottom-btn email"><i class="fa fa-envelope fa-2x"></i></a>
+        <a href="https://twitter.com/ianidaime" class="bottom-btn twitter"><i class="fa fa-twitter fa-2x"></i></a>
+        <a href="https://github.com/ia-gu" class="bottom-btn github"><i class="fa fa-github fa-2x"></i></a>
+      </div>
+      <div class="container">
+        <p>The page is based on <a href="https://github.com/Absolute-Value/Absolute-Value.github.io" >here</a></p>
+        <p>2022 Copyright</p>
+      </div>
+    </footer>
+  </body>
+</html>
