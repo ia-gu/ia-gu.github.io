@@ -79,7 +79,7 @@
 <li>CIFAR10，MNISTにおいて，不均衡やノイズラベルを含む場合も既存手法と比べ精度が高いことを確認</li>
 <center><img src="/assets/images/posts/GLISTER/result.png" /></center><br />
 <li>DALのフレームワークに合わせたGLISTER ACTIVEが各設定において既存手法より精度が高いことを確認</li>
-<center><img src="/assets/images/posts/GLISTER/al_result.png" /></center><br />
+<center><img src="/assets/images/posts/GLISTER/al_result.png" /></center>
 </ul>
 
 <h2 id="4-課題は">4. 課題は??</h2>
@@ -95,16 +95,11 @@
     </div>
   </body>
 </html>
-    <footer>
-      <div class="btn-wrapper">
-        <a href="mailto:ueno[at]cv.info.gifu-u.ac.jp" class="bottom-btn email"><i class="fa fa-envelope fa-2x"></i></a>
-        <a href="https://twitter.com/ianidaime" class="bottom-btn twitter"><i class="fa fa-twitter fa-2x"></i></a>
-        <a href="https://github.com/ia-gu" class="bottom-btn github"><i class="fa fa-github fa-2x"></i></a>
-      </div>
-      <div class="container">
-        <p>The page is based on <a href="https://github.com/Absolute-Value/Absolute-Value.github.io" >here</a></p>
-        <p>2022 Copyright</p>
-      </div>
-    </footer>
-  </body>
+<div id="footer"></div>
+<script>
+  $(function(){
+      $('#footer').load('/footer.html');
+  });
+</script>
+</body>
 </html>

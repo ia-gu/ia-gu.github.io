@@ -73,13 +73,13 @@
   <li>Coresetの選択をk-centerで近似</li>
   <center><img src="/assets/images/posts/Core_set/k_center_formula.png" /></center><br />
   <ul><li>k-center問題はNP困難なので使用不能</li></ul>
-  <li>初期化にk-center greedyを使用</li>
+  <li>代わりにk-center greedyを使用</li>
   <center><img src="/assets/images/posts/Core_set/k_center_greedy.png" /></center><br />
   <li>探索はロバスト性を持たせるために外れ値の上限を設定したmixed integer programを使用</li>
   <center><img src="/assets/images/posts/Core_set/robust_k_center.png" /></center><br />
   <li>アルゴリズム</li>
   <center><img src="/assets/images/posts/Core_set/algorithm.png" /></center><br />
-  <center><img src="/assets/images/posts/Core_set/algorithm_vis.png" /></center><br />
+  <center><img src="/assets/images/posts/Core_set/algorithm_vis.png" /></center>
 </ul>
 
 <h2 id="3-結果は">3. 結果は??</h2>
@@ -87,7 +87,7 @@
     <li>弱教師モデル 比較結果</li>
     <center><img src="/assets/images/posts/Core_set/result_wsm.png" /></center><br />
     <li>教師モデル 比較結果</li>
-    <center><img src="/assets/images/posts/Core_set/result_fsm.png" /></center><br />
+    <center><img src="/assets/images/posts/Core_set/result_fsm.png" /></center>
 </ul>
 
 <h2 id="4-課題は">4. 課題は??</h2>
@@ -99,16 +99,11 @@
     </div>
   </body>
 </html>
-    <footer>
-      <div class="btn-wrapper">
-        <a href="mailto:ueno[at]cv.info.gifu-u.ac.jp" class="bottom-btn email"><i class="fa fa-envelope fa-2x"></i></a>
-        <a href="https://twitter.com/ianidaime" class="bottom-btn twitter"><i class="fa fa-twitter fa-2x"></i></a>
-        <a href="https://github.com/ia-gu" class="bottom-btn github"><i class="fa fa-github fa-2x"></i></a>
-      </div>
-      <div class="container">
-        <p>The page is based on <a href="https://github.com/Absolute-Value/Absolute-Value.github.io" >here</a></p>
-        <p>2022 Copyright</p>
-      </div>
-    </footer>
-  </body>
+<div id="footer"></div>
+<script>
+  $(function(){
+      $('#footer').load('/footer.html');
+  });
+</script>
+</body>
 </html>

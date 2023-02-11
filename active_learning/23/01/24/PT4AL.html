@@ -74,7 +74,7 @@
   <center><img src="/assets/images/posts/PT4AL/loss_pt.png" /></center><br />
   <li>全データをLossでソートし，サイクル数分のバッチに分割し，各サイクルで対応するバッチからLeastConfでクエリ</li>
   <li>↓フレームワーク全体</li>
-  <center><img src="/assets/images/posts/PT4AL/framework.png" /></center><br />
+  <center><img src="/assets/images/posts/PT4AL/framework.png" /></center>
 </ul>
 
 <h2 id="3-結果は">3. 結果は??</h2>
@@ -88,7 +88,7 @@
     <li>Leastconf以外のクエリ 比較結果</li>
     <center><img src="/assets/images/posts/PT4AL/result_q.png" /></center><br />
     <li>降順ソート/昇順ソート 比較結果</li>
-    <center><img src="/assets/images/posts/PT4AL/result_sort.png" /></center><br />
+    <center><img src="/assets/images/posts/PT4AL/result_sort.png" /></center>
 </ul>
 
 <h2 id="4-課題は">4. 課題は??</h2>
@@ -102,16 +102,11 @@
     </div>
   </body>
 </html>
-    <footer>
-      <div class="btn-wrapper">
-        <a href="mailto:ueno[at]cv.info.gifu-u.ac.jp" class="bottom-btn email"><i class="fa fa-envelope fa-2x"></i></a>
-        <a href="https://twitter.com/ianidaime" class="bottom-btn twitter"><i class="fa fa-twitter fa-2x"></i></a>
-        <a href="https://github.com/ia-gu" class="bottom-btn github"><i class="fa fa-github fa-2x"></i></a>
-      </div>
-      <div class="container">
-        <p>The page is based on <a href="https://github.com/Absolute-Value/Absolute-Value.github.io" >here</a></p>
-        <p>2022 Copyright</p>
-      </div>
-    </footer>
-  </body>
+<div id="footer"></div>
+<script>
+  $(function(){
+      $('#footer').load('/footer.html');
+  });
+</script>
+</body>
 </html>

@@ -76,7 +76,7 @@
   <center><img src="/assets/images/posts/LR4AL/loss_batch.png" /></center><br />
   <li>クエリ時はランキングの高いサンプルを選択</li>
   <li>↓フレームワーク全体図</li>
-  <center><img src="/assets/images/posts/LR4AL/framework.png" /></center><br />
+  <center><img src="/assets/images/posts/LR4AL/framework.png" /></center>
 </ul>
 
 <h2 id="3-結果は">3. 結果は??</h2>
@@ -84,7 +84,7 @@
     <li>CIFAR10 比較結果</li>
     <center><img src="/assets/images/posts/LR4AL/result_cifar10.png" /></center><br />
     <li>CelebA 比較結果</li>
-    <center><img src="/assets/images/posts/LR4AL/result_celeba.png" /></center><br />
+    <center><img src="/assets/images/posts/LR4AL/result_celeba.png" /></center>
 </ul>
 
 <h2 id="4-課題は">4. 課題は??</h2>
@@ -98,16 +98,11 @@
     </div>
   </body>
 </html>
-    <footer>
-      <div class="btn-wrapper">
-        <a href="mailto:ueno[at]cv.info.gifu-u.ac.jp" class="bottom-btn email"><i class="fa fa-envelope fa-2x"></i></a>
-        <a href="https://twitter.com/ianidaime" class="bottom-btn twitter"><i class="fa fa-twitter fa-2x"></i></a>
-        <a href="https://github.com/ia-gu" class="bottom-btn github"><i class="fa fa-github fa-2x"></i></a>
-      </div>
-      <div class="container">
-        <p>The page is based on <a href="https://github.com/Absolute-Value/Absolute-Value.github.io" >here</a></p>
-        <p>2022 Copyright</p>
-      </div>
-    </footer>
-  </body>
+<div id="footer"></div>
+<script>
+  $(function(){
+      $('#footer').load('/footer.html');
+  });
+</script>
+</body>
 </html>

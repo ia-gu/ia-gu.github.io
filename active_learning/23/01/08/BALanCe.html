@@ -77,7 +77,7 @@
   <ul><li>MCドロップアウトサンプル上の同値類を正確に構成することは不可能な点に注意</li></ul>
     <center><img src="/assets/images/posts/BALanCe/balance_approx.png" /></center><br />
   <li>以上を基に，Batch-Modeの獲得関数を↓のように定義</li>
-  <center><img src="/assets/images/posts/BALanCe/balance_b.png" /></center>
+  <center><img src="/assets/images/posts/BALanCe/balance_batch.png" /></center>
   
 </ul>
 
@@ -98,16 +98,11 @@
     </div>
   </body>
 </html>
-    <footer>
-      <div class="btn-wrapper">
-        <a href="mailto:ueno[at]cv.info.gifu-u.ac.jp" class="bottom-btn email"><i class="fa fa-envelope fa-2x"></i></a>
-        <a href="https://twitter.com/ianidaime" class="bottom-btn twitter"><i class="fa fa-twitter fa-2x"></i></a>
-        <a href="https://github.com/ia-gu" class="bottom-btn github"><i class="fa fa-github fa-2x"></i></a>
-      </div>
-      <div class="container">
-        <p>The page is based on <a href="https://github.com/Absolute-Value/Absolute-Value.github.io" >here</a></p>
-        <p>2022 Copyright</p>
-      </div>
-    </footer>
-  </body>
+<div id="footer"></div>
+<script>
+  $(function(){
+      $('#footer').load('/footer.html');
+  });
+</script>
+</body>
 </html>
