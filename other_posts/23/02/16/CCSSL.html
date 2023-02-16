@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <div id="header"></div>
+    <script>
+      $(function(){
+          $('#header').load('/header.html');
+      });
+  </script>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      processEscapes: true,
+      tags: "ams",
+      autoload: {
+        color: [],
+        colorV2: ['color']
+      },
+      packages: {'[+]': ['noerrors']}
+    },
+    chtml: {
+      matchFontHeight: false,
+      displayAlign: "left",
+      displayIndent: "2em"
+    },
+    options: {
+      renderActions: {
+        /* add a new named action to render <script type="math/tex"> */
+        find_script_mathtex: [10, function (doc) {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/);
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+            const text = document.createTextNode('');
+            node.parentNode.replaceChild(text, node);
+            math.start = {node: text, delim: '', n: 0};
+            math.end = {node: text, delim: '', n: 0};
+            doc.math.push(math);
+          }
+        }, '']
+      }
+    },
+    loader: {
+      load: ['[tex]/noerrors']
+    }
+  };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
+  </head>
+  <body>
+    <center><img class="hero" src="/assets/images/posts/CCSSL/head.png"></center>
+    <h1>Class-Aware Contrastive Semi-Supervised Learning</h1>
+    <p><span class="fa fa-link"></span><a href="https://arxiv.org/abs/2203.02261"> https://arxiv.org/abs/2203.02261</a></p>
+    <p><span class="fa fa-calendar"></span> Feb 16, 2023 </p>
+    <p><span class="fa fa-flag"></span> <a href="/other_posts/"> Semi-Supervised Learning</a></p>
+    <p><span class="fa fa-graduation-cap"></span> CVPR (2022) </p>
+
+    <h2 id="1-どんなもの">1. どんなもの??何ができる??</h2>
+
+<ul>
+  <li>OODデータが混ざっていた場合にも機能する半教師対照学習手法CCSSLを提案</li>
+  <li>OODを上手く除外することでCIFAR100，STL10の精度を改善</li>
+</ul>
+
+
+<h2 id="2-どうやって">2. どうやって??</h2>
+<ul>
+  <li>↓フレームワーク全体</li>
+  <center><img src="/assets/images/posts/CCSSL/framework.png" /></center><br />
+  <ul><li>弱いデータ拡張をしたデータの予測を用いて疑似ラベルを生成</li></ul>
+  <center><img src="/assets/images/posts/CCSSL/lu.png" /></center><br />
+  <ul><li>疑似ラベルを用いて教師あり対照行列を生成</li></ul>
+  <ul><li>確証バイアスの低減，再重みづけモジュールを用いてOODを除外した行列を生成</li></ul>
+  <ul><li>強いデータ拡張をした2つのデータの埋め込みベクトルから行列を獲得し↑を教師として最適化</li></ul>
+  <center><img src="/assets/images/posts/CCSSL/contrastive_loss.png" /></center><br />
+  <center><img src="/assets/images/posts/CCSSL/lci.png" /></center><br />
+  <li>↓Loss</li>
+  <center><img src="/assets/images/posts/CCSSL/loss.png" /></center><br />
+  <ul><ul><li>疑似ラベルを用いてClassification headはxエントロピー，Projection headはグラフベースのContrastive Lossで学習</li></ul></ul>
+  <center><img src="/assets/images/posts/CoMatch/wq.png" /></center><br />
+  <center><img src="/assets/images/posts/CoMatch/wz.png" /></center><br />
+  <center><img src="/assets/images/posts/CoMatch/contrastive_loss.png" /></center><br />
+</ul>
+
+<h2 id="3-結果は">3. 結果は??</h2>
+<ul>
+    <li>CIFAR，STL10 結果</li>
+    <center><img src="/assets/images/posts/CCSSL/result_cifar.png" /></center><br />
+  <li>Grad-CAMによる比較</li>
+    <center><img src="/assets/images/posts/CCSSL/gradcam.png" /></center>
+  </ul>
+
+<h2 id="4-課題は">4. 課題は??</h2>
+<ul>
+    <li>CIFAR10で精度が向上しないのはOODが少なく簡単だかららしい</li>
+    <ul><li>それを事前に把握しておくことは可能なのか</li></ul>
+  </ul>
+
+    <div class="btn-wrapper">
+      <a href="/posts" class="btn back_btn">Back</a>
+    </div>
+  </body>
+</html>
+<div id="footer"></div>
+<script>
+  $(function(){
+      $('#footer').load('/footer.html');
+  });
+</script>
+</body>
+</html>
