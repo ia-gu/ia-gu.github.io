@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-  <title>~~~ Learning 概説</title>
+  <title>Self-Supervised Learning 概説</title>
   <head>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <div id="header"></div>
@@ -52,7 +52,7 @@
 <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
   </head>
   <body>
-    <center><img class="hero" src="/assets/images/notes/ssl/cl_comparison.png"></center>
+    <center><img class="hero" src="/assets/images/notes/self_supervised_learning/cl_comparison.png"></center>
     <h1>Self-Supervised Learning 概説</h1>
     <p><span class="fa fa-calendar"></span> Feb 4, 2023 </p>
     <p><span class="fa fa-flag"></span> <a href="/self_supervised_learning/index.html"> Self-Supervised Learning</a></p>
@@ -82,16 +82,16 @@
 <h3>Pretext Task 概説</h3>
 <ul>
 <li>Color Transformation，Geometric Transformation</li>
-<center><img src="/assets/images/notes/ssl/color_transformation.png"></center>
-<center><img src="/assets/images/notes/ssl/geometric_transformation.png"></center></br>
+<center><img src="/assets/images/notes/self_supervised_learning/color_transformation.png"></center>
+<center><img src="/assets/images/notes/self_supervised_learning/geometric_transformation.png"></center></br>
 <ul><li>ガウスぼかし，Rotation等を行ったデータを入力し，処理の内容を推測</li></ul>
 <ul><li>通常，Data Augmentationとして使用する処理であり，処理を行った段階で教師ラベルを獲得可能</li></ul>
 <li>Jigsaw Puzzle</li>
-<center><img src="/assets/images/notes/ssl/jigsaw_puzzle.png"></center></br>
+<center><img src="/assets/images/notes/self_supervised_learning/jigsaw_puzzle.png"></center></br>
 <ul><li>画像をパッチ分割し，順番を混ぜてジグソーパズルを解くように学習</li></ul>
 <ul><li>実際は，端同士の色で判断しないように，といった制約を設けることで学習可能</li></ul>
 <li>対照学習｜Contrastive Learning</li>
-<center><img src="/assets/images/notes/ssl/contrastive_learning.png"></center></br>
+<center><img src="/assets/images/notes/self_supervised_learning/contrastive_learning.png"></center></br>
 <ul><li>異なる2種のData Augmentationから得られた正例を近づけ，負例を遠ざけるような学習方法</li></ul>
 <ul><ul><li>正例｜同じデータからAugmentされたペア</li></ul></ul>
 <ul><ul><li>負例｜異なるデータからAugmentされたペア</li></ul></ul>
