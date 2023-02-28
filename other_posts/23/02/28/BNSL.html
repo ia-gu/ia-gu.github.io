@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <div id="header"></div>
+    <script>
+      $(function(){
+          $('#header').load('/header.html');
+      });
+  </script>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      processEscapes: true,
+      tags: "ams",
+      autoload: {
+        color: [],
+        colorV2: ['color']
+      },
+      packages: {'[+]': ['noerrors']}
+    },
+    chtml: {
+      matchFontHeight: false,
+      displayAlign: "left",
+      displayIndent: "2em"
+    },
+    options: {
+      renderActions: {
+        /* add a new named action to render <script type="math/tex"> */
+        find_script_mathtex: [10, function (doc) {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/);
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+            const text = document.createTextNode('');
+            node.parentNode.replaceChild(text, node);
+            math.start = {node: text, delim: '', n: 0};
+            math.end = {node: text, delim: '', n: 0};
+            doc.math.push(math);
+          }
+        }, '']
+      }
+    },
+    loader: {
+      load: ['[tex]/noerrors']
+    }
+  };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
+  </head>
+  <body>
+    <center><img class="hero" src="/assets/images/posts/BNSL/example_bnsl.png"></center>
+    <h1>Broken Neural Scaling Laws</h1>
+    <p><span class="fa fa-link"></span><a href="https://arxiv.org/abs/2210.14891"> https://arxiv.org/abs/2210.14891</a></p>
+    <p><span class="fa fa-calendar"></span> Feb 28, 2023 </p>
+    <p><span class="fa fa-flag"></span> <a href="/other_posts/"> Neural Scaling Law</a></p>
+    <p><span class="fa fa-graduation-cap"></span> arXiv (2022) </p>
+
+    <h2 id="1-どんなもの">1. どんなもの??何ができる??</h2>
+
+<ul>
+  <li>二重降下のように既存のスケーリング則では解決できない問題に対しても機能するBNSL(Broken Neural Scaling Laws)を提案</li>
+  <li>提案手法による外挿の限界について考察</li>
+</ul>
+
+
+<h2 id="2-どうやって">2. どうやって??</h2>
+<ul>
+  <li>↓BNSLの式</li>
+  <center><img src="/assets/images/posts/BNSL/bnsl_funk.png" /></center><br />
+  <ul><li>y｜性能評価のメトリック</li></ul>
+  <ul><li>x｜スケーリングの際の値(データセットサイズ，パラメータ数等)</li></ul>
+  <ul><li>その他のパラメータは推定値</li></ul>
+  <ul><ul><li>n｜性能がbreakした回数，n=0で式はべき乗則</li></ul></ul>
+  <ul><ul><li>a｜x=∞としたときのyの変動量の限界</li></ul></ul>
+  <ul><ul><li>b｜対数グラフ上での切片</li></ul></ul>
+  <ul><ul><li>c0｜対数グラフ上で最初に見られる直線の傾き</li></ul></ul>
+  <ul><ul><li>ci｜i回目の近似によって得られた対数グラフ上の直線の傾き</li></ul></ul>
+  <ul><ul><li>di｜i回目のbreakが起きた時のxの値</li></ul></ul>
+  <ul><ul><li>fi｜i回目のbreakに関するメトリック</li></ul></ul>
+  <ul><ul><ul><li>fiが小さいとき対数グラフ上でより直線的に(鋭く)breakする</li></ul></ul></ul>
+  <ul><ul><ul><li>fiが大きいとき対数グラフ上でより滑らかにbreakする</li></ul></ul></ul>
+</ul>
+
+<h2 id="3-結果は">3. 結果は??</h2>
+<ul>
+    <li>既存のスケーリング則手法</li>
+    <center><img src="/assets/images/posts/BNSL/exsisting_func.png" /></center><br />
+    <center><img src="/assets/images/posts/BNSL/existing_func2.png" /></center><br />
+    <li>CVデータにおける外挿結果</li>
+    <center><img src="/assets/images/posts/BNSL/result_1.png" /></center>
+    <center><img src="/assets/images/posts/BNSL/result_2.png" /></center><br />
+  <ul><li>メトリック｜RMSLE(Root Mean Square Log Error)</li></ul>
+    <li>言語データにおける外挿結果</li>
+    <center><img src="/assets/images/posts/BNSL/result_nlp.png" /></center><br />
+    <li>強化学習タスクにおける外挿結果</li>
+    <center><img src="/assets/images/posts/BNSL/result_rl.png" /></center>
+</ul>
+
+<h2 id="4-課題は">4. 課題は??</h2>
+  <ul><li>公式実装のURLが切れてる</li></ul>
+    <div class="btn-wrapper">
+      <a href="/posts" class="btn back_btn">Back</a>
+    </div>
+  </body>
+</html>
+<div id="footer"></div>
+<script>
+  $(function(){
+      $('#footer').load('/footer.html');
+  });
+</script>
+</body>
+</html>
