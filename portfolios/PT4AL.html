@@ -1,6 +1,6 @@
     <!DOCTYPE html>
     <html>
-      <title>Learning Loss for Active Learning 実装</title>
+      <title>PT4AL 実装</title>
       <head>
         <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
         <div id="header"></div>
@@ -52,29 +52,35 @@
     <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
       </head>
       <body>
-        <center><img class="hero" src="/assets/images/posts/LL4AL/framework.png"></center>
-        <h1>Learning Loss for Active Learning 実装</h1>
-        <p><span class="fa fa-link"></span><a href="https://github.com/ia-gu/LearningLossForAL"> リポジトリ</a></p>
-        <p><span class="fa fa-calendar"></span> Jan 9, 2023 </p>
+        <center><img class="hero" src="/assets/images/posts/PT4AL/framework.png"></center>
+        <h1>PT4AL 実装</h1>
+        <p><span class="fa fa-link"></span><a href="https://github.com/ia-gu/PT4AL"> リポジトリ</a></p>
+        <p><span class="fa fa-calendar"></span> Feb 28, 2023 </p>
     <p><span class="fa fa-flag"></span> <a href="/active_learning/"> Active Learning</a></p>
     
         <h2 id="1-どんなもの">1. どんなもの??</h2>
     
     <ul>
-      <li>Learning Loss for Active Learning という論文内で提案されたLL4ALの再現実験を行うために実装</li>
-      <ul><li>LL4AL｜モデルの中間層の特徴量を基にサンプルに対するLossを予測するモジュールを導入し，予測Lossを基にクエリを行う手法(詳しくは<a href="/active_learning/23/01/08/LL4AL.html"> ココ</a>で解説)</li></ul>
-      <li>各サイクルでの重みをリセットする場合で89.67%，前サイクルの重みを引き継ぐ場合で92.03%を確認</li>
+      <li>PT4AL: Using Self-Supervised Pretext Tasks for Active Learning という論文内で提案されたPT4ALの再現実験を行うために実装</li>
+      <ul><li>PT4AL｜事前学習に角度予測のPretext Taskを行い，その時のLossを用いるクエリ手法を提案(詳しくは<a href="/active_learning/23/01/24/PT4AL.html"> ココ</a>で解説)</li></ul>
     </ul>
     
     
     <h2 id="2-使い方">2. 使い方</h2>
       <li><code>bash main.sh</code>を叩けば実行可能</li>
-      <li>ハイパラはconfig.pyで管理(元のリポジトリから変更してない)</li>
+      <li>ハイパラはconfig.pyで管理</li>
     
       <h2 id="3-結果">3. 結果</h2>
       <ul>
-        <li>実験ログ消しちゃいました</li>
-        <li>どこかで直す</li>
+        <!-- <li>論文中の結果</li>
+        <center><img class="hero" src="/assets/images/portfolios/pt4al/result.png"></center><br/>
+        <li>手元での結果</li>
+        <center><img class="hero" src="/assets/images/portfolios/pt4al/our_result.png"></center><br/>
+        <ul><li>再現できない原因</li></ul>
+        <ul><ul><li>重みを前サイクルのベストを引き継ぎ→リセット に変更</li></ul></ul>
+        <ul><ul><li>元のコードはテストで訓練データを使用</li></ul></ul>
+      <p><a href="https://github.com/johnsk95/PT4AL/issues/4"> 当時全く伝わらなかったissue</a></p> -->
+
       </ul>
 
     <h2 id="4-余談">4. 余談</h2>
