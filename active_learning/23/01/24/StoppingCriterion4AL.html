@@ -51,7 +51,7 @@
 <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
   </head>
   <body>
-    <center><img class="hero" src="/assets/images/posts/StoppingCriterion4AL/head.png"></center>
+    <center><img class="hero" src="/assets/images/posts/SC4AL/head.png"></center>
     <h1>Stopping Criterion for Active Learning Based on Error Stability</h1>
     <p><span class="fa fa-link"></span><a href="https://arxiv.org/abs/2104.01836"> https://arxiv.org/abs/2104.01836</a></p>
     <p><span class="fa fa-calendar"></span> Jan 24, 2023 </p>
@@ -61,43 +61,49 @@
     <h2 id="1-どんなもの">1. どんなもの??何ができる??</h2>
 
 <ul>
-  <li>任意のベイジアンALに適用可能な停止戦略を提案</li>
-  <li>謎の回帰データとMNISTで有効性を確認</li>
+  <li>汎化誤差を基に閾値を決定する，ベイズALに対し適用可能な停止戦略を提案</li>
+  <li>回帰データやMNISTに対し既存のベイズ手法を用いて提案手法の効果を検証</li>
 </ul>
 
 
 <h2 id="2-どうやって">2. どうやって??</h2>
 <ul>
-  <li>モデルfの汎化誤差を定義し，pを事後確率分布として↓を定義</li>
-  <center><img src="/assets/images/posts/StoppingCriterion4AL/loss_generalization.png" /></center>
-  <center><img src="/assets/images/posts/StoppingCriterion4AL/loss_bayesian.png" /></center>
-  <center><img src="/assets/images/posts/StoppingCriterion4AL/loss_kl.png" /></center><br />
-  <li>↓理想的な停止戦略</li>
-  <center><img src="/assets/images/posts/StoppingCriterion4AL/stop_optim.png" /></center><br />
-  <li>クエリ前後で停止の判断を行いたいため，↓のように変形</li>
-  <center><img src="/assets/images/posts/StoppingCriterion4AL/stop_query.png" /></center><br />
-  <li>↓提案する停止戦略</li>
-  <center><img src="/assets/images/posts/StoppingCriterion4AL/stop_criterion.png" /></center>
-  <center><img src="/assets/images/posts/StoppingCriterion4AL/rt.png" /></center>
-  <center><img src="/assets/images/posts/StoppingCriterion4AL/r.png" /></center>
-  <center><img src="/assets/images/posts/StoppingCriterion4AL/gamma.png" /></center>
-  <ul><li>(b-a)は上階</li></ul>
+    <li>理想的な停止戦略↓</li>
+    <center><img src="/assets/images/posts/SC4AL/optimal_sc.png" /></center><br />
+    <ul><li>汎化誤差の期待値とその時点までのアノテーションコストの和の最小値</li></ul>
+    <ul><li>→より少ない枚数で汎化誤差が小さくなるタイミング</li></ul>
+    <li>↑はテストデータを用いて汎化誤差を推定することが非現実的で，最適なクエリデータ数kもわからないため計算は困難</li>
+    <ul><li>新しいデータをクエリする前と後の汎化誤差の差を用いて，停止戦略を設計</li></ul>
+    <center><img src="/assets/images/posts/SC4AL/approx_optimal_sc.png" /></center><br />
+    <ul><li>γはk/γが[0, 1]となるように正規化するパラメータ</li></ul>
+    <li>↑は損失が単調減少する必要があるため，更に近似</li>
+    <center><img src="/assets/images/posts/SC4AL/decreasing_optimal_sc.png" /></center><br />
+    <li>ΔLをベイズ事後分布を用いて推定</li>
+    <ul><li>ベイズ事前分布p(θ)，事後分布@(θ｜S)について以下が成立</li></ul>
+    <center><img src="/assets/images/posts/SC4AL/approx_generalization_error.png" /></center><br />
+    <ul><ul><li>WはLambert関数，eは自然対数の底</li></ul></ul>
+    <ul><li>サイクルtにおけるラベル付きデータ集合がStであるため，rを↓のように定義可能となり，上限をrtで表せる</li></ul>
+    <center><img src="/assets/images/posts/SC4AL/rt.png" /></center>
+    <center><img src="/assets/images/posts/SC4AL/upper_bound.png" /></center><br />
+    <ul><li>E[E[...という連続する期待値をマルチンゲールと仮定すると，0＜η，Δ＜1で下を満たす</li></ul>
+    <center><img src="/assets/images/posts/SC4AL/lambda_t.png" /></center>
+    <center><img src="/assets/images/posts/SC4AL/supermartingale.png" /></center><br />
+    <li>アルゴリズム</li>
+   <center><img src="/assets/images/posts/SC4AL/algorithm.png" /></center>
 </ul>
 
 <h2 id="3-結果は">3. 結果は??</h2>
 <ul>
-    <li>近似とGTの相関</li>
-    <center><img src="/assets/images/posts/StoppingCriterion4AL/cor.png" /></center><br />
-    <li>使用データセット</li>
-    <center><img src="/assets/images/posts/StoppingCriterion4AL/dataset.png" /></center><br />
-    <li>結果</li>
-    <center><img src="/assets/images/posts/StoppingCriterion4AL/result1.png" /></center>
+  <li>各データセットにおける期待汎化誤差とエラー率の相関</li>
+    <center><img src="/assets/images/posts/SC4AL/correlation.png" /></center><br />
+    <li>期待汎化誤差とエラー率のプロット結果</li>
+    <center><img src="/assets/images/posts/SC4AL/result.png" /></center><br />
 </ul>
 
 <h2 id="4-課題は">4. 課題は??</h2>
 <ul>
-    <li>(もう少し結果を載せてほしい)</li>
-</ul>
+  <li>ベイズ手法以外に対しては適用不可</li>
+  </ul>
 
     <div class="btn-wrapper">
       <a href="/posts" class="btn back_btn">Back</a>
