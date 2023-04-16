@@ -55,12 +55,13 @@
 }
 .dropmenu ul li{
   overflow: hidden;
-  width: 350px;
   height: 0;
   color: var(--header);
   transition: all .2s;
 }
 .dropmenu ul li a{
+  width: 150%;
+  text-align: center;
   background-color: var(--header);
 }
 .dropmenu:hover ul li{
