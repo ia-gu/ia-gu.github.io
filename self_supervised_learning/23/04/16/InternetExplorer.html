@@ -55,14 +55,14 @@
     <h1>Internet Explorer: Targeted Representation Learning on the Open Web</h1>
     <p><span class="fa fa-link"></span><a href="https://arxiv.org/abs/2302.14051"> https://arxiv.org/abs/2302.14051</a></p>
     <p><span class="fa fa-calendar"></span> Apr 16, 2023 </p>
-    <p><span class="fa fa-flag"></span> <a href="/other_posts/"> Internet data</a></p>
+    <p><span class="fa fa-flag"></span> <a href="/self_supervised_learning/"> Self-Supervised Learning</a></p>
     <p><span class="fa fa-graduation-cap"></span> arXiv (2023) </p>
 
     <h2 id="1-どんなもの">1. どんなもの??何ができる??</h2>
 
 <ul>
   <li>ターゲットタスクの学習をサポートするようなデータをインターネットから取得し，それらのデータでSSLを行うInternet Explorerを提案</li>
-  <li>RTX 3090 1台において2日程度で学習可能でCLIPと同等か上回る精度を達成</li>
+  <li>学習時間を大きく削減しつつ，CLIPと同等か上回る精度を達成</li>
 </ul>
 
 
@@ -72,7 +72,7 @@
     <center><img src="/assets/images/posts/InternetExplorer/framework.png" /></center><br />
   <ul><li>1｜ターゲットタスクで学習し，必要なデータを検索するためのQueryを生成</li></ul>
   <ul><ul><li>検索エンジンはGoogleの機能バイアスを減らしたLAIONを比較</li></ul></ul>
-  <ul><ul><li>WordNetから146,347個の概念語を使用し，QueryはGPT-Jを用いて生成</li></ul></ul>
+  <ul><ul><li>WordNetから146,347個の概念語を使用し，QueryはGPT-J，概念分布を用いて生成</li></ul></ul>
   <ul><li>2｜1で生成したQueryで検索し，報酬が大きくなるようなサンプルを収集</li></ul>
   <ul><ul><li>全データの探索は不可能なので，上位100データに対してのみ評価</li></ul></ul>
   <ul><ul><li>報酬｜ターゲットタスクのデータと拾ってきたデータのCosine類似度（k=15）</li></ul></ul>

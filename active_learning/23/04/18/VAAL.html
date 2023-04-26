@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <div id="header"></div>
+    <script>
+      $(function(){
+          $('#header').load('/header.html');
+      });
+  </script>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      processEscapes: true,
+      tags: "ams",
+      autoload: {
+        color: [],
+        colorV2: ['color']
+      },
+      packages: {'[+]': ['noerrors']}
+    },
+    chtml: {
+      matchFontHeight: false,
+      displayAlign: "left",
+      displayIndent: "2em"
+    },
+    options: {
+      renderActions: {
+        /* add a new named action to render <script type="math/tex"> */
+        find_script_mathtex: [10, function (doc) {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/);
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+            const text = document.createTextNode('');
+            node.parentNode.replaceChild(text, node);
+            math.start = {node: text, delim: '', n: 0};
+            math.end = {node: text, delim: '', n: 0};
+            doc.math.push(math);
+          }
+        }, '']
+      }
+    },
+    loader: {
+      load: ['[tex]/noerrors']
+    }
+  };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
+  </head>
+  <body>
+    <center><img class="hero" src="/assets/images/posts/VAAL/head.png"></center>
+    <h1>Variational Adversarial Active Learning</h1>
+    <p><span class="fa fa-link"></span><a href="https://arxiv.org/abs/1904.00370"> https://arxiv.org/abs/1904.00370</a></p>
+    <p><span class="fa fa-calendar"></span> Apr 18, 2023 </p>
+    <p><span class="fa fa-flag"></span> <a href="/active_learning"> Active Learning</a></p>
+    <p><span class="fa fa-graduation-cap"></span> ICCV (2019) </p>
+
+    <h2 id="1-どんなもの">1. どんなもの??何ができる??</h2>
+
+<ul>
+  <li>潜在空間をVAEで学習し，ラベルなしデータかラベル付きデータ化を識別する敵対的ネットワークを学習するVAALを提案</li>
+  <li>タスク非依存であり，クラス識別やセグメンテーションで性能を検証</li>
+</ul>
+
+
+<h2 id="2-どうやって">2. どうやって??</h2>
+<ul>
+  <li>VAEが潜在空間を学習する↓</li>
+  <center><img src="/assets/images/posts/VAAL/L_vae.png" /></center><br />
+  <ul><li>q, pはそれぞれエンコーダ・デコーダのパラメータφ, θより決定</li></ul>
+  <li>↓フレームワーク</li>
+  <center><img src="/assets/images/posts/VAAL/head.png" /></center><br />
+  <ul><li>ラベル付きデータなら1，ラベルなしデータなら0とする識別器を用いて敵対的ネットワークを設計</li>
+  <li>敵対的ネットワークとしてのVAE，識別器のLoss↓</li></ul>
+  <center><img src="/assets/images/posts/VAAL/l_var_adv.png" /></center>
+  <center><img src="/assets/images/posts/VAAL/l_dis_adv.png" /></center><br />
+  <li>↓サンプリングアルゴリズム</li>
+  <center><img src="/assets/images/posts/VAAL/sampling_algorithm.png" /></center><br />
+  <ul><li>識別器がラベルなしデータと判断したサンプルの予測スコアを使用</li>
+  <li>0に近いほどラベルなしデータの可能性が高い＝まだ知らない→クエリ</li></ul>
+</ul>
+
+<h2 id="3-結果は">3. 結果は??</h2>
+<ul>
+    <li>CIFAR, Caltech, ImageNet クラス識別比較結果</li>
+    <center><img src="/assets/images/posts/VAAL/result_classification.png" /></center><br />
+  <li>Cityscapes, BDD100K セグメンテーション比較結果</li>
+    <center><img src="/assets/images/posts/VAAL/result_segmentation.png" /></center>
+</ul>
+
+<h2 id="4-課題は">4. 課題は??</h2>
+<ul>
+    <li></li>
+  </ul>
+
+    <div class="btn-wrapper">
+      <a href="/posts" class="btn back_btn">Back</a>
+    </div>
+  </body>
+</html>
+<div id="footer"></div>
+<script>
+  $(function(){
+      $('#footer').load('/footer.html');
+  });
+</script>
+</body>
+</html>
