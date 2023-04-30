@@ -15,7 +15,7 @@
     <div class="top-wrapper">
       <div class="container">
         <h1>Posts</h1>
-        <h3>(2/8)</h3>
+        <h3>(2/9)</h3>
       </div>
     </div>
 <!DOCTYPE html>
@@ -68,216 +68,217 @@
       <a href="/posts" class="btn back_btn previous"><<<</a>
       <a href="/posts" class="btn back_btn next"><</a>
       <a href="/posts/3" class="btn back_btn next">></a>
-      <a href="/posts/8" class="btn back_btn previous">>>></a>
+      <a href="/posts/9" class="btn back_btn previous">>>></a>
     </div>
 
     <div class="myposts">
 
       <div class="post">
-        <a href="/other_posts/23/02/21/FreeMatch.html">
-          <img class="post_img" src="/assets/images/posts/FreeMatch/head.png">
+        <a href="/active_learning/23/04/18/VAAL.html">
+          <img class="post_img" src="/assets/images/posts/VAAL/head.png">
           <div class="post_detail"> 
-            <p><b>FreeMatch: Self-adaptive Thresholding for Semi-supervised Learning</b></p>
+            <p><b>Variational Adversarial Active Learning</b></p>
             <p class="post_p"><h1 id=""></h1>
               <ul>
-                <li>事前設定した閾値や限定的な動的スキームでは半教師あり学習の性能・収束速度が悪化することを指摘し，モデルの学習度合いと閾値の関係を基にFlexMatchを改善したFreeMatchを提案</li>
-                <li>CIFAR10やSTL10でFlexMatchの精度を改善，CIFAR10では各クラス1枚の仕様でエラー率5.78%</li>
+                <li>潜在空間をVAEで学習し，ラベルなしデータかラベル付きデータ化を識別する敵対的ネットワークを学習するVAALを提案</li>
+                <li>タスク非依存であり，クラス識別やセグメンテーションで性能を検証</li>
               </ul>
 </p>
             <p>
-              <span class="fa fa-calendar"></span> Feb 21, 2023
-              <span class="fa fa-folder"></span> semi-supervised learning
-              <span class="fa fa-graduation-cap"></span> ICLR (2023)
-            </p>
-          </div>
-        </a>
-      </div>
-      
-      <div class="post">
-        <a href="/other_posts/23/02/20/FlexMatch.html">
-          <img class="post_img" src="/assets/images/posts/FlexMatch/head.png">
-          <div class="post_detail"> 
-            <p><b>FlexMatch: Boosting Semi-Supervised Learning with Curriculum Pseudo Labeling</b></p>
-            <p class="post_p"><h1 id=""></h1>
-              <ul>
-                <li>疑似ラベルの閾値をモデルの学習具合に応じて動的に決定するCPLをFixMatchに導入し，FlexMatchを提案</li>
-                <li>CIFAR100等，比較的難易度が高いタスクで特に性能が高く，収束速度もFixMatchと比べ向上</li>
-              </ul>
-</p>
-            <p>
-              <span class="fa fa-calendar"></span> Feb 20, 2023
-              <span class="fa fa-folder"></span> semi-supervised learning
-              <span class="fa fa-graduation-cap"></span> NIPS (2021) 
-            </p>
-          </div>
-        </a>
-      </div>
-      
-      <div class="post">
-        <a href="/other_posts/23/02/16/CCSSL.html">
-          <img class="post_img" src="/assets/images/posts/CCSSL/head.png">
-          <div class="post_detail"> 
-            <p><b>Class-Aware Contrastive Semi-Supervised Learning</b></p>
-            <p class="post_p"><h1 id=""></h1>
-              <ul>
-                <li>OODデータが混ざっていた場合にも機能する半教師対照学習手法CCSSLを提案</li>
-                <li>OODを上手く除外することでCIFAR100，STL10の精度を改善</li>
-              </ul>
-</p>
-            <p>
-              <span class="fa fa-calendar"></span> Feb 16, 2023
-              <span class="fa fa-folder"></span> semi-supervised learning
-              <span class="fa fa-graduation-cap"></span> CVPR (2022) 
-            </p>
-          </div>
-        </a>
-      </div>
-      
-      <div class="post">
-        <a href="/other_posts/23/02/14/CoMatch.html">
-          <img class="post_img" src="/assets/images/posts/CoMatch/head.png">
-          <div class="post_detail"> 
-            <p><b>CoMatch: Semi-supervised Learning with Contrastive Graph Regularization</b></p>
-            <p class="post_p"><h1 id=""></h1>
-              <ul>
-                <li>予測確率と低次元の埋め込みを組み合わせて相互作用させる半教師あり手法CoMatchを提案</li>
-                <li>ImageNetで1%のラベルデータを用いた場合にFixMatchの精度から12.6%向上</li>
-              </ul>
-</p>
-            <p>
-              <span class="fa fa-calendar"></span> Feb 14, 2023
-              <span class="fa fa-folder"></span> semi-supervised learning
-              <span class="fa fa-graduation-cap"></span> ICCV (2021) 
-            </p>
-          </div>
-        </a>
-      </div>
-      
-      <div class="post">
-        <a href="/self_supervised_learning/23/01/31/SimCLRv2.html">
-          <img class="post_img" src="/assets/images/posts/SimCLRv2/framework.png">
-          <div class="post_detail"> 
-            <p><b>Big Self-Supervised Models are Strong Semi-Supervised Learners</b></p>
-            <p class="post_p"><h1 id=""></h1>
-              <ul>
-                <li>ResNet152による知識蒸留を利用し，MoCoのメモリバンクを取り入れて学習を行うSimCLR v2を提案</li>
-                <li>SimCLRと同設定のImageNetでSoTA達成</li>
-              </ul>
-</p>
-            <p>
-              <span class="fa fa-calendar"></span> Jan 31, 2023
-              <span class="fa fa-folder"></span> self-supvervised learning
-              <span class="fa fa-graduation-cap"></span> NIPS (2020)
+              <span class="fa fa-calendar"></span> Apr 18, 2023
+              <span class="fa fa-folder"></span> Active Learning
+              <span class="fa fa-graduation-cap"></span> ICCV (2019)
             </p>
           </div>
         </a>
       </div>
 
       <div class="post">
-        <a href="/self_supervised_learning/23/01/31/DINO.html">
-          <img class="post_img" src="/assets/images/posts/DINO/head.png">
+        <a href="/self_supervised_learning/23/04/16/InternetExplorer.html">
+          <img class="post_img" src="/assets/images/posts/InternetExplorer/head.png">
           <div class="post_detail"> 
-            <p><b>Emerging Properties in Self-Supervised Vision Transformers</b></p>
+            <p><b>Internet Explorer: Targeted Representation Learning on the Open Web</b></p>
             <p class="post_p"><h1 id=""></h1>
               <ul>
-                <li>ラベル付きデータを使用せずに自己蒸留を実行するDINOを提案</li>
-                <li>ImageNet等で有効性を確認し，ViTにも適用可能であることを確認</li>
+                <li>ターゲットタスクの学習をサポートするようなデータをインターネットから取得し，それらのデータでSSLを行うInternet Explorerを提案</li>
+                <li>学習時間を大きく削減しつつ，CLIPと同等か上回る精度を達成</li>
               </ul>
 </p>
             <p>
-              <span class="fa fa-calendar"></span> Jan 31, 2023
-              <span class="fa fa-folder"></span> self-supvervised learning
-              <span class="fa fa-graduation-cap"></span> arXiv (2021)
-            </p>
-          </div>
-        </a>
-      </div>
-
-      <div class="post">
-        <a href="/self_supervised_learning/23/01/30/MoCov3.html">
-          <img class="post_img" src="/assets/images/posts/MoCov3/Pseudocode.png">
-          <div class="post_detail"> 
-            <p><b>An Empirical Study of Training Self-Supervised Vision Transformers</b></p>
-            <p class="post_p"><h1 id=""></h1>
-              <ul>
-                <li>メモリキューを廃止することでViTでも利用可能なスケーリングを達成したMoCo v3を提案</li>
-                <li>ImageNet等で有効性を確認</li>
-              </ul>
-</p>
-            <p>
-              <span class="fa fa-calendar"></span> Jan 30, 2023
-              <span class="fa fa-folder"></span> self-supvervised learning
-              <span class="fa fa-graduation-cap"></span> ICCV (2021)
-            </p>
-          </div>
-        </a>
-      </div>
-
-      <div class="post">
-        <a href="/self_supervised_learning/23/01/30/MoCov2.html">
-          <img class="post_img" src="/assets/images/posts/MoCov2/head.png">
-          <div class="post_detail"> 
-            <p><b>Improved Baselines with Momentum Contrastive Learning</b></p>
-            <p class="post_p"><h1 id=""></h1>
-              <ul>
-                <li>SimCLRとMoCOを組み合わせることで小バッチサイズで安定して学習可能なMoCo v2を提案</li>
-                <li>ImageNetでSoTA</li>
-              </ul>
-</p>
-            <p>
-              <span class="fa fa-calendar"></span> Jan 30, 2023
-              <span class="fa fa-folder"></span> self-supvervised learning
-              <span class="fa fa-graduation-cap"></span> arXiv (2020)
-            </p>
-          </div>
-        </a>
-      </div>
-
-      <div class="post">
-        <a href="/self_supervised_learning/23/01/30/MoCo.html">
-          <img class="post_img" src="/assets/images/posts/MoCo/framework.png">
-          <div class="post_detail"> 
-            <p><b>Momentum Contrast for Unsupervised Visual Representation Learning</b></p>
-            <p class="post_p"><h1 id=""></h1>
-              <ul>
-                <li>対象学習をQuery-Key問題ととらえ，キューとmomentum encoderを用いて大規模データで学習可能なMoCoを提案</li>
-                <li>VOC，COCO等でSoTA</li>
-              </ul>
-</p>
-            <p>
-              <span class="fa fa-calendar"></span> Jan 30, 2023
-              <span class="fa fa-folder"></span> self-supvervised learning
-              <span class="fa fa-graduation-cap"></span> CVPR (2020)
+              <span class="fa fa-calendar"></span> Apr 16, 2023
+              <span class="fa fa-folder"></span> Internet data
+              <span class="fa fa-graduation-cap"></span> arXiv (2023)
             </p>
           </div>
         </a>
       </div>
       
       <div class="post">
-        <a href="/active_learning/23/01/30/ReducingLabelEffort.html">
-          <img class="post_img" src="/assets/images/posts/ReducingLabelEffort/framework.png">
+        <a href="/active_learning/23/04/06/TAILOR.html">
+          <img class="post_img" src="/assets/images/posts/TAILOR/framework.png">
           <div class="post_detail"> 
-            <p><b>Reducing Label Effort: Self-Supervised meets Active Learning</b></p>
+            <p><b>Algorithm Selection for Deep Active Learning with Imbalanced Datasets</b></p>
             <p class="post_p"><h1 id=""></h1>
               <ul>
-                <li>DALの前にSSLを行うことでDALの性能を向上するフレームワークを提案</li>
-                <li>CIFAR，TinyImageNetでラベルデータ数が少ない場合にスクラッチと比べ大きく性能向上することを確認</li>
+                <li>与えられたデータセットに対し最適なクエリ戦略を選択肢の中から選択して利用するアルゴリズムTAILORを提案</li>
+                <li>CIFAR，Kuzushiji，CelebAで実験し，精度やクエリしたデータの傾向を調査</li>
               </ul>
 </p>
             <p>
-              <span class="fa fa-calendar"></span> Jan 30, 2023
+              <span class="fa fa-calendar"></span> Apr 6, 2023
               <span class="fa fa-folder"></span> active learning
-              <span class="fa fa-graduation-cap"></span> ICCVW (2021)
+              <span class="fa fa-graduation-cap"></span> arXiv (2022)
+            </p>
+          </div>
+        </a>
+      </div>
+      
+      <div class="post">
+        <a href="/active_learning/23/03/13/ALwithCC.html">
+          <img class="post_img" src="/assets/images/posts/ALwithCC/head.png">
+          <div class="post_detail"> 
+            <p><b>Active Learning with Combinatorial Coverage</b></p>
+            <p class="post_p"><h1 id=""></h1>
+              <ul>
+                <li>CC(Combinational Coverage)とDALを組み合わせることで，data-centricなDALを行う手法を提案</li>
+                <li>Tic-Tac-ToeやBalance Scaleなどで検証</li>
+              </ul>
+</p>
+            <p>
+              <span class="fa fa-calendar"></span> Mar 13, 2023
+              <span class="fa fa-folder"></span> active learning
+              <span class="fa fa-graduation-cap"></span> ICMLA (2022)
             </p>
           </div>
         </a>
       </div>
 
+      <div class="post">
+        <a href="/active_learning/23/03/13/SpeedingUpBatchBALD.html">
+          <img class="post_img" src="/assets/images/posts/SpeedingUpBatchBALD/head.png">
+          <div class="post_detail"> 
+            <p><b>Speeding Up BatchBALD: A k-BALD Family of Approximations for Active Learning</b></p>
+            <p class="post_p"><h1 id=""></h1>
+              <ul>
+                <li>BatchBALDをデータセットサイズが大きい場合も高速に機能するよう改良したk-BALDを提案</li>
+                <li>MNISTでは従来のBatchBALDと比べ性能を維持しつつ計算時間を短縮することを確認</li>
+              </ul>
+</p>
+            <p>
+              <span class="fa fa-calendar"></span> Mar 13, 2023
+              <span class="fa fa-folder"></span> active learning
+              <span class="fa fa-graduation-cap"></span> arXiv (2023)
+            </p>
+          </div>
+        </a>
+      </div>
+
+      <div class="post">
+        <a href="/active_learning/23/03/13/ScalableDBAL.html">
+          <img class="post_img" src="/assets/images/posts/ScalableDBAL/head.png">
+          <div class="post_detail"> 
+            <p><b>Scalable Batch Acquisition for Deep Bayesian Active Learning</b></p>
+            <p class="post_p"><h1 id=""></h1>
+              <ul>
+                <li>BatchBALDをバッチサイズが大きい場合にも少ない計算量で機能するように改良したLarge BatchBALDを提案</li>
+                <li>MNISTやCIFARなどの画像タスクで巨大なバッチの場合を検証</li>
+              </ul>
+</p>
+            <p>
+              <span class="fa fa-calendar"></span> Mar 13, 2023
+              <span class="fa fa-folder"></span> active learning
+              <span class="fa fa-graduation-cap"></span> SIAM International Conference (2023)
+            </p>
+          </div>
+        </a>
+      </div>
+
+      <div class="post">
+        <a href="/active_learning/23/03/10/How2AllocateLabelBudget.html">
+          <img class="post_img" src="/assets/images/posts/How2AllocateLabelBudget/head.png">
+          <div class="post_detail"> 
+            <p><b>How to Allocate your Label Budget? Choosing between Active Learning and Learning to Reject in Anomaly Detection</b></p>
+            <p class="post_p"><h1 id=""></h1>
+              <ul>
+                <li>異常検知タスクに対しALとLR(Learning to Reject)を組み合わせたフレームワークを提案</li>
+                <li>18種の外観検査データセットで検証</li>
+              </ul>
+</p>
+            <p>
+              <span class="fa fa-calendar"></span> Mar 10, 2023
+              <span class="fa fa-folder"></span> active learning
+              <span class="fa fa-graduation-cap"></span> arXiv (2023)
+            </p>
+          </div>
+        </a>
+      </div>
+      
+      <div class="post">
+        <a href="/active_learning/23/03/06/ALbyEGPS.html">
+          <img class="post_img" src="/assets/images/posts/ALbyEGPS/head.png">
+          <div class="post_detail"> 
+            <p><b>Active Deep Learning Guided by Efficient Gaussian Process Surrogates</b></p>
+            <p class="post_p"><h1 id=""></h1>
+              <ul>
+                <li>ベイズ手法とガウス過程を組み合わせることで，計算量を抑えつつ情報量の大きいサンプルをクエリする手法を提案</li>
+                <li>CIFARやFashionMNIST等で検証</li>
+              </ul>
+</p>
+            <p>
+              <span class="fa fa-calendar"></span> Mar 06, 2023
+              <span class="fa fa-folder"></span> active learning
+              <span class="fa fa-graduation-cap"></span> arXiv (2023)
+            </p>
+          </div>
+        </a>
+      </div>
+      
+      <div class="post">
+        <a href="/other_posts/23/03/01/BeyondNSL.html">
+          <img class="post_img" src="/assets/images/posts/BeyondNSL/head.png">
+          <div class="post_detail"> 
+            <p><b>Beyond neural scaling laws: beating power law scaling via data pruning</b></p>
+            <p class="post_p"><h1 id=""></h1>
+              <ul>
+                <li>スケーリング則は資源的に限界を迎えることを指摘し，学習を阻害するデータを除くdata pruningでもモデルの性能が向上することを確認</li>
+                <li>既存手法と比べ軽量で適用しやすい自己教師ありpruning手法を提案</li>
+                <li>ラベルなしデータの情報を基にdata pruningが可能</li>
+              </ul>
+</p>
+            <p>
+              <span class="fa fa-calendar"></span> Mar 1, 2023
+              <span class="fa fa-folder"></span> Neural Scaling Laws
+              <span class="fa fa-graduation-cap"></span> NIPS (2022)
+            </p>
+          </div>
+        </a>
+      </div>
+      
+      <div class="post">
+        <a href="/other_posts/23/02/28/BNSL.html">
+          <img class="post_img" src="/assets/images/posts/BNSL/example_bnsl.png">
+          <div class="post_detail"> 
+            <p><b>Broken Neural Scaling Laws</b></p>
+            <p class="post_p"><h1 id=""></h1>
+              <ul>
+                <li>二重降下のように既存のスケーリング則では解決できない問題に対しても機能するBNSL(Broken Neural Scaling Laws)を提案</li>
+                <li>提案手法による外挿の限界について考察</li>
+              </ul>
+</p>
+            <p>
+              <span class="fa fa-calendar"></span> Feb 28, 2023
+              <span class="fa fa-folder"></span> Neural Scaling Laws
+              <span class="fa fa-graduation-cap"></span> arXiv (2022)
+            </p>
+          </div>
+        </a>
+      </div>
+      
       <div class="btn-wrapper">
         <a href="/posts" class="btn back_btn previous"><<<</a>
         <a href="/posts" class="btn back_btn next"><</a>
         <a href="/posts/3" class="btn back_btn next">></a>
-        <a href="/posts/8" class="btn back_btn previous">>>></a>
+        <a href="/posts/9" class="btn back_btn previous">>>></a>
       </div>
   </body>
 </html>

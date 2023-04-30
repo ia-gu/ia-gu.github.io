@@ -5,20 +5,20 @@
     <link rel="stylesheet" href="/assets/css/style.css">
   </head>
   <body>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <div id="header"></div>
+  <script>
+    $(function(){
+        $('#header').load('/header.html');
+    });
+</script>
     <div class="top-wrapper">
       <div class="container">
         <h1>Posts</h1>
-        <h3>(6/8)</h3>
+        <h3>(6/9)</h3>
       </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <div id="header"></div>
-    <script>
-      $(function(){
-          $('#header').load('/header.html');
-      });
-  </script>
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
   <head>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
@@ -68,144 +68,44 @@
       <a href="/posts" class="btn back_btn previous"><<<</a>
       <a href="/posts/5" class="btn back_btn next"><</a>
       <a href="/posts/7" class="btn back_btn next">></a>
-      <a href="/posts/8" class="btn back_btn previous">>>></a>
+      <a href="/posts/9" class="btn back_btn previous">>>></a>
     </div>
 
     <div class="myposts">
 
       <div class="post">
-        <a href="/formula_driven_supervised_learning/23/01/20/FDSLwRTP.html">
-          <img class="post_img" src="/assets/images/posts/FDSLwRTP/head.png">
+        <a href="/active_learning/23/01/25/InDefenseOfCoreset.html">
+          <img class="post_img" src="/assets/images/posts/InDefenseOfCoreset/framework.png">
           <div class="post_detail"> 
-            <p><b>Formula-driven Supervised Learning with Recursive Tiling Patterns</b></p>
+            <p><b>In Defense of Core-set: A Density-aware Core-set Selection for Active Learning</b></p>
             <p class="post_p"><h1 id=""></h1>
               <ul>
-                <li>タイルパターンが敷き詰まった画像データセットTile DBを自動構築</li>
-                <li>Fractal DBより少ないパラメータで構築可能で，ImageNetに類似した畳み込みフィルタが得られることを確認</li>
+                <li>特徴空間上で疎な部分が密な部分に比べて情報量の多いサンプルを持つ傾向があることを発見し，密度を考慮したDACS(Density-aware Core-set)を提案</li>
+                <li>CIFAR10，RMNIST等で有効性を確認</li>
               </ul>
 </p>
             <p>
-              <span class="fa fa-calendar"></span> Jan 20, 2023
-              <span class="fa fa-folder"></span> formula driven supervised learning
-              <span class="fa fa-graduation-cap"></span> ICCV (2022)
-            </p>
-          </div>
-        </a>
-      </div>
-
-      <div class="post">
-        <a href="/formula_driven_supervised_learning/23/01/20/ViTwoNI.html">
-          <img class="post_img" src="/assets/images/posts/ViTwoNI/head.png">
-          <div class="post_detail"> 
-            <p><b>Can Vision Transformers Learn without Natural Images?</b></p>
-            <p class="post_p"><h1 id=""></h1>
-              <ul>
-                <li>実画像データを用いず，FDSLを用いた事前学習がViTに対して有効か調査</li>
-                <li>CIFARやPascal VOCにおいて，MoCo v2やSimCLR v2を上回ることを確認</li>
-              </ul>
-</p>
-            <p>
-              <span class="fa fa-calendar"></span> Jan 20, 2023
-              <span class="fa fa-folder"></span> formula driven supervised learning
-              <span class="fa fa-graduation-cap"></span> AAAI (2022)
-            </p>
-          </div>
-        </a>
-      </div>
-
-      <div class="post">
-        <a href="/formula_driven_supervised_learning/23/01/19/PretrainingwoNI.html">
-          <img class="post_img" src="/assets/images/posts/PretrainingwoNI/head.png">
-          <div class="post_detail"> 
-            <p><b>Pre-training without Natural Images</b></p>
-            <p class="post_p"><h1 id=""></h1>
-              <ul>
-                <li>実画像の代わりにフラクタルでカテゴリ分けした人工生成画像を用いるFDSL(Formula-driven Supervised Learning)を提案</li>
-                <li>著作権フリーなビッグデータFractalDBを構築し，CIFAR100やOmniglot等でImageNet事前学習済モデルを上回る精度を達成</li>
-              </ul>
-</p>
-            <p>
-              <span class="fa fa-calendar"></span> Jan 19, 2023
-              <span class="fa fa-folder"></span> formula driven supervised learning
-              <span class="fa fa-graduation-cap"></span> ACCV (2020)
-            </p>
-          </div>
-        </a>
-      </div>
-
-      <div class="post">
-        <a href="/active_learning/23/01/18/Core_set.html">
-          <img class="post_img" src="/assets/images/posts/Core_set/head.png">
-          <div class="post_detail"> 
-            <p><b>Active Learning for Convolutional Neural Networks: A Core-Set Approach</b></p>
-            <p class="post_p"><h1 id=""></h1>
-              <ul>
-                <li>DALのクエリをフルデータの分布を表す部分集合(Coreset)を選択する問題と定義した多様性ベースクエリ戦略を提案</li>
-                <li>CIFAR10において，多様性ベースのSoTAを達成</li>
-              </ul>
-</p>
-            <p>
-              <span class="fa fa-calendar"></span> Jan 18, 2023
+              <span class="fa fa-calendar"></span> Jan 25, 2023
               <span class="fa fa-folder"></span> active learning
-              <span class="fa fa-graduation-cap"></span> ICLR (2018)
-            </p>
-          </div>
-        </a>
-      </div>
-      
-      <div class="post">
-        <a href="/active_learning/23/01/18/DAL4AD.html">
-          <img class="post_img" src="/assets/images/posts/DAL4AD/framework.png">
-          <div class="post_detail"> 
-            <p><b>Deep Active Learning for Anomaly Detection</b></p>
-            <p class="post_p"><h1 id=""></h1>
-              <ul>
-                <li>既存のUAD手法とDAL手法を組み合わせたフレームワークを提案</li>
-                <li>MNIST，Fashion-MNISTで有効性を確認</li>
-              </ul>
-</p>
-            <p>
-              <span class="fa fa-calendar"></span> Jan 18, 2023
-              <span class="fa fa-folder"></span> active learning
-              <span class="fa fa-graduation-cap"></span> IJCNN (2020)
+              <span class="fa fa-graduation-cap"></span> KDD (2022)
             </p>
           </div>
         </a>
       </div>
 
       <div class="post">
-        <a href="/active_learning/23/01/17/LR4AL.html">
-          <img class="post_img" src="/assets/images/posts/LR4AL/framework.png">
+        <a href="/active_learning/23/01/24/StoppingCriterion4AL.html">
+          <img class="post_img" src="/assets/images/posts/SC4AL/head.png">
           <div class="post_detail"> 
-            <p><b>Learning to Rank for Active Learning: A Listwise Approach</b></p>
+            <p><b>Stopping Criterion for Active Learning Based on Error Stability</b></p>
             <p class="post_p"><h1 id=""></h1>
               <ul>
-                <li>LL4ALがランク付けのための学習であることを示し，リストワイズ法に改良したL2R-ALを提案</li>
-                <li>CIFAR10，CelebAで有効性を評価し，僅かながらLL4ALより精度向上を確認</li>
-              </ul>
+                <li>汎化誤差を基に閾値を決定する，ベイズALに対し適用可能な停止戦略を提案</li>
+                <li>回帰データやMNISTに対し既存のベイズ手法を用いて提案手法の効果を検証</li>
+              </ul>              
 </p>
             <p>
-              <span class="fa fa-calendar"></span> Jan 17, 2023
-              <span class="fa fa-folder"></span> active learning
-              <span class="fa fa-graduation-cap"></span> ICPR (2020)
-            </p>
-          </div>
-        </a>
-      </div>
-      
-      <div class="post">
-        <a href="/active_learning/23/01/17/ZRAL.html">
-          <img class="post_img" src="/assets/images/posts/ZRAL/framework.png">
-          <div class="post_detail"> 
-            <p><b>Zero-Round Active Learning</b></p>
-            <p class="post_p"><h1 id=""></h1>
-              <ul>
-                <li>既存のALフレームワークではアノテータに繰り返しアクセスしたり，最初に少量のラベル付きデータを用意する必要があるため，ドメイン適応を用いてこれを解決するD2ULOを提案</li>
-                <li>CIFAR10等で有効性を評価し，ドメイン適応を用いる既存手法を上回ることを確認</li>
-              </ul>
-</p>
-            <p>
-              <span class="fa fa-calendar"></span> Jan 17, 2023
+              <span class="fa fa-calendar"></span> Jan 24, 2023
               <span class="fa fa-folder"></span> active learning
               <span class="fa fa-graduation-cap"></span> arXiv (2021)
             </p>
@@ -214,71 +114,172 @@
       </div>
       
       <div class="post">
-        <a href="/active_learning/23/01/17/ACTIVEMATCH.html">
-          <img class="post_img" src="/assets/images/posts/ACTIVEMATCH/framework.png">
-          <div class="post_detail"> 
-            <p><b>ActiveMatch: End-to-end Semi-supervised Active Representation Learning</b></p>
-            <p class="post_p"><h1 id=""></h1>
-              <ul>
-                <li>半教師あり学習(SSL)では，適切なラベルデータが十分でないとき学習できないことを指摘し，SSLとDALを組み合わせたActiveMatchを提案</li>
-                <li>CIFAR10において，MixMatchやFixMatchと同設定でこれらを上回ることを確認</li>
-              </ul>
+        <a href="/active_learning/23/01/24/BoostingAL.html">
+        <img class="post_img" src="/assets/images/posts/BoostingAL/head.png">
+        <div class="post_detail"> 
+          <p><b>Boosting Active Learning via Improving Test Performance</b></p>
+          <p class="post_p"><h1 id=""></h1>
+            <ul>
+              <li>テストの精度に与える影響を損失勾配を用いて定量化してクエリを行う</li>
+              <li>CIFAR，SVHN等の自然画像データセットで有効性を確認</li>
+            </ul>
 </p>
-            <p>
-              <span class="fa fa-calendar"></span> Jan 17, 2023
-              <span class="fa fa-folder"></span> active learning
-              <span class="fa fa-graduation-cap"></span> ICIP (2022)
-            </p>
-          </div>
-        </a>
-      </div>
+          <p>
+            <span class="fa fa-calendar"></span> Jan 24, 2023
+            <span class="fa fa-folder"></span> active learning
+            <span class="fa fa-graduation-cap"></span> AAAI (2022)
+          </p>
+        </div>
+      </a>
+    </div>
 
       <div class="post">
-        <a href="/self_supervised_learning/23/01/16/SimSiam.html">
-          <img class="post_img" src="/assets/images/posts/SimSiam/framework.png">
+        <a href="/active_learning/23/01/24/PT4AL.html">
+          <img class="post_img" src="/assets/images/posts/PT4AL/framework.png">
           <div class="post_detail"> 
-            <p><b>Exploring Simple Siamese Representation Learning</b></p>
+            <p><b>Using Self-Supervised Pretext Tasks for Active Learning</b></p>
             <p class="post_p"><h1 id=""></h1>
               <ul>
-                <li>Siamese Network構造を基に，負例を用いずに対象学習を行うSimSiamを提案</li>
-                <li>分類，物体検出で有効性を示した他，SimCLR等と比べバッチサイズが小さくても機能することを確認</li>
+                <li>自己教師あり学習の疑似タスクを行い，疑似タスクのLossを用いてクエリを行うPT4ALを提案</li>
+                <li>CIFAR10でSoTAを達成</li>
               </ul>
 </p>
             <p>
-              <span class="fa fa-calendar"></span> Jan 16, 2023
-              <span class="fa fa-folder"></span> self-supvervised learning
-              <span class="fa fa-graduation-cap"></span> CVPR (2021)
+              <span class="fa fa-calendar"></span> Jan 24, 2023
+              <span class="fa fa-folder"></span> active learning
+              <span class="fa fa-graduation-cap"></span> ECCV (2022)
             </p>
           </div>
         </a>
       </div>
       
       <div class="post">
-        <a href="/active_learning/23/01/16/DECAL.html">
-          <img class="post_img" src="/assets/images/posts/DECAL/head.png">
+        <a href="/active_learning/23/01/24/PatientAwareAL4FGOCT.html">
+          <img class="post_img" src="/assets/images/posts/PatientAwareAL4FGOCT/framework.png">
           <div class="post_detail"> 
-            <p><b>DECAL: DEployable Clinical Active Learning</b></p>
+            <p><b>Patient Aware Active Learning for Fine-Grained OCT Classification</b></p>
             <p class="post_p"><h1 id=""></h1>
               <ul>
-                <li>自然画像を対象に提案された機械学習システムは，医用画像に対する能力が足りていないことを指摘し，プラグイン方式のDECALを提案</li>
-                <li>OCT，X-Rayデータで有効性を評価</li>
+                <li>既存の医用画像向けクエリ戦略は医療の観点を考慮できていないことを指摘し，任意のクエリ戦略を用いるフレームワークを提案</li>
+                <li>OCTで有効性を確認</li>
               </ul>
 </p>
             <p>
-              <span class="fa fa-calendar"></span> Jan 16, 2023
+              <span class="fa fa-calendar"></span> Jan 24, 2023
               <span class="fa fa-folder"></span> active learning
-              <span class="fa fa-graduation-cap"></span> ICML (2022)
+              <span class="fa fa-graduation-cap"></span> ICIP (2022)
+            </p>
+          </div>
+        </a>
+      </div>
+      
+      <div class="post">
+        <a href="/active_learning/23/01/24/IGS4ALinMIC.html">
+          <img class="post_img" src="/assets/images/posts/IGS4ALinMIC/framework.png">
+          <div class="post_detail"> 
+            <p><b>Information Gain Sampling for Active Learning in Medical Image Classification</b></p>
+            <p class="post_p"><h1 id=""></h1>
+              <ul>
+                <li>データセットの分布で正規化されたモデルを使用するAEIG(Adapted Expected Information Gain)を提案</li>
+                <li>医用画像のDR(Diabetic Retinopathy)，ISIC2018で有効性を確認</li>
+              </ul>
+</p>
+            <p>
+              <span class="fa fa-calendar"></span> Jan 24, 2023
+              <span class="fa fa-folder"></span> active learning
+              <span class="fa fa-graduation-cap"></span> MICCAI (2022)
             </p>
           </div>
         </a>
       </div>
 
-      <div class="btn-wrapper">
-        <a href="/posts" class="btn back_btn previous"><<<</a>
-        <a href="/posts/5" class="btn back_btn next"><</a>
-        <a href="/posts/7" class="btn back_btn next">></a>
-        <a href="/posts/8" class="btn back_btn previous">>>></a>
+      <div class="post">
+        <a href="/active_learning/23/01/23/ExploitingDiversity4LESSAL.html">
+          <img class="post_img" src="/assets/images/posts/ExploitingDiversity4LESSAL/framework.png">
+          <div class="post_detail"> 
+            <p><b>Exploiting Diversity of Unlabeled Data for Label-Efficient Semi-Supervised Active Learning</b></p>
+            <p class="post_p"><h1 id=""></h1>
+              <ul>
+                <li>事前にSSLを用いてデータセットの分布を得たうえで行われる代表性・多様性ベース手法を提案</li>
+                <li>CIFAR10，Caltech101で有効性を確認</li>
+              </ul>
+</p>
+            <p>
+              <span class="fa fa-calendar"></span> Jan 23, 2023
+              <span class="fa fa-folder"></span> active learning
+              <span class="fa fa-graduation-cap"></span> ICPR (2022)
+            </p>
+          </div>
+        </a>
       </div>
+      
+      <div class="post">
+        <a href="/other_posts/23/01/22/HowMuchMoreDataDIN.html">
+          <img class="post_img" src="/assets/images/posts/HowMuchDataDIN/framework.png">
+          <div class="post_detail"> 
+            <p><b>How Much More Data Do I Need? Estimating Requirements for Downstream Tasks</b></p>
+            <p class="post_p"><h1 id=""></h1>
+              <ul>
+                <li>アノテーションするデータ数を必要最小限にするためにスケーリング則を用いて予測を行うフレームワークを提案</li>
+                <li>既存の回帰関数を用いてより正確に推定することが可能</li>
+                <li>DALに対する検証も行う</li>
+              </ul>
+</p>
+            <p>
+              <span class="fa fa-calendar"></span> Jan 21, 2023
+              <span class="fa fa-folder"></span> neural scaling law
+              <span class="fa fa-graduation-cap"></span> CVPR (2022)
+            </p>
+          </div>
+        </a>
+      </div>
+
+      <div class="post">
+        <a href="/other_posts/23/01/22/LC4AnalysisofDN.html">
+          <img class="post_img" src="/assets/images/posts/LC4AnalysisofDN/head.png">
+          <div class="post_detail"> 
+            <p><b>Learning Curves for Analysis of Deep Networks</b></p>
+            <p class="post_p"><h1 id=""></h1>
+              <ul>
+                <li>学習曲線からモデルの精度を推測しモデル構造やデータ拡張などのハイパラを推測する方法を調査</li>
+                <li>CIFAR10，CIFAR100等で検証</li>
+              </ul>
+</p>
+            <p>
+              <span class="fa fa-calendar"></span> Jan 21, 2023
+              <span class="fa fa-folder"></span> neural scaling law
+              <span class="fa fa-graduation-cap"></span> ArXiv(2020)
+            </p>
+          </div>
+        </a>
+      </div>
+
+      <div class="post">
+        <a href="/active_learning/23/01/21/ALwPDA.html">
+          <img class="post_img" src="/assets/images/posts/ALwPDA/framework.png">
+          <div class="post_detail"> 
+            <p><b>Agreement-Discrepancy-Selection Active Learning with Progressive Distribution Alignment</b></p>
+            <p class="post_p"><h1 id=""></h1>
+              <ul>
+                <li>DALにおいてラベル付きデータで学習したモデルが情報量の多いラベルなしデータを選択することができていないと主張し，CNNに敵対的分類器を導入したADS(agreement-discrepancy-selection)を提案</li>
+                <li>CIFAR10，CIFAR100で有効性を確認</li>
+              </ul>
+</p>
+            <p>
+              <span class="fa fa-calendar"></span> Jan 21, 2023
+              <span class="fa fa-folder"></span> active learning
+              <span class="fa fa-graduation-cap"></span> AAAI (2021)
+            </p>
+          </div>
+        </a>
+      </div>  
+
+    <div class="btn-wrapper">
+      <a href="/posts" class="btn back_btn previous"><<<</a>
+      <a href="/posts/5" class="btn back_btn next"><</a>
+      <a href="/posts/7" class="btn back_btn next">></a>
+      <a href="/posts/9" class="btn back_btn previous">>>></a>
+    </div>
   </body>
 </html>
 <div id="footer"></div>
