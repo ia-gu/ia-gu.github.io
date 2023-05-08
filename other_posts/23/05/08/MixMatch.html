@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <div id="header"></div>
+    <script>
+      $(function(){
+          $('#header').load('/header.html');
+      });
+  </script>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      processEscapes: true,
+      tags: "ams",
+      autoload: {
+        color: [],
+        colorV2: ['color']
+      },
+      packages: {'[+]': ['noerrors']}
+    },
+    chtml: {
+      matchFontHeight: false,
+      displayAlign: "left",
+      displayIndent: "2em"
+    },
+    options: {
+      renderActions: {
+        /* add a new named action to render <script type="math/tex"> */
+        find_script_mathtex: [10, function (doc) {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/);
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+            const text = document.createTextNode('');
+            node.parentNode.replaceChild(text, node);
+            math.start = {node: text, delim: '', n: 0};
+            math.end = {node: text, delim: '', n: 0};
+            doc.math.push(math);
+          }
+        }, '']
+      }
+    },
+    loader: {
+      load: ['[tex]/noerrors']
+    }
+  };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
+  </head>
+  <body>
+    <center><img class="hero" src="/assets/images/posts/MixMatch/head.png"></center>
+    <h1>MixMatch: A Holistic Approach to Semi-Supervised Learning</h1>
+    <p><span class="fa fa-link"></span><a href="https://arxiv.org/abs/1905.02249"> https://arxiv.org/abs/1905.02249</a></p>
+    <p><span class="fa fa-calendar"></span> May 08, 2023 </p>
+    <p><span class="fa fa-flag"></span> <a href="/other_posts/"> Semi-Supervised Learning</a></p>
+    <p><span class="fa fa-graduation-cap"></span> CVPR (2019) </p>
+
+    <h2 id="1-どんなもの">1. どんなもの??何ができる??</h2>
+
+<ul>
+  <li>Entropy MinimizationとConsistency Regularizationを1つのフレームワークに統合した初めての半教師あり学習手法</li>
+  <li>CIFAR10などの自然画像で当時のSoTA，250枚のアノテーションでエラー率11%</li>
+</ul>
+
+
+<h2 id="2-どうやって">2. どうやって??</h2>
+<ul>
+<li>↓フレームワークと損失関数</li>
+  <center><img src="/assets/images/posts/MixMatch/head.png" /></center><br />
+  <center><img src="/assets/images/posts/MixMatch/loss.png" /></center><br />
+  <ul><li>各データからK種類の拡張データを生成し，それらに対するモデル出力の平均を計算</li></ul>
+  <center><img src="/assets/images/posts/MixMatch/q.png" /></center><br />
+  <ul><ul><li>データにノイズを含む場合もモデルの予測が一貫性を持つConsistency Regularizationの考え方</li></ul></ul>
+  <ul><li>疑似ラベルとして使用するためにsharpening</li></ul>
+  <center><img src="/assets/images/posts/MixMatch/sharpening.png" /></center><br />
+  <ul><ul><li>モデル予測のEntropyを最小化するEntropy Minimizationの考え方</li></ul></ul>
+  <ul><li>ラベル付きデータ，拡張データを用いてMixUp</li></ul>
+  <center><img src="/assets/images/posts/MixMatch/mixup_1.png" /></center>
+  <center><img src="/assets/images/posts/MixMatch/mixup_2.png" /></center>
+</ul>
+
+<h2 id="3-結果は">3. 結果は??</h2>
+<ul>
+    <li>CIFAR10で既存手法を圧倒，教師あり学習の精度にも匹敵</li>
+    <center><img src="/assets/images/posts/MixMatch/result_cifar.png" /></center><br />
+    <li>後にRemixMatch，FixMatchなどに派生，現在の半教師あり学習フレームワークの原型ともいえる</li>
+</ul>
+
+<h2 id="4-課題は">4. 課題は??</h2>
+
+<div class="btn-wrapper">
+      <a href="/posts" class="btn back_btn">Back</a>
+    </div>
+  </body>
+</html>
+<div id="footer"></div>
+<script>
+  $(function(){
+      $('#footer').load('/footer.html');
+  });
+</script>
+</body>
+</html>
