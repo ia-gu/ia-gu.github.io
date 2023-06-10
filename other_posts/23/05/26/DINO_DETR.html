@@ -51,7 +51,7 @@
 <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
   </head>
   <body>
-    <center><img class="hero" src="/assets/images/posts/MixMatch/head.png"></center>
+    <center><img class="hero" src="/assets/images/posts/DINO_DETR/framework.png"></center>
     <h1>DINO: DETR with Improved DeNoising Anchor Boxes for End-to-End Object Detection</h1>
     <p><span class="fa fa-link"></span><a href="https://arxiv.org/abs/2206.02777"> https://arxiv.org/abs/2206.02777</a></p>
     <p><span class="fa fa-calendar"></span> May 26, 2023 </p>
@@ -68,21 +68,30 @@
 
 <h2 id="2-どうやって">2. どうやって??</h2>
 <ul>
-<li>↓フレームワーク</li>
+<li>↓DETRのフレームワーク</li>
+  <center><img src="/assets/images/posts/DETR/framework.png" /></center><br />
+  <ul><li>DETRはモデルやデータセットサイズにスケーリングしない</li></ul>
+<li>DETRの進化の歴史</li>
+  <ul><li>DAB-DETRが位置クエリを4次元アンカーボックスとして定式化，各レイヤの動的変更が容易になる</li></ul>
+  <ul><li>DN-DETRが学習収束を加速するDN（DeNoising）学習を導入</li></ul>
+  <ul><ul><li>DN学習｜GTの一部にノイズを与え，GTを再構成するように学習</li></ul></ul>
+  <ul><li>Deformable DETRが学習収束を更に加速するDeformable Attentionを導入</li></ul>
+  <ul><ul><li>Deformable Attention｜変形可能なSelf-Attention，オフセットネットワークのクエリからAttention領域を決定</li></ul></ul>
+  <ul><ul><li>Lood Forward Onceを用いて参照するBBを反復的に洗練</li></ul></ul>
+  <li>↓DINOのフレームワーク</li>
   <center><img src="/assets/images/posts/DINO_DETR/framework.png" /></center><br />
-  <ul><li>各データからK種類の拡張データを生成し，それらに対するモデル出力の平均を計算</li></ul>
-  <ul><li>各データからK種類の拡張データを生成し，それらに対するモデル出力の平均を計算</li></ul>
-  <ul><li>各データからK種類の拡張データを生成し，それらに対するモデル出力の平均を計算</li></ul>
-  <center><img src="/assets/images/posts/MixMatch/loss.png" /></center><br />
-  <ul><li>各データからK種類の拡張データを生成し，それらに対するモデル出力の平均を計算</li></ul>
-  <center><img src="/assets/images/posts/MixMatch/q.png" /></center><br />
-  <ul><ul><li>データにノイズを含む場合もモデルの予測が一貫性を持つConsistency Regularizationの考え方</li></ul></ul>
-  <ul><li>疑似ラベルとして使用するためにsharpening</li></ul>
-  <center><img src="/assets/images/posts/MixMatch/sharpening.png" /></center><br />
-  <ul><ul><li>モデル予測のEntropyを最小化するEntropy Minimizationの考え方</li></ul></ul>
-  <ul><li>ラベル付きデータ，拡張データを用いてMixUp</li></ul>
-  <center><img src="/assets/images/posts/MixMatch/mixup_1.png" /></center>
-  <center><img src="/assets/images/posts/MixMatch/mixup_2.png" /></center>
+  <ul><li>物体がないアンカーに「no object」を出力させるためにCDN（Contrastive DeNoising）を提案</li></ul>
+  <center><img src="/assets/images/posts/DINO_DETR/cdn.png" /></center><br />
+  <ul><ul><li>1つの物体に複数のアンカーが近接している場合の混乱を抑制</li></ul></ul>
+  <ul><ul><li>GTから遠い無関係なアンカーを拒絶する</li></ul></ul>
+  <ul><ul><li>黄色｜GTに対応した弱いノイズを付与</li></ul></ul>
+  <ul><ul><li>茶色｜GTに対応した強いノイズを付与</li></ul></ul>
+  <ul><ul><li>各グループがPositive，NegativeのクエリをGT個持つように設計</li></ul></ul>
+  <ul><li>選択されたアンカーボックスの特徴量を強化するMixed Query Selectionを提案</li></ul>
+  <center><img src="/assets/images/posts/DINO_DETR/mqs.png" /></center><br />
+  <ul><ul><li>位置情報を獲得</li></ul></ul>
+  <ul><li>Look Forward Twice</li></ul>
+  <center><img src="/assets/images/posts/DINO_DETR/lft.png" /></center><br />
 </ul>
 
 <h2 id="3-結果は">3. 結果は??</h2>
