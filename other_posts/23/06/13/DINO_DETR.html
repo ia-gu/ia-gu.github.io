@@ -54,7 +54,7 @@
     <center><img class="hero" src="/assets/images/posts/DINO_DETR/framework.png"></center>
     <h1>DINO: DETR with Improved DeNoising Anchor Boxes for End-to-End Object Detection</h1>
     <p><span class="fa fa-link"></span><a href="https://arxiv.org/abs/2206.02777"> https://arxiv.org/abs/2206.02777</a></p>
-    <p><span class="fa fa-calendar"></span> May 26, 2023 </p>
+    <p><span class="fa fa-calendar"></span> Jun 13, 2023 </p>
     <p><span class="fa fa-flag"></span> <a href="/other_posts/"> Object Detection</a></p>
     <p><span class="fa fa-graduation-cap"></span> arXiv (2022) </p>
 
@@ -92,14 +92,18 @@
   <ul><ul><li>位置情報を獲得</li></ul></ul>
   <ul><li>Look Forward Twice</li></ul>
   <center><img src="/assets/images/posts/DINO_DETR/lft.png" /></center><br />
+  <ul><li>Detachを用いて学習を安定化</li></ul>
+  <ul><li>i-1の値とiのオフセットを用いてbbを予測</li></ul>
+  <center><img src="/assets/images/posts/DINO_DETR/lft_b.png" /></center><br />
 </ul>
 
 <h2 id="3-結果は">3. 結果は??</h2>
 <ul>
-    <li>CIFAR10で既存手法を圧倒，教師あり学習の精度にも匹敵</li>
-    <center><img src="/assets/images/posts/MixMatch/result_cifar.png" /></center><br />
-    <li>後にRemixMatch，FixMatchなどに派生，現在の半教師あり学習フレームワークの原型ともいえる</li>
-</ul>
+    <li>COCO2017で他と比べて早い段階から収束</li>
+    <center><img src="/assets/images/posts/DINO_DETR/result.png" /></center><br />
+    <li>COCO2017で収束させた場合の性能比較</li>
+    <center><img src="/assets/images/posts/DINO_DETR/result_sat.png" /></center><br />
+  </ul>
 
 <h2 id="4-課題は">4. 課題は??</h2>
 
