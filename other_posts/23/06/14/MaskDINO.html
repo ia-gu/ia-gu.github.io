@@ -51,43 +51,42 @@
 <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
   </head>
   <body>
-    <center><img class="hero" src="/assets/images/posts/MixMatch/head.png"></center>
+    <center><img class="hero" src="/assets/images/posts/MaskDINO/framework.png"></center>
     <h1>Mask DINO: Towards A Unified Transformer-based Framework for Object Detection and Segmentation</h1>
     <p><span class="fa fa-link"></span><a href="https://arxiv.org/abs/2206.02777"> https://arxiv.org/abs/2206.02777</a></p>
-    <p><span class="fa fa-calendar"></span> May 26, 2023 </p>
-    <p><span class="fa fa-flag"></span> <a href="/other_posts/"> Semi-Supervised Learning</a></p>
+    <p><span class="fa fa-calendar"></span> Jun 14, 2023 </p>
+    <p><span class="fa fa-flag"></span> <a href="/other_posts/"> Object Detection</a></p>
     <p><span class="fa fa-graduation-cap"></span> CVPR (2023) </p>
 
     <h2 id="1-どんなもの">1. どんなもの??何ができる??</h2>
 
 <ul>
-  <li>DETRベースで提案された物体検出モデルDINOをセグメンテーションにも対応させたMask DINOを提案</li>
-  <li></li>
+  <li>DETRベースで提案された物体検出モデルDINOにマスク予測ブランチを追加することで各セグメンテーションタスクに対応させたMask DINOを提案</li>
+  <li>MaskDINOはシンプルでモデル・データセットに対しスケーリングし，ResNe50やSwin-Transformerを用いて既存手法を上回る</li>
 </ul>
-
 
 <h2 id="2-どうやって">2. どうやって??</h2>
 <ul>
-<li>↓フレームワークと損失関数</li>
-  <center><img src="/assets/images/posts/MixMatch/head.png" /></center><br />
-  <center><img src="/assets/images/posts/MixMatch/loss.png" /></center><br />
-  <ul><li>各データからK種類の拡張データを生成し，それらに対するモデル出力の平均を計算</li></ul>
-  <center><img src="/assets/images/posts/MixMatch/q.png" /></center><br />
-  <ul><ul><li>データにノイズを含む場合もモデルの予測が一貫性を持つConsistency Regularizationの考え方</li></ul></ul>
-  <ul><li>疑似ラベルとして使用するためにsharpening</li></ul>
-  <center><img src="/assets/images/posts/MixMatch/sharpening.png" /></center><br />
-  <ul><ul><li>モデル予測のEntropyを最小化するEntropy Minimizationの考え方</li></ul></ul>
-  <ul><li>ラベル付きデータ，拡張データを用いてMixUp</li></ul>
-  <center><img src="/assets/images/posts/MixMatch/mixup_1.png" /></center>
-  <center><img src="/assets/images/posts/MixMatch/mixup_2.png" /></center>
+<li>↓フレームワーク</li>
+  <center><img src="/assets/images/posts/MaskDINO/framework.png" /></center><br />
+  <ul><li>ピクセル埋め込みマップはバックボーンモデルの特徴マップCbとTransformer Encoderの特徴マップCeの融合で獲得</li></ul>
+  <ul><li>デコーダからのコンテンツクエリ埋め込みqcとピクセル埋め込みマップのドット積からマスクmを獲得</li></ul>
+  <center><img src="/assets/images/posts/MaskDINO/mask.png" /></center><br />
+  <ul><ul><li>Mはセグメンテーションヘッド，Tは畳み込み層，Fはアップサンプリング</li></ul></ul>
+  <ul><li>Encoderの出力に含まれる密度特徴を用いるためにEncoderにクラス認識・検出・セグメンテーションの予測ヘッドを追加</li></ul>
+  <ul><ul><li>クラス識別のスコアを用いて特徴マップを選択し，BBを回帰して高解像度特徴マップとのドット積からマスクを予測</li></ul></ul>
+  <ul><li>BBをマスクにノイズを付与した物とみなし，DenoisingタスクとしてBBからマスクを予測するモデルを学習</li></ul>
+  <ul><li>BBとマスクの出力が矛盾しないように2分割マッチングを行うためのマスク予測損失を追加</li></ul>
+  <ul><li>BBでstuffと予測される場合，stuffが示すものは多岐にわたりミスリードを起こす可能性があるため，この場合のBB予測損失はDetachする</li></ul>
 </ul>
 
 <h2 id="3-結果は">3. 結果は??</h2>
 <ul>
-    <li>CIFAR10で既存手法を圧倒，教師あり学習の精度にも匹敵</li>
-    <center><img src="/assets/images/posts/MixMatch/result_cifar.png" /></center><br />
-    <li>後にRemixMatch，FixMatchなどに派生，現在の半教師あり学習フレームワークの原型ともいえる</li>
-</ul>
+    <li>COCO val2017の物体検出，インスタンスセグメンテーションで性能改善</li>
+    <center><img src="/assets/images/posts/MaskDINO/result_detection.png" /></center><br />
+    <li>COCO val2017のパノプティックセグメンテーションにおいても性能改善</li>
+    <center><img src="/assets/images/posts/MaskDINO/result_panoptic.png" /></center><br />
+  </ul>
 
 <h2 id="4-課題は">4. 課題は??</h2>
 
