@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <div id="header"></div>
+    <script>
+      $(function(){
+          $('#header').load('/header.html');
+      });
+  </script>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      processEscapes: true,
+      tags: "ams",
+      autoload: {
+        color: [],
+        colorV2: ['color']
+      },
+      packages: {'[+]': ['noerrors']}
+    },
+    chtml: {
+      matchFontHeight: false,
+      displayAlign: "left",
+      displayIndent: "2em"
+    },
+    options: {
+      renderActions: {
+        /* add a new named action to render <script type="math/tex"> */
+        find_script_mathtex: [10, function (doc) {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/);
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+            const text = document.createTextNode('');
+            node.parentNode.replaceChild(text, node);
+            math.start = {node: text, delim: '', n: 0};
+            math.end = {node: text, delim: '', n: 0};
+            doc.math.push(math);
+          }
+        }, '']
+      }
+    },
+    loader: {
+      load: ['[tex]/noerrors']
+    }
+  };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
+  </head>
+  <body>
+    <center><img class="hero" src="/assets/images/posts/DetGPT/framework.png"></center>
+    <h1>DetGPT: Detect What You Need via Reasoning</h1>
+    <p><span class="fa fa-link"></span><a href="https://arxiv.org/abs/2305.14167"> https://arxiv.org/abs/2305.14167</a></p>
+    <p><span class="fa fa-calendar"></span> Jul 04, 2023 </p>
+    <p><span class="fa fa-flag"></span> <a href="/other_posts/"> Object Detection</a></p>
+    <p><span class="fa fa-graduation-cap"></span> arXiv 2023 </p>
+
+    <h2 id="1-どんなもの">1. どんなもの??何ができる??</h2>
+
+    <!-- 自然言語による抽象的な指示から，モデルが理由付けをすることで検出する物体を判断し，検出する -->
+    <!-- ImageCaptioningとObjectDetectionのデータセットを利用し，Query-AnswerプロンプトをChatGPT寄り生成 -->
+    <!-- より詳しい説明，ユーザの支持と実際の物をペアとしたquery-answer -->
+    <!-- 2段階のモデル構造 -->
+    <!-- 1段階目はMMMがユーザの指示に関連する物体を全て理解し，リストアップ -->
+    <!-- 2段階目はopen-vocabulary検出器を用いてMMMの出力を基に検出 -->
+    <!-- 画像エンコーダにBLIP-2，テキストエンコーダに13B Vicuna(オープンソースチャットボット，LLaMAベース)，検出器：Grounding DINO -->
+    <!-- MMMの結果を線形層で連結 -->
+    <!-- データセットはSBUとLAIONとConceptual Caption -->
+    <!-- 作成したデータセットで線形層をファインチューニング -->
+
+    <ul>
+  <li>検出したい物が明示的でない場合において，理由付けによって物体検出を行うDetGPTを提案</li>
+  <li>既存手法と比べて高レベルなインテラクションを行うことが可能で，ロボティクスや自動運転などへの応用も期待できる</li>
+</ul>
+
+<h2 id="2-どうやって">2. どうやって??</h2>
+<ul>
+<li>↓フレームワーク</li>
+  <center><img src="/assets/images/posts/DetGPT/framework.png" /></center><br />
+  <ul><li>1段階目｜MMMによって自然言語の指示から関連するオブジェクト名をリストアップ</li></ul>
+  <ul><ul><li>画像エンコーダにBLIP-2，テキストエンコーダに13B Vicunaを使用</li></ul>
+  <ul><ul><li>それぞれのエンコーダの出力を連結する線形層を用意</li></ul>
+  <ul><li>2段階目｜Grounding DINOを用いてOpen-vocabularyの物体検出</li></ul>
+<li>1段階目を行うための学習データをChatGPTを用いて作成</li>
+<ul><li>物体検出のSBU，LAIONと，キャプ初認具のConceptual Captionを用いてQuery-Answerプロンプトを作成</li></ul>
+<ul><li>↓プロンプト作成例</li></ul>
+  <center><img src="/assets/images/posts/DetGPT/query_answer_prompt.png" /></center><br />
+<li>線形層をSBU，LAION，Conceptual Captionで事前学習し，作成したプロンプトでInstructionチューニング</li>
+  <center><img src="/assets/images/posts/DetGPT/loss_tuning.png" /></center>
+</ul>
+
+<h2 id="3-結果は">3. 結果は??</h2>
+<ul>
+    <li>成功例</li>
+    <center><img src="/assets/images/posts/DetGPT/result_collect.png" /></center><br />
+    <li>失敗例</li>
+    <center><img src="/assets/images/posts/DetGPT/result_failure.png" /></center>
+  </ul>
+
+<h2 id="4-課題は">4. 課題は??</h2>
+
+<div class="btn-wrapper">
+      <a href="/posts" class="btn back_btn">Back</a>
+    </div>
+  </body>
+</html>
+<div id="footer"></div>
+<script>
+  $(function(){
+      $('#footer').load('/footer.html');
+  });
+</script>
+</body>
+</html>
