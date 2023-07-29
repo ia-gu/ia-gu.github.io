@@ -1,165 +1,260 @@
 <!DOCTYPE html>
 <html>
-  <title>MIRU2023の参加日記</title>
-  <head>
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <div id="header"></div>
-    <script>
-      $(function(){
-          $('#header').load('/header.html');
-      });
+<title>MIRU2023の参加日記</title>
+
+<head>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <div id="header"></div>
+  <script>
+    $(function () {
+      $('#header').load('/header.html');
+    });
   </script>
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-    <link rel="stylesheet" href="/assets/css/style.css">
-    <script>
-  MathJax = {
-    tex: {
-      inlineMath: [['$','$'], ['\\(','\\)']],
-      processEscapes: true,
-      tags: "ams",
-      autoload: {
-        color: [],
-        colorV2: ['color']
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+    integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        processEscapes: true,
+        tags: "ams",
+        autoload: {
+          color: [],
+          colorV2: ['color']
+        },
+        packages: { '[+]': ['noerrors'] }
       },
-      packages: {'[+]': ['noerrors']}
-    },
-    chtml: {
-      matchFontHeight: false,
-      displayAlign: "left",
-      displayIndent: "2em"
-    },
-    options: {
-      renderActions: {
-        /* add a new named action to render <script type="math/tex"> */
-        find_script_mathtex: [10, function (doc) {
-          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
-            const display = !!node.type.match(/; *mode=display/);
-            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
-            const text = document.createTextNode('');
-            node.parentNode.replaceChild(text, node);
-            math.start = {node: text, delim: '', n: 0};
-            math.end = {node: text, delim: '', n: 0};
-            doc.math.push(math);
-          }
-        }, '']
+      chtml: {
+        matchFontHeight: false,
+        displayAlign: "left",
+        displayIndent: "2em"
+      },
+      options: {
+        renderActions: {
+          /* add a new named action to render <script type="math/tex"> */
+          find_script_mathtex: [10, function (doc) {
+            for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = { node: text, delim: '', n: 0 };
+              math.end = { node: text, delim: '', n: 0 };
+              doc.math.push(math);
+            }
+          }, '']
+        }
+      },
+      loader: {
+        load: ['[tex]/noerrors']
       }
-    },
-    loader: {
-      load: ['[tex]/noerrors']
-    }
-  };
-</script>
-<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
-  </head>
-  <body>
-    <!-- HACK 画像変更 -->
-    <center><img class="hero" src="/assets/images/notes/miru2023/head.jpg"></center>
-    <h1>MIRU2023の参加日記</h1>
-    <p><span class="fa fa-calendar"></span> Jul 25-29, 2023 </p>
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
+</head>
 
-<h3>MIRU2023に参加したのでチュートリアル・OS・ISで興味深かった話を残しておきます</h3>
-<h3>※発表者の方の許可はとってないので詳細は書きません</h3>
-<h4>1日目</h4>
-<h5>チュートリアル1：ニューラルデジタルヒューマン合成の最前線</h5>
-<h5>チュートリアル2：大規模言語モデル時代のHuman-in-the-Loop機械学習</h5>
+<body>
+  <!-- HACK 画像変更 -->
+  <center><img class="hero" src="/assets/images/notes/miru2023/head.jpg"></center>
+  <h1>MIRU2023の参加日記</h1>
+  <p><span class="fa fa-calendar"></span> Jul 25-29, 2023 </p>
 
-<h4>2日目</h4>
-<h5>OS1A-L2：アテンションはアノテーションの代わりになるか？</h5>
-<ul>  
-  <li>Stable DiffusionのAttention機構を用いて画像とアノテーションのペアを生成しセグメンテーションの学習に使用</li>
-  <li>プロンプト内の主語が画像生成の際に一番注目される，という仮定の下Attention Mapを用いているのが</li>
-  <ul><li>bikeをプロンプトに含めても画像の端に移るbikeのマスクは生成されてなかったのは謎（背景扱いで背景は適当？？）</li></ul>
-  <li>アイデアそのもの，マスク生成結果からAttentionについて考察できる点が面白い</li>
+  <h3>MIRU2023に参加したのでチュートリアル・OS・ISで興味深かった話を残しておきます</h3>
+  <h3>※発表者の方の許可はとってないので詳細は書きません</h3>
+  <h4>1日目</h4>
+  <h5>チュートリアル1：ニューラルデジタルヒューマン合成の最前線</h5>
+  <h5>チュートリアル2：大規模言語モデル時代のHuman-in-the-Loop機械学習</h5>
+
+  <h4>2日目</h4>
+  <h5>OS1A-L2：アテンションはアノテーションの代わりになるか？</h5>
+  <ul>
+    <li>Stable DiffusionのAttention機構を用いて画像とアノテーションのペアを生成しセグメンテーションの学習に使用</li>
+    <li>プロンプト内の主語が画像生成の際に一番注目される，という仮定の下Attention Mapを用いているのが</li>
+    <ul>
+      <li>bikeをプロンプトに含めても画像の端に移るbikeのマスクは生成されてなかったのは謎（背景扱いで背景は適当？？）</li>
+    </ul>
+    <li>アイデアそのもの，マスク生成結果からAttentionについて考察できる点が面白い</li>
   </ul>
-<h5>IS1-29：CNNとViTを組み合わせたモデルのノイズへの頑健性</h5>
-<ul>  
-  <li>CNN→ViTというフレームワークにおいてCNNが持つノイズ耐性の低さがどのように影響するかを調査</li>
-  <li>畳み込みを導入する層はかなりのパターンが検討されるが，それらに対して実験を行っており，全ての層に導入することが一番頑健性向上につながることを確認</li>
-  <li>フーリエ空間のデータ拡張などでも解決できるのか？ViTに対しても考慮する必要があり難しいか？ 気になる</li>
-</ul>
-<h5>IS1-35：事前学習データの違いにおけるモデル盗用に対する防御性能の影響について</h5>
-<ul>  
-  <li>ImageNetとFractalDBの事前学習でモデル盗用に対する防御性能がどのように異なるかを調査</li>
-  <ul><li>モデル盗用｜既存モデルの出力をまねするように学習することでコピーモデルを作成すること</li></ul>
-  <ul><li>GPT-4などの商用非公開モデルにおいてニーズが高い</li></ul>
-  <li>PretrainデータがFractalDB＞ImageNet＞scratchの順で防御性能は高かった</li>
-  <ul><li>盗用モデルはImageNet事前学習済みだったらしいので，FractalDBに変えれば逆転しそう</li></ul>
-</ul>
-<h5>IS1-42：不整列データセットを用いた異常検知アルゴリズムの性能検証</h5>
+  <h5>IS1-29：CNNとViTを組み合わせたモデルのノイズへの頑健性</h5>
+  <ul>
+    <li>CNN→ViTというフレームワークにおいてCNNが持つノイズ耐性の低さがどのように影響するかを調査</li>
+    <li>畳み込みを導入する層はかなりのパターンが検討されるが，それらに対して実験を行っており，全ての層に導入することが一番頑健性向上につながることを確認</li>
+    <li>フーリエ空間のデータ拡張などでも解決できるのか？ViTに対しても考慮する必要があり難しいか？ 気になる</li>
+  </ul>
+  <h5>IS1-35：事前学習データの違いにおけるモデル盗用に対する防御性能の影響について</h5>
+  <ul>
+    <li>ImageNetとFractalDBの事前学習でモデル盗用に対する防御性能がどのように異なるかを調査</li>
+    <ul>
+      <li>モデル盗用｜既存モデルの出力をまねするように学習することでコピーモデルを作成すること</li>
+    </ul>
+    <ul>
+      <li>GPT-4などの商用非公開モデルにおいてニーズが高い</li>
+    </ul>
+    <li>PretrainデータがFractalDB＞ImageNet＞scratchの順で防御性能は高かった</li>
+    <ul>
+      <li>盗用モデルはImageNet事前学習済みだったらしいので，FractalDBに変えれば逆転しそう</li>
+    </ul>
+  </ul>
+  <h5>IS1-42：不整列データセットを用いた異常検知アルゴリズムの性能検証</h5>
   <li>MVtecなどの検査画像とは異なり実データに生じうる撮像ノイズに対する既存手法の性能を調査</li>
   <li>PadimとAuto Encoderで比べたところ，整列データは前者の性能が高く，不整列データは後者の性能が高いことを確認</li>
-  <ul><li>Padim系のやり方を考えれば当たり前ではあるが，事前にデータセットの整列度合いを調べて使用する手法を決めれば良いという点は面白い</li></ul>
-  <li>論文中のデータは再構成しやすそうだが，そうでない製品に対してはどのような結果になるのだろうか？ 気になる</li>
-<h5>特別講演：画像と言語の基盤モデルの現状とこれから</h5>
-<ul>
-  <li>Kosmos-2とか普通に紹介された，スピード感強すぎ</li>
-</ul>
-<ul>
-  <li></li>
-</ul>
-
-<h4>3日目（発表日，自分のは別で用意予定）</h4>
-<h5>IS2-46：CPUのキャッシュメモリがCNNの推論測度へ与える影響の調査</h5>
-<ul>
-  <li>チャネル数を調整することで推論測度を向上させることができる事を確認</li>
-  <ul><li>性能に対するトレードオフ，GPUで同様の傾向が確認できるのか？ 気になる</li></ul>
-</ul>
-<h5>IS2-82：Transformerを用いたプレゼンテーションスライドの順序予測</h5>
-<ul>
-  <li>スライド画像とスライド内のテキストを入力し，スライドが何番目のものか？を予測するタスクを提案</li>
-  <ul><li>OFAは画像中のテキストを検出できたので，テキストの情報量が画像からも取れて冗長になっている可能性があるのでは</li></ul>
-  <li>MNISTの降順ソートはできるが，share slideデータの並べ替えはできない（人間でも無理）</li>
-  <ul><li>スライド全体のうち連続した5枚の並べ替えタスクらしいので，全てを使えれば少しはマシになりそう</li></ul>
-</ul>
-<h5>IS2-83：マルチモーダル感情分析におけるcross-attenctionとself-attentionの優位性に関する考察</h5>
-<ul>
-  <li>テキスト・画像入力ペアからテキストが皮肉表現か否かを判断するタスクにおいてCAとSAの性能への影響を調査</li>
-  <ul><li>今回は傾向調査のため単層Transformer</li></ul>
-  <li>QueryがテキストのCA＞SA＞ConCat＞Queryが画像の場合のCA の順に性能が高かった</li>
-  <ul><li>画像の局所情報からテキストに注目することが難しい，という考察についてはTransformerなので違うのでは？と思う</li></ul>
-  <ul><li>上位二つが高いのは納得，SAとCAについて改めて理解できたので聞いてよかったと思う</li></ul>
-  <li>（感情分析 という言い方は語弊があるのでは...）</li>
-</ul>
-<h5>IS2-85：CLIPを用いた画像検索におけるファインチューニングのための学習データ収集戦略</h5>
-<ul>
-  <li>画像プールから下流タスクのクラス名を入力したCLIPに関連画像を探索させ，より関連した画像を収集させる</li>
-  <ul><li>テキストと画像の関連がある場合を正例，他を負例として正例を増やすようにCLIPにサンプリングさせる</li></ul>
-  <li>正例が増えるほど次にサンプリングされるデータの正例の確率も上がった</li>
-  <ul><li>そのデータで学習した性能を検証してほしい</li></ul>
-  <ul><li>正例・負例のアノテーションと最終的に用いるデータのアノテーションで二度手間なのは嫌，大きな改善が欲しい</li></ul>
-</ul>
-
-<h4>4日目</h4>
-<h5>IS3-</h5>
-<h4>【おまけ】企業展示（敬称略）</h4>
-<h5>HPCテック</h5>
-<ul>  
-  <li>いつもお世話になっております，自分より研究室のこと詳しくてビックリ</li>
-  <li>6000Ada，H100 楽しみにしてます</li>
+  <ul>
+    <li>Padim系のやり方を考えれば当たり前ではあるが，事前にデータセットの整列度合いを調べて使用する手法を決めれば良いという点は面白い</li>
   </ul>
-<h5>日立製作所</h5>
-<ul>  
-<li>CV系の基礎研究，実応用に向けた研究が多く面白そう</li>
-</ul>
-<h5>日本電信電話</h5>
-<ul>  
-<li>MMMの基礎研究など密接にかかわっているとは言いにくい分野の研究もおこなわれていてテーマの自由度が高そう</li>
-</ul>
-<h5>エムスリー</h5>
-<ul>  
-<li>医用という得意なドメインとAIの導入の難しさ，どのように話を進めるのか など，事業面での話が興味深かった</li>
-</ul>
+  <li>論文中のデータは再構成しやすそうだが，そうでない製品に対してはどのような結果になるのだろうか？ 気になる</li>
+  <h5>特別講演：画像と言語の基盤モデルの現状とこれから</h5>
+  <ul>
+    <li>Kosmos-2とか普通に紹介された，スピード感強すぎ</li>
+  </ul>
+  <ul>
+    <li></li>
+  </ul>
 
-    <div class="btn-wrapper">
-      <a href="/notes" class="btn back_btn">Back</a>
-    </div>
-  </body>
+  <h4>3日目（発表日，自分のは別で用意予定）</h4>
+  <h5>IS2-46：CPUのキャッシュメモリがCNNの推論測度へ与える影響の調査</h5>
+  <ul>
+    <li>チャネル数を調整することで推論測度を向上させることができる事を確認</li>
+    <ul>
+      <li>性能に対するトレードオフ，GPUで同様の傾向が確認できるのか？ 気になる</li>
+    </ul>
+  </ul>
+  <h5>IS2-82：Transformerを用いたプレゼンテーションスライドの順序予測</h5>
+  <ul>
+    <li>スライド画像とスライド内のテキストを入力し，スライドが何番目のものか？を予測するタスクを提案</li>
+    <ul>
+      <li>OFAは画像中のテキストを検出できたので，テキストの情報量が画像からも取れて冗長になっている可能性があるのでは</li>
+    </ul>
+    <li>MNISTの降順ソートはできるが，share slideデータの並べ替えはできない（人間でも無理）</li>
+    <ul>
+      <li>スライド全体のうち連続した5枚の並べ替えタスクらしいので，全てを使えれば少しはマシになりそう</li>
+    </ul>
+  </ul>
+  <h5>IS2-83：マルチモーダル感情分析におけるcross-attenctionとself-attentionの優位性に関する考察</h5>
+  <ul>
+    <li>テキスト・画像入力ペアからテキストが皮肉表現か否かを判断するタスクにおいてCAとSAの性能への影響を調査</li>
+    <ul>
+      <li>今回は傾向調査のため単層Transformer</li>
+    </ul>
+    <li>QueryがテキストのCA＞SA＞ConCat＞Queryが画像の場合のCA の順に性能が高かった</li>
+    <ul>
+      <li>画像の局所情報からテキストに注目することが難しい，という考察についてはTransformerなので違うのでは？と思う</li>
+    </ul>
+    <ul>
+      <li>上位二つが高いのは納得，SAとCAについて改めて理解できたので聞いてよかったと思う</li>
+    </ul>
+    <li>（感情分析 という言い方は語弊があるのでは...）</li>
+  </ul>
+  <h5>IS2-85：CLIPを用いた画像検索におけるファインチューニングのための学習データ収集戦略</h5>
+  <ul>
+    <li>画像プールから下流タスクのクラス名を入力したCLIPに関連画像を探索させ，より関連した画像を収集させる</li>
+    <ul>
+      <li>テキストと画像の関連がある場合を正例，他を負例として正例を増やすようにCLIPにサンプリングさせる</li>
+    </ul>
+    <li>正例が増えるほど次にサンプリングされるデータの正例の確率も上がった</li>
+    <ul>
+      <li>そのデータで学習した性能を検証してほしい</li>
+    </ul>
+    <ul>
+      <li>正例・負例のアノテーションと最終的に用いるデータのアノテーションで二度手間なのは嫌，大きな改善が欲しい</li>
+    </ul>
+  </ul>
+
+  <h4>4日目</h4>
+  <h5>OS6B-S3：Adversarial mixup: 敵対的な混合比を用いたmixupによるデータ拡張</h5>
+  <ul>
+    <li>mixupの混合比λを三分探索法で決定することで教師あり学習の性能を改善</li>
+    <ul>
+      <li>既存の改良手法とは異なり単一モデルで導入可能（Model Agnostic）</li>
+    </ul>
+    <li>データセットの難易度が高いほど探索数が少ないときに最高性能に到達するというAblationは理由はよくわからないが面白い</li>
+    <ul>
+      <li>半教師あり学習でも有用か否かが気になる</li>
+    </ul>
+  </ul>
+  <h5>IS3-31：SimSiamにおけるデータ拡張の効果とmixupの導入による向上</h5>
+  <ul>
+    <li>mixupの混合比により発生するmanifold intrusionを負例として扱うSimSiamの改良手法</li>
+    <ul>
+      <li>アイデアも好きだが，データ拡張に関する事前調査を厳密に行っている点もすごい</li>
+    </ul>
+    <li>混合比の変更方法，検証データ，その他のSSLへの導入が期待できそう シンプルだが直観的で好き</li>
+  </ul>
+  <h5>IS3-34：Pretext Taskを用いたMasked Image Modelingの拡張</h5>
+  <ul>
+    <li>MAEに角度予測タスクを導入することで性能向上</li>
+    <ul>
+      <li>Encoder手前にクラストークンを与え，これを角度予測タスクに使用</li>
+    </ul>
+    <li>Lossのスケールを調整するのが面倒そうだが，アイデアはシンプルで面白い</li>
+  </ul>
+  <h5>IS3-86：CLIPを用いた自動車デザイン印象評価の可能性検証</h5>
+  <ul>
+    <li>自社製品車の正面CG画像に対して20の評価語からCLIPに画像評価を行わせ，ユーザとの相関を調べる</li>
+    <ul>
+      <li>評価語は既存研究から，ユーザは北米在住者に在するクラウドソーシング参加者10人（そのプロフィール正しいのか？？）</li>
+    </ul>
+    <li>weird car, unusual car はニュアンスが近いのに相関係数が大きく異なる，family carは定義として分かりやすいはずなのに相関係数が低い なぜ？</li>
+    <li>相関係数が高い評価語の回答値も気になる，CLIPがどのような言葉と回答パターンに対して相関係数が高いかを知りたい</li>
+    <ul>
+      <li>実験段階のため実画像が使えない，といった企業ならではのシビアな問題もあるらしい， 大変</li>
+    </ul>
+  </ul>
+  <h5>IS3-87：ファッショントレンドの検出と予測: SNS投稿データのクラスタリングと時系列分析</h5>
+  <ul>
+    <li>SNSの投稿からトレンドの予測と要因について分析</li>
+    <ul>
+      <li>トレンドは女性のSNS投稿をクラスタリングし，占める割合が高いクラスタを使用</li>
+    </ul>
+    <li>パリコレなどから流行るトップダウントレンドと，一般人の投稿などから流行るボトムアップトレンドがあり，後者が研究対象</li>
+    <ul>
+      <li>ボトムアップの場合は流行る理由が人の気持ちによるものなので感性値が必要そう</li>
+    </ul>
+  </ul>
+  <h5>IS3-106：マルチモーダル深層学習を用いたインフルエンサーの人気度予測</h5>
+  <ul>
+    <li>インフルエンサーにおいて被RT数などの自明な要因以外の非自明なバズる要因を調査</li>
+    <ul><li>インフルエンサーはコスメ系インフルエンサーをRTしているアカウントからAPIで収集（全体からではノイズがひどい らしい）</li></ul>
+    <li>伸びにくい単語，ハッシュタグの使用頻度などとフォロワー数の関係をSHAPで評価</li>
+    <ul><li>感性使ったら楽しそう</li></ul>
+  </ul>
+  <h5>均等知覚空間生成のための能動学習（プログラムになかった）</h5>
+  <ul>
+    <li>知覚空間生成に必要なユーザアンケートを効率よく行うために能動学習を導入</li>
+    <ul><li>アンケートで使用するデータ点を埋め込み空間からサンプリングする際に獲得関数を設計</li></ul>
+    <li>自分では細かいところまで理解できなかったが，感性等への応用も期待できる ことと能動学習を使ってる ことが興味深い</li>
+  </ul>
+  <h4>【おまけ】企業展示（敬称略）</h4>
+  <h5>HPCテック</h5>
+  <ul>
+    <li>いつもお世話になっております，自分より研究室のこと詳しくてビックリ</li>
+    <li>6000Ada，H100 楽しみにしてます</li>
+  </ul>
+  <h5>日立製作所</h5>
+  <ul>
+    <li>CV系の基礎研究，実応用に向けた研究が多く面白そう</li>
+  </ul>
+  <h5>日本電信電話</h5>
+  <ul>
+    <li>MMMの基礎研究など密接にかかわっているとは言いにくい分野の研究もおこなわれていてテーマの自由度が高そう</li>
+  </ul>
+  <h5>エムスリー</h5>
+  <ul>
+    <li>医用という得意なドメインとAIの導入の難しさ，どのように話を進めるのか など，事業面での話が興味深かった</li>
+  </ul>
+
+  <div class="btn-wrapper">
+    <a href="/notes" class="btn back_btn">Back</a>
+  </div>
+</body>
+
 </html>
 <div id="footer"></div>
 <script>
-  $(function(){
-      $('#footer').load('/footer.html');
+  $(function () {
+    $('#footer').load('/footer.html');
   });
 </script>
 </body>
+
 </html>
