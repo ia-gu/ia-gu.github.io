@@ -1,0 +1,109 @@
+    <!DOCTYPE html>
+    <html>
+      <title>LLaMA2の量子化モデルを動かすだけ</title>
+      <head>
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <div id="header"></div>
+        <script>
+          $(function(){
+              $('#header').load('/header.html');
+          });
+      </script>
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+        <link rel="stylesheet" href="/assets/css/style.css">
+        <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$','$'], ['\\(','\\)']],
+          processEscapes: true,
+          tags: "ams",
+          autoload: {
+            color: [],
+            colorV2: ['color']
+          },
+          packages: {'[+]': ['noerrors']}
+        },
+        chtml: {
+          matchFontHeight: false,
+          displayAlign: "left",
+          displayIndent: "2em"
+        },
+        options: {
+          renderActions: {
+            /* add a new named action to render <script type="math/tex"> */
+            find_script_mathtex: [10, function (doc) {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = {node: text, delim: '', n: 0};
+                math.end = {node: text, delim: '', n: 0};
+                doc.math.push(math);
+              }
+            }, '']
+          }
+        },
+        loader: {
+          load: ['[tex]/noerrors']
+        }
+      };
+    </script>
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
+      </head>
+      <body>
+        <center><img class="hero" src="/assets/images/portfolios/llama/head.jpg"></center>
+        <h1>LLaMA2の量子化モデルを動かすだけ</h1>
+        <p><span class="fa fa-link"></span><a href="https://github.com/ia-gu/LLaMA2-Quan"> リポジトリ</a></p>
+        <p><span class="fa fa-calendar"></span> Sep 16, 2023 </p>
+    <p><span class="fa fa-flag"></span> Large Language Models</a></p>
+    
+        <h2 id="1-どんなもの">1. どんなもの??</h2>
+    
+    <ul>
+      <li><a href="https://arxiv.org/abs/2307.09288"> LLaMA2</a> をローカルで推論させる環境を作成</li>
+      <ul><li>~4bit量子化，ELYZAの推論を添えて~</li></ul>
+    </ul>
+    
+    
+    <h2 id="2-使い方">2. 使い方</h2>
+    <li>xformersのバージョン制約が厳しいので，pytorchのバージョンは気をつけないとダメ</li>
+    <ul><li>2023/09/16時点ではrequirements.txtをそのままインストールすれば動かせる</li></ul>
+    <li>↑の環境が立てば，4bit量子化モデルの読み込みはAutoModelForCasusalLM.from_pretrainedの引数でload_in_4bit=Trueにするだけ</li>
+    <center><img src="/assets/images/portfolios/llama/4bit.png" /></center><br />
+    
+      <h2 id="3-結果">3. 結果</h2>
+      <ul>
+        <li>※今回はRTX3090×1枚上で検証のため，7Bと13Bしか触れなかった</li>
+        <li>聞いていた話通り，7Bも13Bも日本語はほとんど話せないらしい</li>
+    <li>7B-Chat</li>
+    <center><img src="/assets/images/portfolios/llama/7b_jp.png" /></center><br />
+    <center><img src="/assets/images/portfolios/llama/7b_ab.png" /></center><br />
+    <ul><li>7Bは偶にラリった日本語を出し始める（読みにくいので困る）</li></ul>
+    <li>13B-Chat</li>
+    <center><img src="/assets/images/portfolios/llama/13b_jp.png" /></center><br />
+    <center><img src="/assets/images/portfolios/llama/13b_ab.png" /></center><br />
+    <ul><li>LLaMA2は7Bも13Bも同じテキストデータで学習しているはずだが，なぜかアメリカ大統領がトランプからバイデンに成長した</li></ul>
+    <li>おまけ｜ELYZA-7B</li>
+    <center><img src="/assets/images/portfolios/llama/el_jp.png" /></center><br />
+    <center><img src="/assets/images/portfolios/llama/el_ab.png" /></center><br />
+  </ul>
+
+    <h2 id="4-余談">4. 余談</h2>
+      <li>ELYZAの13B，70Bが出たら触ってみたい</li>    
+      <ul><li>研究室のリソースが空き次第，70Bの性能も見てみたいとは思う</li></ul>
+      <li>こういうテストで使いたいだけのプロンプトは何にすればよいのか，逆に悩む</li>    
+    
+        <div class="btn-wrapper">
+          <a href="/portfolios" class="btn back_btn">Back</a>
+        </div>
+      </body>
+    </html>
+    <div id="footer"></div>
+    <script>
+      $(function(){
+          $('#footer').load('/footer.html');
+      });
+    </script>
+    </body>
+    </html>
