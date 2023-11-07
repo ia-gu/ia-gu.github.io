@@ -68,42 +68,35 @@
 
 <h2 id="2-どうやって">2. どうやって??</h2>
 <ul>
-  <li>アーキテクチャ</li>
-  <li>ベースラインにShikraを使用，ImageNet1kを900:100クラスに分けて調整</li>
-  <ul><li>各クラスから100枚の画像を選択し，特徴量の平均を計算</li></ul>
-  <ul><li>各クラスのテキストを符号化し，画像間，画像テキスト間，テキスト間の類似度を計算</li></ul>
-  <ul><li>特定のカテゴリに対して他のすべてのカテゴリを類似度に基づいてソートし，N分割</li></ul>
-  <ul><li>各区間内でカテゴリをランダムに選択し，Nの隣のカテゴリ集合を構築</li></ul>
+  <li>Open-Vocabulary Object Detection</li>
+  <li>画像とキャプションのペアを用いて視覚意味空間を獲得し，基礎的な物体検出を学習し，学習時に含まれていないカテゴリに対しても視覚意味空間を用いて検出を可能にする</li>
+  <center><img src="/assets/images/posts/OVR-CNN/head.png" /></center><br />
   
-  <li>損失関数</li>
-  <li>クエリxに対してサポート集合C内のサンプルとの関連性を考慮したラベルの対数尤度を最大化</li>
-  <ul><li>やってることはクロスエントロピー</li></ul>
+  <li>アーキテクチャ</li>
+  <li>ベースモデルはFaster R-CNN</li>
+  <ul><li>基礎クラスVBで学習し，ターゲットクラスVTでテスト</li></ul>
+  <li>言語埋め込みは事前学習済みモデル（GloVEなど）から得ることで，基礎クラスへの過適合を予防</li>
+  <ul><li>このために視覚バックボーンをVCで学習，豊富な視覚意味空間を獲得</li></ul>
   
   <li>学習戦略</li>
-  <ul><li>2-way：c1, c2に対する2クラス分類</li></ul>
-  <ul><ul><li>近傍クラス集合Ntiを持つクラスtiを正クラスとし，確率piで負クラスをhard negative minig（16-shot）</li></ul></ul>
-  <center><img src="/assets/images/posts/LCL/hard negative probability.png" /></center><br />
-  <ul><li>2-way-random：2-wayの後に，平均サンプリングされた2~16-shotで10エポック学習</li></ul>
-  <ul><li>2-way-weight：2-wayの後に，確率pjでサンプリングされた2~16-shotで学習</li></ul>
-  <center><img src="/assets/images/posts/LCL/2-way-weight.png" /></center><br />
-  <ul><li>mix：2-wayとShikraのタスクの両方を含んだファインチューニング</li></ul>
-
-  <li>データセット</li>
-  <li>新規概念をプロンプトから獲得しているかを調べるためには，確実にモデルが未学習なデータを使いたい</li>
-  <li>Midjourneyにより生成された画像と指示文を利用</li>
-  <ul><li>非現実の，神話などでもレアな概念</li></ul>
-  <ul><ul><li>"octopus"と"octopus vacuum"のように，実世界の概念と新しい概念を対にしている</li></ul></ul>
-  <ul><li>概念の一貫性を確保するために画像は手法で選択</li></ul>
-  <ul><li>20group，40category存在し，現在も増加中</li></ul>
-    <center><img src="/assets/images/posts/LCL/ISEKAI.png" /></center>
-  </ul>
+  <li>画像-キャプションデータで物体名などを学習</li>
+  <li>Groundingを自己教師タスクとして捉え，CNNバックボーンとVision2Languageレイヤを学習</li>
+  <ul><li>PixelBERT，ResNet50を使用</li></ul>
+  <ul><li>各単語の学習を強化するためにマスク言語モデリングを採用（Cross Entropy）</li></ul>
+  <li>単語と領域の一致が与えられていないため，弱教師あり学習を用いてこれを学習</li>
+  <ul><li>画像-キャプションペアからGlobal Grounding Scoreを定義し，ペア同士を最大化するように学習</li></ul>
+  <center><img src="/assets/images/posts/OVR-CNN/image_caption_paer.png" /></center><br />
+  <center><img src="/assets/images/posts/OVR-CNN/aij.png" /></center><br />
+  <ul><ul><li>Global Grounding Score｜Local Grounding Scoreの重み平均</li></ul></ul>
+  <ul><ul><li>＜＞はドット積</li></ul></ul>
+  <li>画像，キャプションのそれぞれについての目的関数は以下のように定式化</li>
+  <center><img src="/assets/images/posts/OVR-CNN/loss.png" /></center><br />
+  <li>基礎クラス，ターゲットクラスはCOCOを分割して採用</li>
 
 <h2 id="3-結果は">3. 結果は??</h2>
 <ul>
-    <li>ISEKAIでの結果</li>
-    <center><img src="/assets/images/posts/LCL/result_isekai.png" /></center><br />
-    <li>ImageNetでの結果</li>
-    <center><img src="/assets/images/posts/LCL/result_imagenet.png" /></center>
+    <li>COCOでの結果</li>
+    <center><img src="/assets/images/posts/OVR-CNN/result_coco.png" /></center><br />
 </ul>
 
 <h2 id="4-課題は">4. 課題は??</h2>
