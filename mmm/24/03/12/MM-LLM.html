@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <div id="header"></div>
+    <script>
+      $(function(){
+          $('#header').load('/header.html');
+      });
+  </script>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      processEscapes: true,
+      tags: "ams",
+      autoload: {
+        color: [],
+        colorV2: ['color']
+      },
+      packages: {'[+]': ['noerrors']}
+    },
+    chtml: {
+      matchFontHeight: false,
+      displayAlign: "left",
+      displayIndent: "2em"
+    },
+    options: {
+      renderActions: {
+        /* add a new named action to render <script type="math/tex"> */
+        find_script_mathtex: [10, function (doc) {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/);
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+            const text = document.createTextNode('');
+            node.parentNode.replaceChild(text, node);
+            math.start = {node: text, delim: '', n: 0};
+            math.end = {node: text, delim: '', n: 0};
+            doc.math.push(math);
+          }
+        }, '']
+      }
+    },
+    loader: {
+      load: ['[tex]/noerrors']
+    }
+  };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
+  </head>
+  <body>
+    <center><img class="hero" src="/assets/images/posts/MM-LLM/title.png"></center>
+    <h1>MM-LLMs: Recent Advances in MultiModal Large Language Models</h1>
+    <p><span class="fa fa-link"></span><a href="https://arxiv.org/abs/2401.13601"> https://arxiv.org/abs/2401.13601</a></p>
+    <p><span class="fa fa-calendar"></span> Mar 12, 2024 </p>
+    <p><span class="fa fa-flag"></span> <a href="/mmm/"> Multi Modal Model</a></p>
+    <p><span class="fa fa-graduation-cap"></span> arXiv (2024) </p>
+
+    <h2>1. 概要</h2>
+<ul>
+  <li>2022年以降に登場したマルチモーダルモデル（MMM）の包括的なサーベイを行い，122個のMMMについてベンチマークを行った</li>
+  <li>ベンチマークからMMMの効率的なトレーニング方法をまとめ，リアルタイムで最新動向を管理するウェブサイトを公開</li>
+</ul>
+
+
+<h2>2. モデルアーキテクチャの分類</h2>
+  <center><img src="/assets/images/posts/MM-LLM/head.png" /></center><br />
+  <h3> Modality Encoder </h3>
+<ul>
+  <li>多様なモダリティからの入力を符号化し，対応する特徴量を得る役割（いわゆるEncoder）</li>
+  <li>Imageの例：</li>
+  <ul><li>NFNet-F6, ViT, CLIP ViT, Eva-CLIP ViT, BEiT-3, OpenCLIP, Swin-T based Grounding DINO, DINOv2, SAM-HQ with MAE, RAM++ with SWIN-B, InternViT, VCoder</li></ul>
+  <li>Audioの例：</li>
+  <ul><li>C-Former, HuBERT, BEATs, Whisper, CLAP</li></ul>
+  <li>3D Point Cloud Modalityの例：</li>
+  <ul><li>ULIP-2</li></ul>
+  <li>Any-to-Anyの例：</li>
+  <ul><li>ImageBind</li></ul>
+</ul>  
+  <h3> Input Projector </h3>
+<ul>
+  <li>他のモダリティの特徴量をテキスト空間にマッピングさせる役割</li>
+  <ul><li>マッピングされた特徴量はテキスト特徴と一緒にLLMに渡される</li></ul>
+  <li>以下の損失を最小化することが目的</li>
+  <center><img src="/assets/images/posts/MM-LLM/for1.png" /></center><br />
+  <li>モデル例：</li>
+  <ul><li>(M)LP, Crooss Attention, Q-Former, P-Former, MQ-Former, </li></ul>
+</ul>  
+<h3> LLM Backbone </h3>
+<ul>
+  <li>様々なモダリティからの特徴量を処理し意味理解・推論・入力に関する意思決定を行う役割</li>
+  <ul><li>Zero-Shot，In-Context Learning，Chain-of-Thought，Instruction FollowingといったLLMの特性はMMMになっても引き継がれる</li></ul>
+  <li>直接的なテキスト出力t，他のモダリティからのシグナルトークンSxを出力</li>
+  <center><img src="/assets/images/posts/MM-LLM/for3.png" /></center><br />
+  <ul><li>Pxはプロンプトチューニングとみなすことができる</li></ul>
+  <li>モデル例：</li>
+  <ul><li>Flan-T5, ChatGLM, UL2, Persimmon, Qwen, Chinchilla, OPT, PaLM, LLaMA, LLaMA2, Vicuna</li></ul>
+</ul>  
+<h3> Output Projector </h3>
+<ul>
+<li>LLMからの信号トークン表現Sxをモダリティ生成器MGxに理解可能な特徴量Hxにマッピングする役割</li>
+<li>以下のようにHxとMGxの距離の最小化を行うことでHxのアラインメントを学習</li>
+<center><img src="/assets/images/posts/MM-LLM/for4.png" /></center><br />
+<li>モデル例：</li>
+<ul><li>MLP, Tiny Transormer(Decoder)</li></ul>
+</ul> 
+<h3> Modality Generator </h3>
+<ul>
+<li>異なるモダリティの出力を生成</li>
+<ul><li>画像ならStable Diffusion，ビデオならZeroscope，音声ならAudioLDM2</li></ul>
+<li>以下のように条件付きLDM損失を用いて逆拡散過程を学習</li>
+<center><img src="/assets/images/posts/MM-LLM/for4.png" /></center><br />
+</ul> 
+
+<h2>3. 学習パイプライン</h2>
+<ul>
+  <li>MM PTではXTextデータセットを用いて学習</li>
+  <ul><li>MM理解モデルは↓のみを学習</li></ul>
+  <center><img src="/assets/images/posts/MM-LLM/for1.png" /></center><br />
+  <ul><li>M生成モデルは↓も同時に学習</li></ul>
+  <center><img src="/assets/images/posts/MM-LLM/for4.png" /></center>
+  <center><img src="/assets/images/posts/MM-LLM/for4.png" /></center><br />
+  <li>MM ITでは命令フォーマットされたデータセットを用いてMMMを微調整する</li>
+  <ul><li>教師ありファインチューニング（SFT）と人間による強化学習（RLHF）からなる</ul>
+  <ul><li>SFT：MM PTのデータの一部を命令形式に変換して利用</ul>
+  <ul><ul><li>QAの場合の例： "＜Image＞{Question}"という形式のデータを抽出 → "＜Image＞" Examine the image and respond to the following question with a brief answer:"{Question}. Answer:"; と変換して利用</li></ul></ul>
+  <ul><li>RLHF：人間によるフィードバックを報酬とした強化学習でモデルを微調整</ul>
+</ul>  
+
+<h2>4. MMMの包括的分類</h2>
+<ul>
+  <li>122のMMMを帰納的観点・設計的観点から分類</li>
+  <ul><li>Tool usingはLLMをブラックボックスとして扱っていること，End-to-Endはモデルが共同学習されていることを意味</li></ul>
+  <center><img src="/assets/images/posts/MM-LLM/taxonomy.png" /></center><br />
+  <li>43の主要なMMMを包括的に比較</li>
+  <center><img src="/assets/images/posts/MM-LLM/43mmm.png" /></center><br />
+  <ul><li>MMの理解モデルからMMの生成モデルへ進化（MiniGPT-4 -> MiniGPT-5 -> NExT-GPT）</li></ul>
+  <ul><li>SFTからRLHFに進化し，人間の糸に沿うように会話能力を向上（BLIP-2 -> InstructBLIP -> DRESS）</li></ul>
+  <ul><li>モダリティの拡張（BLIP-2 -> XLLM x InstructBLIP -> X-InstructBLIP）</li></ul>
+  <ul><li>データセットの高品質化（LLaVA -> LLaVA1.5）</li></ul>
+  <ul><li>より効率の良いモデルアーキテクチャの採用（Q-Former, P-Former -> Linear Projector(VILA)）</li></ul>
+</ul>  
+
+<h2>5. MMMのベンチマーク</h2>
+<ul>
+  <li>18個のVLタスクで主流MMMをベンチマーク</li>
+  <center><img src="/assets/images/posts/MM-LLM/result.png" /></center><br />
+  <ul><li>解像度が高いほど性能向上に影響を与え，LLaVA-1.5とVILAは336*336，Qwen-VLとMiniGPT-v2は448*448を採用</li></ul>
+  <ul><ul><li>MiniGPT-v2では計算コストを下げるため隣接する4つの視覚的トークンを連結 などして工夫</li></ul></ul>
+  <ul><ul><li>Monkeyは高解像度のEncoderを凍結することで1300*800，DocPediaは更に2560*2560に対応させた</li></ul></ul>
+  <ul><li>データセットの品質も重要であり，LLaVA1.5やVILAはShareGPT4Vの採用により性能向上を達成</li></ul>
+  <ul><ul><li>LLMでParameter-Efficient Fine-Tuning（PEFT）を行うことでICLに重要な深い埋め込みアラインメントを促進</li></ul></ul>
+  <ul><ul><li>画像-テキストペアだけでは最適ではない</li></ul></ul>
+  <ul><ul><li>SFTに不自然な指示などを混ぜることでVLタスクの性能が向上</li></ul></ul>
+</ul>  
+
+<h2>6. 付録の紹介部分を簡単に</h2>
+<h3> Modality Encoder </h3>
+<ul>
+<li>NFNet-F6：Normalizer freeのResNet</li>
+</ul> 
+<h3> Mainstream PEFT Methods </h3>
+<ul>
+<li>Prefix-tuning：AttentionのK, Vに学習可能トークンを導入</li>
+<li>Adapter：ダウンサンプリング，非線形活性化，アップサンプリングの残差接続</li>
+<li>LoRA：重み行列を低ランク行列で近似して学習，元の重みに加算</li>
+<li>QLoRA：LoRAを4bit量子化</li>
+<li>Layer Norm tuning：LayerNorm層をFT or LoRA</li>
+<li>その他：P-tuning, P-tuning v2, Adapt-Bias, Compacter, AdapterFormer, XTuner, P-LoRA, MoLE, Delta-LoRA</li>
+</ul> 
+<h3> Representative LLMs </h3>
+<ul>
+<li>Flan-T5：Encoer-DecoderですべてのNLPタスクを扱うT5をFLANでFT</li>
+<li>InternLM：多言語対応1兆パラメータモデル</li>
+<li>UL2：Encoer-Decoderに逆拡散過程を追加</li>
+<li>OPT：GPT-3のクローン</li>
+<li>PaLM：並列AttentionとFFNによる計量モデル</li>
+<li>Vicuna：ShareGPTのデータでLLaMAをSFT</li>
+</ul> 
+
+<div class="btn-wrapper">
+      <a href="/posts" class="btn back_btn">Back</a>
+    </div>
+  </body>
+</html>
+<div id="footer"></div>
+<script>
+  $(function(){
+      $('#footer').load('/footer.html');
+  });
+</script>
+</body>
+</html>
