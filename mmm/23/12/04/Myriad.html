@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <div id="header"></div>
+    <script>
+      $(function(){
+          $('#header').load('/header.html');
+      });
+  </script>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      processEscapes: true,
+      tags: "ams",
+      autoload: {
+        color: [],
+        colorV2: ['color']
+      },
+      packages: {'[+]': ['noerrors']}
+    },
+    chtml: {
+      matchFontHeight: false,
+      displayAlign: "left",
+      displayIndent: "2em"
+    },
+    options: {
+      renderActions: {
+        /* add a new named action to render <script type="math/tex"> */
+        find_script_mathtex: [10, function (doc) {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/);
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+            const text = document.createTextNode('');
+            node.parentNode.replaceChild(text, node);
+            math.start = {node: text, delim: '', n: 0};
+            math.end = {node: text, delim: '', n: 0};
+            doc.math.push(math);
+          }
+        }, '']
+      }
+    },
+    loader: {
+      load: ['[tex]/noerrors']
+    }
+  };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
+  </head>
+  <body>
+    <center><img class="hero" src="/assets/images/posts/Myriad/head.png"></center>
+    <h1>Myriad: Large Multimodal Model by Applying Vision Experts for Industrial Anomaly Detection</h1>
+    <p><span class="fa fa-link"></span><a href="https://arxiv.org/abs/2310.19070"> https://arxiv.org/abs/2310.19070</a></p>
+    <p><span class="fa fa-calendar"></span> Dec 4, 2023 </p>
+    <p><span class="fa fa-flag"></span> <a href="/mmm/"> Multi Modal Model</a></p>
+    <p><span class="fa fa-graduation-cap"></span> arXiv (2023) </p>
+
+    <h2 id="1-どんなもの">1. どんなもの??何ができる??</h2>
+
+<ul>
+  <li>Vision Expertによる異常度マップ(トークン化)と，異常度マップとViTの特徴量を入力としたQ-Formerの出力トークンとしてLLMに入力することで工業製品への異常検知と言語インタラクションが可能なMyriadを提案</li>
+  <li>MVTec，VisAのFew-ShotでPadim系やAnomalyGPTと同等以上の性能を達成</li>
+</ul>
+
+
+<h2 id="2-どうやって">2. どうやって??</h2>
+<ul>
+  <li>アーキテクチャ(Mini GPT-4ベース)</li>
+  <center><img src="/assets/images/posts/Myriad/head.png" /></center><br />
+  <ul><li>原画像をVision Expertに入力して異常度マップを獲得</li></ul>
+  <ul><ul><li>Vision ExpertにはSimpleNet，UniAD，PatchCore，PaDiM，AnomalyGPT等が利用可能（本文中の結果ではSimpleNetを使用）</li></ul></ul>
+  <ul><li>異常度マップをVision Expert Tokenizerに入力し，LLMに入力可能なトークンに変換</li></ul>
+  <ul><ul><li>Vision Expert Tokenizerは3*3の畳み込み，ReLU，MaxPoolingで構成される複数ブロックで構成</li></ul></ul>
+  <ul><li>原画像をViTとAdapterに通して得られる埋め込みと，異常度マップをVision Expert Instructorに通して得られるトークンをQ-Formerに入力して視覚情報をマージ</li></ul>
+  <ul><ul><li>ViTはEVA-CLIPから，Adapterは2層の畳み込みと残差ブロックで，Q-FormerはBLIP-2から利用</li></ul></ul>
+  <ul><ul><li>Vision Expert Instructorは異常度マップをQ-Formerクエリトークン形式のExpert Queryに変換</li></ul></ul>
+  <ul><ul><li>※Mini GPT-4時点では産業用画像とテキストのペアによるアラインメントが存在しないため，LLMの応答は視覚情報に依存する</li></ul></ul>
+  <ul><li>NSAで作成した合成異常画像と複数種類存在するテンプレート文を用いてデータセットを構築</li></ul>
+  <ul><ul><li>NSAの設定はAnomalyGPTに準拠</li></ul></ul>
+  
+<h2 id="3-結果は">3. 結果は??</h2>
+<ul>
+    <li>MVTec，VisAの定量評価</li>
+    <center><img src="/assets/images/posts/Myriad/result.png" /></center><br />
+    <li>MVTecの定性評価</li>
+    <center><img src="/assets/images/posts/Myriad/result_mvtec_1.png" /></center><br />
+    <center><img src="/assets/images/posts/Myriad/result_mvtec_2.png" /></center><br />
+    <li>VisAの定性評価</li>
+    <center><img src="/assets/images/posts/Myriad/result_visa_1.png" /></center><br />
+    <center><img src="/assets/images/posts/Myriad/result_visa_2.png" /></center><br />
+  </ul>
+
+<h2 id="4-課題は">4. 課題は??</h2>
+<li>異常度マップが上手く求められない場合の性能は？崩壊するとして，どうなるかが見たい</li>
+<li>提案手法でAUCが出る理由が良く分からない，AnomalyGPTと同様とか書いてあるけど，どういうこと？</li>
+
+
+<div class="btn-wrapper">
+      <a href="/posts" class="btn back_btn">Back</a>
+    </div>
+  </body>
+</html>
+<div id="footer"></div>
+<script>
+  $(function(){
+      $('#footer').load('/footer.html');
+  });
+</script>
+</body>
+</html>

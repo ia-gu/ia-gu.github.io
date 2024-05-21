@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/css/style.css">
+  </head>
+  <body>
+    <div class="top-wrapper">
+      <div class="container">
+        <h1>Active Learning</h1>
+        <h3>(2/4)</h3>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <div id="header"></div>
+    <script>
+      $(function(){
+          $('#header').load('/header.html');
+      });
+  </script>
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/css/posts.css">
+    <script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      processEscapes: true,
+      tags: "ams",
+      autoload: {
+        color: [],
+        colorV2: ['color']
+      },
+      packages: {'[+]': ['noerrors']}
+    },
+    chtml: {
+      matchFontHeight: false,
+      displayAlign: "left",
+      displayIndent: "2em"
+    },
+    options: {
+      renderActions: {
+        /* add a new named action to render <script type="math/tex"> */
+        find_script_mathtex: [10, function (doc) {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/);
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+            const text = document.createTextNode('');
+            node.parentNode.replaceChild(text, node);
+            math.start = {node: text, delim: '', n: 0};
+            math.end = {node: text, delim: '', n: 0};
+            doc.math.push(math);
+          }
+        }, '']
+      }
+    },
+    loader: {
+      load: ['[tex]/noerrors']
+    }
+  };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
+  </head>
+  <body>
+    <div class="btn-wrapper">
+      <a href="/active_learning" class="btn back_btn previous"><<<</a>
+      <a href="/active_learning" class="btn back_btn next"><</a>
+      <a href="/active_learning/i3" class="btn back_btn next">></a>
+      <a href="/active_learning/i4" class="btn back_btn previous">>>></a>
+    </div>
+
+    <div class="myposts">
+  
+      <div class="post">
+        <a href="/active_learning/23/01/30/ReducingLabelEffort.html">
+          <img class="post_img" src="/assets/images/posts/ReducingLabelEffort/framework.png">
+          <div class="post_detail"> 
+            <p><b>Reducing Label Effort: Self-Supervised meets Active Learning</b></p>
+            <p class="post_p"><h1 id=""></h1>
+              <ul>
+                <li>DALの前にSSLを行うことでDALの性能を向上するフレームワークを提案</li>
+                <li>CIFAR，TinyImageNetでラベルデータ数が少ない場合にスクラッチと比べ大きく性能向上することを確認</li>
+              </ul>
+</p>
+            <p>
+              <span class="fa fa-calendar"></span> Jan 30, 2023
+              <span class="fa fa-folder"></span> active learning
+              <span class="fa fa-graduation-cap"></span> ICCVW (2021)
+            </p>
+          </div>
+        </a>
+      </div>
+      
+      <div class="post">
+        <a href="/active_learning/23/01/29/BatchBALD.html">
+          <img class="post_img" src="/assets/images/posts/BatchBALD/head.png">
+          <div class="post_detail"> 
+            <p><b>BatchBALD: Efficient and Diverse Batch Acquisition for Deep Bayesian Active Learning</b></p>
+            <p class="post_p"><h1 id=""></h1>
+              <ul>
+                <li>BALDはクエリデータ内に偏りが生じることから分散を用いて多様性を考慮するBatchBALDを提案</li>
+                <li>MNISTでBALDを上回ることを確認</li>
+              </ul>
+</p>
+            <p>
+              <span class="fa fa-calendar"></span> Jan 29, 2023
+              <span class="fa fa-folder"></span> active learning
+              <span class="fa fa-graduation-cap"></span> arXiv (2019)
+            </p>
+          </div>
+        </a>
+      </div>
+      
+      <div class="post">
+        <a href="/active_learning/23/01/28/DoubtWeightedCoreset.html">
+          <img class="post_img" src="/assets/images/posts/DoubtWeightedCoreset/head.png">
+          <div class="post_detail"> 
+            <p><b>Improving greedy core-set configurations for active learning with uncertainty-scaled distances</b></p>
+            <p class="post_p"><h1 id=""></h1>
+              <ul>
+                <li>Core-setを不確実性を用いてスケーリング，ビームサーチを用いてサブセット選択方法を改善</li>
+                <li>CIFAR，SVHNで有効性を評価</li>
+              </ul>
+</p>
+            <p>
+              <span class="fa fa-calendar"></span> Jan 28, 2023
+              <span class="fa fa-folder"></span> active learning
+              <span class="fa fa-graduation-cap"></span> arXiv (2022)
+            </p>
+          </div>
+        </a>
+      </div>
+
+      <div class="post">
+        <a href="/active_learning/23/01/28/FALSE.html">
+          <img class="post_img" src="/assets/images/posts/FALSE/framework.png">
+          <div class="post_detail"> 
+            <p><b>Forgetful Active Learning with Switch Events: Efficient Sampling for Out-of-Distribution Data</b></p>
+            <p class="post_p"><h1 id=""></h1>
+              <ul>
+                <li>OOD(Out-of-Distribution)データに対するDAL手法としてFALSE(forgetful active learning with switch events)を提案</li>
+                <li>CIFAR10，CINIC10，CIFAR10-C等で有効性を確認</li>
+              </ul>
+</p>
+            <p>
+              <span class="fa fa-calendar"></span> Jan 28, 2023
+              <span class="fa fa-folder"></span> active learning
+              <span class="fa fa-graduation-cap"></span> arXiv (2023)
+            </p>
+          </div>
+        </a>
+      </div>
+
+      <div class="post">
+        <a href="/active_learning/23/01/26/SelfPacedAL.html">
+          <img class="post_img" src="/assets/images/posts/SelfPacedAL/head.png">
+          <div class="post_detail"> 
+            <p><b>Self-Paced Active Learning: Query the Right Thing at the Right Time</b></p>
+            <p class="post_p"><h1 id=""></h1>
+              <ul>
+                <li>サンプルの情報量と簡単さを同時に考慮するSelf-Paced ALを提案</li>
+                <li>ラベル付きデータが少ない状況で難しいサンプルをクエリすることを避ける</li>
+              </ul>
+</p>
+            <p>
+              <span class="fa fa-calendar"></span> Jan 26, 2023
+              <span class="fa fa-folder"></span> active learning
+              <span class="fa fa-graduation-cap"></span> AAAI (2019) 
+            </p>
+          </div>
+        </a>
+      </div>
+      
+      <div class="post">
+        <a href="/active_learning/23/01/26/MoBYv2AL.html">
+          <img class="post_img" src="/assets/images/posts/MoBYv2AL/framework.png">
+          <div class="post_detail"> 
+            <p><b>MoBYv2AL: Self-supervised Active Learning for Image Classification</b></p>
+            <p class="post_p"><h1 id=""></h1>
+              <ul>
+                <li>Swin向けに提案されたSSL手法MoBYを改良し，DALと組み合わせたフレームワークMoBYv2ALを提案</li>
+                <li>CIFAR，SVHN，不均衡CIFARなどで有効性を確認</li>
+              </ul>
+</p>
+            <p>
+              <span class="fa fa-calendar"></span> Jan 26, 2023
+              <span class="fa fa-folder"></span> active learning
+              <span class="fa fa-graduation-cap"></span> BMVC (2022) 
+            </p>
+          </div>
+        </a>
+      </div>
+
+      <div class="post">
+        <a href="/active_learning/23/01/25/DALBT.html">
+          <img class="post_img" src="/assets/images/posts/DALBT/framework.png">
+          <div class="post_detail"> 
+            <p><b>Deep Active Learning Using Barlow Twins</b></p>
+            <p class="post_p"><h1 id=""></h1>
+              <ul>
+                <li>SSL手法Barlow Twinsを用いたDALフレームワークDALBTを提案</li>
+                <li>CIFAR10，FashionMNISTやノイズラベルを含むCIFAR10で有効性を確認</li>
+              </ul>
+</p>
+            <p>
+              <span class="fa fa-calendar"></span> Jan 25, 2023
+              <span class="fa fa-folder"></span> active learning
+              <span class="fa fa-graduation-cap"></span> arXiv (2022) 
+            </p>
+          </div>
+        </a>
+      </div>
+
+      <div class="post">
+        <a href="/active_learning/23/01/25/HowMuchaModelBeTrainedbyPL.html">
+          <img class="post_img" src="/assets/images/posts/HowMuchaModelBeTrainedbyPL/head.png">
+          <div class="post_detail"> 
+            <p><b>How Much a Model Be Trained by Passive Learning Before Active Learning</b></p>
+            <p class="post_p"><h1 id=""></h1>
+              <ul>
+                <li>ALの最初のランダムセット枚数がクエリ戦略，モデル構造，データセットに依存することを発見</li>
+                <li>CIFAR10に最も最適な設定を提案し検証</li>
+              </ul>
+</p>
+            <p>
+              <span class="fa fa-calendar"></span> Jan 25, 2023
+              <span class="fa fa-folder"></span> active learning
+              <span class="fa fa-graduation-cap"></span> IEEE (2022)
+            </p>
+          </div>
+        </a>
+      </div>
+      
+      <div class="post">
+        <a href="/active_learning/23/01/25/ResponsibleALviaHITL.html">
+          <img class="post_img" src="/assets/images/posts/ResponsibleALviaHITL/framework.png">
+          <div class="post_detail"> 
+            <p><b>Responsible Active Learning via Human-in-the-loop Peer Study</b></p>
+            <p class="post_p"><h1 id=""></h1>
+              <ul>
+                <li>著作権などデータのプライバシーに配慮しモデルの安全性を向上するPSL(Peer Study Learning)を提案</li>
+                <li>CIFAR，TinyImageNetで有効性を確認</li>
+              </ul>
+</p>
+            <p>
+              <span class="fa fa-calendar"></span> Jan 25, 2023
+              <span class="fa fa-folder"></span> active learning
+              <span class="fa fa-graduation-cap"></span> TMLR (2022)
+            </p>
+          </div>
+        </a>
+      </div>
+
+      <div class="post">
+        <a href="/active_learning/23/01/25/ALonaBudget.html">
+          <img class="post_img" src="/assets/images/posts/ALonaBudget/head.png">
+          <div class="post_detail"> 
+            <p><b>Active Learning on a Budget: Opposite Strategies Suit High and Low Budgets</b></p>
+            <p class="post_p"><h1 id=""></h1>
+              <ul>
+                <li>ラベルデータが少ない場合は簡単なサンプル，ラベルデータが多い場合は難しいサンプルを選択することで精度向上することを示し，予算が少ない場合に有効なTypiClustを提案</li>
+                <li>CIFAR，ImageNetで有効性を確認</li>
+              </ul>
+</p>
+            <p>
+              <span class="fa fa-calendar"></span> Jan 25, 2023
+              <span class="fa fa-folder"></span> active learning
+              <span class="fa fa-graduation-cap"></span> ICML (2022)
+            </p>
+          </div>
+        </a>
+      </div>
+
+      <div class="post">
+        <a href="/active_learning/23/01/25/MakingYourFirstChoice.html">
+          <img class="post_img" src="/assets/images/posts/MakingYourFirstChoice/framework.png">
+          <div class="post_detail"> 
+            <p><b>Making Your First Choice: To Address Cold Start Problem in Vision Active Learning</b></p>
+            <p class="post_p"><h1 id=""></h1>
+              <ul>
+                <li>対象学習と疑似ラベルを用いてcold-start問題の解決に挑戦</li>
+                <li>CIFAR10と3つの医用画像で既存のクエリ戦略と比べ幅広くデータを選択できることを確認</li>
+              </ul>
+</p>
+            <p>
+              <span class="fa fa-calendar"></span> Jan 25, 2023
+              <span class="fa fa-folder"></span> active learning
+              <span class="fa fa-graduation-cap"></span> arXiv (2022)
+            </p>
+          </div>
+        </a>
+      </div>
+
+      <div class="post">
+        <a href="/active_learning/23/01/25/ActiveEnsembleSampling.html">
+          <img class="post_img" src="/assets/images/posts/ActiveEnsembleSampling/head.png">
+          <div class="post_detail"> 
+            <p><b>Deep Active Ensemble Sampling For Image Classification</b></p>
+            <p class="post_p"><h1 id=""></h1>
+              <ul>
+                <li>exploration/exploitationのトレードオフを用いた新しいフレームワークの提案</li>
+                <li>CIFAR，ImageNetで有効性を評価</li>
+              </ul>
+</p>
+            <p>
+              <span class="fa fa-calendar"></span> Jan 25, 2023
+              <span class="fa fa-folder"></span> active learning
+              <span class="fa fa-graduation-cap"></span> ACCV (2022)
+            </p>
+          </div>
+        </a>
+      </div>
+
+      <div class="post">
+        <a href="/active_learning/23/01/25/TIDAL.html">
+          <img class="post_img" src="/assets/images/posts/TIDAL/head.png">
+          <div class="post_detail"> 
+            <p><b>TiDAL: Learning Training Dynamics for Active Learning</b></p>
+            <p class="post_p"><h1 id=""></h1>
+              <ul>
+                <li>DLの挙動(TD: Training Dynamics)を予測する追加モジュールを用いた不確実性の推定によってクエリを行うTIDALを提案</li>
+                <li>均衡データ，不均衡データに対する有効性を確認</li>
+              </ul>
+</p>
+            <p>
+              <span class="fa fa-calendar"></span> Jan 25, 2023
+              <span class="fa fa-folder"></span> active learning
+              <span class="fa fa-graduation-cap"></span> arXiv (2022)
+            </p>
+          </div>
+        </a>
+      </div>
+
+      <div class="post">
+        <a href="/active_learning/23/01/25/TowardsMinimizingLabelingCost.html">
+          <img class="post_img" src="/assets/images/posts/TowardsMinimizingLabelingCost/framework.png">
+          <div class="post_detail"> 
+            <p><b>Consistency-based Semi-supervised Active Learning: Towards Minimizing Labeling Cost</b></p>
+            <p class="post_p"><h1 id=""></h1>
+              <ul>
+                <li>半教師あり学習と組み合わせて一貫性ベースでクエリする手法を提案し，cold-start問題についても調査</li>
+                <li>CIFAR，ImageNetで有効性を確認，cold-startについて検証</li>
+              </ul>
+</p>
+            <p>
+              <span class="fa fa-calendar"></span> Jan 25, 2023
+              <span class="fa fa-folder"></span> active learning
+              <span class="fa fa-graduation-cap"></span> ECCV (2020)
+            </p>
+          </div>
+        </a>
+      </div>
+
+      <div class="post">
+        <a href="/active_learning/23/01/25/InDefenseOfCoreset.html">
+          <img class="post_img" src="/assets/images/posts/InDefenseOfCoreset/framework.png">
+          <div class="post_detail"> 
+            <p><b>In Defense of Core-set: A Density-aware Core-set Selection for Active Learning</b></p>
+            <p class="post_p"><h1 id=""></h1>
+              <ul>
+                <li>特徴空間上で疎な部分が密な部分に比べて情報量の多いサンプルを持つ傾向があることを発見し，密度を考慮したDACS(Density-aware Core-set)を提案</li>
+                <li>CIFAR10，RMNIST等で有効性を確認</li>
+              </ul>
+</p>
+            <p>
+              <span class="fa fa-calendar"></span> Jan 25, 2023
+              <span class="fa fa-folder"></span> active learning
+              <span class="fa fa-graduation-cap"></span> KDD (2022)
+            </p>
+          </div>
+        </a>
+      </div>
+
+
+      <div class="btn-wrapper">
+        <a href="/active_learning" class="btn back_btn previous"><<<</a>
+        <a href="/active_learning" class="btn back_btn next"><</a>
+        <a href="/active_learning/i3" class="btn back_btn next">></a>
+        <a href="/active_learning/i4" class="btn back_btn previous">>>></a>
+      </div>
+  </body>
+</html>
+<div id="footer"></div>
+<script>
+  $(function(){
+      $('#footer').load('/footer.html');
+  });
+</script>
+</body>
+</html>

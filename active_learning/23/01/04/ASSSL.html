@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <div id="header"></div>
+    <script>
+      $(function(){
+          $('#header').load('/header.html');
+      });
+  </script>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      processEscapes: true,
+      tags: "ams",
+      autoload: {
+        color: [],
+        colorV2: ['color']
+      },
+      packages: {'[+]': ['noerrors']}
+    },
+    chtml: {
+      matchFontHeight: false,
+      displayAlign: "left",
+      displayIndent: "2em"
+    },
+    options: {
+      renderActions: {
+        /* add a new named action to render <script type="math/tex"> */
+        find_script_mathtex: [10, function (doc) {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/);
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+            const text = document.createTextNode('');
+            node.parentNode.replaceChild(text, node);
+            math.start = {node: text, delim: '', n: 0};
+            math.end = {node: text, delim: '', n: 0};
+            doc.math.push(math);
+          }
+        }, '']
+      }
+    },
+    loader: {
+      load: ['[tex]/noerrors']
+    }
+  };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
+  </head>
+  <body>
+    <center><img class="hero" src="/assets/images/posts/ASSSL/framework.png"></center>
+    <h1>Active Self-Semi-Supervised Learning for Few Labeled Samples Fast Training</h1>
+    <p><span class="fa fa-link"></span><a href="https://arxiv.org/abs/2203.04560"> https://arxiv.org/abs/2203.04560</a></p>
+    <p><span class="fa fa-calendar"></span> Jan 4, 2023 </p>
+    <p><span class="fa fa-flag"></span> <a href="/active_learning"> Active Learning</a></p>
+    <p><span class="fa fa-graduation-cap"></span> arXiv </p>
+
+    <h2 id="1-どんなもの">1. どんなもの??何ができる??</h2>
+
+<ul>
+  <li>自己教師あり学習の事前学習から得られる疑似ラベルを用いて半教師あり学習に有益な少数サンプルを選択するフレームワークとしてActive Self-Semi-Supervised Learningを提案</li>
+  <li>既存手法と比べはるかに少ない枚数で高精度を出すことが可能であり，CIFAR10では10枚のアノテーションで83%を達成</li>
+</ul>
+
+
+<h2 id="2-どうやって">2. どうやって??</h2>
+<ul>
+  <center><img src="/assets/images/posts/ASSSL/framework.png" /></center><br />
+  <li>手順</li>
+<ol>
+  <li>事前学習で訓練したモデルがALによってサンプルを選択</li>
+  <li>grand truthと疑似ラベルによるLossを伝播し，他のラベル付きデータの事前疑似ラベルを獲得</li>
+  <li>事前分布とモデルの予測から以下のLossを基に半教師モデルを学習</li>
+  <center><img src="/assets/images/posts/ASSSL/semi-supervised.png" /></center><br />
+</ol>
+  <ul><li>ALでは，クラスタリングの際のクラスタ中心に近いサンプルを選択</li></ul>
+</ul>
+
+<h2 id="3-結果は">3. 結果は??</h2>
+<ul>
+    <li>クラスタリング結果</li>
+    <center><img src="/assets/images/posts/ASSSL/clustering_result.png" /></center><br />
+<ul>    
+    <li>自己教師あり学習だけではうまく特徴が取れていない(左)</li>
+    <li>提案するフレームワークでは，40枚のラベル付きデータで特徴が取れている(右)</li>
+</ul>
+    <li>実験結果</li>
+    <center><img src="/assets/images/posts/ASSSL/result.png" /></center><br />
+<ul>
+    <li>CIFAR10において，10枚で学習した場合(左)，40枚で学習した場合(右)のどちらも高精度であり既存手法よりも少ない枚数で学習が可能</li>
+</ul>
+</ul>
+
+<h2 id="4-課題は">4. 課題は??</h2>
+
+    <div class="btn-wrapper">
+      <a href="/posts" class="btn back_btn">Back</a>
+    </div>
+  </body>
+</html>
+<div id="footer"></div>
+<script>
+  $(function(){
+      $('#footer').load('/footer.html');
+  });
+</script>
+</body>
+</html>

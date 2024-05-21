@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/css/style.css">
+  </head>
+  <body>
+    <div class="top-wrapper">
+      <div class="container">
+        <h1>Active Learning</h1>
+        <h3>(1/4)</h3>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <div id="header"></div>
+    <script>
+      $(function(){
+          $('#header').load('/header.html');
+      });
+  </script>
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/css/posts.css">
+    <script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      processEscapes: true,
+      tags: "ams",
+      autoload: {
+        color: [],
+        colorV2: ['color']
+      },
+      packages: {'[+]': ['noerrors']}
+    },
+    chtml: {
+      matchFontHeight: false,
+      displayAlign: "left",
+      displayIndent: "2em"
+    },
+    options: {
+      renderActions: {
+        /* add a new named action to render <script type="math/tex"> */
+        find_script_mathtex: [10, function (doc) {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/);
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+            const text = document.createTextNode('');
+            node.parentNode.replaceChild(text, node);
+            math.start = {node: text, delim: '', n: 0};
+            math.end = {node: text, delim: '', n: 0};
+            doc.math.push(math);
+          }
+        }, '']
+      }
+    },
+    loader: {
+      load: ['[tex]/noerrors']
+    }
+  };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
+  </head>
+  <body>
+    <div class="btn-wrapper">
+      <!-- <a href="/active_learning" class="btn back_btn previous"><<<</a>
+      <a href="/active_learning" class="btn back_btn next"><</a> -->
+      <a href="/active_learning/i2" class="btn back_btn next">></a>
+      <a href="/active_learning/i4" class="btn back_btn previous">>>></a>
+    </div>
+
+    <div class="myposts">
+  
+      <div class="post">
+        <a href="/active_learning/23/05/08/DALwithCLunderRDPA.html">
+          <img class="post_img" src="/assets/images/posts/DALwithCLunderRDPA/head.png">
+          <div class="post_detail"> 
+            <p><b>Deep Active Learning with Contrastive Learning Under Realistic Data Pool Assumptions</b></p>
+            <p class="post_p"><h1 id=""></h1>
+              <ul>
+                <li>ラベルなしデータプール内に目的タスクとの関連性が低い(OoD)データが存在する場面がより実用的と指摘し，対象学習を用いた手法を提案</li>
+                <li>既存手法と比べ少ないアノテーション量で同等の精度に達成することを確認</li>
+              </ul>
+</p>
+            <p>
+              <span class="fa fa-calendar"></span> May 08, 2023
+              <span class="fa fa-folder"></span> Active Learning
+              <span class="fa fa-graduation-cap"></span> AAAI (2023)
+            </p>
+          </div>
+        </a>
+      </div>
+
+      <div class="post">
+        <a href="/active_learning/23/04/30/RethinkingFAL.html">
+          <img class="post_img" src="/assets/images/posts/RethinkingFAL/head.png">
+          <div class="post_detail"> 
+            <p><b>Re-thinking Federated Active Learning based on Inter-class Diversity</b></p>
+            <p class="post_p"><h1 id=""></h1>
+              <ul>
+                <li>Federated LearningとALを組み合わせたFALを用いて分散型設定のGlobalモデルとLocalモデルを統合したLoGoを提案</li>
+                <li>Local/Globalな不均衡に対するロバスト性向上</li>
+              </ul>
+</p>
+            <p>
+              <span class="fa fa-calendar"></span> Apr 30, 2023
+              <span class="fa fa-folder"></span> Active Learning
+              <span class="fa fa-graduation-cap"></span> CVPR (2023)
+            </p>
+          </div>
+        </a>
+      </div>
+
+      <div class="post">
+        <a href="/active_learning/23/04/30/ASSLbyEMAandUCB.html">
+          <img class="post_img" src="/assets/images/posts/ASSLbyEMAandUCB/head.png">
+          <div class="post_detail"> 
+            <p><b>Active Semi-Supervised Learning by Exploring Per-Sample Uncertainty and Consistency</b></p>
+            <p class="post_p"><h1 id=""></h1>
+              <ul>
+                <li>半教師あり能動学習はラベルなしデータを使う分能動学習と比べ不確実性をとらえることが難しいことを指摘</li>
+                <li>EMAとUCBを用いて，学習時間を5.3倍短縮しつつ半教師あり学習の性能を保つことに成功</li>
+              </ul>
+</p>
+            <p>
+              <span class="fa fa-calendar"></span> Apr 30, 2023
+              <span class="fa fa-folder"></span> Active Learning
+              <span class="fa fa-graduation-cap"></span> arXiv (2023)
+            </p>
+          </div>
+        </a>
+      </div>
+
+      <div class="post">
+        <a href="/active_learning/23/04/18/VAAL.html">
+          <img class="post_img" src="/assets/images/posts/VAAL/head.png">
+          <div class="post_detail"> 
+            <p><b>Variational Adversarial Active Learning</b></p>
+            <p class="post_p"><h1 id=""></h1>
+              <ul>
+                <li>潜在空間をVAEで学習し，ラベルなしデータかラベル付きデータ化を識別する敵対的ネットワークを学習するVAALを提案</li>
+                <li>タスク非依存であり，クラス識別やセグメンテーションで性能を検証</li>
+              </ul>
+</p>
+            <p>
+              <span class="fa fa-calendar"></span> Apr 18, 2023
+              <span class="fa fa-folder"></span> Active Learning
+              <span class="fa fa-graduation-cap"></span> ICCV (2019)
+            </p>
+          </div>
+        </a>
+      </div>
+      
+      <div class="post">
+        <a href="/active_learning/23/04/06/TAILOR.html">
+          <img class="post_img" src="/assets/images/posts/TAILOR/framework.png">
+          <div class="post_detail"> 
+            <p><b>Algorithm Selection for Deep Active Learning with Imbalanced Datasets</b></p>
+            <p class="post_p"><h1 id=""></h1>
+              <ul>
+                <li>与えられたデータセットに対し最適なクエリ戦略を選択肢の中から選択して利用するアルゴリズムTAILORを提案</li>
+                <li>CIFAR，Kuzushiji，CelebAで実験し，精度やクエリしたデータの傾向を調査</li>
+              </ul>
+</p>
+            <p>
+              <span class="fa fa-calendar"></span> Apr 6, 2023
+              <span class="fa fa-folder"></span> active learning
+              <span class="fa fa-graduation-cap"></span> arXiv (2022)
+            </p>
+          </div>
+        </a>
+      </div>
+
+      <div class="post">
+        <a href="/active_learning/23/03/13/ALwithCC.html">
+          <img class="post_img" src="/assets/images/posts/ALwithCC/head.png">
+          <div class="post_detail"> 
+            <p><b>Active Learning with Combinatorial Coverage</b></p>
+            <p class="post_p"><h1 id=""></h1>
+              <ul>
+                <li>CC(Combinational Coverage)とDALを組み合わせることで，data-centricなDALを行う手法を提案</li>
+                <li>Tic-Tac-ToeやBalance Scaleなどで検証</li>
+              </ul>
+</p>
+            <p>
+              <span class="fa fa-calendar"></span> Mar 13, 2023
+              <span class="fa fa-folder"></span> active learning
+              <span class="fa fa-graduation-cap"></span> ICMLA (2022)
+            </p>
+          </div>
+        </a>
+      </div>
+      
+      <div class="post">
+        <a href="/active_learning/23/03/13/SpeedingUpBatchBALD.html">
+          <img class="post_img" src="/assets/images/posts/SpeedingUpBatchBALD/head.png">
+          <div class="post_detail"> 
+            <p><b>Speeding Up BatchBALD: A k-BALD Family of Approximations for Active Learning</b></p>
+            <p class="post_p"><h1 id=""></h1>
+              <ul>
+                <li>BatchBALDをデータセットサイズが大きい場合も高速に機能するよう改良したk-BALDを提案</li>
+                <li>MNISTでは従来のBatchBALDと比べ性能を維持しつつ計算時間を短縮することを確認</li>
+              </ul>
+</p>
+            <p>
+              <span class="fa fa-calendar"></span> Mar 13, 2023
+              <span class="fa fa-folder"></span> active learning
+              <span class="fa fa-graduation-cap"></span> arXiv (2023)
+            </p>
+          </div>
+        </a>
+      </div>
+
+      <div class="post">
+        <a href="/active_learning/23/03/13/ScalableDBAL.html">
+          <img class="post_img" src="/assets/images/posts/ScalableDBAL/head.png">
+          <div class="post_detail"> 
+            <p><b>Scalable Batch Acquisition for Deep Bayesian Active Learning</b></p>
+            <p class="post_p"><h1 id=""></h1>
+              <ul>
+                <li>BatchBALDをバッチサイズが大きい場合にも少ない計算量で機能するように改良したLarge BatchBALDを提案</li>
+                <li>MNISTやCIFARなどの画像タスクで巨大なバッチの場合を検証</li>
+              </ul>
+</p>
+            <p>
+              <span class="fa fa-calendar"></span> Mar 13, 2023
+              <span class="fa fa-folder"></span> active learning
+              <span class="fa fa-graduation-cap"></span> SIAM International Conference (2023)
+            </p>
+          </div>
+        </a>
+      </div>
+
+      <div class="post">
+        <a href="/active_learning/23/03/10/How2AllocateLabelBudget.html">
+          <img class="post_img" src="/assets/images/posts/How2AllocateLabelBudget/head.png">
+          <div class="post_detail"> 
+            <p><b>How to Allocate your Label Budget? Choosing between Active Learning and Learning to Reject in Anomaly Detection</b></p>
+            <p class="post_p"><h1 id=""></h1>
+              <ul>
+                <li>異常検知タスクに対しALとLR(Learning to Reject)を組み合わせたフレームワークを提案</li>
+                <li>18種の外観検査データセットで検証</li>
+              </ul>
+</p>
+            <p>
+              <span class="fa fa-calendar"></span> Mar 10, 2023
+              <span class="fa fa-folder"></span> active learning
+              <span class="fa fa-graduation-cap"></span> arXiv (2023)
+            </p>
+          </div>
+        </a>
+      </div>
+
+      <div class="post">
+        <a href="/active_learning/23/03/06/ALbyEGPS.html">
+          <img class="post_img" src="/assets/images/posts/ALbyEGPS/head.png">
+          <div class="post_detail"> 
+            <p><b>Active Deep Learning Guided by Efficient Gaussian Process Surrogates</b></p>
+            <p class="post_p"><h1 id=""></h1>
+              <ul>
+                <li>ベイズ手法とガウス過程を組み合わせることで，計算量を抑えつつ情報量の大きいサンプルをクエリする手法を提案</li>
+                <li>CIFARやFashionMNIST等で検証</li>
+              </ul>
+</p>
+            <p>
+              <span class="fa fa-calendar"></span> Mar 06, 2023
+              <span class="fa fa-folder"></span> active learning
+              <span class="fa fa-graduation-cap"></span> arXiv (2023)
+            </p>
+          </div>
+        </a>
+      </div>
+      
+
+    <div class="btn-wrapper">
+      <!-- <a href="/active_learning" class="btn back_btn previous"><<<</a>
+      <a href="/active_learning" class="btn back_btn next"><</a> -->
+      <a href="/active_learning/i2" class="btn back_btn next">></a>
+      <a href="/active_learning/i4" class="btn back_btn previous">>>></a>
+    </div>
+  </body>
+</html>
+<div id="footer"></div>
+<script>
+  $(function(){
+      $('#footer').load('/footer.html');
+  });
+</script>
+</body>
+</html>

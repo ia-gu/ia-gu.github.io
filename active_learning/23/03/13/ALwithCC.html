@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <div id="header"></div>
+    <script>
+      $(function(){
+          $('#header').load('/header.html');
+      });
+  </script>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      processEscapes: true,
+      tags: "ams",
+      autoload: {
+        color: [],
+        colorV2: ['color']
+      },
+      packages: {'[+]': ['noerrors']}
+    },
+    chtml: {
+      matchFontHeight: false,
+      displayAlign: "left",
+      displayIndent: "2em"
+    },
+    options: {
+      renderActions: {
+        /* add a new named action to render <script type="math/tex"> */
+        find_script_mathtex: [10, function (doc) {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/);
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+            const text = document.createTextNode('');
+            node.parentNode.replaceChild(text, node);
+            math.start = {node: text, delim: '', n: 0};
+            math.end = {node: text, delim: '', n: 0};
+            doc.math.push(math);
+          }
+        }, '']
+      }
+    },
+    loader: {
+      load: ['[tex]/noerrors']
+    }
+  };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
+  </head>
+  <body>
+    <center><img class="hero" src="/assets/images/posts/SpeedingUpBatchBALD/head.png"></center>
+    <h1>Active Learning with Combinatorial Coverage</h1>
+    <p><span class="fa fa-link"></span><a href="https://arxiv.org/abs/2302.14567"> https://arxiv.org/abs/2302.14567</a></p>
+    <p><span class="fa fa-calendar"></span> Mar 13, 2023 </p>
+    <p><span class="fa fa-flag"></span> <a href="/active_learning"> Active Learning</a></p>
+    <p><span class="fa fa-graduation-cap"></span> ICMLA (2022) </p>
+
+    <h2 id="1-どんなもの">1. どんなもの??何ができる??</h2>
+
+<ul>
+  <li>CC(Combinational Coverage)とDALを組み合わせることで，data-centricなDALを行う手法を提案</li>
+  <li>Tic-Tac-ToeやBalance Scaleなどで検証</li>
+</ul>
+
+
+<h2 id="2-どうやって">2. どうやって??</h2>
+<ul>
+  <li>ラベル付きデータj，ラベルなしデータiについてcoverage densityを定義</li>
+  <center><img src="/assets/images/posts/ALwithCC/coverage_density.png" /></center>
+  <center><img src="/assets/images/posts/ALwithCC/total_coverage_density.png" /></center><br />
+  <li>↑を基に獲得関数を定義</li>
+  <center><img src="/assets/images/posts/ALwithCC/coverage_density_sampling.png" /></center><br />
+    <li>coverage densityをコサイン類似度で重みづけ</li>
+  <center><img src="/assets/images/posts/ALwithCC/informativeness.png" /></center>
+  <center><img src="/assets/images/posts/ALwithCC/cosine_weighted.png" /></center><br />
+  <li>↑を用いてEntropy Samplingを重みづけ</li>
+  <center><img src="/assets/images/posts/ALwithCC/entropy.png" /></center>
+  <center><img src="/assets/images/posts/ALwithCC/entropy_weighted.png" /></center><br />
+  <li>アルゴリズム</li>
+  <center><img src="/assets/images/posts/ALwithCC/algorithm.png" /></center>
+  </ul>
+
+<h2 id="3-結果は">3. 結果は??</h2>
+<ul>
+  <li>データセット</li>
+    <center><img src="/assets/images/posts/ALwithCC/dataset.png" /></center><br />
+  <li>F値のAUCで結果比較</li>
+    <center><img src="/assets/images/posts/ALwithCC/result.png" /></center>
+  </ul>
+
+<h2 id="4-課題は">4. 課題は??</h2>
+<ul>
+  </ul>
+
+    <div class="btn-wrapper">
+      <a href="/posts" class="btn back_btn">Back</a>
+    </div>
+  </body>
+</html>
+<div id="footer"></div>
+<script>
+  $(function(){
+      $('#footer').load('/footer.html');
+  });
+</script>
+</body>
+</html>

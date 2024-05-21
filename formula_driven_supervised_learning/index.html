@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/css/style.css">
+  </head>
+  <body>
+    <div class="top-wrapper">
+      <div class="container">
+        <h1>Formula-Driven Supervised Learning</h1>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <div id="header"></div>
+    <script>
+      $(function(){
+          $('#header').load('/header.html');
+      });
+  </script>
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/css/posts.css">
+    <script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      processEscapes: true,
+      tags: "ams",
+      autoload: {
+        color: [],
+        colorV2: ['color']
+      },
+      packages: {'[+]': ['noerrors']}
+    },
+    chtml: {
+      matchFontHeight: false,
+      displayAlign: "left",
+      displayIndent: "2em"
+    },
+    options: {
+      renderActions: {
+        /* add a new named action to render <script type="math/tex"> */
+        find_script_mathtex: [10, function (doc) {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/);
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+            const text = document.createTextNode('');
+            node.parentNode.replaceChild(text, node);
+            math.start = {node: text, delim: '', n: 0};
+            math.end = {node: text, delim: '', n: 0};
+            doc.math.push(math);
+          }
+        }, '']
+      }
+    },
+    loader: {
+      load: ['[tex]/noerrors']
+    }
+  };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
+  </head>
+  <body>
+    <div class="btn-wrapper">
+      <!-- <a href="/active_learning" class="btn back_btn previous"><<<</a>
+      <a href="/active_learning" class="btn back_btn next"><</a> -->
+      <!-- <a href="/active_learning/i2" class="btn back_btn next">></a>
+      <a href="/active_learning/i2" class="btn back_btn previous">>>></a> -->
+    </div>
+
+    <div class="myposts">
+
+        <div class="post">
+            <a href="/formula_driven_supervised_learning/23/01/20/FDSLwRTP.html">
+              <img class="post_img" src="/assets/images/posts/FDSLwRTP/head.png">
+              <div class="post_detail"> 
+                <p><b>Formula-driven Supervised Learning with Recursive Tiling Patterns</b></p>
+                <p class="post_p"><h1 id=""></h1>
+                  <ul>
+                    <li>タイルパターンが敷き詰まった画像データセットTile DBを自動構築</li>
+                    <li>Fractal DBより少ないパラメータで構築可能で，ImageNetに類似した畳み込みフィルタが得られることを確認</li>
+                  </ul>
+    </p>
+                <p>
+                  <span class="fa fa-calendar"></span> Jan 20, 2023
+                  <span class="fa fa-folder"></span> formula driven supervised learning
+                  <span class="fa fa-graduation-cap"></span> ICCV (2022)
+                </p>
+              </div>
+            </a>
+          </div>
+    
+          <div class="post">
+            <a href="/formula_driven_supervised_learning/23/01/20/ViTwoNI.html">
+              <img class="post_img" src="/assets/images/posts/ViTwoNI/head.png">
+              <div class="post_detail"> 
+                <p><b>Can Vision Transformers Learn without Natural Images?</b></p>
+                <p class="post_p"><h1 id=""></h1>
+                  <ul>
+                    <li>実画像データを用いず，FDSLを用いた事前学習がViTに対して有効か調査</li>
+                    <li>CIFARやPascal VOCにおいて，MoCo v2やSimCLR v2を上回ることを確認</li>
+                  </ul>
+    </p>
+                <p>
+                  <span class="fa fa-calendar"></span> Jan 20, 2023
+                  <span class="fa fa-folder"></span> formula driven supervised learning
+                  <span class="fa fa-graduation-cap"></span> AAAI (2022)
+                </p>
+              </div>
+            </a>
+          </div>
+    
+          <div class="post">
+            <a href="/formula_driven_supervised_learning/23/01/19/PretrainingwoNI.html">
+              <img class="post_img" src="/assets/images/posts/PretrainingwoNI/head.png">
+              <div class="post_detail"> 
+                <p><b>Pre-training without Natural Images</b></p>
+                <p class="post_p"><h1 id=""></h1>
+                  <ul>
+                    <li>実画像の代わりにフラクタルでカテゴリ分けした人工生成画像を用いるFDSL(Formula-driven Supervised Learning)を提案</li>
+                    <li>著作権フリーなビッグデータFractalDBを構築し，CIFAR100やOmniglot等でImageNet事前学習済モデルを上回る精度を達成</li>
+                  </ul>
+    </p>
+                <p>
+                  <span class="fa fa-calendar"></span> Jan 19, 2023
+                  <span class="fa fa-folder"></span> formula driven supervised learning
+                  <span class="fa fa-graduation-cap"></span> ACCV (2020)
+                </p>
+              </div>
+            </a>
+          </div>
+
+    <div class="btn-wrapper">
+      <!-- <a href="/active_learning" class="btn back_btn previous"><<<</a>
+      <a href="/active_learning" class="btn back_btn next"><</a> -->
+      <!-- <a href="/active_learning/i2" class="btn back_btn next">></a>
+      <a href="/active_learning/i2" class="btn back_btn previous">>>></a> -->
+    </div>
+  </body>
+</html>
+<div id="footer"></div>
+<script>
+  $(function(){
+      $('#footer').load('/footer.html');
+  });
+</script>
+</body>
+</html>

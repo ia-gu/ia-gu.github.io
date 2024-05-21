@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <div id="header"></div>
+    <script>
+      $(function(){
+          $('#header').load('/header.html');
+      });
+  </script>
+    <script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      processEscapes: true,
+      tags: "ams",
+      autoload: {
+        color: [],
+        colorV2: ['color']
+      },
+      packages: {'[+]': ['noerrors']}
+    },
+    chtml: {
+      matchFontHeight: false,
+      displayAlign: "left",
+      displayIndent: "2em"
+    },
+    options: {
+      renderActions: {
+        /* add a new named action to render <script type="math/tex"> */
+        find_script_mathtex: [10, function (doc) {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/);
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+            const text = document.createTextNode('');
+            node.parentNode.replaceChild(text, node);
+            math.start = {node: text, delim: '', n: 0};
+            math.end = {node: text, delim: '', n: 0};
+            doc.math.push(math);
+          }
+        }, '']
+      }
+    },
+    loader: {
+      load: ['[tex]/noerrors']
+    }
+  };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
+  </head>
+  <body>
+    <center><img class="hero" src="/assets/images/posts/DINO/head.png"></center>
+    <h1>Emerging Properties in Self-Supervised Vision Transformers</h1>
+    <p><span class="fa fa-link"></span><a href="https://arxiv.org/abs/2104.14294"> https://arxiv.org/abs/2104.14294</a></p>
+    <p><span class="fa fa-calendar"></span> Jan 31, 2023 </p>
+    <p><span class="fa fa-flag"></span> <a href="/self_supervised_learning/index.html"> Self-Supervised Learning</a></p>
+    <p><span class="fa fa-graduation-cap"></span> arXiv (2021) </p>
+
+    <h2 id="1-どんなもの">1. どんなもの??何ができる??</h2>
+
+<ul>
+  <li>ラベル付きデータを使用せずに自己蒸留を実行するDINOを提案</li>
+  <li>ImageNet等で有効性を確認し，ViTにも適用可能であることを確認</li>
+</ul>
+
+
+<h2 id="2-どうやって">2. どうやって??</h2>
+<ul>
+  <li>↓教師なし自己蒸留のやり方</li>
+  <center><img src="/assets/images/posts/DINO/self_distillation.png" /></center><br />
+  <ul><li>切り出し範囲が異なるglobal画像とlocal画像を用意</li></ul>
+  <ul><li>教師モデルにはglobal画像のみ，生徒モデルにはすべての画像を入力することで対応関係を獲得</li></ul>
+  <li>生徒モデル・教師モデルの出力の一様分布化のためにsharpening</li>
+  <center><img src="/assets/images/posts/DINO/output_distribution.png" /></center><br />
+  <ul><li>τ｜温度パラメータ</li></ul>
+  <li>教師モデルの出力分布を平均に知被けるためのcentering</li>
+  <center><img src="/assets/images/posts/DINO/centering.png" /></center><br />
+  <li>Loss</li>
+  <center><img src="/assets/images/posts/DINO/Loss.png" /></center><br />
+  <li>教師モデルの最適化</li>
+  <center><img src="/assets/images/posts/DINO/teacher.png" /></center><br />
+  <li>生徒モデルの最適化</li>
+  <center><img src="/assets/images/posts/DINO/student_parameter.png" /></center>
+</ul>
+
+<h2 id="3-結果は">3. 結果は??</h2>
+<ul>
+    <li>ImageNet 線形評価とk-NN法 結果比較</li>
+    <center><img src="/assets/images/posts/DINO/knn_imagenet.png" /></center><br />
+    <li>DAVIS2017 結果比較</li>
+    <center><img src="/assets/images/posts/DINO/result_davis2017.png" /></center><br />
+    <li>Pascal VOC12 結果比較</li>
+    <center><img src="/assets/images/posts/DINO/result_voc12.png" /></center><br />
+    <li>転移学習 結果比較</li>
+    <center><img src="/assets/images/posts/DINO/result_transfer.png" /></center><br />
+    <li>ablation study</li>
+    <center><img src="/assets/images/posts/DINO/ablation.png" /></center><br />
+    <li>Vit-S/8のattention map</li>
+    <center><img src="/assets/images/posts/DINO/attention_map.png" /></center>
+</ul>
+
+<h2 id="4-課題は">4. 課題は??</h2>
+  <ul>
+      <a href="https://twitter.com/osciiart/status/1389128939193335813">なぜDINOが機能するのか</a>
+    </ul>
+    <div class="btn-wrapper">
+      <a href="/posts" class="btn back_btn">Back</a>
+    </div>
+  </body>
+</html>
+<div id="footer"></div>
+<script>
+  $(function(){
+      $('#footer').load('/footer.html');
+  });
+</script>
+</body>
+</html>

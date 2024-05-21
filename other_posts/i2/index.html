@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/css/style.css">
+  </head>
+  <body>
+    <div class="top-wrapper">
+      <div class="container">
+        <h1>others</h1>
+        <h3>(2/2)</h3>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <div id="header"></div>
+    <script>
+      $(function(){
+          $('#header').load('/header.html');
+      });
+  </script>
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/css/posts.css">
+    <script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      processEscapes: true,
+      tags: "ams",
+      autoload: {
+        color: [],
+        colorV2: ['color']
+      },
+      packages: {'[+]': ['noerrors']}
+    },
+    chtml: {
+      matchFontHeight: false,
+      displayAlign: "left",
+      displayIndent: "2em"
+    },
+    options: {
+      renderActions: {
+        /* add a new named action to render <script type="math/tex"> */
+        find_script_mathtex: [10, function (doc) {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/);
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+            const text = document.createTextNode('');
+            node.parentNode.replaceChild(text, node);
+            math.start = {node: text, delim: '', n: 0};
+            math.end = {node: text, delim: '', n: 0};
+            doc.math.push(math);
+          }
+        }, '']
+      }
+    },
+    loader: {
+      load: ['[tex]/noerrors']
+    }
+  };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
+  </head>
+  <body>
+    <div class="btn-wrapper">
+      <a href="/other_posts/" class="btn back_btn previous"><<<</a>
+      <a href="/other_posts/" class="btn back_btn next"><</a>
+      <!-- <a href="/active_learning/i2" class="btn back_btn next">></a>
+      <a href="/active_learning/i3" class="btn back_btn previous">>>></a> -->
+    </div>
+
+    <div class="myposts">
+
+      <div class="post">
+        <a href="/other_posts/23/09/27/LLaMA2.html">
+          <img class="post_img" src="/assets/images/posts/LLaMA2/head.png">
+          <div class="post_detail"> 
+            <p><b>Llama 2: Open Foundation and Fine-Tuned Chat Models</b></p>
+            <p class="post_p"><h1 id=""></h1>
+              <ul>
+                <li>LLaMAの構造をベースに2Tトークンに拡張したデータで学習したLLaMA2と，RLHF二より調整されたLLaMA2-Chatを提案</li>
+                <li>LLaMAとは異なり商用利用可能なオープンソースLLM</li>
+              </ul>
+            </p>
+            <p>
+              <span class="fa fa-calendar"></span> Sep 27, 2023
+              <span class="fa fa-folder"></span> large language model
+              <span class="fa fa-graduation-cap"></span> arXiv (2023)
+            </p>
+          </div>
+        </a>
+      </div>
+
+      <div class="post">
+        <a href="/other_posts/23/09/27/LLaMA.html">
+          <img class="post_img" src="/assets/images/posts/LLaMA/heasd.png">
+          <div class="post_detail"> 
+            <p><b>LLaMA: Open and Efficient Foundation Language Models</b></p>
+            <p class="post_p"><h1 id=""></h1>
+              <ul>
+                <li>Metaにより提案された比較的低パラメータのLLM LLaMAを提案</li>
+                <li>他のオープンソースLLMと比べて圧倒的に高性能だが，LLaMAは商用利用不可で，学術的利用のみに限定</li>
+              </ul>
+            </p>
+            <p>
+              <span class="fa fa-calendar"></span> Sep 27, 2023
+              <span class="fa fa-folder"></span> large language model
+              <span class="fa fa-graduation-cap"></span> arXiv (2023)
+            </p>
+          </div>
+        </a>
+      </div>
+
+      <div class="post">
+        <a href="/other_posts/23/05/31/DETR.html">
+          <img class="post_img" src="/assets/images/posts/DETR/head.png">
+          <div class="post_detail"> 
+            <p><b>End-to-End Object Detection with Transformers</b></p>
+            <p class="post_p"><h1 id=""></h1>
+              <ul>
+                <li>物体検出にはじめてTransformerを採用したDETR(DEtection TRansformer)を提案</li>
+                <li>NMSやRoIAlignといった処理を用いずに既存主塔と同程度の検出が可能</li>
+              </ul>
+            </p>
+            <p>
+              <span class="fa fa-calendar"></span> May 31, 2023
+              <span class="fa fa-folder"></span> object detection
+              <span class="fa fa-graduation-cap"></span> CVPR (2020)
+            </p>
+          </div>
+        </a>
+      </div>
+
+      <div class="post">
+        <a href="/other_posts/23/05/08/MixMatch.html">
+          <img class="post_img" src="/assets/images/posts/MixMatch/head.png">
+          <div class="post_detail"> 
+            <p><b>MixMatch: A Holistic Approach to Semi-Supervised Learning</b></p>
+            <p class="post_p"><h1 id=""></h1>
+              <ul>
+                <li>Entropy MinimizationとConsistency Regularizationを1つのフレームワークに統合した初めての半教師あり学習手法</li>
+                <li>CIFAR10などの自然画像で当時のSoTA，250枚のアノテーションでエラー率11%</li>
+              </ul>
+</p>
+            <p>
+              <span class="fa fa-calendar"></span> May 08, 2023
+              <span class="fa fa-folder"></span> semi-supervised learning
+              <span class="fa fa-graduation-cap"></span> CVPR (2019)
+            </p>
+          </div>
+        </a>
+      </div>
+
+      <div class="post">
+        <a href="/other_posts/23/03/01/BeyondNSL.html">
+          <img class="post_img" src="/assets/images/posts/BeyondNSL/head.png">
+          <div class="post_detail"> 
+            <p><b>Beyond neural scaling laws: beating power law scaling via data pruning</b></p>
+            <p class="post_p"><h1 id=""></h1>
+              <ul>
+                <li>スケーリング則は資源的に限界を迎えることを指摘し，学習を阻害するデータを除くdata pruningでもモデルの性能が向上することを確認</li>
+                <li>既存手法と比べ軽量で適用しやすい自己教師ありpruning手法を提案</li>
+                <li>ラベルなしデータの情報を基にdata pruningが可能</li>
+              </ul>
+</p>
+            <p>
+              <span class="fa fa-calendar"></span> Mar 1, 2023
+              <span class="fa fa-folder"></span> Neural Scaling Laws
+              <span class="fa fa-graduation-cap"></span> NIPS (2022)
+            </p>
+          </div>
+        </a>
+      </div>
+
+      <div class="post">
+        <a href="/other_posts/23/02/28/BNSL.html">
+          <img class="post_img" src="/assets/images/posts/BNSL/example_bnsl.png">
+          <div class="post_detail"> 
+            <p><b>Broken Neural Scaling Laws</b></p>
+            <p class="post_p"><h1 id=""></h1>
+              <ul>
+                <li>二重降下のように既存のスケーリング則では解決できない問題に対しても機能するBNSL(Broken Neural Scaling Laws)を提案</li>
+                <li>提案手法による外挿の限界について考察</li>
+              </ul>
+</p>
+            <p>
+              <span class="fa fa-calendar"></span> Feb 28, 2023
+              <span class="fa fa-folder"></span> Neural Scaling Laws
+              <span class="fa fa-graduation-cap"></span> arXiv (2022)
+            </p>
+          </div>
+        </a>
+      </div>
+
+      <div class="post">
+        <a href="/other_posts/23/02/21/FreeMatch.html">
+          <img class="post_img" src="/assets/images/posts/FreeMatch/head.png">
+          <div class="post_detail"> 
+            <p><b>FreeMatch: Self-adaptive Thresholding for Semi-supervised Learning</b></p>
+            <p class="post_p"><h1 id=""></h1>
+              <ul>
+                <li>事前設定した閾値や限定的な動的スキームでは半教師あり学習の性能・収束速度が悪化することを指摘し，モデルの学習度合いと閾値の関係を基にFlexMatchを改善したFreeMatchを提案</li>
+                <li>CIFAR10やSTL10でFlexMatchの精度を改善，CIFAR10では各クラス1枚の仕様でエラー率5.78%</li>
+              </ul>
+</p>
+            <p>
+              <span class="fa fa-calendar"></span> Feb 21, 2023
+              <span class="fa fa-folder"></span> semi-supervised learning
+              <span class="fa fa-graduation-cap"></span> ICLR (2023)
+            </p>
+          </div>
+        </a>
+      </div>
+
+      <div class="post">
+        <a href="/other_posts/23/02/20/FlexMatch.html">
+          <img class="post_img" src="/assets/images/posts/FlexMatch/head.png">
+          <div class="post_detail"> 
+            <p><b>FlexMatch: Boosting Semi-Supervised Learning with Curriculum Pseudo Labeling</b></p>
+            <p class="post_p"><h1 id=""></h1>
+              <ul>
+                <li>疑似ラベルの閾値をモデルの学習具合に応じて動的に決定するCPLをFixMatchに導入し，FlexMatchを提案</li>
+                <li>CIFAR100等，比較的難易度が高いタスクで特に性能が高く，収束速度もFixMatchと比べ向上</li>
+              </ul>
+</p>
+            <p>
+              <span class="fa fa-calendar"></span> Feb 20, 2023
+              <span class="fa fa-folder"></span> semi-supervised learning
+              <span class="fa fa-graduation-cap"></span> NIPS (2021) 
+            </p>
+          </div>
+        </a>
+      </div>
+
+      <div class="post">
+        <a href="/other_posts/23/02/16/CCSSL.html">
+          <img class="post_img" src="/assets/images/posts/CCSSL/head.png">
+          <div class="post_detail"> 
+            <p><b>Class-Aware Contrastive Semi-Supervised Learning</b></p>
+            <p class="post_p"><h1 id=""></h1>
+              <ul>
+                <li>OODデータが混ざっていた場合にも機能する半教師対照学習手法CCSSLを提案</li>
+                <li>OODを上手く除外することでCIFAR100，STL10の精度を改善</li>
+              </ul>
+</p>
+            <p>
+              <span class="fa fa-calendar"></span> Feb 16, 2023
+              <span class="fa fa-folder"></span> semi-supervised learning
+              <span class="fa fa-graduation-cap"></span> CVPR (2022) 
+            </p>
+          </div>
+        </a>
+      </div>
+
+      <div class="post">
+        <a href="/other_posts/23/02/14/CoMatch.html">
+          <img class="post_img" src="/assets/images/posts/CoMatch/head.png">
+          <div class="post_detail"> 
+            <p><b>CoMatch: Semi-supervised Learning with Contrastive Graph Regularization</b></p>
+            <p class="post_p"><h1 id=""></h1>
+              <ul>
+                <li>予測確率と低次元の埋め込みを組み合わせて相互作用させる半教師あり手法CoMatchを提案</li>
+                <li>ImageNetで1%のラベルデータを用いた場合にFixMatchの精度から12.6%向上</li>
+              </ul>
+</p>
+            <p>
+              <span class="fa fa-calendar"></span> Feb 14, 2023
+              <span class="fa fa-folder"></span> semi-supervised learning
+              <span class="fa fa-graduation-cap"></span> ICCV (2021) 
+            </p>
+          </div>
+        </a>
+      </div>
+
+      <div class="post">
+        <a href="/other_posts/23/01/26/FixMatch.html">
+          <img class="post_img" src="/assets/images/posts/FixMatch/framework.png">
+          <div class="post_detail"> 
+            <p><b>FixMatch: Simplifying Semi-Supervised Learning with Consistency and Confidence</b></p>
+            <p class="post_p"><h1 id=""></h1>
+              <ul>
+                <li>Consistency regularizationを用いたシンプルな半教師あり学習フレームワークFixMatchを提案</li>
+                <li>CIFAR10では10枚で78%，40枚で87%と既存手法を圧倒</li>
+              </ul>
+</p>
+            <p>
+              <span class="fa fa-calendar"></span> Jan 26, 2023
+              <span class="fa fa-folder"></span> semi-supervised learning
+              <span class="fa fa-graduation-cap"></span> NIPS (2020) 
+            </p>
+          </div>
+        </a>
+      </div>
+      
+      <div class="post">
+        <a href="/other_posts/23/01/26/AdaCM.html">
+          <img class="post_img" src="/assets/images/posts/AdaCM/framework.png">
+          <div class="post_detail"> 
+            <p><b>Towards Semi-Supervised Deep Facial Expression Recognition with An Adaptive Confidence Margin</b></p>
+            <p class="post_p"><h1 id=""></h1>
+              <ul>
+                <li>学習可能な閾値パラメータを用意し，閾値以上のサンプルを疑似ラベルで，閾値以下のサンプルを対象学習するAdaCMを提案</li>
+                <li>RAF-DB等の表情認識タスクでSoTAを達成</li>
+              </ul>
+</p>
+            <p>
+              <span class="fa fa-calendar"></span> Jan 26, 2023
+              <span class="fa fa-folder"></span> semi-supervised learning
+              <span class="fa fa-graduation-cap"></span> CVPR (2022) 
+            </p>
+          </div>
+        </a>
+      </div>
+      
+      <div class="post">
+        <a href="/other_posts/23/01/25/TheVendiScore.html">
+          <img class="post_img" src="/assets/images/posts/TheVendiScore/head.png">
+          <div class="post_detail"> 
+            <p><b>The Vendi Score: A Diversity Evaluation Metric for Machine Learning</b></p>
+            <p class="post_p"><h1 id=""></h1>
+              <ul>
+                <li>検証セット，事前学習，ラベル不要で入力データ内の多様性をスコア化するVendi Scoreを提案</li>
+                <li>MNISTやCIFARで効果を検証し，GANの生成データの分布についても分析</li>
+              </ul>
+</p>
+            <p>
+              <span class="fa fa-calendar"></span> Jan 25, 2023
+              <span class="fa fa-folder"></span> Machine Learning
+              <span class="fa fa-graduation-cap"></span> arXiv (2022)
+            </p>
+          </div>
+        </a>
+      </div>
+
+      <div class="post">
+        <a href="/other_posts/23/01/25/OptimizingDataCollection.html">
+          <img class="post_img" src="/assets/images/posts/OptimizingDataCollection/head.png">
+          <div class="post_detail"> 
+            <p><b>Optimizing Data Collection for Machine Learning</b></p>
+            <p class="post_p"><h1 id=""></h1>
+              <ul>
+                <li>機械学習モデルの学習に必要なデータ数の推定を行うフレームワークLOC(Learn-Optimize-Collect)を提案</li>
+                <li>CIFARやPascalVOCをはじめとする複数のデータセットで検証</li>
+              </ul>
+</p>
+            <p>
+              <span class="fa fa-calendar"></span> Jan 25, 2023
+              <span class="fa fa-folder"></span> Machine Learning
+              <span class="fa fa-graduation-cap"></span> NIPS (2022)
+            </p>
+          </div>
+        </a>
+      </div>
+
+      <div class="post">
+        <a href="/other_posts/23/01/22/HowMuchMoreDataDIN.html">
+          <img class="post_img" src="/assets/images/posts/HowMuchDataDIN/framework.png">
+          <div class="post_detail"> 
+            <p><b>How Much More Data Do I Need? Estimating Requirements for Downstream Tasks</b></p>
+            <p class="post_p"><h1 id=""></h1>
+              <ul>
+                <li>アノテーションするデータ数を必要最小限にするためにスケーリング則を用いて予測を行うフレームワークを提案</li>
+                <li>既存の回帰関数を用いてより正確に推定することが可能</li>
+                <li>DALに対する検証も行う</li>
+              </ul>
+</p>
+            <p>
+              <span class="fa fa-calendar"></span> Jan 21, 2023
+              <span class="fa fa-folder"></span> neural scaling law
+              <span class="fa fa-graduation-cap"></span> CVPR (2022)
+            </p>
+          </div>
+        </a>
+      </div>
+
+      <div class="post">
+        <a href="/other_posts/23/01/22/LC4AnalysisofDN.html">
+          <img class="post_img" src="/assets/images/posts/LC4AnalysisofDN/head.png">
+          <div class="post_detail"> 
+            <p><b>Learning Curves for Analysis of Deep Networks</b></p>
+            <p class="post_p"><h1 id=""></h1>
+              <ul>
+                <li>学習曲線からモデルの精度を推測しモデル構造やデータ拡張などのハイパラを推測する方法を調査</li>
+                <li>CIFAR10，CIFAR100等で検証</li>
+              </ul>
+</p>
+            <p>
+              <span class="fa fa-calendar"></span> Jan 21, 2023
+              <span class="fa fa-folder"></span> neural scaling law
+              <span class="fa fa-graduation-cap"></span> ArXiv(2020)
+            </p>
+          </div>
+        </a>
+      </div>
+
+      <div class="post">
+        <a href="/other_posts/23/01/09/AAofFashionModel.html">
+          <img class="post_img" src="/assets/images/posts/AAofFashionModel/head.png">
+          <div class="post_detail"> 
+            <p><b>How Good Is Aesthetic Ability of a Fashion Model?</b></p>
+            <p class="post_p"><h1 id=""></h1>
+<ul>
+  <li>ファッションの愛称学習に用いられる既存評価指標はモデルの美的能力を反映するという点に着目していないため，美的評価を行うA100を提案</li>
+  <li>既存データセットの問題点を指摘，それを解消するデータセットを作成</li>
+</ul>
+</p>
+            <p>
+              <span class="fa fa-calendar"></span> Jan 9, 2023
+              <span class="fa fa-folder"></span> Fashion Data
+              <span class="fa fa-graduation-cap"></span> CVPR(2022)
+            </p>
+          </div>
+        </a>
+      </div>
+
+
+    <div class="btn-wrapper">
+      <a href="/other_posts/" class="btn back_btn previous"><<<</a>
+      <a href="/other_posts/" class="btn back_btn next"><</a>
+      <!-- <a href="/active_learning/i2" class="btn back_btn next">></a>
+      <a href="/active_learning/i3" class="btn back_btn previous">>>></a> -->
+    </div>
+  </body>
+</html>
+<div id="footer"></div>
+<script>
+  $(function(){
+      $('#footer').load('/footer.html');
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+    <!DOCTYPE html>
+    <html>
+      <title>Learning Loss for Active Learning 実装</title>
+      <head>
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <div id="header"></div>
+        <script>
+          $(function(){
+              $('#header').load('/header.html');
+          });
+      </script>
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+        <link rel="stylesheet" href="/assets/css/style.css">
+        <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$','$'], ['\\(','\\)']],
+          processEscapes: true,
+          tags: "ams",
+          autoload: {
+            color: [],
+            colorV2: ['color']
+          },
+          packages: {'[+]': ['noerrors']}
+        },
+        chtml: {
+          matchFontHeight: false,
+          displayAlign: "left",
+          displayIndent: "2em"
+        },
+        options: {
+          renderActions: {
+            /* add a new named action to render <script type="math/tex"> */
+            find_script_mathtex: [10, function (doc) {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = {node: text, delim: '', n: 0};
+                math.end = {node: text, delim: '', n: 0};
+                doc.math.push(math);
+              }
+            }, '']
+          }
+        },
+        loader: {
+          load: ['[tex]/noerrors']
+        }
+      };
+    </script>
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
+      </head>
+      <body>
+        <center><img class="hero" src="/assets/images/posts/LL4AL/framework.png"></center>
+        <h1>Learning Loss for Active Learning 実装</h1>
+        <p><span class="fa fa-link"></span><a href="https://github.com/ia-gu/LearningLossForAL"> リポジトリ</a></p>
+        <p><span class="fa fa-calendar"></span> Jan 9, 2023 </p>
+    <p><span class="fa fa-flag"></span> <a href="/active_learning/"> Active Learning</a></p>
+    
+        <h2 id="1-どんなもの">1. どんなもの??</h2>
+    
+    <ul>
+      <li>Learning Loss for Active Learning という論文内で提案されたLL4ALの再現実験を行うために実装</li>
+      <ul><li>LL4AL｜モデルの中間層の特徴量を基にサンプルに対するLossを予測するモジュールを導入し，予測Lossを基にクエリを行う手法(詳しくは<a href="/active_learning/23/01/08/LL4AL.html"> ココ</a>で解説)</li></ul>
+      <li>各サイクルでの重みをリセットする場合で89.67%，前サイクルの重みを引き継ぐ場合で92.03%を確認</li>
+    </ul>
+    
+    
+    <h2 id="2-使い方">2. 使い方</h2>
+      <li><code>bash main.sh</code>を叩けば実行可能</li>
+      <li>ハイパラはconfig.pyで管理(元のリポジトリから変更してない)</li>
+    
+      <h2 id="3-結果">3. 結果</h2>
+      <ul>
+        <li>実験ログ消しちゃいました</li>
+        <li>どこかで直す</li>
+      </ul>
+
+    <h2 id="4-余談">4. 余談</h2>
+      <center><p><a href="https://github.com/Mephisto405/Learning-Loss-for-Active-Learning/"> 元のリポジトリ</a></p></center>
+    
+        <div class="btn-wrapper">
+          <a href="/portfolios/" class="btn back_btn">Back</a>
+        </div>
+      </body>
+    </html>
+    <div id="footer"></div>
+    <script>
+      $(function(){
+          $('#footer').load('/footer.html');
+      });
+    </script>
+    </body>
+    </html>

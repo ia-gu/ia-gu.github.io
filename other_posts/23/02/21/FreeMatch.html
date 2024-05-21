@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <div id="header"></div>
+    <script>
+      $(function(){
+          $('#header').load('/header.html');
+      });
+  </script>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      processEscapes: true,
+      tags: "ams",
+      autoload: {
+        color: [],
+        colorV2: ['color']
+      },
+      packages: {'[+]': ['noerrors']}
+    },
+    chtml: {
+      matchFontHeight: false,
+      displayAlign: "left",
+      displayIndent: "2em"
+    },
+    options: {
+      renderActions: {
+        /* add a new named action to render <script type="math/tex"> */
+        find_script_mathtex: [10, function (doc) {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/);
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+            const text = document.createTextNode('');
+            node.parentNode.replaceChild(text, node);
+            math.start = {node: text, delim: '', n: 0};
+            math.end = {node: text, delim: '', n: 0};
+            doc.math.push(math);
+          }
+        }, '']
+      }
+    },
+    loader: {
+      load: ['[tex]/noerrors']
+    }
+  };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
+  </head>
+  <body>
+    <center><img class="hero" src="/assets/images/posts/FreeMatch/head.png"></center>
+    <h1>FreeMatch: Self-adaptive Thresholding for Semi-supervised Learning</h1>
+    <p><span class="fa fa-link"></span><a href="https://arxiv.org/abs/2205.07246"> https://arxiv.org/abs/2205.07246</a></p>
+    <p><span class="fa fa-calendar"></span> Feb 21, 2023 </p>
+    <p><span class="fa fa-flag"></span> <a href="/other_posts/"> Semi-Supervised Learning</a></p>
+    <p><span class="fa fa-graduation-cap"></span> ICLR (2023) </p>
+
+    <h2 id="1-どんなもの">1. どんなもの??何ができる??</h2>
+
+<ul>
+  <li>事前設定した閾値や限定的な動的スキームでは半教師あり学習の性能・収束速度が悪化することを指摘し，モデルの学習度合いと閾値の関係を基にFlexMatchを改善したFreeMatchを提案</li>
+  <li>CIFAR10やSTL10でFlexMatchの精度を改善，CIFAR10では各クラス1枚の仕様でエラー率5.78%</li>
+</ul>
+
+
+<h2 id="2-どうやって">2. どうやって??</h2>
+<ul>
+  <li>グローバルな閾値とローカルな閾値を導入することで動的に閾値を決定するSAT(Self-Adaptive Thresholding)を提案</li>
+  <ul><li>グローバル｜モデルの学習具合を反映し，学習が進むにつれて徐々に大きくなる</li></ul>
+  <center><img src="/assets/images/posts/FreeMatch/global_threshold.png" /></center><br />
+  <ul><ul><li>毎回すべてを計算するのは大変なのでdecay λを用いたEMAを導入</li></ul></ul>
+  <ul><li>ローカル｜クラス内の多様性とクラス間の隣接性を基にクラス毎にグローバルを調整</li></ul>
+  <ul><ul><li>各クラスに対する予測の期待値を定義</li></ul></ul>
+  <center><img src="/assets/images/posts/FreeMatch/expected_prediction.png" /></center><br />
+  <ul><li>最終的に閾値は↓のように定義可能</li></ul>
+  <center><img src="/assets/images/posts/FreeMatch/sat.png" /></center><br />
+  <li>ラベルなしデータのLossについて閾値に↑を導入</li>
+  <center><img src="/assets/images/posts/FreeMatch/loss_unlabeled.png" /></center><br />
+  <li>疑似ラベルが特定のクラスに偏らない為に動的に調整するSAF(Self-Adaptive Fairness)を導入</li>
+  <ul><li>クラス予測の期待値をヒストグラムの分布を基に正規化</li></ul>
+  <center><img src="/assets/images/posts/FreeMatch/normalized_probability.png" /></center><br />
+  <center><img src="/assets/images/posts/FreeMatch/h.png" /></center><br />
+  <ul><li>予測確率がモデルの周辺クラス分布に近づくようにするSAFを↓のように定義</li></ul>
+  <center><img src="/assets/images/posts/FreeMatch/saf.png" /></center><br />
+
+</ul>
+
+<h2 id="3-結果は">3. 結果は??</h2>
+<ul>
+    <li>CIFAR10，CIFAR100，SVHN，STL-10の比較結果</li>
+    <center><img src="/assets/images/posts/FreeMatch/result.png" /></center><br />
+    <li>他の閾値調整手法との比較</li>
+    <center><img src="/assets/images/posts/FreeMatch/result_threshold.png" /></center><br />
+    <li>他のクラス予測調整手法との比較</li>
+    <center><img src="/assets/images/posts/FreeMatch/result_fairness.png" /></center>
+  </ul>
+
+<h2 id="4-課題は">4. 課題は??</h2>
+<ul>
+  </ul>
+
+    <div class="btn-wrapper">
+      <a href="/posts" class="btn back_btn">Back</a>
+    </div>
+  </body>
+</html>
+<div id="footer"></div>
+<script>
+  $(function(){
+      $('#footer').load('/footer.html');
+  });
+</script>
+</body>
+</html>

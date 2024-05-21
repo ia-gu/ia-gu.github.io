@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <div id="header"></div>
+    <script>
+      $(function(){
+          $('#header').load('/header.html');
+      });
+  </script>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      processEscapes: true,
+      tags: "ams",
+      autoload: {
+        color: [],
+        colorV2: ['color']
+      },
+      packages: {'[+]': ['noerrors']}
+    },
+    chtml: {
+      matchFontHeight: false,
+      displayAlign: "left",
+      displayIndent: "2em"
+    },
+    options: {
+      renderActions: {
+        /* add a new named action to render <script type="math/tex"> */
+        find_script_mathtex: [10, function (doc) {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/);
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+            const text = document.createTextNode('');
+            node.parentNode.replaceChild(text, node);
+            math.start = {node: text, delim: '', n: 0};
+            math.end = {node: text, delim: '', n: 0};
+            doc.math.push(math);
+          }
+        }, '']
+      }
+    },
+    loader: {
+      load: ['[tex]/noerrors']
+    }
+  };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
+  </head>
+  <body>
+    <center><img class="hero" src="/assets/images/posts/DINO_DETR/framework.png"></center>
+    <h1>DINO: DETR with Improved DeNoising Anchor Boxes for End-to-End Object Detection</h1>
+    <p><span class="fa fa-link"></span><a href="https://arxiv.org/abs/2206.02777"> https://arxiv.org/abs/2206.02777</a></p>
+    <p><span class="fa fa-calendar"></span> Jun 13, 2023 </p>
+    <p><span class="fa fa-flag"></span> <a href="/other_posts/"> Object Detection</a></p>
+    <p><span class="fa fa-graduation-cap"></span> arXiv (2022) </p>
+
+    <h2 id="1-どんなもの">1. どんなもの??何ができる??</h2>
+
+<ul>
+  <li>DETRベースモデルでDenoising Training，アンカー初期化，2重先読みを行う物体検出モデルDINOを提案</li>
+  <li>DETRベースモデルがスケーリングしないという問題を解決し，End-to-Endで物体検出のSoTAを達成</li>
+</ul>
+
+
+<h2 id="2-どうやって">2. どうやって??</h2>
+<ul>
+<li>↓DETRのフレームワーク</li>
+  <center><img src="/assets/images/posts/DETR/framework.png" /></center><br />
+  <ul><li>DETRはモデルやデータセットサイズにスケーリングしない</li></ul>
+<li>DETRの進化の歴史</li>
+  <ul><li>DAB-DETRが位置クエリを4次元アンカーボックスとして定式化，各レイヤの動的変更が容易になる</li></ul>
+  <ul><li>DN-DETRが学習収束を加速するDN（DeNoising）学習を導入</li></ul>
+  <ul><ul><li>DN学習｜GTの一部にノイズを与え，GTを再構成するように学習</li></ul></ul>
+  <ul><li>Deformable DETRが学習収束を更に加速するDeformable Attentionを導入</li></ul>
+  <ul><ul><li>Deformable Attention｜変形可能なSelf-Attention，オフセットネットワークのクエリからAttention領域を決定</li></ul></ul>
+  <ul><ul><li>Lood Forward Onceを用いて参照するBBを反復的に洗練</li></ul></ul>
+  <li>↓DINOのフレームワーク</li>
+  <center><img src="/assets/images/posts/DINO_DETR/framework.png" /></center><br />
+  <ul><li>物体がないアンカーに「no object」を出力させるためにCDN（Contrastive DeNoising）を提案</li></ul>
+  <center><img src="/assets/images/posts/DINO_DETR/cdn.png" /></center><br />
+  <ul><ul><li>1つの物体に複数のアンカーが近接している場合の混乱を抑制</li></ul></ul>
+  <ul><ul><li>GTから遠い無関係なアンカーを拒絶する</li></ul></ul>
+  <ul><ul><li>黄色｜GTに対応した弱いノイズを付与</li></ul></ul>
+  <ul><ul><li>茶色｜GTに対応した強いノイズを付与</li></ul></ul>
+  <ul><ul><li>各グループがPositive，NegativeのクエリをGT個持つように設計</li></ul></ul>
+  <ul><li>選択されたアンカーボックスの特徴量を強化するMixed Query Selectionを提案</li></ul>
+  <center><img src="/assets/images/posts/DINO_DETR/mqs.png" /></center><br />
+  <ul><ul><li>位置情報を獲得</li></ul></ul>
+  <ul><li>Look Forward Twice</li></ul>
+  <center><img src="/assets/images/posts/DINO_DETR/lft.png" /></center><br />
+  <ul><li>Detachを用いて学習を安定化</li></ul>
+  <ul><li>i-1の値とiのオフセットを用いてbbを予測</li></ul>
+  <center><img src="/assets/images/posts/DINO_DETR/lft_b.png" /></center><br />
+</ul>
+
+<h2 id="3-結果は">3. 結果は??</h2>
+<ul>
+    <li>COCO2017で他と比べて早い段階から収束</li>
+    <center><img src="/assets/images/posts/DINO_DETR/result.png" /></center><br />
+    <li>COCO2017で収束させた場合の性能比較</li>
+    <center><img src="/assets/images/posts/DINO_DETR/result_sat.png" /></center><br />
+  </ul>
+
+<h2 id="4-課題は">4. 課題は??</h2>
+
+<div class="btn-wrapper">
+      <a href="/posts" class="btn back_btn">Back</a>
+    </div>
+  </body>
+</html>
+<div id="footer"></div>
+<script>
+  $(function(){
+      $('#footer').load('/footer.html');
+  });
+</script>
+</body>
+</html>

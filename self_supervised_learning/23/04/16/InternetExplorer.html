@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <div id="header"></div>
+    <script>
+      $(function(){
+          $('#header').load('/header.html');
+      });
+  </script>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      processEscapes: true,
+      tags: "ams",
+      autoload: {
+        color: [],
+        colorV2: ['color']
+      },
+      packages: {'[+]': ['noerrors']}
+    },
+    chtml: {
+      matchFontHeight: false,
+      displayAlign: "left",
+      displayIndent: "2em"
+    },
+    options: {
+      renderActions: {
+        /* add a new named action to render <script type="math/tex"> */
+        find_script_mathtex: [10, function (doc) {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/);
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+            const text = document.createTextNode('');
+            node.parentNode.replaceChild(text, node);
+            math.start = {node: text, delim: '', n: 0};
+            math.end = {node: text, delim: '', n: 0};
+            doc.math.push(math);
+          }
+        }, '']
+      }
+    },
+    loader: {
+      load: ['[tex]/noerrors']
+    }
+  };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
+  </head>
+  <body>
+    <center><img class="hero" src="/assets/images/posts/InternetExplorer/head.png"></center>
+    <h1>Internet Explorer: Targeted Representation Learning on the Open Web</h1>
+    <p><span class="fa fa-link"></span><a href="https://arxiv.org/abs/2302.14051"> https://arxiv.org/abs/2302.14051</a></p>
+    <p><span class="fa fa-calendar"></span> Apr 16, 2023 </p>
+    <p><span class="fa fa-flag"></span> <a href="/self_supervised_learning/"> Self-Supervised Learning</a></p>
+    <p><span class="fa fa-graduation-cap"></span> arXiv (2023) </p>
+
+    <h2 id="1-どんなもの">1. どんなもの??何ができる??</h2>
+
+<ul>
+  <li>ターゲットタスクの学習をサポートするようなデータをインターネットから取得し，それらのデータでSSLを行うInternet Explorerを提案</li>
+  <li>学習時間を大きく削減しつつ，CLIPと同等か上回る精度を達成</li>
+</ul>
+
+
+<h2 id="2-どうやって">2. どうやって??</h2>
+<ul>
+<li>フレームワーク</li>
+    <center><img src="/assets/images/posts/InternetExplorer/framework.png" /></center><br />
+  <ul><li>1｜ターゲットタスクで学習し，必要なデータを検索するためのQueryを生成</li></ul>
+  <ul><ul><li>検索エンジンはGoogleの機能バイアスを減らしたLAIONを比較</li></ul></ul>
+  <ul><ul><li>WordNetから146,347個の概念語を使用し，QueryはGPT-J，概念分布を用いて生成</li></ul></ul>
+  <ul><li>2｜1で生成したQueryで検索し，報酬が大きくなるようなサンプルを収集</li></ul>
+  <ul><ul><li>全データの探索は不可能なので，上位100データに対してのみ評価</li></ul></ul>
+  <ul><ul><li>報酬｜ターゲットタスクのデータと拾ってきたデータのCosine類似度（k=15）</li></ul></ul>
+  <center><img src="/assets/images/posts/InternetExplorer/reward.png" /></center><br />
+  <ul><ul><li>報酬top10の平均を概念レベルスコアとして使用</li></ul></ul>
+  <ul><ul><li>概念同士の類似度を事前学習済みモデルを用いて384次元空間内で獲得</li></ul></ul>
+  <ul><ul><li>まだ見たことのない概念は埋め込みベクトルeに対しGPR（Gaussian Process Regression）を用いて↓のように計算</li></ul></ul>
+  <center><img src="/assets/images/posts/InternetExplorer/unobserved_concepts.png" /></center><br />
+  <ul><li>3｜2で収集したサンプルで自己教師あり学習</li></ul>
+  <ul><ul><li>Queryと関係ないデータを得る可能性もあるため，ラベルなしで扱う</li></ul></ul>
+  <ul><ul><li>ResNet50をMoCo v3で学習（初回のみImageNet）</li></ul></ul>
+  <ul><li>4｜モデルの概念分布を更新</li></ul>
+  <center><img src="/assets/images/posts/InternetExplorer/new_distribution.png" /></center><br />
+  <ul><ul><li>T0=0, T1=250, T2=1,000, T3=146,347, ⊿0=0.8, ⊿1, ⊿2=0.1, </li></ul></ul>
+  <center><img src="/assets/images/posts/InternetExplorer/comp_distribution.png" /></center><br />
+  <ul><li>報酬が下位50%のデータは棄却</li></ul>
+</ul>
+
+<h2 id="3-結果は">3. 結果は??</h2>
+<ul>
+    <li>ターゲットタスクに対しSSL→k-NNの性能比較</li>
+  <center><img src="/assets/images/posts/InternetExplorer/result_ssl.png" /></center><br />
+    <li>性能・GPU時間比較結果</li>
+    <center><img src="/assets/images/posts/InternetExplorer/result.png" /></center><br />
+    <li>検索エンジンの比較</li>
+    <center><img src="/assets/images/posts/InternetExplorer/comp_engine.png" /></center><br />
+</ul>
+
+<h2 id="4-課題は">4. 課題は??</h2>
+    <div class="btn-wrapper">
+      <a href="/posts" class="btn back_btn">Back</a>
+    </div>
+  </body>
+</html>
+<div id="footer"></div>
+<script>
+  $(function(){
+      $('#footer').load('/footer.html');
+  });
+</script>
+</body>
+</html>

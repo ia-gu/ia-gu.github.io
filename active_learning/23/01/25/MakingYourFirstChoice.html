@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <div id="header"></div>
+    <script>
+      $(function(){
+          $('#header').load('/header.html');
+      });
+  </script>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      processEscapes: true,
+      tags: "ams",
+      autoload: {
+        color: [],
+        colorV2: ['color']
+      },
+      packages: {'[+]': ['noerrors']}
+    },
+    chtml: {
+      matchFontHeight: false,
+      displayAlign: "left",
+      displayIndent: "2em"
+    },
+    options: {
+      renderActions: {
+        /* add a new named action to render <script type="math/tex"> */
+        find_script_mathtex: [10, function (doc) {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/);
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+            const text = document.createTextNode('');
+            node.parentNode.replaceChild(text, node);
+            math.start = {node: text, delim: '', n: 0};
+            math.end = {node: text, delim: '', n: 0};
+            doc.math.push(math);
+          }
+        }, '']
+      }
+    },
+    loader: {
+      load: ['[tex]/noerrors']
+    }
+  };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
+  </head>
+  <body>
+    <center><img class="hero" src="/assets/images/posts/MakingYourFirstChoice/framework.png"></center>
+    <h1>Making Your First Choice: To Address Cold Start Problem in Vision Active Learning</h1>
+    <p><span class="fa fa-link"></span><a href="https://arxiv.org/abs/2210.02442"> https://arxiv.org/abs/2210.02442</a></p>
+    <p><span class="fa fa-calendar"></span> Jan 25, 2023 </p>
+    <p><span class="fa fa-flag"></span> <a href="/active_learning"> Active Learning</a></p>
+    <p><span class="fa fa-graduation-cap"></span> arXiv (2022) </p>
+
+    <h2 id="1-どんなもの">1. どんなもの??何ができる??</h2>
+
+<ul>
+  <li>対象学習と疑似ラベルを用いてcold-start問題の解決に挑戦</li>
+  <li>CIFAR10と3つの医用画像で既存のクエリ戦略と比べ幅広くデータを選択できることを確認</li>
+</ul>
+
+
+<h2 id="2-どうやって">2. どうやって??</h2>
+<ul>
+  <li>MoCo v2で事前学習したモデルを用いてk-means clusteringを実行</li>
+  <li>疑似ラベルを用いてDataset Mapを生成</li>
+  <ul><li>Dataset Map｜ラベルに対するモデルの予測確率の平均と標準偏差で定義</li></ul>
+  <li>対象学習の難易度を基にMapが生成される</li>
+  <ul><li>対象学習が簡単｜他との区別がつく＝難しい，外れ値</li></ul>
+  <ul><li>対象学習が困難｜他との区別がつかない＝典型的</li></ul>
+  <li>↓フレームワーク全体</li>
+  <center><img src="/assets/images/posts/MakingYourFirstChoice/framework.png" /></center>
+</ul>
+
+<h2 id="3-結果は">3. 結果は??</h2>
+<ul>
+    <li>PathMNISTの初回クエリの分布比較</li>
+    <center><img src="/assets/images/posts/MakingYourFirstChoice/result.png" /></center><br />
+    <li>OrganaMNIST 結果比較</li>
+    <center><img src="/assets/images/posts/MakingYourFirstChoice/result_organamnist.png" /></center><br />
+    <li>クエリデータ内の各クラスのカバー率(多様性)</li>
+    <center><img src="/assets/images/posts/MakingYourFirstChoice/result_coverage.png" /></center>
+</ul>
+
+<h2 id="4-課題は">4. 課題は??</h2>
+<ul>
+</ul>
+
+    <div class="btn-wrapper">
+      <a href="/posts" class="btn back_btn">Back</a>
+    </div>
+  </body>
+</html>
+<div id="footer"></div>
+<script>
+  $(function(){
+      $('#footer').load('/footer.html');
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <div id="header"></div>
+    <script>
+      $(function(){
+          $('#header').load('/header.html');
+      });
+  </script>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      processEscapes: true,
+      tags: "ams",
+      autoload: {
+        color: [],
+        colorV2: ['color']
+      },
+      packages: {'[+]': ['noerrors']}
+    },
+    chtml: {
+      matchFontHeight: false,
+      displayAlign: "left",
+      displayIndent: "2em"
+    },
+    options: {
+      renderActions: {
+        /* add a new named action to render <script type="math/tex"> */
+        find_script_mathtex: [10, function (doc) {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/);
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+            const text = document.createTextNode('');
+            node.parentNode.replaceChild(text, node);
+            math.start = {node: text, delim: '', n: 0};
+            math.end = {node: text, delim: '', n: 0};
+            doc.math.push(math);
+          }
+        }, '']
+      }
+    },
+    loader: {
+      load: ['[tex]/noerrors']
+    }
+  };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
+  </head>
+  <body>
+    <center><img class="hero" src="/assets/images/posts/ScalableDBAL/head.png"></center>
+    <h1>Scalable Batch Acquisition for Deep Bayesian Active Learning</h1>
+    <p><span class="fa fa-link"></span><a href="https://arxiv.org/abs/2301.05490"> https://arxiv.org/abs/2301.05490</a></p>
+    <p><span class="fa fa-calendar"></span> Mar 13, 2023 </p>
+    <p><span class="fa fa-flag"></span> <a href="/active_learning"> Active Learning</a></p>
+    <p><span class="fa fa-graduation-cap"></span> SIAM International Conference (2023) </p>
+
+    <h2 id="1-どんなもの">1. どんなもの??何ができる??</h2>
+
+<ul>
+  <li>BatchBALDをバッチサイズが大きい場合にも少ない計算量で機能するように改良したLarge BatchBALDを提案</li>
+  <li>MNISTやCIFARなどの画像タスクで巨大なバッチの場合を検証</li>
+</ul>
+
+
+<h2 id="2-どうやって">2. どうやって??</h2>
+<ul>
+  <li>ベイズモデルMによる獲得関数</li>
+  <center><img src="/assets/images/posts/ScalableDBAL/dbal.png" /></center><br />
+    <li>MCドロップアウト，Deep Ensemblesを用いてモデルの予測を以下のように変形</li>
+  <center><img src="/assets/images/posts/ScalableDBAL/model_prediction.png" /></center><br />
+    <ul><li>θi｜i番目のモデルパラメータ</li></ul>
+    <ul><li>k｜モデルの数(MCドロップアウトの数)</li></ul>
+    <li>既存研究1｜BALDの獲得関数</li>
+  <center><img src="/assets/images/posts/ScalableDBAL/bald.png" /></center>
+    <ul><li>H[y|x, D]｜xとラベル付きデータに対するyの条件付きエントロピー</li></ul>
+    <ul><li>h[y|x, θ]｜xとモデルパラメータに対するyの条件付きエントロピー</li></ul>
+    <li>BALDの獲得関数はp(y;θ)，p(y)p(θ)間のKL-divergenceを用いて表記可能</li>
+    <center><img src="/assets/images/posts/ScalableDBAL/kl_divergence.png" /></center>
+    <center><img src="/assets/images/posts/ScalableDBAL/bald_kl.png" /></center><br />
+    <li>既存研究2｜BatchBALDの獲得関数</li>
+    <center><img src="/assets/images/posts/ScalableDBAL/batchbald.png" /></center>
+    <center><img src="/assets/images/posts/ScalableDBAL/batchbald_kl.png" /></center><br />
+    <ul><li>y1:b｜同時確率変数</li></ul>
+    <li>提案するLarge BatchBALDでは相互情報量をb個の確率変数間の相関の和として一般化</li>
+    <center><img src="/assets/images/posts/ScalableDBAL/total_correlation.png" /></center><br />
+    <ul><li>この値はBALDとBatchBALDの獲得関数の差と等価</li></ul>
+    <center><img src="/assets/images/posts/ScalableDBAL/equality.png" /></center><br />
+    <ul><li>BatchBALDの獲得関数の計算に時間がかかるため近似</li></ul>
+    <center><img src="/assets/images/posts/ScalableDBAL/efficient_correlation.png" /></center>
+    <center><img src="/assets/images/posts/ScalableDBAL/pairwise_mutual_information.png" /></center><br />
+    <li>式2.8，2.9，2.10よりBatchBALDの獲得関数は以下</li>
+    <center><img src="/assets/images/posts/ScalableDBAL/batchbald_approx.png" /></center><br />
+    <li>↑をLarge BatchBALDと定義</li>
+    <center><img src="/assets/images/posts/ScalableDBAL/approx_large_batchbald.png" /></center>
+  </ul>
+
+<h2 id="3-結果は">3. 結果は??</h2>
+<ul>
+  <li>計算コストの比較</li>
+    <center><img src="/assets/images/posts/ScalableDBAL/order.png" /></center><br />
+  <li>MNIST系列に対する結果</li>
+    <center><img src="/assets/images/posts/ScalableDBAL/result_mnist.png" /></center><br />
+    <ul><li>RMNIST｜MNISTにガウスノイズを与え，複製したサンプルを追加したデータセット</li></ul>
+    <li>CIFAR，SVHNに対する結果</li>
+    <center><img src="/assets/images/posts/ScalableDBAL/result_real.png" /></center><br />
+    <ul><li>RCIFAR｜データ数を4倍に拡張</li></ul>
+  </ul>
+
+<h2 id="4-課題は">4. 課題は??</h2>
+<li>今更BatchBALD??</li>
+<li>RCIFARの詳細不明</li>
+<ul><li>DALでは高難易度~みたいな記述もあるが，そもそも使われてるのをはじめてみた</li></ul>
+<ul>
+  </ul>
+
+    <div class="btn-wrapper">
+      <a href="/posts" class="btn back_btn">Back</a>
+    </div>
+  </body>
+</html>
+<div id="footer"></div>
+<script>
+  $(function(){
+      $('#footer').load('/footer.html');
+  });
+</script>
+</body>
+</html>

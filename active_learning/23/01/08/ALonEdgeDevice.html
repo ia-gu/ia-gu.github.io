@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <div id="header"></div>
+    <script>
+      $(function(){
+          $('#header').load('/header.html');
+      });
+  </script>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      processEscapes: true,
+      tags: "ams",
+      autoload: {
+        color: [],
+        colorV2: ['color']
+      },
+      packages: {'[+]': ['noerrors']}
+    },
+    chtml: {
+      matchFontHeight: false,
+      displayAlign: "left",
+      displayIndent: "2em"
+    },
+    options: {
+      renderActions: {
+        /* add a new named action to render <script type="math/tex"> */
+        find_script_mathtex: [10, function (doc) {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/);
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+            const text = document.createTextNode('');
+            node.parentNode.replaceChild(text, node);
+            math.start = {node: text, delim: '', n: 0};
+            math.end = {node: text, delim: '', n: 0};
+            doc.math.push(math);
+          }
+        }, '']
+      }
+    },
+    loader: {
+      load: ['[tex]/noerrors']
+    }
+  };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
+  </head>
+  <body>
+    <center><img class="hero" src="/assets/images/posts/ALonEdgeDevice/head.png"></center>
+    <h1>Active Learning for Deep Neural Networks on Edge Devices</h1>
+    <p><span class="fa fa-link"></span><a href="https://arxiv.org/abs/2106.10836"> https://arxiv.org/abs/2106.10836</a></p>
+    <p><span class="fa fa-calendar"></span> Jan 8, 2023 </p>
+    <p><span class="fa fa-flag"></span> <a href="/active_learning"> Active Learning</a></p>
+    <p><span class="fa fa-graduation-cap"></span> arXiv(2021) </p>
+
+    <h2 id="1-どんなもの">1. どんなもの??何ができる??</h2>
+
+<ul>
+  <li>スマートフォンをはじめとするEdge Device上に高機能の計算機を載せることは困難で，全ての新規データについてモデルの更新を行うことは困難なため，軽量なストリームベースAL手法を提案</li>
+  <li>MNIST，SVHN，CIFAR10において，Edge Deviceを想定した計量モデル，少データで実験</li>
+</ul>
+
+
+<h2 id="2-どうやって">2. どうやって??</h2>
+<ul>
+  <li>各サンプルの情報量は劣モジュラgを用いて↓のように定式化</li>
+  <center><img src="/assets/images/posts/ALonEdgeDevice/submodular.png" /></center><br />
+  <li>多様性はクエリデータ内の類似度行列Msと固有値行列Iを用いて↓のように定式化</li>
+  <center><img src="/assets/images/posts/ALonEdgeDevice/diversity.png" /></center><br />
+  <ul><li>1ラウンド前の行列の情報と対数行列式を用いた近似により，計算量をO(n)に削減</li></ul>
+  <li>一定数のサンプルを確認したのち，複数サンプルをバッチとしてOracleに渡す</li>
+</ul>
+
+<h2 id="3-結果は">3. 結果は??</h2>
+<ul>
+    <li>MNIST，SVHN，CIFAR10で有効性を確認</li>
+    <center><img src="/assets/images/posts/ALonEdgeDevice/result.png" /></center><br />
+    <li>同データセットで，ドメインシフトに対するロバスト性を確認</li>
+    <center><img src="/assets/images/posts/ALonEdgeDevice/result_da.png" /></center><br />
+    <li>物体検出においても，ドメインシフトに対するロバスト性を確認</li>
+    <center><img src="/assets/images/posts/ALonEdgeDevice/result_det.png" /></center>
+</ul>
+
+<h2 id="4-課題は">4. 課題は??</h2>
+  <li>不確実性の高い序盤はメモリを圧迫</li>
+  <center><img src="/assets/images/posts/ALonEdgeDevice/memory_footprint.png" /></center>
+    <div class="btn-wrapper">
+      <a href="/posts" class="btn back_btn">Back</a>
+    </div>
+  </body>
+</html>
+<div id="footer"></div>
+<script>
+  $(function(){
+      $('#footer').load('/footer.html');
+  });
+</script>
+</body>
+</html>

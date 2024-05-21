@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <div id="header"></div>
+    <script>
+      $(function(){
+          $('#header').load('/header.html');
+      });
+  </script>
+    <script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      processEscapes: true,
+      tags: "ams",
+      autoload: {
+        color: [],
+        colorV2: ['color']
+      },
+      packages: {'[+]': ['noerrors']}
+    },
+    chtml: {
+      matchFontHeight: false,
+      displayAlign: "left",
+      displayIndent: "2em"
+    },
+    options: {
+      renderActions: {
+        /* add a new named action to render <script type="math/tex"> */
+        find_script_mathtex: [10, function (doc) {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/);
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+            const text = document.createTextNode('');
+            node.parentNode.replaceChild(text, node);
+            math.start = {node: text, delim: '', n: 0};
+            math.end = {node: text, delim: '', n: 0};
+            doc.math.push(math);
+          }
+        }, '']
+      }
+    },
+    loader: {
+      load: ['[tex]/noerrors']
+    }
+  };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
+  </head>
+  <body>
+    <center><img class="hero" src="/assets/images/posts/BarlowTwins/framework.png"></center>
+    <h1>Barlow Twins: Self-Supervised Learning via Redundancy Reduction</h1>
+    <p><span class="fa fa-link"></span><a href="https://arxiv.org/abs/2103.03230"> https://arxiv.org/abs/2103.03230</a></p>
+    <p><span class="fa fa-calendar"></span> Jan 25, 2023 </p>
+    <p><span class="fa fa-flag"></span> <a href="/self_supervised_learning/index.html"> Self-Supervised Learning</a></p>
+    <p><span class="fa fa-graduation-cap"></span> ICML (2020) </p>
+
+    <h2 id="1-どんなもの">1. どんなもの??何ができる??</h2>
+
+<ul>
+  <li>特徴量同士の相互相関行列を恒等行列に近づけるように学習するSSL手法Barlow Twinsを提案</li>
+  <li>小さいバッチサイズでも機能し，高次元表現での有効性を確認</li>
+</ul>
+
+
+<h2 id="2-どうやって">2. どうやって??</h2>
+<ul>
+  <li>画像1枚からデータ拡張によって得られた2つのサンプルをDNNに通して得られる出力の相互相関行列を計算</li>
+  <center><img src="/assets/images/posts/BarlowTwins/matrix.png" /></center><br />
+  <li>損失関数を定義</li>
+  <center><img src="/assets/images/posts/BarlowTwins/loss.png" /></center><br />
+  <li>↓フレームワーク全体</li>
+  <center><img src="/assets/images/posts/BarlowTwins/framework.png" /></center>
+</ul>
+
+<h2 id="3-結果は">3. 結果は??</h2>
+<ul>
+    <li>バッチサイズの比較</li>
+    <center><img src="/assets/images/posts/BarlowTwins/result_batch.png" /></center><br />
+    <li>ImageNetの線形評価</li>
+    <center><img src="/assets/images/posts/BarlowTwins/result_imagenet.png" /></center><br />
+    <li>ImageNetの半教師あり設定</li>
+    <center><img src="/assets/images/posts/BarlowTwins/result_imagenet_ssl.png" /></center>
+    <li>ImageNetからの転移学習</li>
+    <center><img src="/assets/images/posts/BarlowTwins/result_trans.png" /></center>
+    <li>データ拡張の比較</li>
+    <center><img src="/assets/images/posts/BarlowTwins/result_aug.png" /></center>
+</ul>
+
+<h2 id="4-課題は">4. 課題は??</h2>
+<li>小バッチサイズでは後に発表されたMoCo v2，SimSiamに負ける</li>
+
+    <div class="btn-wrapper">
+      <a href="/posts" class="btn back_btn">Back</a>
+    </div>
+  </body>
+</html>
+<div id="footer"></div>
+<script>
+  $(function(){
+      $('#footer').load('/footer.html');
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <div id="header"></div>
+    <script>
+      $(function(){
+          $('#header').load('/header.html');
+      });
+  </script>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      processEscapes: true,
+      tags: "ams",
+      autoload: {
+        color: [],
+        colorV2: ['color']
+      },
+      packages: {'[+]': ['noerrors']}
+    },
+    chtml: {
+      matchFontHeight: false,
+      displayAlign: "left",
+      displayIndent: "2em"
+    },
+    options: {
+      renderActions: {
+        /* add a new named action to render <script type="math/tex"> */
+        find_script_mathtex: [10, function (doc) {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/);
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+            const text = document.createTextNode('');
+            node.parentNode.replaceChild(text, node);
+            math.start = {node: text, delim: '', n: 0};
+            math.end = {node: text, delim: '', n: 0};
+            doc.math.push(math);
+          }
+        }, '']
+      }
+    },
+    loader: {
+      load: ['[tex]/noerrors']
+    }
+  };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
+  </head>
+  <body>
+    <center><img class="hero" src="/assets/images/posts/HowMuchDataDIN/framework.png"></center>
+    <h1>How Much More Data Do I Need? Estimating Requirements for Downstream Tasks</h1>
+    <p><span class="fa fa-link"></span><a href="https://arxiv.org/abs/2207.01725"> https://arxiv.org/abs/2207.01725</a></p>
+    <p><span class="fa fa-calendar"></span> Jan 22, 2023 </p>
+    <p><span class="fa fa-flag"></span> <a href="/other_posts/"> Neural Scaling Law</a></p>
+    <p><span class="fa fa-graduation-cap"></span> CVPR(2022) </p>
+
+    <h2 id="1-どんなもの">1. どんなもの??何ができる??</h2>
+
+<ul>
+  <li>アノテーションするデータ数を必要最小限にするためにスケーリング則を用いて予測を行うフレームワークを提案</li>
+  <li>既存の回帰関数を用いてより正確に推定することが可能</li>
+  <li>DALに対する検証も行う</li>
+</ul>
+
+
+<h2 id="2-どうやって">2. どうやって??</h2>
+<ul>
+  <li>既存のスケーリング則の研究から，モデルの性能はデータ数nに対する4種類の回帰関数で推定できる</li>
+  <center><img src="/assets/images/posts/HowMuchDataDIN/regression.png" /></center><br />
+  <li>提案手法1｜回帰データ収集方法</li>
+  <center><img src="/assets/images/posts/HowMuchDataDIN/framework.png" /></center><br />
+  <ul><li>初期学習セットを用意しサブセットを複数個作成</li></ul>
+  <ul><li>サブセットでモデルを学習し，サブセットごとの精度から回帰モデル用データを作成</li></ul>
+  <ul><li>データセットを10%単位で場合分けし劣モジュラでスコア化，集まったデータから回帰モデルが精度を推定</li></ul>
+  <li>提案手法2｜補足係数の導入</li>
+  <ul><li>別のデータセットでの回帰データ収集を実行</li></ul>
+  <ul><li>回帰関数が目標精度を満たすように補足係数τを調整し，メインのデータで使用</li></ul>
+</ul>
+
+<h2 id="3-結果は">3. 結果は??</h2>
+<ul>
+    <li>既存手法のRMSE</li>
+    <center><img src="/assets/images/posts/HowMuchDataDIN/result_rmse.png" /></center><br />
+    <li>CIFAR10，CIFAR100，ImageNet，PascalVOC 手法1の比較結果</li>
+    <center><img src="/assets/images/posts/HowMuchDataDIN/result_simulation.png" /></center><br />
+  <ul><li>T=1(既存)よりは精度がいいが，RMSEで見るよりも実際の精度は低く，過小見積もりが多い➡提案手法2</li></ul>
+    <li>CIFAR10による補足係数調整の結果</li>
+    <center><img src="/assets/images/posts/HowMuchDataDIN/result_fitted_by_cifar.png" /></center><br />
+    <li>DALのフレームワークに導入 結果</li>
+    <center><img src="/assets/images/posts/HowMuchDataDIN/result_active.png" /></center><br />
+  <ul><li>(なんか期待してたのと違う...)</li></ul>
+</ul>
+
+<h2 id="4-課題は">4. 課題は??</h2>
+<li>回帰データに最低限の学習データが必要</li>
+<ul><li>DALであれば学習初期にサチることはほとんどないので問題なさそう</li></ul>
+<li>τはドメインが大きく変化した場合に機能する??(例｜自然画像➡外観検査画像)</li>
+<li>power law(べき乗則)が崩れた 系の報告が22年後半に見られた(余裕があればサーベイ)</li>
+
+    <div class="btn-wrapper">
+      <a href="/posts" class="btn back_btn">Back</a>
+    </div>
+  </body>
+</html>
+<div id="footer"></div>
+<script>
+  $(function(){
+      $('#footer').load('/footer.html');
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <div id="header"></div>
+    <script>
+      $(function(){
+          $('#header').load('/header.html');
+      });
+  </script>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      processEscapes: true,
+      tags: "ams",
+      autoload: {
+        color: [],
+        colorV2: ['color']
+      },
+      packages: {'[+]': ['noerrors']}
+    },
+    chtml: {
+      matchFontHeight: false,
+      displayAlign: "left",
+      displayIndent: "2em"
+    },
+    options: {
+      renderActions: {
+        /* add a new named action to render <script type="math/tex"> */
+        find_script_mathtex: [10, function (doc) {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/);
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+            const text = document.createTextNode('');
+            node.parentNode.replaceChild(text, node);
+            math.start = {node: text, delim: '', n: 0};
+            math.end = {node: text, delim: '', n: 0};
+            doc.math.push(math);
+          }
+        }, '']
+      }
+    },
+    loader: {
+      load: ['[tex]/noerrors']
+    }
+  };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
+  </head>
+  <body>
+    <center><img class="hero" src="/assets/images/posts/DAL4AD/framework.png"></center>
+    <h1>Deep Active Learning for Anomaly Detection</h1>
+    <p><span class="fa fa-link"></span><a href="https://arxiv.org/abs/1805.09411"> https://arxiv.org/abs/1805.09411</a></p>
+    <p><span class="fa fa-calendar"></span> Jan 18, 2023 </p>
+    <p><span class="fa fa-flag"></span> <a href="/active_learning"> Active Learning</a></p>
+    <p><span class="fa fa-graduation-cap"></span> IJCNN (2020) </p>
+
+    <h2 id="1-どんなもの">1. どんなもの??何ができる??</h2>
+
+<ul>
+  <li>既存のUAD手法とDAL手法を組み合わせたフレームワークを提案</li>
+  <li>MNIST，Fashion-MNISTで有効性を確認</li>
+</ul>
+
+
+<h2 id="2-どうやって">2. どうやって??</h2>
+<ul>
+  <li>DAE(Denoising Auto Encoder)にUAI(Unsupervised to Active Inference)層を追加し，潜在表現と異常スコアを用いてサンプルごとの異常度を定義</li>
+  <center><img src="/assets/images/posts/DAL4AD/anomaly_score.png" /></center><br />
+  <ul><li>l(x)｜表現層，s(x)｜異常度</li></ul>
+  <li>UAI層をロジスティック回帰とみなし，線形変換W，バイアスb，シグモイド関数σを用いて異常度の識別器を定義</li>
+  <center><img src="/assets/images/posts/DAL4AD/anomaly_score_classifier.png" /></center><br />
+  <li>DAEを定式化し，DAEの異常度を定義</li>
+  <center><img src="/assets/images/posts/DAL4AD/dae.png" /></center><br />
+  <center><img src="/assets/images/posts/DAL4AD/dae_uai_formula.png" /></center><br />
+  <li>↓フレームワーク全体図</li>
+  <center><img src="/assets/images/posts/DAL4AD/dae_uai.png" /></center>
+  <center><img src="/assets/images/posts/DAL4AD/uai.png" /></center>
+</ul>
+
+<h2 id="3-結果は">3. 結果は??</h2>
+<ul>
+    <li>MNIST 比較結果</li>
+    <center><img src="/assets/images/posts/DAL4AD/result_mnist.png" /></center><br />
+    <li>Fashion-MNIST 比較結果</li>
+    <center><img src="/assets/images/posts/DAL4AD/result_fmnist.png" /></center><br />
+    <li>実データ 比較結果</li>
+    <center><img src="/assets/images/posts/DAL4AD/result_real.png" /></center>
+</ul>
+
+<h2 id="4-課題は">4. 課題は??</h2>
+<ul>
+    <li>提案時期が古すぎて，今のデータ・手法でどの程度機能するかは不明</li>
+</ul>
+
+    <div class="btn-wrapper">
+      <a href="/posts" class="btn back_btn">Back</a>
+    </div>
+  </body>
+</html>
+<div id="footer"></div>
+<script>
+  $(function(){
+      $('#footer').load('/footer.html');
+  });
+</script>
+</body>
+</html>

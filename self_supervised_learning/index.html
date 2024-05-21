@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/css/style.css">
+  </head>
+  <body>
+    <div class="top-wrapper">
+      <div class="container">
+        <h1>Self-Supervised Learning</h1>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <div id="header"></div>
+    <script>
+      $(function(){
+          $('#header').load('/header.html');
+      });
+  </script>
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/css/posts.css">
+    <script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      processEscapes: true,
+      tags: "ams",
+      autoload: {
+        color: [],
+        colorV2: ['color']
+      },
+      packages: {'[+]': ['noerrors']}
+    },
+    chtml: {
+      matchFontHeight: false,
+      displayAlign: "left",
+      displayIndent: "2em"
+    },
+    options: {
+      renderActions: {
+        /* add a new named action to render <script type="math/tex"> */
+        find_script_mathtex: [10, function (doc) {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/);
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+            const text = document.createTextNode('');
+            node.parentNode.replaceChild(text, node);
+            math.start = {node: text, delim: '', n: 0};
+            math.end = {node: text, delim: '', n: 0};
+            doc.math.push(math);
+          }
+        }, '']
+      }
+    },
+    loader: {
+      load: ['[tex]/noerrors']
+    }
+  };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
+  </head>
+  <body>
+    <div class="btn-wrapper">
+      <!-- <a href="/posts" class="btn back_btn previous"><<<</a>
+      <a href="/posts" class="btn back_btn next"><</a> -->
+      <!-- <a href="/posts/2" class="btn back_btn next">></a>
+      <a href="/posts/3" class="btn back_btn previous">>>></a> -->
+    </div>
+
+    <div class="myposts">
+
+      <div class="post">
+        <a href="/self_supervised_learning/23/04/16/InternetExplorer.html">
+          <img class="post_img" src="/assets/images/posts/InternetExplorer/head.png">
+          <div class="post_detail"> 
+            <p><b>Internet Explorer: Targeted Representation Learning on the Open Web</b></p>
+            <p class="post_p"><h1 id=""></h1>
+              <ul>
+                <li>ターゲットタスクの学習をサポートするようなデータをインターネットから取得し，それらのデータでSSLを行うInternet Explorerを提案</li>
+                <li>学習時間を大きく削減しつつ，CLIPと同等か上回る精度を達成</li>
+              </ul>
+</p>
+            <p>
+              <span class="fa fa-calendar"></span> Apr 16, 2023
+              <span class="fa fa-folder"></span> Internet data
+              <span class="fa fa-graduation-cap"></span> arXiv (2023)
+            </p>
+          </div>
+        </a>
+      </div>
+      
+      <div class="post">
+        <a href="/self_supervised_learning/23/01/31/SimCLRv2.html">
+          <img class="post_img" src="/assets/images/posts/SimCLRv2/framework.png">
+          <div class="post_detail"> 
+            <p><b>Big Self-Supervised Models are Strong Semi-Supervised Learners</b></p>
+            <p class="post_p"><h1 id=""></h1>
+              <ul>
+                <li>ResNet152による知識蒸留を利用し，MoCoのメモリバンクを取り入れて学習を行うSimCLR v2を提案</li>
+                <li>SimCLRと同設定のImageNetでSoTA達成</li>
+              </ul>
+</p>
+            <p>
+              <span class="fa fa-calendar"></span> Jan 31, 2023
+              <span class="fa fa-folder"></span> self-supvervised learning
+              <span class="fa fa-graduation-cap"></span> NIPS (2020)
+            </p>
+          </div>
+        </a>
+      </div>
+      
+      <div class="post">
+        <a href="/self_supervised_learning/23/01/31/DINO.html">
+          <img class="post_img" src="/assets/images/posts/DINO/head.png">
+          <div class="post_detail"> 
+            <p><b>Emerging Properties in Self-Supervised Vision Transformers</b></p>
+            <p class="post_p"><h1 id=""></h1>
+              <ul>
+                <li>ラベル付きデータを使用せずに自己蒸留を実行するDINOを提案</li>
+                <li>ImageNet等で有効性を確認し，ViTにも適用可能であることを確認</li>
+              </ul>
+</p>
+            <p>
+              <span class="fa fa-calendar"></span> Jan 31, 2023
+              <span class="fa fa-folder"></span> self-supvervised learning
+              <span class="fa fa-graduation-cap"></span> arXiv (2021)
+            </p>
+          </div>
+        </a>
+      </div>
+
+      <div class="post">
+        <a href="/self_supervised_learning/23/01/30/MoCov3.html">
+          <img class="post_img" src="/assets/images/posts/MoCov3/Pseudocode.png">
+          <div class="post_detail"> 
+            <p><b>An Empirical Study of Training Self-Supervised Vision Transformers</b></p>
+            <p class="post_p"><h1 id=""></h1>
+              <ul>
+                <li>メモリキューを廃止することでViTでも利用可能なスケーリングを達成したMoCo v3を提案</li>
+                <li>ImageNet等で有効性を確認</li>
+              </ul>
+</p>
+            <p>
+              <span class="fa fa-calendar"></span> Jan 30, 2023
+              <span class="fa fa-folder"></span> self-supvervised learning
+              <span class="fa fa-graduation-cap"></span> ICCV (2021)
+            </p>
+          </div>
+        </a>
+      </div>
+
+      <div class="post">
+        <a href="/self_supervised_learning/23/01/30/MoCov2.html">
+          <img class="post_img" src="/assets/images/posts/MoCov2/head.png">
+          <div class="post_detail"> 
+            <p><b>Improved Baselines with Momentum Contrastive Learning</b></p>
+            <p class="post_p"><h1 id=""></h1>
+              <ul>
+                <li>SimCLRとMoCOを組み合わせることで小バッチサイズで安定して学習可能なMoCo v2を提案</li>
+                <li>ImageNetでSoTA</li>
+              </ul>
+</p>
+            <p>
+              <span class="fa fa-calendar"></span> Jan 30, 2023
+              <span class="fa fa-folder"></span> self-supvervised learning
+              <span class="fa fa-graduation-cap"></span> arXiv (2020)
+            </p>
+          </div>
+        </a>
+      </div>
+
+      <div class="post">
+        <a href="/self_supervised_learning/23/01/30/MoCo.html">
+          <img class="post_img" src="/assets/images/posts/MoCo/framework.png">
+          <div class="post_detail"> 
+            <p><b>Momentum Contrast for Unsupervised Visual Representation Learning</b></p>
+            <p class="post_p"><h1 id=""></h1>
+              <ul>
+                <li>対象学習をQuery-Key問題ととらえ，キューとmomentum encoderを用いて大規模データで学習可能なMoCoを提案</li>
+                <li>VOC，COCO等でSoTA</li>
+              </ul>
+</p>
+            <p>
+              <span class="fa fa-calendar"></span> Jan 30, 2023
+              <span class="fa fa-folder"></span> self-supvervised learning
+              <span class="fa fa-graduation-cap"></span> CVPR (2020)
+            </p>
+          </div>
+        </a>
+      </div>
+
+      <div class="post">
+        <a href="/self_supervised_learning/23/01/25/MoBY.html">
+          <img class="post_img" src="/assets/images/posts/MoBY/framework.png">
+          <div class="post_detail"> 
+            <p><b>Self-Supervised Learning with Swin Transformers</b></p>
+            <p class="post_p"><h1 id=""></h1>
+              <ul>
+                <li>MoCo v2とBYOLを組み合わせ，バックボーンモデルとしてSwin-Transformerを学習するMoBYを提案</li>
+                <li>ImageNetやCOCOで有効性を確認</li>
+              </ul>
+</p>
+            <p>
+              <span class="fa fa-calendar"></span> Jan 25, 2023
+              <span class="fa fa-folder"></span> self-supvervised learning
+              <span class="fa fa-graduation-cap"></span> arXiv (2021) 
+            </p>
+          </div>
+        </a>
+      </div>
+
+      <div class="post">
+        <a href="/self_supervised_learning/23/01/25/BarlowTwins.html">
+          <img class="post_img" src="/assets/images/posts/BarlowTwins/framework.png">
+          <div class="post_detail"> 
+            <p><b>Barlow Twins: Self-Supervised Learning via Redundancy Reduction</b></p>
+            <p class="post_p"><h1 id=""></h1>
+              <ul>
+                <li>特徴量同士の相互相関行列を恒等行列に近づけるように学習するSSL手法Barlow Twinsを提案</li>
+                <li>小さいバッチサイズでも機能し，高次元表現での有効性を確認</li>
+              </ul>
+</p>
+            <p>
+              <span class="fa fa-calendar"></span> Jan 25, 2023
+              <span class="fa fa-folder"></span> self-supvervised learning
+              <span class="fa fa-graduation-cap"></span> ICML (2020) 
+            </p>
+          </div>
+        </a>
+      </div>
+
+      <div class="post">
+        <a href="/self_supervised_learning/23/01/25/BYOL.html">
+          <img class="post_img" src="/assets/images/posts/BYOL/framework.png">
+          <div class="post_detail"> 
+            <p><b>Bootstrap your own latent: A new approach to self-supervised Learning</b></p>
+            <p class="post_p"><h1 id=""></h1>
+              <ul>
+                <li>負例を用いずにターゲットモデルとオンラインモデルを相互的に学習するBYOLを提案</li>
+                <li>ImageNetでSoTA，他のデータセットの転移学習でも有効性を確認</li>
+              </ul>
+</p>
+            <p>
+              <span class="fa fa-calendar"></span> Jan 25, 2023
+              <span class="fa fa-folder"></span> self-supvervised learning
+              <span class="fa fa-graduation-cap"></span> NIPS (2020)
+            </p>
+          </div>
+        </a>
+      </div>
+
+      <div class="post">
+        <a href="/self_supervised_learning/23/01/16/SimSiam.html">
+          <img class="post_img" src="/assets/images/posts/SimSiam/framework.png">
+          <div class="post_detail"> 
+            <p><b>Exploring Simple Siamese Representation Learning</b></p>
+            <p class="post_p"><h1 id=""></h1>
+              <ul>
+                <li>Siamese Network構造を基に，負例を用いずに対象学習を行うSimSiamを提案</li>
+                <li>分類，物体検出で有効性を示した他，SimCLR等と比べバッチサイズが小さくても機能することを確認</li>
+              </ul>
+</p>
+            <p>
+              <span class="fa fa-calendar"></span> Jan 16, 2023
+              <span class="fa fa-folder"></span> self-supvervised learning
+              <span class="fa fa-graduation-cap"></span> CVPR (2021)
+            </p>
+          </div>
+        </a>
+      </div>
+
+      <div class="post">
+        <a href="/self_supervised_learning/23/01/10/SimCLR.html">
+          <img class="post_img" src="/assets/images/posts/SimCLR/head.png">
+          <div class="post_detail"> 
+            <p><b>A Simple Framework for Contrastive Learning of Visual Representations</b></p>
+            <p class="post_p"><h1 id=""></h1>
+<ul>
+  <li>特別な構造や大量のメモリを必要としない対象学習手法としてSimCLRを提案</li>
+  <li>巨大なバッチサイズ，エポック数で学習することで既存手法を圧倒する精度を達成</li>
+</ul>
+</p>
+            <p>
+              <span class="fa fa-calendar"></span> Jan 10, 2023
+              <span class="fa fa-folder"></span> self-supvervised learning
+              <span class="fa fa-graduation-cap"></span> PMLR (2020)
+            </p>
+          </div>
+        </a>
+      </div>
+
+
+    <div class="btn-wrapper">
+      <!-- <a href="/posts" class="btn back_btn previous"><<<</a>
+      <a href="/posts" class="btn back_btn next"><</a> -->
+      <!-- <a href="/posts/2" class="btn back_btn next">></a>
+      <a href="/posts/3" class="btn back_btn previous">>>></a> -->
+    </div>
+  </body>
+</html>
+<div id="footer"></div>
+<script>
+  $(function(){
+      $('#footer').load('/footer.html');
+  });
+</script>
+</body>
+</html>

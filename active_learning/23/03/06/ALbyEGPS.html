@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <div id="header"></div>
+    <script>
+      $(function(){
+          $('#header').load('/header.html');
+      });
+  </script>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      processEscapes: true,
+      tags: "ams",
+      autoload: {
+        color: [],
+        colorV2: ['color']
+      },
+      packages: {'[+]': ['noerrors']}
+    },
+    chtml: {
+      matchFontHeight: false,
+      displayAlign: "left",
+      displayIndent: "2em"
+    },
+    options: {
+      renderActions: {
+        /* add a new named action to render <script type="math/tex"> */
+        find_script_mathtex: [10, function (doc) {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/);
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+            const text = document.createTextNode('');
+            node.parentNode.replaceChild(text, node);
+            math.start = {node: text, delim: '', n: 0};
+            math.end = {node: text, delim: '', n: 0};
+            doc.math.push(math);
+          }
+        }, '']
+      }
+    },
+    loader: {
+      load: ['[tex]/noerrors']
+    }
+  };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
+  </head>
+  <body>
+    <center><img class="hero" src="/assets/images/posts/ALbyEGPS/head.png"></center>
+    <h1>Active Deep Learning Guided by Efficient Gaussian Process Surrogates</h1>
+    <p><span class="fa fa-link"></span><a href="https://arxiv.org/abs/2301.02761"> https://arxiv.org/abs/2301.02761</a></p>
+    <p><span class="fa fa-calendar"></span> Mar 06, 2023 </p>
+    <p><span class="fa fa-flag"></span> <a href="/active_learning"> Active Learning</a></p>
+    <p><span class="fa fa-graduation-cap"></span> arXiv (2023) </p>
+
+    <h2 id="1-どんなもの">1. どんなもの??何ができる??</h2>
+
+<ul>
+  <li>ベイズ手法とガウス過程を組み合わせることで，計算量を抑えつつ情報量の大きいサンプルをクエリする手法を提案</li>
+  <li>CIFARやFashionMNIST等で検証</li>
+</ul>
+
+
+<h2 id="2-どうやって">2. どうやって??</h2>
+<ul>
+  <li>ガウシアンカーネルを2つの入力x,x'と，その出力f(x)，f(x')による構築</li>
+  <center><img src="/assets/images/posts/ALbyEGPS/gaussian_kernels.png" /></center><br />
+    <ul><li>σはハイパーパラメータ</li></ul>
+    <li>ガウス過程尤度を用いると，GPモデルf'の分布は↓で表される</li>
+  <center><img src="/assets/images/posts/ALbyEGPS/gaussian_process_distribution.png" /></center><br />
+    <ul><li>kはベクトル，K，Yは行列</li></ul>
+    <li>↑は計算量が大きいため，U, Vという2つの基準点を用いて近似</li>
+  <center><img src="/assets/images/posts/ALbyEGPS/efficient_gaussian_process.png" /></center>
+  <center><img src="/assets/images/posts/ALbyEGPS/efficient_gaussian_process_material.png" /></center><br />
+    <li>アルゴリズム</li>
+  <center><img src="/assets/images/posts/ALbyEGPS/algorithm.png" /></center>
+</ul>
+
+<h2 id="3-結果は">3. 結果は??</h2>
+<ul>
+  <li>CIFAR，FashionMNIST，Caltechの結果比較</li>
+    <center><img src="/assets/images/posts/ALbyEGPS/result.png" /></center><br />
+    <ul><li>FashionMNISTでBADGEとCoreSetの初期点がズレてるので，シード固定されてない</li></ul>
+    <ul><li>CIFARも怪しいが判断は難しい</li></ul>
+    <li>CIFAR10 σやTのハイパラ探索結果</li>
+    <center><img src="/assets/images/posts/ALbyEGPS/cifar_tuning.png" /></center>
+</ul>
+
+<h2 id="4-課題は">4. 課題は??</h2>
+<ul>
+  </ul>
+
+    <div class="btn-wrapper">
+      <a href="/posts" class="btn back_btn">Back</a>
+    </div>
+  </body>
+</html>
+<div id="footer"></div>
+<script>
+  $(function(){
+      $('#footer').load('/footer.html');
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <div id="header"></div>
+    <script>
+      $(function(){
+          $('#header').load('/header.html');
+      });
+  </script>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      processEscapes: true,
+      tags: "ams",
+      autoload: {
+        color: [],
+        colorV2: ['color']
+      },
+      packages: {'[+]': ['noerrors']}
+    },
+    chtml: {
+      matchFontHeight: false,
+      displayAlign: "left",
+      displayIndent: "2em"
+    },
+    options: {
+      renderActions: {
+        /* add a new named action to render <script type="math/tex"> */
+        find_script_mathtex: [10, function (doc) {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/);
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+            const text = document.createTextNode('');
+            node.parentNode.replaceChild(text, node);
+            math.start = {node: text, delim: '', n: 0};
+            math.end = {node: text, delim: '', n: 0};
+            doc.math.push(math);
+          }
+        }, '']
+      }
+    },
+    loader: {
+      load: ['[tex]/noerrors']
+    }
+  };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
+  </head>
+  <body>
+    <center><img class="hero" src="/assets/images/posts/SC4AL/head.png"></center>
+    <h1>Stopping Criterion for Active Learning Based on Error Stability</h1>
+    <p><span class="fa fa-link"></span><a href="https://arxiv.org/abs/2104.01836"> https://arxiv.org/abs/2104.01836</a></p>
+    <p><span class="fa fa-calendar"></span> Jan 24, 2023 </p>
+    <p><span class="fa fa-flag"></span> <a href="/active_learning"> Active Learning</a></p>
+    <p><span class="fa fa-graduation-cap"></span> arXiv (2021) </p>
+
+    <h2 id="1-どんなもの">1. どんなもの??何ができる??</h2>
+
+<ul>
+  <li>汎化誤差を基に閾値を決定する，ベイズALに対し適用可能な停止戦略を提案</li>
+  <li>回帰データやMNISTに対し既存のベイズ手法を用いて提案手法の効果を検証</li>
+</ul>
+
+
+<h2 id="2-どうやって">2. どうやって??</h2>
+<ul>
+    <li>理想的な停止戦略↓</li>
+    <center><img src="/assets/images/posts/SC4AL/optimal_sc.png" /></center><br />
+    <ul><li>汎化誤差の期待値とその時点までのアノテーションコストの和の最小値</li></ul>
+    <ul><li>→より少ない枚数で汎化誤差が小さくなるタイミング</li></ul>
+    <li>↑はテストデータを用いて汎化誤差を推定することが非現実的で，最適なクエリデータ数kもわからないため計算は困難</li>
+    <ul><li>新しいデータをクエリする前と後の汎化誤差の差を用いて，停止戦略を設計</li></ul>
+    <center><img src="/assets/images/posts/SC4AL/approx_optimal_sc.png" /></center><br />
+    <ul><li>γはk/γが[0, 1]となるように正規化するパラメータ</li></ul>
+    <li>↑は損失が単調減少する必要があるため，更に近似</li>
+    <center><img src="/assets/images/posts/SC4AL/decreasing_optimal_sc.png" /></center><br />
+    <li>ΔLをベイズ事後分布を用いて推定</li>
+    <ul><li>ベイズ事前分布p(θ)，事後分布@(θ｜S)について以下が成立</li></ul>
+    <center><img src="/assets/images/posts/SC4AL/approx_generalization_error.png" /></center><br />
+    <ul><ul><li>WはLambert関数，eは自然対数の底</li></ul></ul>
+    <ul><li>サイクルtにおけるラベル付きデータ集合がStであるため，rを↓のように定義可能となり，上限をrtで表せる</li></ul>
+    <center><img src="/assets/images/posts/SC4AL/rt.png" /></center>
+    <center><img src="/assets/images/posts/SC4AL/upper_bound.png" /></center><br />
+    <ul><li>E[E[...という連続する期待値をマルチンゲールと仮定すると，0＜η，Δ＜1で下を満たす</li></ul>
+    <center><img src="/assets/images/posts/SC4AL/lambda_t.png" /></center>
+    <center><img src="/assets/images/posts/SC4AL/supermartingale.png" /></center><br />
+    <li>アルゴリズム</li>
+   <center><img src="/assets/images/posts/SC4AL/algorithm.png" /></center>
+</ul>
+
+<h2 id="3-結果は">3. 結果は??</h2>
+<ul>
+  <li>各データセットにおける期待汎化誤差とエラー率の相関</li>
+    <center><img src="/assets/images/posts/SC4AL/correlation.png" /></center><br />
+    <li>期待汎化誤差とエラー率のプロット結果</li>
+    <center><img src="/assets/images/posts/SC4AL/result.png" /></center><br />
+</ul>
+
+<h2 id="4-課題は">4. 課題は??</h2>
+<ul>
+  <li>ベイズ手法以外に対しては適用不可</li>
+  </ul>
+
+    <div class="btn-wrapper">
+      <a href="/posts" class="btn back_btn">Back</a>
+    </div>
+  </body>
+</html>
+<div id="footer"></div>
+<script>
+  $(function(){
+      $('#footer').load('/footer.html');
+  });
+</script>
+</body>
+</html>

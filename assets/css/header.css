@@ -1,0 +1,104 @@
+
+.header-name {
+    line-height: 65px;
+    padding: 0 2px;
+    color: white;
+    display: block;
+    float: left;
+    font-size: x-large;
+}
+
+.header-left {
+  float: left;
+}
+  
+  .header-left a {
+  line-height: 65px;
+  padding: 0 20px;
+  color: white;
+  display: block;
+  float: left;
+  transition: all .1s;
+  position: relative;
+  }
+  .header-left a:hover{
+    color:aquamarine
+    }
+  .header-left a::after {
+      position: absolute;
+      left: 0;
+      content: '';
+      width: 100%;
+      height: 2px;
+      background: aquamarine;
+      transform: scale(0, 1);
+      transform-origin: center top;
+      transition: transform .3s;
+    }
+    .header-left a:hover::after {
+      transform: scale(1, 1);
+    }
+
+.dropmenu {
+  list-style-type: none;
+  position: relative;
+  float: left;
+}
+.dropmenu ul{
+  list-style: none;
+  position: absolute;
+  top: 70%;
+  left: -25%;
+}
+.dropmenu :last-child ul{
+  left: -10%;
+}
+.dropmenu ul li{
+  overflow: hidden;
+  height: 0;
+  color: var(--header);
+  transition: all .2s;
+}
+.dropmenu ul li a{
+  width: 150%;
+  text-align: center;
+  background-color: var(--header);
+}
+.dropmenu:hover ul li{
+  overflow: visible;
+  height: 65px;
+  transition: all .2s;
+}
+
+.header-right {
+float: right;
+margin-right: -25px;
+}
+
+.header-right a {
+line-height: 65px;
+padding: 0 23px;
+color: white;
+display: block;
+float: right;
+transition: all .1s;
+position: relative;
+}
+
+.header-right a::after {
+    position: absolute;
+    content: '';
+    width: 100%;
+    height: 2px;
+  }
+
+.header-right a:hover{
+color:aquamarine
+}
+
+
+@media all and (max-width: 720px) {
+.header-name {
+    display: none;
+}
+}

@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/css/style.css">
+  </head>
+  <body>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <div id="header"></div>
+  <script>
+    $(function(){
+        $('#header').load('/header.html');
+    });
+</script>
+    <div class="top-wrapper">
+      <div class="container">
+        <h1>Posts</h1>
+        <h3>(2/10)</h3>
+      </div>
+    </div>
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/css/posts.css">
+    <script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      processEscapes: true,
+      tags: "ams",
+      autoload: {
+        color: [],
+        colorV2: ['color']
+      },
+      packages: {'[+]': ['noerrors']}
+    },
+    chtml: {
+      matchFontHeight: false,
+      displayAlign: "left",
+      displayIndent: "2em"
+    },
+    options: {
+      renderActions: {
+        /* add a new named action to render <script type="math/tex"> */
+        find_script_mathtex: [10, function (doc) {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/);
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+            const text = document.createTextNode('');
+            node.parentNode.replaceChild(text, node);
+            math.start = {node: text, delim: '', n: 0};
+            math.end = {node: text, delim: '', n: 0};
+            doc.math.push(math);
+          }
+        }, '']
+      }
+    },
+    loader: {
+      load: ['[tex]/noerrors']
+    }
+  };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
+  </head>
+  <body>
+    <div class="btn-wrapper">
+      <a href="/posts" class="btn back_btn previous"><<<</a>
+      <a href="/posts" class="btn back_btn next"><</a>
+      <a href="/posts/3" class="btn back_btn next">></a>
+      <a href="/posts/10" class="btn back_btn previous">>>></a>
+    </div>
+
+    <div class="myposts">
+
+      <div class="myposts">
+        <div class="post">
+          <a href="/other_posts/23/07/10/DetCLIP.html">
+            <img class="post_img" src="/assets/images/posts/DetCLIP/framework.png">
+            <div class="post_detail"> 
+              <p><b>DetCLIP: Dictionary-Enriched Visual-Concept Paralleled Pre-training for Open-world Detection</b></p>
+              <p class="post_p"><h1 id=""></h1>
+                <ul>
+                  <li>Groundingを行うGLIPでは冗長，矛盾した関係性を学習するため，これを改善するために並列で概念を学習するDetCLIPを提案</li>
+                  <li>ゼロショット物体検出において，LVISデータでGLIPを上回り，完全教師あり学習と比べてもレアカテゴリの性能改善</li>
+                </ul>
+  </p>
+              <p>
+                <span class="fa fa-calendar"></span> Jul 10, 2023
+                <span class="fa fa-folder"></span> object detection
+                <span class="fa fa-graduation-cap"></span> NIPS 2022
+              </p>
+            </div>
+          </a>
+        </div>
+
+      <div class="post">
+        <a href="/other_posts/23/07/04/DetGPT.html">
+          <img class="post_img" src="/assets/images/posts/DetGPT/framework.png">
+          <div class="post_detail"> 
+            <p><b>DetGPT: Detect What You Need via Reasoning</b></p>
+            <p class="post_p"><h1 id=""></h1>
+              <ul>
+                <li>検出したい物が明示的でない場合において，理由付けによって物体検出を行うDetGPTを提案</li>
+                <li>既存手法と比べて高レベルなインテラクションを行うことが可能で，ロボティクスや自動運転などへの応用も期待できる</li>
+              </ul>
+</p>
+            <p>
+              <span class="fa fa-calendar"></span> Jul 04, 2023
+              <span class="fa fa-folder"></span> object detection
+              <span class="fa fa-graduation-cap"></span> arXiv 2023
+            </p>
+          </div>
+        </a>
+      </div>
+      
+      <div class="post">
+        <a href="/other_posts/23/06/15/DUCE.html">
+          <img class="post_img" src="/assets/images/posts/DUCE/framework.png">
+          <div class="post_detail"> 
+            <p><b>Zero-shot Object Detection with a Text and Image Contrastive Model</b></p>
+            <p class="post_p"><h1 id=""></h1>
+              <ul>
+                <li>CLIPと領域提案ネットワークを組み合わせた汎化可能なゼロショット物体検出器DUCEを提案 </li>
+                <li>DUCEのBBを非最大抑制するアプローチBCCを導入し，既存手法に匹敵する性能を示すことを確認</li>
+              </ul>
+</p>
+            <p>
+              <span class="fa fa-calendar"></span> Jun 15, 2023
+              <span class="fa fa-folder"></span> object detection
+              <span class="fa fa-graduation-cap"></span> under TMLR
+            </p>
+          </div>
+        </a>
+      </div>
+      
+      <div class="post">
+        <a href="/other_posts/23/06/14/MaskDINO.html">
+          <img class="post_img" src="/assets/images/posts/MaskDINO/framework.png">
+          <div class="post_detail"> 
+            <p><b>Mask DINO: Towards A Unified Transformer-based Framework for Object Detection and Segmentation</b></p>
+            <p class="post_p"><h1 id=""></h1>
+              <ul>
+                <li>DETRベースで提案された物体検出モデルDINOにマスク予測ブランチを追加することで各セグメンテーションタスクに対応させたMask DINOを提案</li>
+                <li>MaskDINOはシンプルでモデル・データセットに対しスケーリングし，ResNe50やSwin-Transformerを用いて既存手法を上回る</li>
+              </ul>
+</p>
+            <p>
+              <span class="fa fa-calendar"></span> Jun 14, 2023
+              <span class="fa fa-folder"></span> object detection
+              <span class="fa fa-graduation-cap"></span> CVPR (2023)
+            </p>
+          </div>
+        </a>
+      </div>
+
+      <div class="post">
+        <a href="/other_posts/23/06/13/DINO_DETR.html">
+          <img class="post_img" src="/assets/images/posts/DINO_DETR/framework.png">
+          <div class="post_detail"> 
+            <p><b>DINO: DETR with Improved DeNoising Anchor Boxes for End-to-End Object Detection</b></p>
+            <p class="post_p"><h1 id=""></h1>
+              <ul>
+                <li>DETRベースモデルでDenoising Training，アンカー初期化，2重先読みを行う物体検出モデルDINOを提案</li>
+                <li>DETRベースモデルがスケーリングしないという問題を解決し，End-to-Endで物体検出のSoTAを達成</li>
+              </ul>
+</p>
+            <p>
+              <span class="fa fa-calendar"></span> Jun 13, 2023
+              <span class="fa fa-folder"></span> object detection
+              <span class="fa fa-graduation-cap"></span> arXiv (2022)
+            </p>
+          </div>
+        </a>
+      </div>
+
+      <div class="post">
+        <a href="/other_posts/23/05/31/DETR.html">
+          <img class="post_img" src="/assets/images/posts/DETR/head.png">
+          <div class="post_detail"> 
+            <p><b>End-to-End Object Detection with Transformers</b></p>
+            <p class="post_p"><h1 id=""></h1>
+              <ul>
+                <li>物体検出にはじめてTransformerを採用したDETR(DEtection TRansformer)を提案</li>
+                <li>NMSやRoIAlignといった処理を用いずに既存主塔と同程度の検出が可能</li>
+              </ul>
+</p>
+            <p>
+              <span class="fa fa-calendar"></span> May 31, 2023
+              <span class="fa fa-folder"></span> object detection
+              <span class="fa fa-graduation-cap"></span> CVPR (2020)
+            </p>
+          </div>
+        </a>
+      </div>
+      
+      <div class="post">
+        <a href="/other_posts/23/05/08/MixMatch.html">
+          <img class="post_img" src="/assets/images/posts/MixMatch/head.png">
+          <div class="post_detail"> 
+            <p><b>MixMatch: A Holistic Approach to Semi-Supervised Learning</b></p>
+            <p class="post_p"><h1 id=""></h1>
+              <ul>
+                <li>Entropy MinimizationとConsistency Regularizationを1つのフレームワークに統合した初めての半教師あり学習手法</li>
+                <li>CIFAR10などの自然画像で当時のSoTA，250枚のアノテーションでエラー率11%</li>
+              </ul>
+</p>
+            <p>
+              <span class="fa fa-calendar"></span> May 08, 2023
+              <span class="fa fa-folder"></span> semi-supervised learning
+              <span class="fa fa-graduation-cap"></span> CVPR (2019)
+            </p>
+          </div>
+        </a>
+      </div>
+
+      <div class="post">
+        <a href="/active_learning/23/05/08/DALwithCLunderRDPA.html">
+          <img class="post_img" src="/assets/images/posts/DALwithCLunderRDPA/head.png">
+          <div class="post_detail"> 
+            <p><b>Deep Active Learning with Contrastive Learning Under Realistic Data Pool Assumptions</b></p>
+            <p class="post_p"><h1 id=""></h1>
+              <ul>
+                <li>ラベルなしデータプール内に目的タスクとの関連性が低い(OoD)データが存在する場面がより実用的と指摘し，対象学習を用いた手法を提案</li>
+                <li>既存手法と比べ少ないアノテーション量で同等の精度に達成することを確認</li>
+              </ul>
+</p>
+            <p>
+              <span class="fa fa-calendar"></span> May 08, 2023
+              <span class="fa fa-folder"></span> Active Learning
+              <span class="fa fa-graduation-cap"></span> AAAI (2023)
+            </p>
+          </div>
+        </a>
+      </div>
+
+      <div class="post">
+        <a href="/active_learning/23/04/30/RethinkingFAL.html">
+          <img class="post_img" src="/assets/images/posts/RethinkingFAL/head.png">
+          <div class="post_detail"> 
+            <p><b>Re-thinking Federated Active Learning based on Inter-class Diversity</b></p>
+            <p class="post_p"><h1 id=""></h1>
+              <ul>
+                <li>Federated LearningとALを組み合わせたFALを用いて分散型設定のGlobalモデルとLocalモデルを統合したLoGoを提案</li>
+                <li>Local/Globalな不均衡に対するロバスト性向上</li>
+              </ul>
+</p>
+            <p>
+              <span class="fa fa-calendar"></span> Apr 30, 2023
+              <span class="fa fa-folder"></span> Active Learning
+              <span class="fa fa-graduation-cap"></span> CVPR (2023)
+            </p>
+          </div>
+        </a>
+      </div>
+      
+      <div class="post">
+        <a href="/active_learning/23/04/30/ASSLbyEMAandUCB.html">
+          <img class="post_img" src="/assets/images/posts/ASSLbyEMAandUCB/head.png">
+          <div class="post_detail"> 
+            <p><b>Active Semi-Supervised Learning by Exploring Per-Sample Uncertainty and Consistency</b></p>
+            <p class="post_p"><h1 id=""></h1>
+              <ul>
+                <li>半教師あり能動学習はラベルなしデータを使う分能動学習と比べ不確実性をとらえることが難しいことを指摘</li>
+                <li>EMAとUCBを用いて，学習時間を5.3倍短縮しつつ半教師あり学習の性能を保つことに成功</li>
+              </ul>
+</p>
+            <p>
+              <span class="fa fa-calendar"></span> Apr 30, 2023
+              <span class="fa fa-folder"></span> Active Learning
+              <span class="fa fa-graduation-cap"></span> arXiv (2023)
+            </p>
+          </div>
+        </a>
+      </div>
+      
+      <div class="btn-wrapper">
+        <a href="/posts" class="btn back_btn previous"><<<</a>
+        <a href="/posts" class="btn back_btn next"><</a>
+        <a href="/posts/3" class="btn back_btn next">></a>
+        <a href="/posts/10" class="btn back_btn previous">>>></a>
+      </div>
+  </body>
+</html>
+<div id="footer"></div>
+<script>
+  $(function(){
+      $('#footer').load('/footer.html');
+  });
+</script>
+</body>
+</html>

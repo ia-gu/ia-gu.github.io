@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <div id="header"></div>
+    <script>
+      $(function(){
+          $('#header').load('/header.html');
+      });
+  </script>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      processEscapes: true,
+      tags: "ams",
+      autoload: {
+        color: [],
+        colorV2: ['color']
+      },
+      packages: {'[+]': ['noerrors']}
+    },
+    chtml: {
+      matchFontHeight: false,
+      displayAlign: "left",
+      displayIndent: "2em"
+    },
+    options: {
+      renderActions: {
+        /* add a new named action to render <script type="math/tex"> */
+        find_script_mathtex: [10, function (doc) {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/);
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+            const text = document.createTextNode('');
+            node.parentNode.replaceChild(text, node);
+            math.start = {node: text, delim: '', n: 0};
+            math.end = {node: text, delim: '', n: 0};
+            doc.math.push(math);
+          }
+        }, '']
+      }
+    },
+    loader: {
+      load: ['[tex]/noerrors']
+    }
+  };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
+  </head>
+  <body>
+    <center><img class="hero" src="/assets/images/posts/LL4AL/framework.png"></center>
+    <h1>Learning Loss for Active Learning</h1>
+    <p><span class="fa fa-link"></span><a href="https://arxiv.org/abs/1905.03677"> https://arxiv.org/abs/1905.03677</a></p>
+    <p><span class="fa fa-calendar"></span> Jan 8, 2023 </p>
+    <p><span class="fa fa-flag"></span> <a href="/active_learning"> Active Learning</a></p>
+    <p><span class="fa fa-graduation-cap"></span> CVPR(2019) </p>
+
+    <h2 id="1-どんなもの">1. どんなもの??何ができる??</h2>
+
+<ul>
+  <li>タスク非依存で特にDNNに効果的な，ラベルなしデータのLossを推測するLL4ALを提案</li>
+  <li>CIFAR10で当時のSoTA</li>
+</ul>
+
+
+<h2 id="2-どうやって">2. どうやって??</h2>
+<ul>
+  <li>モデルを複数のブロックに分割し，ブロックの出力それぞれをGAP，FC，ReLUに通した結果をConcatしてFC層に通すLoss予測モジュールを導入</li>
+  <center><img src="/assets/images/posts/LL4AL/lp_module.png" /></center><br />
+  <li>学習時は，モデルの予測LossとLoss予測のLoss(LPL)を計算し，和を逆伝播</li>
+  <center><img src="/assets/images/posts/LL4AL/loss.png" /></center><br />
+  <ul><li>LPLは学習の途中でdetachする(論文中では120/200epoch)</li></ul>
+</ul>
+
+<h2 id="3-結果は">3. 結果は??</h2>
+<ul>
+    <li>CIFAR10で当時のSoTAを達成</li>
+    <center><img src="/assets/images/posts/LL4AL/result.png" /></center><br />
+    <li>物体検出やポーズ推定でも高精度で，タスク非依存であることを確認</li>
+    <center><img src="/assets/images/posts/LL4AL/result_det.png" /></center>
+    <center><img src="/assets/images/posts/LL4AL/result_pe.png" /></center>
+</ul>
+
+<h2 id="4-課題は">4. 課題は??</h2>
+  <p><a href="/active_learning/23/01/17/LR4AL.html"> 後継論文</a></p>
+  <li>実装しているので詳しくは↓をチェック</li>
+  <p><a href="https://github.com/ia-gu/Siamese_Omniglot"> リポジトリを確認</a></p>
+  <p><a href="/portfolios/omniglot.html"> 実装解説(portfolios)を確認</a></p>
+
+    <div class="btn-wrapper">
+      <a href="/posts" class="btn back_btn">Back</a>
+    </div>
+  </body>
+</html>
+<div id="footer"></div>
+<script>
+  $(function(){
+      $('#footer').load('/footer.html');
+  });
+</script>
+</body>
+</html>

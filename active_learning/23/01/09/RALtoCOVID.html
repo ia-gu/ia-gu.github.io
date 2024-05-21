@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <div id="header"></div>
+    <script>
+      $(function(){
+          $('#header').load('/header.html');
+      });
+  </script>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      processEscapes: true,
+      tags: "ams",
+      autoload: {
+        color: [],
+        colorV2: ['color']
+      },
+      packages: {'[+]': ['noerrors']}
+    },
+    chtml: {
+      matchFontHeight: false,
+      displayAlign: "left",
+      displayIndent: "2em"
+    },
+    options: {
+      renderActions: {
+        /* add a new named action to render <script type="math/tex"> */
+        find_script_mathtex: [10, function (doc) {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/);
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+            const text = document.createTextNode('');
+            node.parentNode.replaceChild(text, node);
+            math.start = {node: text, delim: '', n: 0};
+            math.end = {node: text, delim: '', n: 0};
+            doc.math.push(math);
+          }
+        }, '']
+      }
+    },
+    loader: {
+      load: ['[tex]/noerrors']
+    }
+  };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
+  </head>
+  <body>
+    <center><img class="hero" src="/assets/images/posts/LD4AL/framework.png"></center>
+    <h1>Highly Efficient Representation and Active Learning Framework for Imbalanced Data and Its Application to COVID-19 X-Ray Classification</h1>
+    <p><span class="fa fa-link"></span><a href="https://arxiv.org/abs/2103.05109"> https://arxiv.org/abs/2103.05109</a></p>
+    <p><span class="fa fa-calendar"></span> Jan 9, 2023 </p>
+    <p><span class="fa fa-flag"></span> <a href="/active_learning"> Active Learning</a></p>
+    <p><span class="fa fa-graduation-cap"></span> NIPS workshop </p>
+
+    <h2 id="1-どんなもの">1. どんなもの??何ができる??</h2>
+
+<ul>
+  <li>教師なし表現学習とガウス過程を用いた，医用画像向けのALフレームワークを提案</li>
+  <li>COVID-19 Datasetに対する有効性を確認</li>
+</ul>
+
+
+<h2 id="2-どうやって">2. どうやって??</h2>
+<ul>
+  <li>ステップ1｜下流タスクに向け汎用的な特徴を獲得することを目的とした教師なし表現学習</li>
+  <ul><li>ResNet50をSimCLRで学習</li></ul>
+  <li>ステップ2｜DNNのトップを用いて不確実性を獲得するノンパラメトリックなベイズ手法であるガウス過程を適用</li>
+  <ul><li>ガウス過程で精度を出すには良い特徴量が必要なため事前に表現学習を使用</li></ul>
+  <li>↓フレームワーク全体図</li>
+  <center><img src="/assets/images/posts/RALtoCOVID/framework.png" /></center>
+</ul>
+
+<h2 id="3-結果は">3. 結果は??</h2>
+<ul>
+    <li>COVID-19 Dataset 結果</li>
+    <center><img src="/assets/images/posts/RALtoCOVID/result_covid.png" /></center><br />
+    <li>Nerthus 結果</li>
+    <center><img src="/assets/images/posts/RALtoCOVID/result_nerthus.png" /></center><br />
+  <ul><li>Nerthus 詳細</li></ul>
+    <center><img src="/assets/images/posts/RALtoCOVID/nerthus.png" /></center>
+</ul>
+
+<h2 id="4-課題は">4. 課題は??</h2>
+
+    <div class="btn-wrapper">
+      <a href="/posts" class="btn back_btn">Back</a>
+    </div>
+  </body>
+</html>
+<div id="footer"></div>
+<script>
+  $(function(){
+      $('#footer').load('/footer.html');
+  });
+</script>
+</body>
+</html>

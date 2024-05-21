@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <div id="header"></div>
+    <script>
+      $(function(){
+          $('#header').load('/header.html');
+      });
+  </script>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      processEscapes: true,
+      tags: "ams",
+      autoload: {
+        color: [],
+        colorV2: ['color']
+      },
+      packages: {'[+]': ['noerrors']}
+    },
+    chtml: {
+      matchFontHeight: false,
+      displayAlign: "left",
+      displayIndent: "2em"
+    },
+    options: {
+      renderActions: {
+        /* add a new named action to render <script type="math/tex"> */
+        find_script_mathtex: [10, function (doc) {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/);
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+            const text = document.createTextNode('');
+            node.parentNode.replaceChild(text, node);
+            math.start = {node: text, delim: '', n: 0};
+            math.end = {node: text, delim: '', n: 0};
+            doc.math.push(math);
+          }
+        }, '']
+      }
+    },
+    loader: {
+      load: ['[tex]/noerrors']
+    }
+  };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
+  </head>
+  <body>
+    <center><img class="hero" src="/assets/images/posts/ResponsibleALviaHITL/framework.png"></center>
+    <h1>How Much a Model Be Trained by Passive Learning Before Active Learning</h1>
+    <p><span class="fa fa-link"></span><a href="https://ieeexplore.ieee.org/document/9741728"> https://ieeexplore.ieee.org/document/9741728</a></p>
+    <p><span class="fa fa-calendar"></span> Jan 25, 2023 </p>
+    <p><span class="fa fa-flag"></span> <a href="/active_learning"> Active Learning</a></p>
+    <p><span class="fa fa-graduation-cap"></span> IEEE (2022) </p>
+
+    <h2 id="1-どんなもの">1. どんなもの??何ができる??</h2>
+
+<ul>
+  <li>ALの最初のランダムセット枚数がクエリ戦略，モデル構造，データセットに依存することを発見</li>
+  <li>CIFAR10に最も最適な設定を提案し検証</li>
+</ul>
+
+
+<h2 id="2-どうやって">2. どうやって??</h2>
+<ul>
+  <li>モデルの学習具合を図る指標としてEoU(Entropy of sample-Uncertainty)を定義</li>
+    <center><img src="/assets/images/posts/HowMuchaModelBeTrainedbyPL/entropy.png" /></center>
+    <center><img src="/assets/images/posts/HowMuchaModelBeTrainedbyPL/probability.png" /></center><br />
+  <li>学習時にEoUを監視し，閾値τを下回るまでPL，下回った以降はALを行う</li>
+  <li>クエリ戦略に対する閾値の決め方</li>
+    <center><img src="/assets/images/posts/HowMuchaModelBeTrainedbyPL/t1.png" /></center><br />
+    <ul><li>Entropy Samplingではτ0=0.93，α1=0.5</li></ul>
+  <li>モデルに対する閾値の決め方</li>
+    <center><img src="/assets/images/posts/HowMuchaModelBeTrainedbyPL/t2.png" /></center><br />
+    <ul><li>ResNet18ではα2=0.7</li></ul>
+    <li>データセットに対する閾値の決め方</li>
+    <center><img src="/assets/images/posts/HowMuchaModelBeTrainedbyPL/t3.png" /></center><br />
+    <ul><li>CIFAR10ではα3=0.8</li></ul>
+</ul>
+
+<h2 id="3-結果は">3. 結果は??</h2>
+<ul>
+    <li>EoUとテスト精度の相関</li>
+    <center><img src="/assets/images/posts/HowMuchaModelBeTrainedbyPL/cor.png" /></center><br />
+    <li>MNIST，CIFAR10，CINIC10，CIFAR100 結果比較</li>
+    <center><img src="/assets/images/posts/HowMuchaModelBeTrainedbyPL/result.png" /></center><br />
+</ul>
+
+<h2 id="4-課題は">4. 課題は??</h2>
+<ul>
+</ul>
+
+    <div class="btn-wrapper">
+      <a href="/posts" class="btn back_btn">Back</a>
+    </div>
+  </body>
+</html>
+<div id="footer"></div>
+<script>
+  $(function(){
+      $('#footer').load('/footer.html');
+  });
+</script>
+</body>
+</html>

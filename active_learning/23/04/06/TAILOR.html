@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <div id="header"></div>
+    <script>
+      $(function(){
+          $('#header').load('/header.html');
+      });
+  </script>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      processEscapes: true,
+      tags: "ams",
+      autoload: {
+        color: [],
+        colorV2: ['color']
+      },
+      packages: {'[+]': ['noerrors']}
+    },
+    chtml: {
+      matchFontHeight: false,
+      displayAlign: "left",
+      displayIndent: "2em"
+    },
+    options: {
+      renderActions: {
+        /* add a new named action to render <script type="math/tex"> */
+        find_script_mathtex: [10, function (doc) {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/);
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+            const text = document.createTextNode('');
+            node.parentNode.replaceChild(text, node);
+            math.start = {node: text, delim: '', n: 0};
+            math.end = {node: text, delim: '', n: 0};
+            doc.math.push(math);
+          }
+        }, '']
+      }
+    },
+    loader: {
+      load: ['[tex]/noerrors']
+    }
+  };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
+  </head>
+  <body>
+    <center><img class="hero" src="/assets/images/posts/TAILOR/framework.png"></center>
+    <h1>Algorithm Selection for Deep Active Learning with Imbalanced Datasets</h1>
+    <p><span class="fa fa-link"></span><a href="https://arxiv.org/abs/2302.07317#"> https://arxiv.org/abs/2302.07317#</a></p>
+    <p><span class="fa fa-calendar"></span> Apr 6, 2023 </p>
+    <p><span class="fa fa-flag"></span> <a href="/active_learning"> Active Learning</a></p>
+    <p><span class="fa fa-graduation-cap"></span> arXiv (2023) </p>
+
+    <h2 id="1-どんなもの">1. どんなもの??何ができる??</h2>
+
+<ul>
+  <li>与えられたデータセットに対し最適なクエリ戦略を選択肢の中から選択して利用するアルゴリズムTAILORを提案</li>
+  <li>CIFAR，Kuzushiji，CelebAで実験し，精度やクエリしたデータの傾向を調査</li>
+</ul>
+
+
+<h2 id="2-どうやって">2. どうやって??</h2>
+<ul>
+  <li>各サイクルにおいて，エージェントが選択したクエリ戦略がラベルなしデータを1クエリし，予算を満たすまで繰り返す</li>
+  <ul><li>エージェントの報酬はクエリデータとラベルを基に計算</li></ul>
+  <li>仮定1｜候補となるクエリ戦略はバッチ単位だけでなく，データ1つずつをクエリ可能</li>
+  <li>仮定2｜候補となるクエリ戦略には各サイクルで真の報酬分布が存在し，クエリデータは対応するクエリ戦略の分布から選択されている</li>
+  <li>↓フレームワーク全体</li>
+  <center><img src="/assets/images/posts/TAILOR/framework.png" /></center><br />
+  <li>報酬関数の設計</li>
+  <ul><li>特定のクラスに偏ることを避けるため，クラス数で重みづけ</li></ul>
+  <center><img src="/assets/images/posts/TAILOR/rdiv.png" /></center><br />
+  <ul><li>マルチラベルの場合にpositiveラベルに重みづけ</li></ul>
+  <center><img src="/assets/images/posts/TAILOR/rserch.png" /></center><br />
+  <li>↓アルゴリズム</li>
+  <center><img src="/assets/images/posts/TAILOR/algorithm.png" /></center>
+</ul>
+
+<h2 id="3-結果は">3. 結果は??</h2>
+<ul>
+    <li>CIFAR，Kuzushiji，CelebA 比較結果</li>
+    <center><img src="/assets/images/posts/TAILOR/result.png" /></center><br />
+  <ul><li>誤差では？</li></ul>
+  <li>CIFAR，Kuzushiji，CelebA 希少データ，positiveデータの比較</li>
+    <center><img src="/assets/images/posts/TAILOR/result_query.png" /></center>
+</ul>
+
+<h2 id="4-課題は">4. 課題は??</h2>
+<ul>
+    <li></li>
+  </ul>
+
+    <div class="btn-wrapper">
+      <a href="/posts" class="btn back_btn">Back</a>
+    </div>
+  </body>
+</html>
+<div id="footer"></div>
+<script>
+  $(function(){
+      $('#footer').load('/footer.html');
+  });
+</script>
+</body>
+</html>

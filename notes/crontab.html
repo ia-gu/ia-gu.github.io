@@ -1,0 +1,92 @@
+    <!DOCTYPE html>
+    <html>
+      <title>crontab メモ</title>
+      <head>
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <div id="header"></div>
+        <script>
+          $(function(){
+              $('#header').load('/header.html');
+          });
+      </script>
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+        <link rel="stylesheet" href="/assets/css/style.css">
+        <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$','$'], ['\\(','\\)']],
+          processEscapes: true,
+          tags: "ams",
+          autoload: {
+            color: [],
+            colorV2: ['color']
+          },
+          packages: {'[+]': ['noerrors']}
+        },
+        chtml: {
+          matchFontHeight: false,
+          displayAlign: "left",
+          displayIndent: "2em"
+        },
+        options: {
+          renderActions: {
+            /* add a new named action to render <script type="math/tex"> */
+            find_script_mathtex: [10, function (doc) {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = {node: text, delim: '', n: 0};
+                math.end = {node: text, delim: '', n: 0};
+                doc.math.push(math);
+              }
+            }, '']
+          }
+        },
+        loader: {
+          load: ['[tex]/noerrors']
+        }
+      };
+    </script>
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
+      </head>
+      <body>
+        <center><img class="hero" src="/assets/images/notes/icon.jpg"></center>
+        <h1>crontab メモ</h1>
+        <p><span class="fa fa-calendar"></span> Jun 10, 2023 </p>
+    
+    <h3>crontabとは</h3>
+      <p>Linuxで使用可能なタスクスケジューラ（ジョブ管理システム）</p>
+      <p>予め設定したコマンドやスクリプトを特定の時間や日付，曜日などに自動で実行する事が可能</p>
+      <p>バックアップ，システムの監視，データの処理などの自動化に利用可能</p>
+
+      <h3>起動方法</h3>
+      <p><code>systemctl start cron</code>で起動（普通はデフォで起動済み）</p>
+      <p><code>systemctl status cron</code>で起動確認，⇓画像になってればOK</p>
+      <center><img src="/assets/images/notes/crontab/head.png" /></center><br />
+      
+      <h3>crontabの設定</h3>
+      <p><code>crontab -e</code>を実行→コマンドと，コマンドを実行するタイミングを指定</p>
+      <center><img src="/assets/images/notes/crontab/crontabe.png" /></center><br />
+      <p><code>crontab -l</code>で設定したコマンドを確認可能</p>
+      <center><img src="/assets/images/notes/crontab/crontabl.png" /></center><br />
+      
+      <h3>おまけ</h3>
+      <p>研究室のファイルサーバーの監視を自動化</p>
+      <center><img src="/assets/images/notes/crontab/file-server.png" /></center>
+      <p>毎週月曜の0時0分にスクリプトを実行</p>
+      
+        <div class="btn-wrapper">
+          <a href="/notes" class="btn back_btn">Back</a>
+        </div>
+      </body>
+    </html>
+    <div id="footer"></div>
+    <script>
+      $(function(){
+          $('#footer').load('/footer.html');
+      });
+    </script>
+    </body>
+    </html>

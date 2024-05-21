@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+  <title>Siamese Neural Networks for One-shot Image Recognition</title>
+  <head>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <div id="header"></div>
+    <script>
+      $(function(){
+          $('#header').load('/header.html');
+      });
+  </script>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      processEscapes: true,
+      tags: "ams",
+      autoload: {
+        color: [],
+        colorV2: ['color']
+      },
+      packages: {'[+]': ['noerrors']}
+    },
+    chtml: {
+      matchFontHeight: false,
+      displayAlign: "left",
+      displayIndent: "2em"
+    },
+    options: {
+      renderActions: {
+        /* add a new named action to render <script type="math/tex"> */
+        find_script_mathtex: [10, function (doc) {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/);
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+            const text = document.createTextNode('');
+            node.parentNode.replaceChild(text, node);
+            math.start = {node: text, delim: '', n: 0};
+            math.end = {node: text, delim: '', n: 0};
+            doc.math.push(math);
+          }
+        }, '']
+      }
+    },
+    loader: {
+      load: ['[tex]/noerrors']
+    }
+  };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
+  </head>
+  <body>
+    <center><img class="hero" src="/assets/images/posts/SiameseNet4OSL/framework.png"></center>
+    <h1>Siamese Neural Networks for One-shot Image Recognition</h1>
+    <p><span class="fa fa-link"></span><a href="https://www.cs.cmu.edu/~rsalakhu/papers/oneshot1.pdf"> https://www.cs.cmu.edu/~rsalakhu/papers/oneshot1.pdf</a></p>
+    <p><span class="fa fa-calendar"></span> Jan 5, 2023 </p>
+    <p><span class="fa fa-flag"></span> <a href="/few_shot_learning/"> Few-Shot Learning</a></p>
+    <p><span class="fa fa-graduation-cap"></span> ICML(2015) </p>
+
+    <h2 id="1-どんなもの">1. どんなもの??何ができる??</h2>
+
+<ul>
+  <li>2つのサンプルを入力のペアとして同一のモデルに通し，ペアが同クラスか否かを判別するSiamese Networkを提案</li>
+  <li>omniglotで93.42%を達成．Siamese Networkは後の距離学習や対象学習でも利用</li>
+</ul>
+
+
+<h2 id="2-どうやって">2. どうやって??</h2>
+<ul>
+  <li>モデル構造</li>
+  <center><img src="/assets/images/posts/SiameseNet4OSL/framework.png" /></center><br />
+  <li>訓練データ内から2つのサンプルを選択し入力ペアを用いて学習</li>
+  <ul><li>ペアが同一クラスか否かの2値分類を学習</li></ul>
+  <li>損失関数にはCross Entropyを一般化した以下を使用</li>
+  <center><img src="/assets/images/posts/SiameseNet4OSL/loss.png" /></center>
+</ul>
+
+<h2 id="3-結果は">3. 結果は??</h2>
+<ul>
+    <li>データセット｜omniglot</li>
+    <center><img src="/assets/images/posts/SiameseNet4OSL/omniglot.png" /></center><br />
+    <li>実験結果</li>
+    <center><img src="/assets/images/posts/SiameseNet4OSL/result.png" /></center><br />
+    <li>MNISTのOSL結果</li>
+    <center><img src="/assets/images/posts/SiameseNet4OSL/result_osl.png" /></center>
+</ul>
+
+<h2 id="4-課題は">4. 課題は??</h2>
+    <li>実装しているので詳しくは↓をチェック</li>
+      <p><a href="https://github.com/ia-gu/Siamese_Omniglot"> リポジトリを確認</a></p>
+      <p><a href="/portfolios/omniglot.html"> 実装解説(portfolios)を確認</a></p>
+      <div class="btn-wrapper">
+      <a href="/posts" class="btn back_btn">Back</a>
+    </div>
+  </body>
+</html>
+<div id="footer"></div>
+<script>
+  $(function(){
+      $('#footer').load('/footer.html');
+  });
+</script>
+</body>
+</html>

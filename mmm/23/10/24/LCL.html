@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <div id="header"></div>
+    <script>
+      $(function(){
+          $('#header').load('/header.html');
+      });
+  </script>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      processEscapes: true,
+      tags: "ams",
+      autoload: {
+        color: [],
+        colorV2: ['color']
+      },
+      packages: {'[+]': ['noerrors']}
+    },
+    chtml: {
+      matchFontHeight: false,
+      displayAlign: "left",
+      displayIndent: "2em"
+    },
+    options: {
+      renderActions: {
+        /* add a new named action to render <script type="math/tex"> */
+        find_script_mathtex: [10, function (doc) {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/);
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+            const text = document.createTextNode('');
+            node.parentNode.replaceChild(text, node);
+            math.start = {node: text, delim: '', n: 0};
+            math.end = {node: text, delim: '', n: 0};
+            doc.math.push(math);
+          }
+        }, '']
+      }
+    },
+    loader: {
+      load: ['[tex]/noerrors']
+    }
+  };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
+  </head>
+  <body>
+    <center><img class="hero" src="/assets/images/posts/LCL/head.png"></center>
+    <h1>Link-Context Learning for Multimodal LLMs</h1>
+    <p><span class="fa fa-link"></span><a href="https://arxiv.org/abs/2308.07891"> https://arxiv.org/abs/2308.07891</a></p>
+    <p><span class="fa fa-calendar"></span> Oct 24, 2023 </p>
+    <p><span class="fa fa-flag"></span> <a href="/mmm/"> Multi Modal Model</a></p>
+    <p><span class="fa fa-graduation-cap"></span> arXiv (2023) </p>
+
+    <h2 id="1-どんなもの">1. どんなもの??何ができる??</h2>
+
+<ul>
+  <li>ICL(In-Context Learning)は膨大な事前学習の知識を用いて，プロンプトからモデルパラメータの更新を行わない学習が可能であるが，因果関係が弱いため新しい概念を理解することは困難</li>
+  <li>サポート集合とクエリ集合の因果関係を明示的に強化するLCL(Link Context LEarning)を提案し，生成画像とそのテキストペアからなるISEKAIデータセットを提案し，LCLの性能を評価</li>
+</ul>
+
+
+<h2 id="2-どうやって">2. どうやって??</h2>
+<ul>
+  <li>アーキテクチャ</li>
+  <li>ベースラインにShikraを使用，ImageNet1kを900:100クラスに分けて調整</li>
+  <ul><li>各クラスから100枚の画像を選択し，特徴量の平均を計算</li></ul>
+  <ul><li>各クラスのテキストを符号化し，画像間，画像テキスト間，テキスト間の類似度を計算</li></ul>
+  <ul><li>特定のカテゴリに対して他のすべてのカテゴリを類似度に基づいてソートし，N分割</li></ul>
+  <ul><li>各区間内でカテゴリをランダムに選択し，Nの隣のカテゴリ集合を構築</li></ul>
+  
+  <li>損失関数</li>
+  <li>クエリxに対してサポート集合C内のサンプルとの関連性を考慮したラベルの対数尤度を最大化</li>
+  <ul><li>やってることはクロスエントロピー</li></ul>
+  
+  <li>学習戦略</li>
+  <ul><li>2-way：c1, c2に対する2クラス分類</li></ul>
+  <ul><ul><li>近傍クラス集合Ntiを持つクラスtiを正クラスとし，確率piで負クラスをhard negative minig（16-shot）</li></ul></ul>
+  <center><img src="/assets/images/posts/LCL/hard negative probability.png" /></center><br />
+  <ul><li>2-way-random：2-wayの後に，平均サンプリングされた2~16-shotで10エポック学習</li></ul>
+  <ul><li>2-way-weight：2-wayの後に，確率pjでサンプリングされた2~16-shotで学習</li></ul>
+  <center><img src="/assets/images/posts/LCL/2-way-weight.png" /></center><br />
+  <ul><li>mix：2-wayとShikraのタスクの両方を含んだファインチューニング</li></ul>
+
+  <li>データセット</li>
+  <li>新規概念をプロンプトから獲得しているかを調べるためには，確実にモデルが未学習なデータを使いたい</li>
+  <li>Midjourneyにより生成された画像と指示文を利用</li>
+  <ul><li>非現実の，神話などでもレアな概念</li></ul>
+  <ul><ul><li>"octopus"と"octopus vacuum"のように，実世界の概念と新しい概念を対にしている</li></ul></ul>
+  <ul><li>概念の一貫性を確保するために画像は手法で選択</li></ul>
+  <ul><li>20group，40category存在し，現在も増加中</li></ul>
+    <center><img src="/assets/images/posts/LCL/ISEKAI.png" /></center>
+  </ul>
+
+<h2 id="3-結果は">3. 結果は??</h2>
+<ul>
+    <li>ISEKAIでの結果</li>
+    <center><img src="/assets/images/posts/LCL/result_isekai.png" /></center><br />
+    <li>ImageNetでの結果</li>
+    <center><img src="/assets/images/posts/LCL/result_imagenet.png" /></center>
+</ul>
+
+<h2 id="4-課題は">4. 課題は??</h2>
+
+
+<div class="btn-wrapper">
+      <a href="/posts" class="btn back_btn">Back</a>
+    </div>
+  </body>
+</html>
+<div id="footer"></div>
+<script>
+  $(function(){
+      $('#footer').load('/footer.html');
+  });
+</script>
+</body>
+</html>

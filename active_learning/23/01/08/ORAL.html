@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <div id="header"></div>
+    <script>
+      $(function(){
+          $('#header').load('/header.html');
+      });
+  </script>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      processEscapes: true,
+      tags: "ams",
+      autoload: {
+        color: [],
+        colorV2: ['color']
+      },
+      packages: {'[+]': ['noerrors']}
+    },
+    chtml: {
+      matchFontHeight: false,
+      displayAlign: "left",
+      displayIndent: "2em"
+    },
+    options: {
+      renderActions: {
+        /* add a new named action to render <script type="math/tex"> */
+        find_script_mathtex: [10, function (doc) {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/);
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+            const text = document.createTextNode('');
+            node.parentNode.replaceChild(text, node);
+            math.start = {node: text, delim: '', n: 0};
+            math.end = {node: text, delim: '', n: 0};
+            doc.math.push(math);
+          }
+        }, '']
+      }
+    },
+    loader: {
+      load: ['[tex]/noerrors']
+    }
+  };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
+  </head>
+  <body>
+    <center><img class="hero" src="/assets/images/posts/ORAL/head.png"></center>
+    <h1>One-Round Active Learning</h1>
+    <p><span class="fa fa-link"></span><a href="https://arxiv.org/abs/2104.11843"> https://arxiv.org/abs/2104.11843</a></p>
+    <p><span class="fa fa-calendar"></span> Jan 8, 2023 </p>
+    <p><span class="fa fa-flag"></span> <a href="/active_learning"> Active Learning</a></p>
+    <p><span class="fa fa-graduation-cap"></span> arXiv(2021) </p>
+
+    <h2 id="1-どんなもの">1. どんなもの??何ができる??</h2>
+
+<ul>
+  <li>既存のDALでは，クエリ➡アノテーション➡学習のサイクルを複数回繰り返すが，これではアノテータが待機➡アノテーションを繰り返すことになるため，1度のクエリで解決するフレームワークを提案</li>
+  <li>既存のクエリ戦略では1度のクエリで精度を示すことが困難であることを示し，MNISTとCIFAR10で実験</li>
+</ul>
+
+
+<h2 id="2-どうやって">2. どうやって??</h2>
+<ul>
+  <li>最初のサイクルでランダムにデータを選択し，訓練データと検証データVに分割</li>
+  <ul><li>訓練データで学習したモデルfと検証データVを用いて↓を計算</li></ul>
+  <center><img src="/assets/images/posts/ORAL/utility.png" /></center><br />
+  <center><img src="/assets/images/posts/ORAL/utility_truth.png" /></center><br />
+  <li>集合関数の学習で標準的なDeepSetsを↓のように学習</li>
+  <center><img src="/assets/images/posts/ORAL/model_algorithm.png" /></center><br />
+  <li>↓フレームワーク全体図</li>
+  <center><img src="/assets/images/posts/ORAL/algorithm.png" /></center>
+</ul>
+
+<h2 id="3-結果は">3. 結果は??</h2>
+<ul>
+    <li>MNIST，CIFAR10の不均衡，ノイズ有で有効性を確認</li>
+    <center><img src="/assets/images/posts/ORAL/result.png" /></center><br />
+    <li>実世界データセットのUSPS，PubFig83における有効性を確認</li>
+    <center><img src="/assets/images/posts/ORAL/result_real.png" /></center>
+</ul>
+
+<h2 id="4-課題は">4. 課題は??</h2>
+<ul>
+  <li>DeepSetsの学習と評価に時間がかかるため，巨大なモデル・データセットに対し提案手法を適用することは困難</li>
+  <li>最初のサイクルでは，通常通りランダムに選択されたデータを使用しているため，これを解決することができれば，cold-start問題の解決にもつながる</li>
+  <a href="/active_learning/23/01/17/ZRAL.html">後継論文</a>
+</ul>
+
+    <div class="btn-wrapper">
+      <a href="/posts" class="btn back_btn">Back</a>
+    </div>
+  </body>
+</html>
+<div id="footer"></div>
+<script>
+  $(function(){
+      $('#footer').load('/footer.html');
+  });
+</script>
+</body>
+</html>

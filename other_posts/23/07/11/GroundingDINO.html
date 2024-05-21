@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <div id="header"></div>
+    <script>
+      $(function(){
+          $('#header').load('/header.html');
+      });
+  </script>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      processEscapes: true,
+      tags: "ams",
+      autoload: {
+        color: [],
+        colorV2: ['color']
+      },
+      packages: {'[+]': ['noerrors']}
+    },
+    chtml: {
+      matchFontHeight: false,
+      displayAlign: "left",
+      displayIndent: "2em"
+    },
+    options: {
+      renderActions: {
+        /* add a new named action to render <script type="math/tex"> */
+        find_script_mathtex: [10, function (doc) {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/);
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+            const text = document.createTextNode('');
+            node.parentNode.replaceChild(text, node);
+            math.start = {node: text, delim: '', n: 0};
+            math.end = {node: text, delim: '', n: 0};
+            doc.math.push(math);
+          }
+        }, '']
+      }
+    },
+    loader: {
+      load: ['[tex]/noerrors']
+    }
+  };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
+  </head>
+  <body>
+    <center><img class="hero" src="/assets/images/posts/GroundingDINO/framework.png"></center>
+    <h1>Grounding DINO: Marrying DINO with Grounded Pre-Training for Open-Set Object Detection</h1>
+    <p><span class="fa fa-link"></span><a href="https://arxiv.org/abs/2303.05499"> https://arxiv.org/abs/2303.05499</a></p>
+    <p><span class="fa fa-calendar"></span> Jul 11, 2023 </p>
+    <p><span class="fa fa-flag"></span> <a href="/other_posts/"> Object Detection</a></p>
+    <p><span class="fa fa-graduation-cap"></span> arXiv 2022 </p>
+
+    <h2 id="1-どんなもの">1. どんなもの??何ができる??</h2>
+<ul>
+  <li>DETRベースの物体検出モデルDINOをマルチモーダルに拡張したOpen-Vocabulary物体検出モデルGroundingDINOを提案</li>
+  <li>検出したい物体を自然言語で指示可能で，2023年4月時点でのSoTAを達成</li>
+</ul>
+
+<!-- closedな物体検出器をマルチモーダルに対応するために↓の3段階に分解 -->
+<!-- Feature Extraction and Enhancer, Language-Guided Query Selection, Cross-Modality Decoder -->
+<!-- 画像はswin，テキストはTransformer，Enhancerは画像にDeformable self-attention，テキストにvanilla self-attention -->
+<!-- ？？？ -->
+<!-- 言語と画像のアラインメントを取るためにAttention -->
+<!-- RECデータでopen-set物体検出の性能検証 -->
+<!-- GLIPと同様，全カテゴリ名をconcatして入力 -->
+<!-- 2つのエンコーダと1つのデコーダ→画像，テキスト，融合するエンハンサー -->
+
+
+
+
+
+<h2 id="2-どうやって">2. どうやって??</h2>
+<ul>
+<li>↓フレームワーク</li>
+  <center><img src="/assets/images/posts/GroundingDINO/framework.png" /></center><br />
+  <ul><li>DINOにFeature Extraction and Enhancer, Language-Guided Query Selection, Cross-Modality Decoderを導入し，Open-Vocabularyに対応</li></ul>
+  <ul><li>Feature Extraction and Enhancer｜画像エンコーダの出力とテキストエンコーダの出力をマルチモーダルに変換</li></ul>
+  <ul><uL><li>画像特徴はDeformable Self-Attention，テキスト特徴はSelf-Attentionを計算し，画像とテキストのCross-Attentionを計算</li></uL></ul>
+  <ul><uL><li>FFNに通して画像と言語を紐づけた特徴量を獲得</li></uL></ul>
+  <ul><li>Language-Guided Query Selection｜入力テキストに関連した特徴をデコーダクエリとして選択</li></ul>
+  <ul><uL><li>デコーダクエリはMixed Query Selectionで初期化</li></uL></ul>
+  <ul><uL><li>デコーダの出力（要素部分と位置部分）のうち位置部分をアンカーボックスに変形し，エンコーダの出力によって初期化</li></uL></ul>
+  <ul><li>Cross-Modality Decoder｜画像とテキストの特徴を結びつけるデコーダ</li></ul>
+  <ul><uL><li>画像は画像のCross-Attention，テキストはテキストのCross-Attentionに通す</li></uL></ul>
+  <ul><uL><li>各デコーダ層には追加でテキストのCross-Attentionを導入</li></uL></ul>
+<li>フレーズ同士の関連性から特徴抽出をチャンク化</li>
+  <center><img src="/assets/images/posts/GroundingDINO/sub_sentence_level_text_feature.png" /></center><br />
+<li>L1 Loss(BB)，GIOU Loss(BB)，Contrastive Loss(クラス認識)，Auxiliary Loss(Encoder-Decoder)を用いてモデルを最適化</li>
+</ul>
+
+<h2 id="3-結果は">3. 結果は??</h2>
+<ul>
+    <li>COCOのゼロショット物体検出</li>
+    <center><img src="/assets/images/posts/GroundingDINO/COCO.png" /></center><br />
+    <li>ODinWのゼロショット，Few-Shot，フルデータ物体検出</li>
+    <center><img src="/assets/images/posts/GroundingDINO/OdinW.png" /></center>
+    <li>RefCOCOのゼロショット，FT物体検出</li>
+    <center><img src="/assets/images/posts/GroundingDINO/RefCOCO.png" /></center><br />
+  </ul>
+
+<h2 id="4-課題は">4. 課題は??</h2>
+<ul><li>Segment Anythingと合体して更に発展してる</li></ul><br />
+
+<div class="btn-wrapper">
+      <a href="/posts" class="btn back_btn">Back</a>
+    </div>
+  </body>
+</html>
+<div id="footer"></div>
+<script>
+  $(function(){
+      $('#footer').load('/footer.html');
+  });
+</script>
+</body>
+</html>

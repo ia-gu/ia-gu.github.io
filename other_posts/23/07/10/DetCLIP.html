@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <div id="header"></div>
+    <script>
+      $(function(){
+          $('#header').load('/header.html');
+      });
+  </script>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      processEscapes: true,
+      tags: "ams",
+      autoload: {
+        color: [],
+        colorV2: ['color']
+      },
+      packages: {'[+]': ['noerrors']}
+    },
+    chtml: {
+      matchFontHeight: false,
+      displayAlign: "left",
+      displayIndent: "2em"
+    },
+    options: {
+      renderActions: {
+        /* add a new named action to render <script type="math/tex"> */
+        find_script_mathtex: [10, function (doc) {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/);
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+            const text = document.createTextNode('');
+            node.parentNode.replaceChild(text, node);
+            math.start = {node: text, delim: '', n: 0};
+            math.end = {node: text, delim: '', n: 0};
+            doc.math.push(math);
+          }
+        }, '']
+      }
+    },
+    loader: {
+      load: ['[tex]/noerrors']
+    }
+  };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
+  </head>
+  <body>
+    <center><img class="hero" src="/assets/images/posts/DetCLIP/framework.png"></center>
+    <h1>DetCLIP: Dictionary-Enriched Visual-Concept Paralleled Pre-training for Open-world Detection</h1>
+    <p><span class="fa fa-link"></span><a href="https://arxiv.org/abs/2209.09407"> https://arxiv.org/abs/2209.09407</a></p>
+    <p><span class="fa fa-calendar"></span> Jul 10, 2023 </p>
+    <p><span class="fa fa-flag"></span> <a href="/other_posts/"> Object Detection</a></p>
+    <p><span class="fa fa-graduation-cap"></span> NIPS 2022 </p>
+
+    <h2 id="1-どんなもの">1. どんなもの??何ができる??</h2>
+<ul>
+  <li>Groundingを行うGLIPでは冗長，矛盾した関係性を学習するため，これを改善するために並列で概念を学習するDetCLIPを提案</li>
+  <li>ゼロショット物体検出において，LVISデータでGLIPを上回り，完全教師あり学習と比べてもレアカテゴリの性能改善</li>
+</ul>
+
+
+
+<h2 id="2-どうやって">2. どうやって??</h2>
+<ul>
+<li>↓フレームワーク</li>
+  <center><img src="/assets/images/posts/DetCLIP/framework.png" /></center><br />
+  <ul><li>概念を別々に抽出する並列概念定式化を導入し，効率よく学習する</li></ul>
+<li>物体検出，grounding，image-textペアデータを用いて意味空間を補強しながら事前学習</li>
+  <ul><li>物体検出データはBBの概念名詞を別々にエンコーダに入力して得られる埋め込みとBBの損失を計算</li></ul>
+  <ul><li>groundingデータはBBから得られるpositive名詞と，↑で得られる埋め込み数に数を合わせるために概念辞書から収集されるnegative名詞を用いて↑と同様に損失を計算</li></ul>
+  <ul><li>image-textデータはBBを持たないため，事前学習済みRPNとCLIP等のVLモデルで物体レベルの疑似ラベルを獲得し，↑と同様に損失を計算</li></ul>
+<li>↓アーキテクチャ</li>
+  <center><img src="/assets/images/posts/DetCLIP/architecture.png" /></center><br />
+  <ul><li>画像エンコーダの出力と概念辞書を入力としたテキストエンコーダの出力から損失を算出して学習</li></ul>
+  <center><img src="/assets/images/posts/DetCLIP/alignment loss.png" /></center>
+  <center><img src="/assets/images/posts/DetCLIP/loss.png" /></center>
+</ul>
+
+<h2 id="3-結果は">3. 結果は??</h2>
+<ul>
+    <li>LVISのゼロショット物体検出結果</li>
+    <center><img src="/assets/images/posts/DetCLIP/result_zero_lvis.png" /></center><br />
+    <li>GLIPとDetCLIPの比較</li>
+    <center><img src="/assets/images/posts/DetCLIP/result_glip_detclip.png" /></center>
+  <ul><li>GLIPと比べると細かく分類できているが，完ぺきではない</li></ul><br />
+    <li>事前学習データの違いによるLVISゼロショットの比較</li>
+    <center><img src="/assets/images/posts/DetCLIP/pre-training.png" /></center><br />
+    <li>YFCCの疑似ラベル</li>
+    <center><img src="/assets/images/posts/DetCLIP/yfcc_pseudo_label.png" /></center><br />
+  </ul>
+
+<h2 id="4-課題は">4. 課題は??</h2>
+
+<div class="btn-wrapper">
+      <a href="/posts" class="btn back_btn">Back</a>
+    </div>
+  </body>
+</html>
+<div id="footer"></div>
+<script>
+  $(function(){
+      $('#footer').load('/footer.html');
+  });
+</script>
+</body>
+</html>

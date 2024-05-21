@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <div id="header"></div>
+    <script>
+      $(function(){
+          $('#header').load('/header.html');
+      });
+  </script>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      processEscapes: true,
+      tags: "ams",
+      autoload: {
+        color: [],
+        colorV2: ['color']
+      },
+      packages: {'[+]': ['noerrors']}
+    },
+    chtml: {
+      matchFontHeight: false,
+      displayAlign: "left",
+      displayIndent: "2em"
+    },
+    options: {
+      renderActions: {
+        /* add a new named action to render <script type="math/tex"> */
+        find_script_mathtex: [10, function (doc) {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/);
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+            const text = document.createTextNode('');
+            node.parentNode.replaceChild(text, node);
+            math.start = {node: text, delim: '', n: 0};
+            math.end = {node: text, delim: '', n: 0};
+            doc.math.push(math);
+          }
+        }, '']
+      }
+    },
+    loader: {
+      load: ['[tex]/noerrors']
+    }
+  };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
+  </head>
+  <body>
+    <center><img class="hero" src="/assets/images/posts/How2AllocateLabelBudget/head.png"></center>
+    <h1>How to Allocate your Label Budget? Choosing between Active Learning and Learning to Reject in Anomaly Detection</h1>
+    <p><span class="fa fa-link"></span><a href="https://arxiv.org/abs/2301.02909"> https://arxiv.org/abs/2301.02909</a></p>
+    <p><span class="fa fa-calendar"></span> Mar 10, 2023 </p>
+    <p><span class="fa fa-flag"></span> <a href="/active_learning"> Active Learning</a></p>
+    <p><span class="fa fa-graduation-cap"></span> arXiv (2023) </p>
+
+    <h2 id="1-どんなもの">1. どんなもの??何ができる??</h2>
+
+<ul>
+  <li>異常検知タスクに対しALとLR(Learning to Reject)を組み合わせたフレームワークを提案</li>
+  <li>18種の外観検査データセットで検証</li>
+</ul>
+
+
+<h2 id="2-どうやって">2. どうやって??</h2>
+<ul>
+  <li>検出器の不確実性を，検出器の確率の変化量から測定</li>
+  <center><img src="/assets/images/posts/How2AllocateLabelBudget/detector_probability.png" /></center><br />
+    <ul><li>大きいほど新しいラベル獲得の恩恵が大きい</li></ul>
+    <li>クラス予測の変化からラベルの影響を測定し，閾値0.5に設定</li>
+  <center><img src="/assets/images/posts/How2AllocateLabelBudget/cosine_similarity.png" /></center><br />
+  <li>予測・棄却どちらにおいても↓を使用</li>
+  <center><img src="/assets/images/posts/How2AllocateLabelBudget/squashing_function.png" /></center>
+    <ul><li>s｜正の実数</li></ul>
+    <ul><li>λ｜閾値</li></ul>
+    <li>異常スコアhを変形し，検出器の事後確率を定義</li>
+    <center><img src="/assets/images/posts/How2AllocateLabelBudget/detector_posterior_probability.png" /></center><br />
+    <li>↑を用いて棄却確率を定義，棄却の閾値にセンタリング</li>
+    <center><img src="/assets/images/posts/How2AllocateLabelBudget/rejection_probability.png" /></center><br />
+    <center><img src="/assets/images/posts/How2AllocateLabelBudget/threshold.png" /></center><br />
+    <li>棄却されなかったサンプルはテストデータが異なるため評価比較ができない為，コストベースの評価値を↓で定義</li>
+    <center><img src="/assets/images/posts/How2AllocateLabelBudget/cost_based_evaluation_metric.png" /></center><br />
+    <ul><li>cr｜棄却コスト</li></ul>
+    <ul><li>cfp｜過検知コスト</li></ul>
+    <ul><li>cfn｜見逃しコスト</li></ul>
+</ul>
+
+<h2 id="3-結果は">3. 結果は??</h2>
+<ul>
+  <li>使用データセット</li>
+    <center><img src="/assets/images/posts/How2AllocateLabelBudget/dataset.png" /></center><br />
+  <li>テストサンプルに対するコストの平均</li>
+    <center><img src="/assets/images/posts/How2AllocateLabelBudget/average_cost.png" /></center><br />
+    <li>結果</li>
+    <center><img src="/assets/images/posts/How2AllocateLabelBudget/result.png" /></center>
+</ul>
+
+<h2 id="4-課題は">4. 課題は??</h2>
+<ul>
+  </ul>
+
+    <div class="btn-wrapper">
+      <a href="/posts" class="btn back_btn">Back</a>
+    </div>
+  </body>
+</html>
+<div id="footer"></div>
+<script>
+  $(function(){
+      $('#footer').load('/footer.html');
+  });
+</script>
+</body>
+</html>

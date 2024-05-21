@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <div id="header"></div>
+    <script>
+      $(function(){
+          $('#header').load('/header.html');
+      });
+  </script>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      processEscapes: true,
+      tags: "ams",
+      autoload: {
+        color: [],
+        colorV2: ['color']
+      },
+      packages: {'[+]': ['noerrors']}
+    },
+    chtml: {
+      matchFontHeight: false,
+      displayAlign: "left",
+      displayIndent: "2em"
+    },
+    options: {
+      renderActions: {
+        /* add a new named action to render <script type="math/tex"> */
+        find_script_mathtex: [10, function (doc) {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/);
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+            const text = document.createTextNode('');
+            node.parentNode.replaceChild(text, node);
+            math.start = {node: text, delim: '', n: 0};
+            math.end = {node: text, delim: '', n: 0};
+            doc.math.push(math);
+          }
+        }, '']
+      }
+    },
+    loader: {
+      load: ['[tex]/noerrors']
+    }
+  };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
+  </head>
+  <body>
+    <center><img class="hero" src="/assets/images/posts/OVR-CNN/head.png"></center>
+    <h1>Open-Vocabulary Object Detection Using Captions</h1>
+    <p><span class="fa fa-link"></span><a href="https://openaccess.thecvf.com/content/CVPR2021/papers/Zareian_Open-Vocabulary_Object_Detection_Using_Captions_CVPR_2021_paper.pdf"> https://openaccess.thecvf.com/content/CVPR2021/papers/Zareian_Open-Vocabulary_Object_Detection_Using_Captions_CVPR_2021_paper.pdf</a></p>
+    <p><span class="fa fa-calendar"></span> Oct 31, 2023 </p>
+    <p><span class="fa fa-flag"></span> <a href="/mmm/"> Multi Modal Model</a></p>
+    <p><span class="fa fa-graduation-cap"></span> CVPR (2021) </p>
+
+    <h2 id="1-どんなもの">1. どんなもの??何ができる??</h2>
+
+<ul>
+  <li>既存の物体検出は限られたカテゴリに対する検出しかできず，アノテーションコストが高い問題は弱教師あり学習などを用いても解決されていない</li>
+  <li>学習データに含まれないカテゴリに対しても検出が可能なOpen-Vocabularyの物体検出の概念と手法を提案</li>
+</ul>
+
+
+<h2 id="2-どうやって">2. どうやって??</h2>
+<ul>
+  <li>Open-Vocabulary Object Detection</li>
+  <li>画像とキャプションのペアを用いて視覚意味空間を獲得し，基礎的な物体検出を学習し，学習時に含まれていないカテゴリに対しても視覚意味空間を用いて検出を可能にする</li>
+  <center><img src="/assets/images/posts/OVR-CNN/head.png" /></center><br />
+  
+  <li>アーキテクチャ</li>
+  <li>ベースモデルはFaster R-CNN</li>
+  <ul><li>基礎クラスVBで学習し，ターゲットクラスVTでテスト</li></ul>
+  <li>言語埋め込みは事前学習済みモデル（GloVEなど）から得ることで，基礎クラスへの過適合を予防</li>
+  <ul><li>このために視覚バックボーンをVCで学習，豊富な視覚意味空間を獲得</li></ul>
+  
+  <li>学習戦略</li>
+  <li>画像-キャプションデータで物体名などを学習</li>
+  <li>Groundingを自己教師タスクとして捉え，CNNバックボーンとVision2Languageレイヤを学習</li>
+  <ul><li>PixelBERT，ResNet50を使用</li></ul>
+  <ul><li>各単語の学習を強化するためにマスク言語モデリングを採用（Cross Entropy）</li></ul>
+  <li>単語と領域の一致が与えられていないため，弱教師あり学習を用いてこれを学習</li>
+  <ul><li>画像-キャプションペアからGlobal Grounding Scoreを定義し，ペア同士を最大化するように学習</li></ul>
+  <center><img src="/assets/images/posts/OVR-CNN/image_caption_paer.png" /></center><br />
+  <center><img src="/assets/images/posts/OVR-CNN/aij.png" /></center><br />
+  <ul><ul><li>Global Grounding Score｜Local Grounding Scoreの重み平均</li></ul></ul>
+  <ul><ul><li>＜＞はドット積</li></ul></ul>
+  <li>画像，キャプションのそれぞれについての目的関数は以下のように定式化</li>
+  <center><img src="/assets/images/posts/OVR-CNN/loss.png" /></center><br />
+  <li>基礎クラス，ターゲットクラスはCOCOを分割して採用</li>
+
+<h2 id="3-結果は">3. 結果は??</h2>
+<ul>
+    <li>COCOでの結果</li>
+    <center><img src="/assets/images/posts/OVR-CNN/result_coco.png" /></center><br />
+</ul>
+
+<h2 id="4-課題は">4. 課題は??</h2>
+
+
+<div class="btn-wrapper">
+      <a href="/posts" class="btn back_btn">Back</a>
+    </div>
+  </body>
+</html>
+<div id="footer"></div>
+<script>
+  $(function(){
+      $('#footer').load('/footer.html');
+  });
+</script>
+</body>
+</html>

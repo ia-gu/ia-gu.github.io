@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/css/style.css">
+  </head>
+  <body>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <div id="header"></div>
+  <script>
+    $(function(){
+        $('#header').load('/header.html');
+    });
+</script>
+    <div class="top-wrapper">
+      <div class="container">
+        <h1>Posts</h1>
+        <h3>(1/10)</h3>
+      </div>
+    </div>
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/css/posts.css">
+    <script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      processEscapes: true,
+      tags: "ams",
+      autoload: {
+        color: [],
+        colorV2: ['color']
+      },
+      packages: {'[+]': ['noerrors']}
+    },
+    chtml: {
+      matchFontHeight: false,
+      displayAlign: "left",
+      displayIndent: "2em"
+    },
+    options: {
+      renderActions: {
+        /* add a new named action to render <script type="math/tex"> */
+        find_script_mathtex: [10, function (doc) {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/);
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+            const text = document.createTextNode('');
+            node.parentNode.replaceChild(text, node);
+            math.start = {node: text, delim: '', n: 0};
+            math.end = {node: text, delim: '', n: 0};
+            doc.math.push(math);
+          }
+        }, '']
+      }
+    },
+    loader: {
+      load: ['[tex]/noerrors']
+    }
+  };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
+  </head>
+  <body>
+    <div class="btn-wrapper">
+      <!-- <a href="/posts" class="btn back_btn previous"><<<</a>
+      <a href="/posts" class="btn back_btn next"><</a> -->
+      <a href="/posts/2" class="btn back_btn next">></a>
+      <a href="/posts/10" class="btn back_btn previous">>>></a>
+    </div>
+
+    <div class="myposts">
+
+      <div class="post">
+        <a href="/mmm/24/03/12/MM-LLM.html">
+          <img class="post_img" src="/assets/images/posts/MM-LLM/title.png">
+          <div class="post_detail"> 
+            <p><b>MM-LLMs: Recent Advances in MultiModal Large Language Models</b></p>
+            <p class="post_p"><h1 id=""></h1>
+              <ul>
+                <li>2022年以降に登場したマルチモーダルモデル（MMM）の包括的なサーベイを行い，122個のMMMについてベンチマークを行った</li>
+                <li>ベンチマークからMMMの効率的なトレーニング方法をまとめ，リアルタイムで最新動向を管理するウェブサイトを公開</li>
+              </ul>
+            </p>
+            <p>
+              <span class="fa fa-calendar"></span> Mar 12, 2024
+              <span class="fa fa-folder"></span> multi modal model
+              <span class="fa fa-graduation-cap"></span> arXiv (2024)
+            </p>
+          </div>
+        </a>
+      </div>
+      
+      <div class="post">
+        <a href="/mmm/24/01/29/MMMTheory.html">
+          <img class="post_img" src="/assets/images/posts/MMMTheory/head">
+          <div class="post_detail"> 
+            <p><b>A Theory of Multimodal Learning</b></p>
+            <p class="post_p"><h1 id=""></h1>
+              <ul>
+                <li>機械学習において，マルチモーダルモデルがユニモーダルモデルの性能を上回ることは経験的にのみ示されている</li>
+                <li>本書ではマルチモーダルモデルの汎化特性を研究し，モダリティ間の接続（connection）・異質性（heterogeneity）との関連を理論的に示す</li>
+              </ul>
+            </p>
+            <p>
+              <span class="fa fa-calendar"></span> Jan 29, 2024
+              <span class="fa fa-folder"></span> multi modal model
+              <span class="fa fa-graduation-cap"></span> NIPS (2023)
+            </p>
+          </div>
+        </a>
+      </div>
+      
+      <div class="post">
+        <a href="/mmm/23/12/04/Myriad.html">
+          <img class="post_img" src="/assets/images/posts/Myriad/head.png">
+          <div class="post_detail"> 
+            <p><b>Myriad: Large Multimodal Model by Applying Vision Experts for Industrial Anomaly Detection</b></p>
+            <p class="post_p"><h1 id=""></h1>
+              <ul>
+                <li>Vision Expertによる異常度マップ(トークン化)と，異常度マップとViTの特徴量を入力としたQ-Formerの出力トークンとしてLLMに入力することで工業製品への異常検知と言語インタラクションが可能なMyriadを提案</li>
+                <li>MVTec，VisAのFew-ShotでPadim系やAnomalyGPTと同等以上の性能を達成</li>
+              </ul>
+            </p>
+            <p>
+              <span class="fa fa-calendar"></span> Dec 4, 2023
+              <span class="fa fa-folder"></span> multi modal model
+              <span class="fa fa-graduation-cap"></span> arXiv (2023)
+            </p>
+          </div>
+        </a>
+      </div>
+
+      <div class="post">
+        <a href="/mmm/23/11/14/GLIP.html">
+          <img class="post_img" src="/assets/images/posts/GLIP/head.png">
+          <div class="post_detail"> 
+            <p><b>Grounded Language-Image Pre-training</b></p>
+            <p class="post_p"><h1 id=""></h1>
+              <ul>
+                <li>事前学習で物体検出とGroundingタスクを統一することにより，物体レベルで言語フリーな，意味情報に富んだ視覚表現を獲得可能なGLIPを提案</li>
+                <li>ゼロショットまたは数ショットで様々なタスクやドメインにシームレスに移行することが可能</li>
+              </ul>
+            </p>
+            <p>
+              <span class="fa fa-calendar"></span> Nov 14, 2023
+              <span class="fa fa-folder"></span> multi modal model
+              <span class="fa fa-graduation-cap"></span> CVPR (2022)
+            </p>
+          </div>
+        </a>
+      </div>
+
+      <div class="post">
+        <a href="/mmm/23/10/31/OVR-CNN.html">
+          <img class="post_img" src="/assets/images/posts/OVR-CNN/head.png">
+          <div class="post_detail"> 
+            <p><b>Open-Vocabulary Object Detection Using Captions</b></p>
+            <p class="post_p"><h1 id=""></h1>
+              <ul>
+                <li>既存の物体検出は限られたカテゴリに対する検出しかできず，アノテーションコストが高い問題は弱教師あり学習などを用いても解決されていない</li>
+                <li>学習データに含まれないカテゴリに対しても検出が可能なOpen-Vocabularyの物体検出の概念と手法を提案</li>
+              </ul>
+            </p>
+            <p>
+              <span class="fa fa-calendar"></span> Oct 31, 2023
+              <span class="fa fa-folder"></span> multi modal model
+              <span class="fa fa-graduation-cap"></span> CVPR (2021)
+            </p>
+          </div>
+        </a>
+      </div>
+      
+      <div class="post">
+        <a href="/mmm/23/10/24/LCL.html">
+          <img class="post_img" src="/assets/images/posts/LCL/head.png">
+          <div class="post_detail"> 
+            <p><b>Link-Context Learning for Multimodal LLMs</b></p>
+            <p class="post_p"><h1 id=""></h1>
+              <ul>
+                <li>ICL(In-Context Learning)は膨大な事前学習の知識を用いて，プロンプトからモデルパラメータの更新を行わない学習が可能であるが，因果関係が弱いため新しい概念を理解することは困難</li>
+                <li>サポート集合とクエリ集合の因果関係を明示的に強化するLCL(Link Context LEarning)を提案し，生成画像とそのテキストペアからなるISEKAIデータセットを提案し，LCLの性能を評価</li>
+              </ul>
+            </p>
+            <p>
+              <span class="fa fa-calendar"></span> Oct 24, 2023
+              <span class="fa fa-folder"></span> multi modal model
+              <span class="fa fa-graduation-cap"></span> arXiv (2023)
+            </p>
+          </div>
+        </a>
+      </div>
+      
+      <div class="post">
+        <a href="/other_posts/23/09/27/LLaMA2.html">
+          <img class="post_img" src="/assets/images/posts/LLaMA2/head.png">
+          <div class="post_detail"> 
+            <p><b>Llama 2: Open Foundation and Fine-Tuned Chat Models</b></p>
+            <p class="post_p"><h1 id=""></h1>
+              <ul>
+                <li>LLaMAの構造をベースに2Tトークンに拡張したデータで学習したLLaMA2と，RLHF二より調整されたLLaMA2-Chatを提案</li>
+                <li>LLaMAとは異なり商用利用可能なオープンソースLLM</li>
+              </ul>
+            </p>
+            <p>
+              <span class="fa fa-calendar"></span> Sep 27, 2023
+              <span class="fa fa-folder"></span> large language model
+              <span class="fa fa-graduation-cap"></span> arXiv (2023)
+            </p>
+          </div>
+        </a>
+      </div>
+
+      <div class="post">
+        <a href="/other_posts/23/09/27/LLaMA.html">
+          <img class="post_img" src="/assets/images/posts/LLaMA/heasd.png">
+          <div class="post_detail"> 
+            <p><b>LLaMA: Open and Efficient Foundation Language Models</b></p>
+            <p class="post_p"><h1 id=""></h1>
+              <ul>
+                <li>Metaにより提案された比較的低パラメータのLLM LLaMAを提案</li>
+                <li>他のオープンソースLLMと比べて圧倒的に高性能だが，LLaMAは商用利用不可で，学術的利用のみに限定</li>
+              </ul>
+            </p>
+            <p>
+              <span class="fa fa-calendar"></span> Sep 27, 2023
+              <span class="fa fa-folder"></span> large language model
+              <span class="fa fa-graduation-cap"></span> arXiv (2023)
+            </p>
+          </div>
+        </a>
+      </div>
+
+        <div class="post">
+          <a href="/other_posts/23/07/11/GroundingDINO.html">
+            <img class="post_img" src="/assets/images/posts/GroundingDINO/framework.png">
+            <div class="post_detail"> 
+              <p><b>Grounding DINO: Marrying DINO with Grounded Pre-Training for Open-Set Object Detection</b></p>
+              <p class="post_p"><h1 id=""></h1>
+                <ul>
+                  <li>DETRベースの物体検出モデルDINOをマルチモーダルに拡張したOpen-Vocabulary物体検出モデルGroundingDINOを提案</li>
+                  <li>検出したい物体を自然言語で指示可能で，2023年4月時点でのSoTAを達成</li>
+                </ul>
+  </p>
+              <p>
+                <span class="fa fa-calendar"></span> Jul 11, 2023
+                <span class="fa fa-folder"></span> object detection
+                <span class="fa fa-graduation-cap"></span> arXiv 2022
+              </p>
+            </div>
+          </a>
+        </div>
+
+      <div class="btn-wrapper">
+        <!-- <a href="/posts" class="btn back_btn previous"><<<</a>
+        <a href="/posts" class="btn back_btn next"><</a> -->
+        <a href="/posts/2" class="btn back_btn next">></a>
+        <a href="/posts/10" class="btn back_btn previous">>>></a>
+      </div>
+  </body>
+</html>
+<div id="footer"></div>
+<script>
+  $(function(){
+      $('#footer').load('/footer.html');
+  });
+</script>
+</body>
+</html>

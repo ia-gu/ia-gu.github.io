@@ -1,0 +1,101 @@
+    <!DOCTYPE html>
+    <html>
+      <title>PT4AL 実装</title>
+      <head>
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <div id="header"></div>
+        <script>
+          $(function(){
+              $('#header').load('/header.html');
+          });
+      </script>
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+        <link rel="stylesheet" href="/assets/css/style.css">
+        <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$','$'], ['\\(','\\)']],
+          processEscapes: true,
+          tags: "ams",
+          autoload: {
+            color: [],
+            colorV2: ['color']
+          },
+          packages: {'[+]': ['noerrors']}
+        },
+        chtml: {
+          matchFontHeight: false,
+          displayAlign: "left",
+          displayIndent: "2em"
+        },
+        options: {
+          renderActions: {
+            /* add a new named action to render <script type="math/tex"> */
+            find_script_mathtex: [10, function (doc) {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = {node: text, delim: '', n: 0};
+                math.end = {node: text, delim: '', n: 0};
+                doc.math.push(math);
+              }
+            }, '']
+          }
+        },
+        loader: {
+          load: ['[tex]/noerrors']
+        }
+      };
+    </script>
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
+      </head>
+      <body>
+        <center><img class="hero" src="/assets/images/posts/PT4AL/framework.png"></center>
+        <h1>PT4AL 実装</h1>
+        <p><span class="fa fa-link"></span><a href="https://github.com/ia-gu/PT4AL"> リポジトリ</a></p>
+        <p><span class="fa fa-calendar"></span> Feb 28, 2023 </p>
+    <p><span class="fa fa-flag"></span> <a href="/active_learning/"> Active Learning</a></p>
+    
+        <h2 id="1-どんなもの">1. どんなもの??</h2>
+    
+    <ul>
+      <li>PT4AL: Using Self-Supervised Pretext Tasks for Active Learning という論文内で提案されたPT4ALの再現実験を行うために実装</li>
+      <ul><li>PT4AL｜事前学習に角度予測のPretext Taskを行い，その時のLossを用いるクエリ手法を提案(詳しくは<a href="/active_learning/23/01/24/PT4AL.html"> ココ</a>で解説)</li></ul>
+    </ul>
+    
+    
+    <h2 id="2-使い方">2. 使い方</h2>
+      <li><code>bash main.sh</code>を叩けば実行可能</li>
+      <li>ハイパラはconfig.pyで管理</li>
+    
+      <h2 id="3-結果">3. 結果</h2>
+      <ul>
+        <!-- <li>論文中の結果</li>
+        <center><img class="hero" src="/assets/images/portfolios/pt4al/result.png"></center><br/>
+        <li>手元での結果</li>
+        <center><img class="hero" src="/assets/images/portfolios/pt4al/our_result.png"></center><br/>
+        <ul><li>再現できない原因</li></ul>
+        <ul><ul><li>重みを前サイクルのベストを引き継ぎ→リセット に変更</li></ul></ul>
+        <ul><ul><li>元のコードはテストで訓練データを使用</li></ul></ul>
+      <p><a href="https://github.com/johnsk95/PT4AL/issues/4"> 当時全く伝わらなかったissue</a></p> -->
+
+      </ul>
+
+    <h2 id="4-余談">4. 余談</h2>
+      <center><p><a href="https://github.com/Mephisto405/Learning-Loss-for-Active-Learning/"> 元のリポジトリ</a></p></center>
+    
+        <div class="btn-wrapper">
+          <a href="/portfolios/" class="btn back_btn">Back</a>
+        </div>
+      </body>
+    </html>
+    <div id="footer"></div>
+    <script>
+      $(function(){
+          $('#footer').load('/footer.html');
+      });
+    </script>
+    </body>
+    </html>

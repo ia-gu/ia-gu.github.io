@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <div id="header"></div>
+    <script>
+      $(function(){
+          $('#header').load('/header.html');
+      });
+  </script>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      processEscapes: true,
+      tags: "ams",
+      autoload: {
+        color: [],
+        colorV2: ['color']
+      },
+      packages: {'[+]': ['noerrors']}
+    },
+    chtml: {
+      matchFontHeight: false,
+      displayAlign: "left",
+      displayIndent: "2em"
+    },
+    options: {
+      renderActions: {
+        /* add a new named action to render <script type="math/tex"> */
+        find_script_mathtex: [10, function (doc) {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/);
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+            const text = document.createTextNode('');
+            node.parentNode.replaceChild(text, node);
+            math.start = {node: text, delim: '', n: 0};
+            math.end = {node: text, delim: '', n: 0};
+            doc.math.push(math);
+          }
+        }, '']
+      }
+    },
+    loader: {
+      load: ['[tex]/noerrors']
+    }
+  };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
+  </head>
+  <body>
+    <center><img class="hero" src="/assets/images/posts/SIMILAR/head.png"></center>
+    <h1>SIMILAR: Submodular Information Measures Based Active Learning In Realistic Scenarios</h1>
+    <p><span class="fa fa-link"></span><a href="https://arxiv.org/abs/2107.00717"> https://arxiv.org/abs/2107.00717</a></p>
+    <p><span class="fa fa-calendar"></span> Jan 4, 2023 </p>
+    <p><span class="fa fa-flag"></span> <a href="/active_learning"> Active Learning</a></p>
+    <p><span class="fa fa-graduation-cap"></span> NIPS(2021) </p>
+
+    <h2 id="1-どんなもの">1. どんなもの??何ができる??</h2>
+
+<ul>
+  <li>獲得関数に劣モジュラ情報量(SIM)を用いることで，不均衡・冗長性・OODに対し有効なDAL手法を提案</li>
+  <li>SMI，SCG,SCMIを使い分けることで，CIFAR10において各状況下で高精度を達成</li>
+</ul>
+
+
+<h2 id="2-どうやって">2. どうやって??</h2>
+<ul>
+  <li>↓のSMIを基に，不均衡，冗長性，OODのそれぞれに対する獲得関数を定義</li>
+  <center><img src="/assets/images/posts/SIMILAR/smi.png" /></center><br />
+  <ul>
+    <li>不均衡｜希少クラスデータを含む補助セットRを用意し，相互情報量SMIを最大化</li>
+    <center><img src="/assets/images/posts/SIMILAR/imbalance.png" /></center><br />
+    <li>冗長性｜ラベルデータL内に存在しないクラスを持つデータ集合Aを加えることで，条件付き利得SCGを最大化</li>
+    <center><img src="/assets/images/posts/SIMILAR/redundancy.png" /></center><br />
+    <li>OOD｜分布内データI，分布外データOとの類似度と非類似度を用いた条件付き相互情報量SCMIを最大化</li>
+    <center><img src="/assets/images/posts/SIMILAR/ood.png" /></center><br />
+    <ul><li>OODについては，シンプルなSMIの最大化を使用することも可能</li></ul>
+</ul>
+</ul>
+
+<h2 id="3-結果は">3. 結果は??</h2>
+<ul>
+<li>CIFAR10，MNIST，ImageNetにおいて，各設定で既存手法を上回る精度</li>
+<center><img src="/assets/images/posts/SIMILAR/result.png" /></center>
+</ul>
+
+<h2 id="4-課題は">4. 課題は??</h2>
+<ul>
+    <li>プールベースのDALでは，データセットにラベルが付いていない状態から始まるため，OODやImbalanceを事前に知ることはできないのでは??</li>
+    <ul>
+        <li>状況に合わせてSMIを変更するのではなく，どの状況でも機能する汎用的なSMIが必要</li>
+    </ul>
+</ul>
+
+    <div class="btn-wrapper">
+      <a href="/posts" class="btn back_btn">Back</a>
+    </div>
+  </body>
+</html>
+<div id="footer"></div>
+<script>
+  $(function(){
+      $('#footer').load('/footer.html');
+  });
+</script>
+</body>
+</html>

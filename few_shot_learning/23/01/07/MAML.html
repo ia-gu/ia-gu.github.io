@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+  <title>Model-Agnostic Meta-Learning for Fast Adaptation of Deep Networks</title>
+  <head>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <div id="header"></div>
+    <script>
+      $(function(){
+          $('#header').load('/header.html');
+      });
+  </script>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      processEscapes: true,
+      tags: "ams",
+      autoload: {
+        color: [],
+        colorV2: ['color']
+      },
+      packages: {'[+]': ['noerrors']}
+    },
+    chtml: {
+      matchFontHeight: false,
+      displayAlign: "left",
+      displayIndent: "2em"
+    },
+    options: {
+      renderActions: {
+        /* add a new named action to render <script type="math/tex"> */
+        find_script_mathtex: [10, function (doc) {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/);
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+            const text = document.createTextNode('');
+            node.parentNode.replaceChild(text, node);
+            math.start = {node: text, delim: '', n: 0};
+            math.end = {node: text, delim: '', n: 0};
+            doc.math.push(math);
+          }
+        }, '']
+      }
+    },
+    loader: {
+      load: ['[tex]/noerrors']
+    }
+  };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
+  </head>
+  <body>
+    <center><img class="hero" src="/assets/images/posts/MAML/image.png"></center>
+    <h1>Model-Agnostic Meta-Learning for Fast Adaptation of Deep Networks</h1>
+    <p><span class="fa fa-link"></span><a href="https://arxiv.org/abs/1703.03400"> https://arxiv.org/abs/1703.03400</a></p>
+    <p><span class="fa fa-calendar"></span> Jan 7, 2023 </p>
+    <p><span class="fa fa-flag"></span> <a href="/few_shot_learning/"> Few-Shot Learning</a></p>
+    <p><span class="fa fa-graduation-cap"></span> PMLR(2017) </p>
+
+    <h2 id="1-どんなもの">1. どんなもの??何ができる??</h2>
+
+<ul>
+  <li>モデル，タスク非依存なメタ学習フレームワークであるMAMLを提案</li>
+  <li>既存のメタ学習の問題点であった汎用性を改善し，回帰タスクでは偏ったデータの学習による精度も確認</li>
+</ul>
+
+
+<h2 id="2-どうやって">2. どうやって??</h2>
+<ul>
+  <li>タスク全体から，部分的にタスクをサンプリングし，モデルは各タスクでパラメータを学習</li>
+  <li>部分タスク内ではモデルパラメータの学習を行い，部分がすく終了時にモデルの初期パラメータを学習</li>
+  <ul><li>各タスクに対して汎化しやすいモデルの初期値を学習(↓イメージ図)</li></ul>
+  <center><img src="/assets/images/posts/MAML/image.png" /></center>
+</ul>
+
+<h2 id="3-結果は">3. 結果は??</h2>
+<ul>
+<li>回帰タスクで，sinカーブ上の数点からグラフを回帰可能であることを確認</li>
+<center><img src="/assets/images/posts/MAML/result.png" /></center><br />
+<li>画像認識タスクでは，one-shot，few-shotで当時のSoTA</li>
+<center><img src="/assets/images/posts/MAML/result_classification.png" /></center>
+</ul>
+
+<h2 id="4-課題は">4. 課題は??</h2>
+<ul>
+    <li>通常のDLの学習を複数回繰り返す形をとるため，学習にはかなり時間がかかる(メタ学習全体がこの傾向のため，仕方ない部分もある)</li>
+</ul>
+
+    <div class="btn-wrapper">
+      <a href="/posts" class="btn back_btn">Back</a>
+    </div>
+  </body>
+</html>
+<div id="footer"></div>
+<script>
+  $(function(){
+      $('#footer').load('/footer.html');
+  });
+</script>
+</body>
+</html>
