@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>上野 詩翔 ホームページ</title>
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/openclose.js"></script>
+    <script src="js/fixmenu_pagetop.js"></script>
+    <style>
+        header {
+            background-color: #06143c;
+            /* 背景色 */
+            width: 100%;
+
+        }
+
+        nav {
+            padding: 10px 50px 10px 0px;
+            display: flex;
+            justify-content: flex-end;
+            background-color: #06143c;
+            position: fixed;
+            /* 固定 */
+            top: 0;
+            /* 画面上部に配置 */
+            left: 0;
+            /* 画面左から始める */
+            right: 0;
+            /* 画面右まで伸ばす */
+            width: 100%;
+            /* 幅を100%に */
+            z-index: 1000;
+            /* 他のコンテンツの上に表示 */
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-right: 20px;
+            /* リンク間のスペース */
+            font-size: 20px;
+            text-decoration: underline;
+        }
+
+        nav a:hover {
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <a href="index.html" class="bachelor">Home</a>
+            <a href="index.html#profile" class="bachelor">Profile</a>
+            <a href="index.html#affiliation" class="bachelor">Affiliation</a>
+            <a href="index.html#publications" class="bachelor">Publications</a>
+            <a href="contents.html" class="bachelor">Contents</a>
+        </nav>
+    </header>
+</body>
+
+<body class="home">
+
+    <div id="container">
+
+        <header>
+            <h1 id="logo"><a href="index.html"><img src="images/logo_contents.png" alt="Sample Gallery"></a></h1>
+            <!--スライドショー-->
+            <aside id="mainimg">
+                <img src="images/1.jpg" alt="" class="slide0">
+                <img src="images/1.jpg" alt="" class="slide1">
+                <img src="images/2.jpg" alt="" class="slide2">
+                <img src="images/3.jpg" alt="" class="slide3">
+                <img src="images/123_kazari.png" alt="" class="kazari">
+            </aside>
+        </header>
+
+
+        <div id="contents">
+            <h3>Notice</h3>
+            <p>このページには，研究活動中の制作物がまとめられています．</p>
+            <p>PDFファイルをご覧いただくためには，各項目をクリックしてください．</p>
+            <style>
+                /* 初期状態でPDFコンテナを非表示にする */
+                .toggle_content {
+                    display: none;
+                    margin-top: 10px;
+                    cursor: pointer;
+                }
+
+                /* 見出しにポインターを表示 */
+                .toggle_button {
+                    cursor: pointer;
+                }
+            </style>
+
+            <h3 class="toggle_button" id="button_merge">進化的モデルマージ 解説 <span>制作日：2024/07/11</span></h3>
+            <div class="toggle_content" id="content_merge">
+                <iframe src="pdf/study_ModelMerge.pdf" width="100%" height="600px"></iframe>
+            </div>
+
+            <h3 class="toggle_button" id="button_mamba">状態空間モデル/Mamba 解説 <span>制作日：2024/06/06</span></h3>
+            <div class="toggle_content" id="content_mamba">
+                <iframe src="pdf/study_Mamba.pdf" width="100%" height="600px"></iframe>
+            </div>
+
+            <h3 class="toggle_button" id="button_mmm">マルチモーダルモデル まとめ <span>制作日：2024/05/14</span></h3>
+            <div class="toggle_content" id="content_mmm">
+                <iframe src="pdf/summary_MultiModalModel.pdf" width="100%" height="600px"></iframe>
+            </div>
+
+            <h3 class="toggle_button" id="button_llama">LLaMA/LLaMA2 解説 <span>制作日：2023/09/21</span></h3>
+            <div class="toggle_content" id="content_llama">
+                <iframe src="pdf/study_LLaMA.pdf" width="100%" height="600px"></iframe>
+            </div>
+
+            <h3 class="toggle_button" id="button_semisl">Semi Supervised Learning 解説 <span>制作日：2023/04/27</span></h3>
+            <div class="toggle_content" id="content_semisl">
+                <iframe src="pdf/study_SemiSL.pdf" width="100%" height="600px"></iframe>
+            </div>
+
+            <h3 class="toggle_button" id="button_cs">能動学習/Cold Start問題 解説 <span>制作日：2022/12/01</span></h3>
+            <div class="toggle_content" id="content_cs">
+                <iframe src="pdf/study_ColdStartProblem.pdf" width="100%" height="600px"></iframe>
+            </div>
+
+            <h3 class="toggle_button" id="button_dal">能動学習 解説 <span>制作日：2022/07/07</span></h3>
+            <div class="toggle_content" id="content_dal">
+                <iframe src="pdf/study_DAL.pdf" width="100%" height="600px"></iframe>
+            </div>
+
+        </div>
+        <!--/#contents-->
+        <script>
+            // すべての見出しを取得
+            var buttons = document.querySelectorAll('.toggle_button');
+          
+            buttons.forEach(function(button) {
+              button.addEventListener('click', function() {
+                // 対応するコンテンツのIDを取得
+                var contentId = this.id.replace('button', 'content');
+                var content = document.getElementById(contentId);
+          
+                // コンテンツの表示・非表示を切り替え
+                if (content) {
+                  content.style.display = (content.style.display === 'none' || content.style.display === '') ? 'block' : 'none';
+                }
+              });
+            });
+          </script>
+          
+
+
+        <footer>
+            <ul class="icon">
+                <li><a href="https://x.com/ia_0130"><img src="images/icon_twitter.png" alt="Twitter"></a></li>
+                <li><a href="mailto:ueno@cv.info.gifu-u.ac.jp"><img src="images/icon_mail.png" alt="Instagram"></a></li>
+                <li><a href="https://github.com/ia-gu"><img src="images/icon_github.png" alt="TouTube"></a></li>
+            </ul>
+            <small>Copyright&copy; <a href="index.html">Sample Gallery</a> All Rights Reserved.</small>
+            <span class="pr"><a href="https://template-party.com/" target="_blank">《Web
+                    Design:Template-Party》</a></span>
+        </footer>
+
+    </div>
+    <!--/#container-->
+
+    <p class="nav-fix-pos-pagetop"><a href="#">↑</a></p>
+
+
+    <!--lightbox用jsファイルの読み込み-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.10.0/js/lightbox-plus-jquery.min.js"></script>
+
+</body>
+
+</html>
