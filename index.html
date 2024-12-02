@@ -11,29 +11,40 @@
     <script src="js/fixmenu_pagetop.js"></script>
     <style>
         header {
-            background-color: #06143c; /* 背景色 */
+            background-color: #06143c;
+            /* 背景色 */
             width: 100%;
-            
+
         }
+
         nav {
-            padding: 10px 50px 10px 0px; 
+            padding: 10px 50px 10px 0px;
             display: flex;
             justify-content: flex-end;
             background-color: #06143c;
-            position: fixed; /* 固定 */
-            top: 0; /* 画面上部に配置 */
-            left: 0; /* 画面左から始める */
-            right: 0; /* 画面右まで伸ばす */
-            width: 100%; /* 幅を100%に */
-            z-index: 1000; /* 他のコンテンツの上に表示 */
+            position: fixed;
+            /* 固定 */
+            top: 0;
+            /* 画面上部に配置 */
+            left: 0;
+            /* 画面左から始める */
+            right: 0;
+            /* 画面右まで伸ばす */
+            width: 100%;
+            /* 幅を100%に */
+            z-index: 1000;
+            /* 他のコンテンツの上に表示 */
         }
+
         nav a {
             color: white;
             text-decoration: none;
-            margin-right: 20px; /* リンク間のスペース */
+            margin-right: 20px;
+            /* リンク間のスペース */
             font-size: 20px;
             text-decoration: underline;
         }
+
         nav a:hover {
             text-decoration: none;
         }
@@ -73,16 +84,6 @@
             </ul>
         </header>
 
-        <!--開閉メニュー-->
-        <!-- <nav id="menubar">
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="note.html">Note</a></li>
-                <li><a href="gallery.html">Gallery</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </nav> -->
-
         <div id="contents">
 
             <section id="profile">
@@ -112,19 +113,23 @@
                     ビジョン技術の実利用ワークショップ ViEW2023, OS3-H3, pp.344-351, 2023.12.8</p>
                 <p>上野 詩翔, 尾下 拓未, 中塚 俊介, 加藤 邦人, 林 良和, 相澤 宏旭:"大規模視覚言語モデルによる少量データからの汎用外観検査 ー画像と言語の対応関係が学習に与える影響ー",
                     第30回画像センシングシンポジウム SSII2024, SO2-05・IS2-05, 2024.6.13</p>
-                    <p>上野 詩翔, 林 良和, 中塚 俊介, 加藤 邦人, 尾下 拓未, 相澤 宏旭:"汎用外観検査に向けた視覚言語モデルの追加学習と推論",
-                        ビジョン技術の実利用ワークショップ ViEW2024 accepted.</p>
+                <p>上野 詩翔, 林 良和, 中塚 俊介, 加藤 邦人, 尾下 拓未, 相澤 宏旭:"汎用外観検査に向けた視覚言語モデルの追加学習と推論",
+                    ビジョン技術の実利用ワークショップ ViEW2024, OS1-H3, ??, 2024.12.5.</p>
 
                 <h4>International Conference ｜ 国際学会</h4>
-                <p>Yusei Yamada, Shiryu Ueno, Takumi Oshita, Shunsuke Nakatsuka and Kunihito Kato:“ACL: Active
+                <p>Yusei Yamada, Shiryu Ueno, Takumi Oshita, Shunsuke Nakatsuka, and Kunihito Kato:“ACL: Active
                     Curriculum Learning to Reduce Labeling Efforts”, Proceedings of the International Conference on
                     Quality Control by Artificial Vision 2023 (QCAV2023), pp.141-148, 2023.6.8</p>
-                <p>Candra Dewi, Shiryu Ueno and Kunihito Kato:"Artificially Ripeness Identification of Indonesian Banana
+                <p>Candra Dewi, Shiryu Ueno, and Kunihito Kato:"Artificially Ripeness Identification of Indonesian
+                    Banana
                     Cultivar Using Convolution Neural Network", SIET '23: Proceedings of the 8th International
                     Conference on Sustainable Information Engineering and Technology, pp.107-111, 2023.10.24</p>
                 <p>Shiryu Ueno and Kunihito Kato:"Boosting Representation Learning via Similarity-based Active Data
                     Sampling from the Web", The International Workshop on Intelligent Systems (IWIS 2024), TT01-2,
                     2024.8.29</p>
+                <p>Shiryu Ueno, Yoshikazu Hayashi, Shunsuke Nakatsuka, Hiroaki Aizawa, and Kunihito Kato:Boosting
+                    Explainability of Visual Inspection via
+                    Multi-Head Vision Language Model”, QCAV2024 accepted.</p>
 
                 <!-- <h3>Paper｜論文</h3>
                 <p>S. Ueno and K. Kato, "Boosting Representation Learning via Similarity-based Active Data Sampling from the Web," 2024 International Workshop on Intelligent Systems (IWIS), Ulsan, Korea, Republic of, 2024, pp. 1-6, doi: 10.1109/IWIS62722.2024.10706063.</p> -->
@@ -145,13 +150,9 @@
                 <p>Shiryu Ueno, Yusei Yamada, Shunsuke Nakatsuka and Kunihito Kato:"Benchmarking of Query Strategies:
                     Towards Future Deep Active Learning", arXiv, 2023.12.12.</p>
 
-                <!-- <p class="r">&raquo;&nbsp;<a href="#">過去ログ</a></p> -->
             </section>
-            <!--/#new-->
-
 
         </div>
-        <!--/#contents-->
 
         <footer>
             <ul class="icon">
@@ -165,17 +166,8 @@
         </footer>
 
     </div>
-    <!--/#container-->
 
     <p class="nav-fix-pos-pagetop"><a href="#">↑</a></p>
-
-    <!--メニュー開閉ボタン-->
-    <!-- <div id="menubar_hdr" class="close"></div> -->
-
-    <!--メニューの開閉処理-->
-    <!-- <script>
-        open_close("menubar_hdr", "menubar");
-    </script> -->
 
     <!--lightbox用jsファイルの読み込み-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.10.0/js/lightbox-plus-jquery.min.js"></script>
